@@ -67,6 +67,12 @@ def pick_latest_concept_entry(concept_name: str):
     if not matches:
         return None
     matches.sort(key=lambda x: x.get("timestamp", ""))
+    # Prefer entries matching the currently loaded model
+    active = State.active_model_name
+    if active:
+        model_matches = [e for e in matches if e.get("model_name", "") == active]
+        if model_matches:
+            return model_matches[-1]
     return matches[-1]
 
 
@@ -334,8 +340,15 @@ class Handler(BaseHTTPRequestHandler):
                 html = f.read()
             return text_response(self, 200, html)
         if parsed.path == "/api/concepts":
-            concepts = sorted({e.get("concept") for e in State.catalog if e.get("concept")})
-            return json_response(self, 200, {"concepts": concepts, "device": str(State.device)})
+            active = State.active_model_name
+            if active:
+                eligible = [e for e in State.catalog if e.get("model_name") == active]
+                if not eligible:
+                    eligible = State.catalog  # fallback: show all
+            else:
+                eligible = State.catalog
+            concepts = sorted({e.get("concept") for e in eligible if e.get("concept")})
+            return json_response(self, 200, {"concepts": concepts, "device": str(State.device), "model": active})
         if parsed.path == "/api/concept_layers":
             qs = parse_qs(parsed.query)
             concept = (qs.get("concept") or [None])[0]
