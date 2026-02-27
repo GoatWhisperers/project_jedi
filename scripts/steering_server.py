@@ -369,6 +369,9 @@ class Handler(BaseHTTPRequestHandler):
             })
         if parsed.path == "/api/library":
             return json_response(self, 200, {"library": get_library_overview()})
+        if parsed.path == "/api/reload_catalog":
+            State.catalog = load_catalog()
+            return json_response(self, 200, {"ok": True, "entries": len(State.catalog)})
         return self.send_error(404)
 
     def do_POST(self):

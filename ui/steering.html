@@ -204,6 +204,7 @@
       <div class="field-group">
         <label>Concept</label>
         <select id="concept"></select>
+        <button id="reload-cat-btn" title="Reload catalog" onclick="reloadCatalog()" style="margin-left:6px;padding:2px 8px;font-size:11px;cursor:pointer;background:transparent;border:1px solid #444;color:#aaa;border-radius:3px;">↺</button>
       </div>
 
       <div id="alpha-track">
@@ -457,6 +458,28 @@
 
       await refreshLayers();
       await loadModels();
+    }
+
+    async function reloadCatalog() {
+      const btn = document.getElementById('reload-cat-btn');
+      btn.textContent = '…';
+      try {
+        const r = await fetchJson('/api/reload_catalog');
+        // Repopulate concept dropdown
+        const c = await fetchJson('/api/concepts');
+        const sel = document.getElementById('concept');
+        const prev = sel.value;
+        sel.innerHTML = '';
+        (c.concepts || []).forEach(name => {
+          const o = document.createElement('option');
+          o.value = name; o.textContent = name;
+          sel.appendChild(o);
+        });
+        if (prev) sel.value = prev;
+        await refreshLayers();
+        btn.textContent = '✓';
+        setTimeout(() => btn.textContent = '↺', 1500);
+      } catch(e) { btn.textContent = '↺'; }
     }
 
     /* ── Send ── */
