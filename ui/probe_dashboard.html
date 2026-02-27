@@ -1,0 +1,692 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project Jedi — Probe Dashboard</title>
+  <style>
+    :root {
+      --bg:           #0b0f1a;
+      --panel:        #121a2b;
+      --panel2:       #0f1623;
+      --text:         #e7ecff;
+      --muted:        #9aa7d8;
+      --accent:       #6ee7ff;
+      --accent2:      #a78bfa;
+      --green:        #8affc1;
+      --yellow:       #ffe066;
+      --red:          #ff6b6b;
+      --orange:       #ffb347;
+      --border:       #1f2a4d;
+      --input-bg:     #0d1426;
+      --input-border: #27335c;
+      --bar-bg:       #1a2244;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
+      background: radial-gradient(1200px 700px at 10% 0%, #1a2450 0%, var(--bg) 60%);
+      color: var(--text);
+      font-size: 13px;
+      min-height: 100vh;
+      padding: 14px 16px;
+    }
+
+    /* ── Layout ── */
+    .page { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+
+    /* ── Header ── */
+    .header { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .header h1 { font-size: 18px; flex: 1; white-space: nowrap; }
+    .header h1 span { color: var(--accent); }
+    .badge {
+      font-size: 11px; padding: 3px 8px; border-radius: 20px;
+      background: var(--panel); border: 1px solid var(--border); color: var(--muted);
+    }
+    .badge.running  { border-color: var(--green); color: var(--green); }
+    .badge.done     { border-color: var(--accent); color: var(--accent); }
+    .badge.error    { border-color: var(--red); color: var(--red); }
+
+    /* ── Card ── */
+    .card {
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: 10px; padding: 12px 14px;
+    }
+    .card-title {
+      font-size: 11px; color: var(--muted); text-transform: uppercase;
+      letter-spacing: 0.08em; margin-bottom: 10px;
+    }
+
+    /* ── Control row ── */
+    .ctrl-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .model-btn {
+      background: var(--input-bg); color: var(--muted);
+      border: 1px solid var(--input-border); border-radius: 6px;
+      padding: 6px 14px; font-family: inherit; font-size: 12px; cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .model-btn:hover  { border-color: var(--accent2); color: var(--text); }
+    .model-btn.active { border-color: var(--accent2); color: var(--accent2); background: #180f2a; }
+
+    select, input[type="text"] {
+      background: var(--input-bg); color: var(--text);
+      border: 1px solid var(--input-border); border-radius: 6px;
+      padding: 6px 8px; font-family: inherit; font-size: 12px;
+    }
+    select { cursor: pointer; }
+    label.chk { display: flex; align-items: center; gap: 5px; color: var(--muted); font-size: 12px; cursor: pointer; }
+    input[type="checkbox"] { accent-color: var(--accent); width: 14px; height: 14px; cursor: pointer; }
+
+    button.action {
+      background: var(--input-bg); color: var(--text);
+      border: 1px solid var(--input-border); border-radius: 6px;
+      padding: 6px 14px; font-family: inherit; font-size: 12px; cursor: pointer;
+      transition: border-color 0.15s;
+    }
+    button.action:hover { border-color: var(--accent); }
+    button.action.start { border-color: var(--green); color: var(--green); }
+    button.action.start:hover { background: #0a1f12; }
+    button.action.stop  { border-color: var(--red); color: var(--red); }
+    button.action.stop:hover  { background: #1f0a0a; }
+    button.action:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    /* ── Stats cards row ── */
+    .stats-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+    .stat-card {
+      background: var(--panel2); border: 1px solid var(--border);
+      border-radius: 8px; padding: 10px 12px; text-align: center;
+    }
+    .stat-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; }
+    .stat-value { font-size: 22px; font-weight: bold; margin: 4px 0 2px; }
+    .stat-sub   { font-size: 10px; color: var(--muted); }
+    .stat-bar {
+      height: 4px; background: var(--bar-bg); border-radius: 2px; margin-top: 6px; overflow: hidden;
+    }
+    .stat-bar-fill { height: 100%; border-radius: 2px; transition: width 0.4s; }
+    .col-green  { color: var(--green); }
+    .col-yellow { color: var(--yellow); }
+    .col-red    { color: var(--red); }
+    .col-accent { color: var(--accent); }
+    .col-orange { color: var(--orange); }
+
+    /* ── Progress section ── */
+    .progress-grid { display: flex; flex-direction: column; gap: 8px; }
+    .prog-row { display: flex; align-items: center; gap: 10px; }
+    .prog-label { width: 130px; font-size: 11px; color: var(--muted); flex-shrink: 0; }
+    .prog-bar {
+      flex: 1; height: 8px; background: var(--bar-bg); border-radius: 4px; overflow: hidden;
+    }
+    .prog-fill { height: 100%; border-radius: 4px; transition: width 0.5s; }
+    .prog-fill.phase  { background: linear-gradient(90deg, #3b82f6, #6ee7ff); }
+    .prog-fill.query  { background: linear-gradient(90deg, #7c3aed, #a78bfa); }
+    .prog-fill.layer  { background: linear-gradient(90deg, #c2410c, #ffb347); }
+    .prog-pct { width: 36px; text-align: right; font-size: 11px; color: var(--muted); flex-shrink: 0; }
+    .prog-detail { font-size: 11px; color: var(--muted); }
+
+    .meta-row {
+      display: flex; gap: 20px; flex-wrap: wrap; font-size: 11px; color: var(--muted); margin-top: 4px;
+    }
+    .meta-row span b { color: var(--text); }
+
+    /* ── Log ── */
+    #log-box {
+      background: #080c14; border: 1px solid var(--border); border-radius: 8px;
+      padding: 10px 12px; height: 260px; overflow-y: auto;
+      font-size: 12px; line-height: 1.55;
+      white-space: pre-wrap; word-break: break-all;
+    }
+    .log-line { color: #c5d0f0; }
+    .log-line.step   { color: var(--accent); font-weight: bold; }
+    .log-line.warn   { color: var(--yellow); }
+    .log-line.err    { color: var(--red); }
+    .log-line.ok     { color: var(--green); }
+    .log-header {
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;
+    }
+    .log-header .title { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+    .log-status { font-size: 11px; }
+
+    /* ── Library table ── */
+    .lib-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    th {
+      text-align: left; padding: 6px 10px;
+      color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: 0.07em;
+      border-bottom: 1px solid var(--border);
+    }
+    td { padding: 6px 10px; border-bottom: 1px solid #151e35; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #141c30; }
+    .snr-pos { color: var(--green); }
+    .snr-neg { color: var(--red); }
+    .snr-neu { color: var(--muted); }
+    .empty-row td { color: var(--muted); text-align: center; padding: 20px; }
+
+    /* ── Upload hidden input ── */
+    #upload-input { display: none; }
+
+    /* ── Spinner ── */
+    .spinner {
+      display: inline-block; width: 12px; height: 12px;
+      border: 2px solid var(--input-border); border-top-color: var(--accent);
+      border-radius: 50%; animation: spin 0.7s linear infinite; vertical-align: middle;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .stats-row { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ── Header ── -->
+  <div class="header">
+    <h1>&#129504; Project Jedi — <span>Probe Dashboard</span></h1>
+    <span class="badge" id="probe-badge">idle</span>
+  </div>
+
+  <!-- ── Controls ── -->
+  <div class="card">
+    <div class="card-title">Model &amp; Concept</div>
+    <div class="ctrl-row" style="margin-bottom:10px;">
+      <span style="font-size:11px;color:var(--muted);margin-right:2px;">Model:</span>
+      <div id="model-btns" style="display:flex;gap:6px;flex-wrap:wrap;"></div>
+    </div>
+    <div class="ctrl-row">
+      <select id="concept-sel" style="min-width:220px;">
+        <option value="">— select concept —</option>
+      </select>
+      <label class="chk">
+        <input type="checkbox" id="eval-chk"> eval
+      </label>
+      <button class="action start" id="btn-start" onclick="startProbe()">&#9654; Start Probe</button>
+      <button class="action stop"  id="btn-stop"  onclick="stopProbe()">&#9632; Stop</button>
+      <button class="action" onclick="document.getElementById('upload-input').click()">&#11014; Upload JSON</button>
+      <input type="file" id="upload-input" accept=".json" onchange="uploadConcept(event)">
+    </div>
+  </div>
+
+  <!-- ── Stats ── -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-label">GPU Temp</div>
+      <div class="stat-value" id="gpu-edge">—</div>
+      <div class="stat-sub" id="gpu-junction">junction —</div>
+      <div class="stat-bar"><div class="stat-bar-fill" id="gpu-edge-bar" style="width:0%;background:var(--green);"></div></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">GPU Load</div>
+      <div class="stat-value" id="gpu-load">—</div>
+      <div class="stat-sub" id="gpu-load-sub">compute</div>
+      <div class="stat-bar"><div class="stat-bar-fill" id="gpu-load-bar" style="width:0%;background:var(--green);"></div></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">VRAM</div>
+      <div class="stat-value" id="gpu-vram">—</div>
+      <div class="stat-sub" id="gpu-vram-sub">—</div>
+      <div class="stat-bar"><div class="stat-bar-fill" id="gpu-vram-bar" style="width:0%;background:var(--accent);"></div></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">CPU</div>
+      <div class="stat-value" id="cpu-pct">—</div>
+      <div class="stat-sub">utilization</div>
+      <div class="stat-bar"><div class="stat-bar-fill" id="cpu-bar" style="width:0%;background:var(--accent2);"></div></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">RAM</div>
+      <div class="stat-value" id="ram-pct">—</div>
+      <div class="stat-sub" id="ram-sub">—</div>
+      <div class="stat-bar"><div class="stat-bar-fill" id="ram-bar" style="width:0%;background:var(--orange);"></div></div>
+    </div>
+  </div>
+
+  <!-- ── Progress ── -->
+  <div class="card" id="progress-card">
+    <div class="card-title">Progress</div>
+    <div class="progress-grid">
+      <div class="prog-row">
+        <div class="prog-label">Phase</div>
+        <div class="prog-bar"><div class="prog-fill phase" id="bar-phase" style="width:0%;"></div></div>
+        <div class="prog-pct" id="pct-phase">—</div>
+        <div class="prog-detail" id="txt-phase">idle</div>
+      </div>
+      <div class="prog-row">
+        <div class="prog-label">Query</div>
+        <div class="prog-bar"><div class="prog-fill query" id="bar-query" style="width:0%;"></div></div>
+        <div class="prog-pct" id="pct-query">—</div>
+        <div class="prog-detail" id="txt-query">—</div>
+      </div>
+      <div class="prog-row">
+        <div class="prog-label">Layer</div>
+        <div class="prog-bar"><div class="prog-fill layer" id="bar-layer" style="width:0%;"></div></div>
+        <div class="prog-pct" id="pct-layer">—</div>
+        <div class="prog-detail" id="txt-layer">—</div>
+      </div>
+    </div>
+    <div class="meta-row" style="margin-top:10px;">
+      <span>ETA: <b id="eta-val">—</b></span>
+      <span>Elapsed: <b id="elapsed-val">—</b></span>
+      <span>Throughput: <b id="thr-val">—</b></span>
+      <span>Concept: <b id="concept-val">—</b></span>
+      <span>Model: <b id="model-val">—</b></span>
+    </div>
+  </div>
+
+  <!-- ── Log ── -->
+  <div class="card">
+    <div class="log-header">
+      <div class="title">Log</div>
+      <div class="log-status" id="log-status-txt"></div>
+    </div>
+    <div id="log-box"></div>
+  </div>
+
+  <!-- ── Vector Library ── -->
+  <div class="card">
+    <div class="card-title">Vector Library</div>
+    <div class="lib-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Concept</th>
+            <th>Category</th>
+            <th>Model</th>
+            <th>Pairs</th>
+            <th>Best Layer</th>
+            <th>SNR</th>
+          </tr>
+        </thead>
+        <tbody id="lib-tbody">
+          <tr class="empty-row"><td colspan="6">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+<script>
+// ── State ──────────────────────────────────────────────────────────────────
+let activeModel = null;
+let probeStatus = 'idle';
+let logLines = [];
+let atLogBottom = true;
+let lastLogLen = 0;
+
+// ── Utilities ──────────────────────────────────────────────────────────────
+function fmtTemp(c) {
+  if (c === undefined || c === null) return '—';
+  const s = c.toFixed(1) + '°C';
+  const cls = c < 60 ? 'col-green' : c < 80 ? 'col-yellow' : 'col-red';
+  return `<span class="${cls}">${s}</span>`;
+}
+function fmtPct(p, warn=70, hot=90) {
+  if (p === undefined || p === null) return '—';
+  const cls = p < warn ? 'col-green' : p < hot ? 'col-yellow' : 'col-red';
+  return `<span class="${cls}">${p.toFixed(1)}%</span>`;
+}
+function barColor(pct, warn=70, hot=90) {
+  return pct < warn ? 'var(--green)' : pct < hot ? 'var(--yellow)' : 'var(--red)';
+}
+function fmtSecs(s) {
+  if (s === null || s === undefined) return '—';
+  s = Math.round(s);
+  const m = Math.floor(s / 60);
+  const ss = s % 60;
+  return m > 0 ? `${m}m ${ss}s` : `${ss}s`;
+}
+function setBar(id, pct) {
+  const el = document.getElementById(id);
+  if (el) el.style.width = Math.min(100, Math.max(0, pct)) + '%';
+}
+function setHTML(id, html) {
+  const el = document.getElementById(id);
+  if (el) el.innerHTML = html;
+}
+function setText(id, txt) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = txt;
+}
+
+// ── Log rendering ──────────────────────────────────────────────────────────
+function classifyLine(line) {
+  if (/^\[[\d\/]+\]/.test(line) || /^\[reader/.test(line)) return 'step';
+  if (/\berror\b|\bException\b|\bTraceback\b/i.test(line)) return 'err';
+  if (/\bwarn\b/i.test(line)) return 'warn';
+  if (/Done\.?$/.test(line) || /✓/.test(line)) return 'ok';
+  return '';
+}
+function renderLog(lines) {
+  const box = document.getElementById('log-box');
+  // Save scroll position
+  const wasAtBottom = box.scrollHeight - box.scrollTop - box.clientHeight < 8;
+
+  const html = lines.map(line => {
+    const cls = classifyLine(line);
+    const safe = line.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    return `<div class="log-line ${cls}">${safe}</div>`;
+  }).join('');
+  box.innerHTML = html;
+
+  if (wasAtBottom) {
+    box.scrollTop = box.scrollHeight;
+  }
+}
+
+// ── Stats polling (every 2s) ───────────────────────────────────────────────
+async function pollStats() {
+  try {
+    const r = await fetch('/api/stats');
+    const d = await r.json();
+
+    // GPU
+    const gpu = d.gpu || {};
+    if (gpu.ok) {
+      // Temperatura
+      setHTML('gpu-edge', fmtTemp(gpu.edge_c));
+      setHTML('gpu-junction', `junc ${gpu.junction_c !== undefined ? gpu.junction_c.toFixed(1) : '—'}°C`);
+      const edgePct = Math.min(100, (gpu.edge_c || 0) / 110 * 100);
+      const edgeBar = document.getElementById('gpu-edge-bar');
+      if (edgeBar) { edgeBar.style.width = edgePct + '%'; edgeBar.style.background = barColor(gpu.edge_c || 0, 60, 80); }
+
+      // GPU Load (compute)
+      const gpuLoad = gpu.gpu_use_pct != null ? gpu.gpu_use_pct : 0;
+      setHTML('gpu-load', fmtPct(gpuLoad, 50, 90));
+      const loadBar = document.getElementById('gpu-load-bar');
+      if (loadBar) { loadBar.style.width = gpuLoad + '%'; loadBar.style.background = gpuLoad > 5 ? 'var(--accent)' : 'var(--green)'; }
+      // Pulse la card se GPU attiva
+      const loadCard = document.getElementById('gpu-load')?.closest('.stat-card');
+      if (loadCard) loadCard.style.borderColor = gpuLoad > 5 ? 'var(--accent)' : 'var(--border)';
+
+      // VRAM in GB
+      const vramUsed  = gpu.vram_used_gb  != null ? gpu.vram_used_gb  : null;
+      const vramTotal = gpu.vram_total_gb != null ? gpu.vram_total_gb : null;
+      const vramPct   = gpu.mem_pct       != null ? gpu.mem_pct       : 0;
+      if (vramUsed != null && vramTotal != null) {
+        const usedCls = vramPct > 85 ? 'col-red' : vramPct > 65 ? 'col-yellow' : 'col-accent';
+        setHTML('gpu-vram', `<span class="${usedCls}">${vramUsed.toFixed(1)}</span>`);
+        setText('gpu-vram-sub', `/ ${vramTotal.toFixed(0)} GB  (${vramPct.toFixed(0)}%)`);
+      } else {
+        setHTML('gpu-vram', fmtPct(vramPct));
+        setText('gpu-vram-sub', 'VRAM');
+      }
+      const vramBar = document.getElementById('gpu-vram-bar');
+      if (vramBar) { vramBar.style.width = vramPct + '%'; vramBar.style.background = barColor(vramPct); }
+    } else {
+      setText('gpu-edge', '—');
+      setText('gpu-load', '—');
+      setText('gpu-vram', '—');
+    }
+
+    // CPU
+    const cpu = d.cpu_pct || 0;
+    setHTML('cpu-pct', fmtPct(cpu));
+    setBar('cpu-bar', cpu);
+    const cpuBar = document.getElementById('cpu-bar');
+    if (cpuBar) cpuBar.style.background = barColor(cpu);
+
+    // RAM
+    const ram = d.ram || {};
+    const ramPct = ram.pct || 0;
+    setHTML('ram-pct', fmtPct(ramPct, 75, 90));
+    if (ram.used_mb && ram.total_mb) {
+      setText('ram-sub', `${Math.round(ram.used_mb / 1024 * 10) / 10}/${Math.round(ram.total_mb / 1024 * 10) / 10} GB`);
+    }
+    setBar('ram-bar', ramPct);
+    const ramBar = document.getElementById('ram-bar');
+    if (ramBar) ramBar.style.background = barColor(ramPct, 75, 90);
+
+  } catch(e) { /* ignore */ }
+}
+
+// ── Status + log polling ───────────────────────────────────────────────────
+async function pollStatus() {
+  try {
+    const r = await fetch('/api/status');
+    const d = await r.json();
+    probeStatus = d.probe_status || 'idle';
+
+    updateBadge(probeStatus);
+
+    const st = d.status || {};
+    // Progress bars
+    const phasePct = st.progress_percent || 0;
+    setBar('bar-phase', phasePct);
+    setText('pct-phase', phasePct ? phasePct + '%' : '—');
+    setText('txt-phase', st.phase || (probeStatus === 'idle' ? 'idle' : '—'));
+
+    const qTotal = st.query_total || 0;
+    const qCur   = st.query_current || 0;
+    const qPct   = qTotal > 0 ? (qCur / qTotal * 100) : 0;
+    setBar('bar-query', qPct);
+    setText('pct-query', qTotal > 0 ? Math.round(qPct) + '%' : '—');
+    setText('txt-query', qTotal > 0 ? `${qCur}/${qTotal}` : '—');
+
+    const lTotal = st.layer_total || 0;
+    const lCur   = st.layer_current || 0;
+    const lPct   = lTotal > 0 ? (lCur / lTotal * 100) : 0;
+    setBar('bar-layer', lPct);
+    setText('pct-layer', lTotal > 0 ? Math.round(lPct) + '%' : '—');
+    setText('txt-layer', lTotal > 0 ? `${lCur}/${lTotal}` : '—');
+
+    setText('eta-val',     fmtSecs(st.eta_s));
+    setText('elapsed-val', fmtSecs(st.elapsed_s));
+    setText('thr-val',     st.throughput_q_per_s != null ? st.throughput_q_per_s.toFixed(2) + ' q/s' : '—');
+    setText('concept-val', st.concept || d.concept || '—');
+    setText('model-val',   st.model   || '—');
+
+    updateButtons();
+  } catch(e) { /* ignore */ }
+}
+
+async function pollLog() {
+  try {
+    const r = await fetch('/api/log?n=300');
+    const d = await r.json();
+    renderLog(d.lines || []);
+    const statusTxt = d.status === 'running' ? '<span class="spinner"></span> running'
+                    : d.status === 'done'    ? `<span style="color:var(--green)">done (rc=${d.returncode})</span>`
+                    : d.status === 'error'   ? `<span style="color:var(--red)">error (rc=${d.returncode})</span>`
+                    : '';
+    setHTML('log-status-txt', statusTxt);
+  } catch(e) { /* ignore */ }
+}
+
+// ── Badge + button state ───────────────────────────────────────────────────
+function updateBadge(status) {
+  const badge = document.getElementById('probe-badge');
+  if (!badge) return;
+  badge.textContent = status;
+  badge.className = 'badge ' + (status === 'running' ? 'running' : status === 'done' ? 'done' : status === 'error' ? 'error' : '');
+}
+function updateButtons() {
+  const start = document.getElementById('btn-start');
+  const stop  = document.getElementById('btn-stop');
+  if (start) start.disabled = probeStatus === 'running';
+  if (stop)  stop.disabled  = probeStatus !== 'running';
+}
+
+// ── Model buttons ──────────────────────────────────────────────────────────
+async function loadModels() {
+  try {
+    const r = await fetch('/api/models');
+    const d = await r.json();
+    activeModel = d.active;
+    const container = document.getElementById('model-btns');
+    if (!container) return;
+    container.innerHTML = '';
+    (d.models || []).forEach(m => {
+      const btn = document.createElement('button');
+      btn.className = 'model-btn' + (m.name === activeModel ? ' active' : '');
+      btn.textContent = m.name;
+      btn.onclick = () => selectModel(m.name);
+      container.appendChild(btn);
+    });
+  } catch(e) { /* ignore */ }
+}
+async function selectModel(name) {
+  activeModel = name;
+  document.querySelectorAll('.model-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent === name);
+  });
+  try {
+    await fetch('/api/set_model', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({name}),
+    });
+  } catch(e) { /* ignore */ }
+}
+
+// ── Concepts dropdown ──────────────────────────────────────────────────────
+async function loadConcepts() {
+  try {
+    const r = await fetch('/api/concepts');
+    const d = await r.json();
+    const sel = document.getElementById('concept-sel');
+    if (!sel) return;
+    const prev = sel.value;
+    sel.innerHTML = '<option value="">— select concept —</option>';
+    (d.concepts || []).forEach(c => {
+      const opt = document.createElement('option');
+      opt.value = c.path;
+      opt.textContent = `${c.name}  [${c.category}]  (${c.n_pos}+${c.n_neg})`;
+      sel.appendChild(opt);
+    });
+    if (prev) sel.value = prev;
+  } catch(e) { /* ignore */ }
+}
+
+// ── Actions ───────────────────────────────────────────────────────────────
+async function startProbe() {
+  const sel = document.getElementById('concept-sel');
+  const conceptPath = sel ? sel.value : '';
+  if (!conceptPath) { alert('Select a concept first'); return; }
+  const runEval = document.getElementById('eval-chk')?.checked || false;
+
+  try {
+    const r = await fetch('/api/probe', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({concept_path: conceptPath, model: activeModel, eval: runEval}),
+    });
+    const d = await r.json();
+    if (!d.ok) alert('Cannot start: ' + d.msg);
+    else { probeStatus = 'running'; updateBadge('running'); updateButtons(); }
+  } catch(e) { alert('Error: ' + e); }
+}
+
+async function stopProbe() {
+  try {
+    await fetch('/api/stop');
+    probeStatus = 'idle';
+    updateBadge('idle');
+    updateButtons();
+  } catch(e) { /* ignore */ }
+}
+
+async function uploadConcept(evt) {
+  const file = evt.target.files[0];
+  if (!file) return;
+  const text = await file.text();
+  let data;
+  try { data = JSON.parse(text); } catch(e) { alert('Invalid JSON: ' + e); return; }
+  try {
+    const r = await fetch('/api/upload_concept', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(data),
+    });
+    const d = await r.json();
+    if (d.ok) {
+      alert(`Uploaded: ${d.filename}`);
+      loadConcepts();
+    } else {
+      alert('Upload error: ' + (d.error || JSON.stringify(d)));
+    }
+  } catch(e) { alert('Upload error: ' + e); }
+  evt.target.value = '';  // reset input
+}
+
+// ── Library ────────────────────────────────────────────────────────────────
+async function pollLibrary() {
+  try {
+    const r = await fetch('/api/library');
+    const d = await r.json();
+    const tbody = document.getElementById('lib-tbody');
+    if (!tbody) return;
+    const entries = d.library || [];
+    if (!entries.length) {
+      tbody.innerHTML = '<tr class="empty-row"><td colspan="6">No vectors yet</td></tr>';
+      return;
+    }
+    tbody.innerHTML = entries.map(e => {
+      const snr = e.best_snr;
+      const snrCls = snr == null ? 'snr-neu' : snr > 0.5 ? 'snr-pos' : snr < 0 ? 'snr-neg' : 'snr-neu';
+      const snrTxt = snr != null ? snr.toFixed(3) : '—';
+      return `<tr>
+        <td>${esc(e.concept)}</td>
+        <td style="color:var(--muted)">${esc(e.category)}</td>
+        <td>${esc(e.model)}</td>
+        <td style="color:var(--muted)">${e.n_pairs ?? '—'}</td>
+        <td style="color:var(--accent)">${e.best_layer ?? '—'}</td>
+        <td class="${snrCls}">${snrTxt}</td>
+      </tr>`;
+    }).join('');
+  } catch(e) { /* ignore */ }
+}
+function esc(s) {
+  if (!s) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// ── Polling orchestration ─────────────────────────────────────────────────
+let statusInterval = null;
+let logInterval = null;
+
+function startPolling() {
+  // Stats: always every 2s
+  setInterval(pollStats, 2000);
+  pollStats();
+
+  // Status: every 1s when running, 5s otherwise
+  function scheduleStatus() {
+    const delay = probeStatus === 'running' ? 1000 : 5000;
+    statusInterval = setTimeout(async () => {
+      await pollStatus();
+      scheduleStatus();
+    }, delay);
+  }
+  pollStatus().then(scheduleStatus);
+
+  // Log: every 1s when running, 5s otherwise
+  function scheduleLog() {
+    const delay = probeStatus === 'running' ? 1000 : 5000;
+    logInterval = setTimeout(async () => {
+      await pollLog();
+      scheduleLog();
+    }, delay);
+  }
+  pollLog().then(scheduleLog);
+
+  // Library: every 10s
+  setInterval(pollLibrary, 10000);
+  pollLibrary();
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────
+(async () => {
+  await loadModels();
+  await loadConcepts();
+  updateButtons();
+  startPolling();
+})();
+</script>
+</body>
+</html>

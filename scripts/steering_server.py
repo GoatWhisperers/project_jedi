@@ -1,0 +1,469 @@
+#!/usr/bin/env python3
+import glob
+import json
+import os
+import threading
+import subprocess
+from http.server import BaseHTTPRequestHandler, HTTPServer
+from urllib.parse import urlparse, parse_qs
+
+import numpy as np
+import torch
+from transformers import AutoModelForCausalLM, AutoTokenizer
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CONFIG_PATH = os.path.join(ROOT, "config", "settings.json")
+OUTPUT_ROOT = os.path.join(ROOT, "output")
+CATALOG_PATH = os.path.join(OUTPUT_ROOT, "catalog.json")
+VECTOR_LIB_ROOT = os.path.join(OUTPUT_ROOT, "vector_library")
+UI_PATH = os.path.join(ROOT, "ui", "steering.html")
+LOG_PATH = os.path.join(OUTPUT_ROOT, "steering_log.jsonl")
+
+
+class State:
+    model = None
+    tokenizer = None
+    layers = None
+    device = None
+    catalog = []
+    num_layers = 0
+    lock = threading.Lock()
+    active_model_name = ""
+    available_models = []  # list of {"name": ..., "path": ...}
+
+
+def load_settings():
+    with open(CONFIG_PATH, "r") as f:
+        return json.load(f)
+
+
+def get_transformer_layers(model):
+    for attr_path in [
+        "model.layers",
+        "model.model.layers",
+        "transformer.h",
+        "gpt_neox.layers",
+        "transformer.blocks",
+    ]:
+        obj = model
+        try:
+            for attr in attr_path.split("."):
+                obj = getattr(obj, attr)
+            return list(obj)
+        except AttributeError:
+            continue
+    raise ValueError(f"Cannot find transformer layers for {type(model).__name__}")
+
+
+def load_catalog():
+    if os.path.exists(CATALOG_PATH):
+        with open(CATALOG_PATH, "r") as f:
+            return json.load(f)
+    return []
+
+
+def pick_latest_concept_entry(concept_name: str):
+    matches = [e for e in State.catalog if e.get("concept") == concept_name]
+    if not matches:
+        return None
+    matches.sort(key=lambda x: x.get("timestamp", ""))
+    return matches[-1]
+
+
+def load_vector(path: str):
+    v = np.load(path)
+    return v
+
+
+def make_steering_hook(steer_tensor, apply_to="all", prompt_len=None):
+    def hook_fn(module, input, output):
+        if isinstance(output, tuple):
+            hidden = output[0]
+        else:
+            hidden = output
+        modified = hidden.clone()
+        if apply_to == "all":
+            modified += steer_tensor
+        elif apply_to == "last":
+            modified[:, -1, :] += steer_tensor
+        elif apply_to == "new":
+            # Only generated tokens beyond the original prompt
+            if hidden.shape[1] == 1:
+                modified[:, -1, :] += steer_tensor
+            elif prompt_len is not None and hidden.shape[1] > prompt_len:
+                modified[:, prompt_len:, :] += steer_tensor
+        if isinstance(output, tuple):
+            return (modified,) + output[1:]
+        return modified
+    return hook_fn
+
+
+def build_chat_prompt(messages):
+    # Prefer tokenizer chat template if present
+    tok = State.tokenizer
+    if hasattr(tok, "apply_chat_template"):
+        try:
+            return tok.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+        except Exception:
+            pass
+
+    # Fallback
+    parts = []
+    for m in messages:
+        role = m.get("role", "user")
+        content = m.get("content", "")
+        parts.append(f"{role.upper()}: {content}")
+    parts.append("ASSISTANT:")
+    return "\n".join(parts)
+
+
+def generate_text(prompt, max_new_tokens=128):
+    inputs = State.tokenizer(prompt, return_tensors="pt").to(State.device)
+    with torch.no_grad():
+        out = State.model.generate(
+            **inputs,
+            max_new_tokens=max_new_tokens,
+            temperature=0.7,
+            do_sample=True,
+        )
+    return State.tokenizer.decode(out[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True)
+
+
+def generate_with_injection(prompt, concept, vector_layer_idx, inject_layer_idx, alpha, gain=1.0, max_new_tokens=128, apply_to="new", multi_layers=None, layer_configs=None):
+    """
+    layer_configs: list of {"layer": int, "gain": float} — per-layer control.
+                   When provided, overrides multi_layers and vector/inject_layer_idx.
+    multi_layers:  list of layer indices — legacy multi-layer mode (same gain for all).
+    Default:       single layer, vector_layer_idx → inject_layer_idx.
+    """
+    entry = pick_latest_concept_entry(concept)
+    if not entry:
+        raise RuntimeError(f"Concept not found: {concept}")
+
+    hooks = []
+    prompt_len = len(State.tokenizer.encode(prompt))
+    dtype = next(State.model.parameters()).dtype
+
+    def _make_hook_for_layer(layer_idx, layer_gain):
+        vec_path = None
+        for p in entry.get("vectors", []):
+            if p.endswith(f"_{layer_idx}.npy"):
+                vec_path = p
+                break
+        if vec_path is None:
+            return None
+        vec = load_vector(vec_path)
+        steer = torch.tensor(vec, dtype=dtype, device=State.device) * float(alpha) * float(layer_gain)
+        return State.layers[layer_idx].register_forward_hook(
+            make_steering_hook(steer, apply_to=apply_to, prompt_len=prompt_len)
+        )
+
+    if layer_configs:
+        for cfg in layer_configs:
+            hook = _make_hook_for_layer(int(cfg["layer"]), float(cfg["gain"]))
+            if hook is not None:
+                hooks.append(hook)
+    elif multi_layers:
+        for layer_idx in multi_layers:
+            hook = _make_hook_for_layer(layer_idx, gain)
+            if hook is not None:
+                hooks.append(hook)
+    else:
+        vec_path = None
+        for p in entry.get("vectors", []):
+            if p.endswith(f"_{vector_layer_idx}.npy"):
+                vec_path = p
+                break
+        if vec_path is None:
+            raise RuntimeError(f"Vector for layer {vector_layer_idx} not found")
+        vec = load_vector(vec_path)
+        steer = torch.tensor(vec, dtype=dtype, device=State.device) * float(alpha) * float(gain)
+        hooks.append(State.layers[inject_layer_idx].register_forward_hook(
+            make_steering_hook(steer, apply_to=apply_to, prompt_len=prompt_len)
+        ))
+
+    try:
+        return generate_text(prompt, max_new_tokens=max_new_tokens)
+    finally:
+        for h in hooks:
+            h.remove()
+
+
+def load_model(model_path=None, model_name=None):
+    settings = load_settings()
+    State.available_models = settings.get("models", [])
+
+    if model_path is None:
+        model_path = settings.get("model_path", "")
+    if not model_path:
+        raise SystemExit("model_path vuoto in config/settings.json")
+
+    if model_name is None:
+        # Derive name from available_models list
+        for m in State.available_models:
+            if m.get("path") == model_path:
+                model_name = m.get("name", "")
+                break
+        else:
+            model_name = os.path.basename(model_path)
+
+    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=bool(settings.get("trust_remote_code", False)), use_fast=True)
+    model = AutoModelForCausalLM.from_pretrained(
+        model_path,
+        trust_remote_code=bool(settings.get("trust_remote_code", False)),
+        low_cpu_mem_usage=True,
+    )
+    model.eval()
+    pref = settings.get("device", "cuda")
+    if pref == "cpu":
+        device = torch.device("cpu")
+    else:
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    model.to(device)
+
+    State.model = model
+    State.tokenizer = tokenizer
+    State.layers = get_transformer_layers(model)
+    State.device = device
+    State.catalog = load_catalog()
+    State.num_layers = model.config.num_hidden_layers
+    State.active_model_name = model_name
+
+
+def json_response(handler, code, payload):
+    data = json.dumps(payload).encode("utf-8")
+    handler.send_response(code)
+    handler.send_header("Content-Type", "application/json")
+    handler.send_header("Content-Length", str(len(data)))
+    handler.end_headers()
+    handler.wfile.write(data)
+
+
+def text_response(handler, code, content, content_type="text/html"):
+    data = content.encode("utf-8")
+    handler.send_response(code)
+    handler.send_header("Content-Type", content_type)
+    handler.send_header("Content-Length", str(len(data)))
+    handler.end_headers()
+    handler.wfile.write(data)
+
+
+def read_body(handler):
+    length = int(handler.headers.get("Content-Length", "0"))
+    if length == 0:
+        return b""
+    return handler.rfile.read(length)
+
+
+def get_gpu_stats():
+    result = {"ok": False}
+    try:
+        res = subprocess.run([
+            "rocm-smi", "--showtemp", "--showmemuse", "--json"
+        ], capture_output=True, text=True, check=True)
+        data = json.loads(res.stdout)
+        card = data.get("card0", {})
+        edge = float(card.get("Temperature (Sensor edge) (C)", "0") or 0)
+        junction = float(card.get("Temperature (Sensor junction) (C)", "0") or 0)
+        mem_use = float(card.get("GPU memory use (%)", "0") or 0)
+        mem_activity = card.get("Memory Activity", "0")
+        result = {
+            "ok": True,
+            "edge_c": edge,
+            "junction_c": junction,
+            "mem_use_pct": mem_use,
+            "mem_activity": mem_activity
+        }
+    except Exception as e:
+        result = {"ok": False, "error": str(e)}
+
+    if torch.cuda.is_available() and State.model is not None:
+        try:
+            allocated_mb = torch.cuda.memory_allocated() / 1024**2
+            reserved_mb  = torch.cuda.memory_reserved()  / 1024**2
+            total_mb     = torch.cuda.get_device_properties(0).total_memory / 1024**2
+            result["vram_allocated_mb"] = round(allocated_mb, 1)
+            result["vram_reserved_mb"]  = round(reserved_mb, 1)
+            result["vram_total_mb"]     = round(total_mb, 1)
+            result["vram_used_pct"]     = round(allocated_mb / total_mb * 100, 1)
+        except Exception:
+            pass
+
+    return result
+
+
+def append_log(entry):
+    with open(LOG_PATH, "a") as f:
+        f.write(json.dumps(entry) + "\n")
+
+
+def get_library_overview():
+    """Scan vector_library/*/*/meta.json and return summary for each concept."""
+    entries = []
+    for meta_path in sorted(glob.glob(os.path.join(VECTOR_LIB_ROOT, "*/*/*/meta.json"))):
+        try:
+            with open(meta_path) as f:
+                meta = json.load(f)
+        except Exception:
+            continue
+        dir_path = os.path.dirname(meta_path)
+        eval_data = {}
+        eval_path = os.path.join(dir_path, "eval.json")
+        if os.path.exists(eval_path):
+            try:
+                with open(eval_path) as f:
+                    eval_data = json.load(f)
+            except Exception:
+                pass
+        entries.append({
+            "concept":    meta.get("concept", ""),
+            "category":   meta.get("category", ""),
+            "model":      meta.get("model_name", ""),
+            "n_pairs":    meta.get("n_pairs", 0),
+            "best_layer": eval_data.get("best_layer"),
+            "best_snr":   eval_data.get("best_snr"),
+        })
+    return entries
+
+
+class Handler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        parsed = urlparse(self.path)
+        if parsed.path == "/":
+            with open(UI_PATH, "r") as f:
+                html = f.read()
+            return text_response(self, 200, html)
+        if parsed.path == "/api/concepts":
+            concepts = sorted({e.get("concept") for e in State.catalog if e.get("concept")})
+            return json_response(self, 200, {"concepts": concepts, "device": str(State.device)})
+        if parsed.path == "/api/concept_layers":
+            qs = parse_qs(parsed.query)
+            concept = (qs.get("concept") or [None])[0]
+            if concept is None:
+                concepts = sorted({e.get("concept") for e in State.catalog if e.get("concept")})
+                concept = concepts[0] if concepts else None
+            entry = pick_latest_concept_entry(concept) if concept else None
+            layers = entry.get("layers", []) if entry else []
+            return json_response(self, 200, {"layers": layers})
+        if parsed.path == "/api/model_info":
+            return json_response(self, 200, {"num_layers": State.num_layers, "device": str(State.device)})
+        if parsed.path == "/api/gpu":
+            return json_response(self, 200, get_gpu_stats())
+        if parsed.path == "/api/models":
+            return json_response(self, 200, {
+                "models": State.available_models,
+                "active": State.active_model_name,
+            })
+        if parsed.path == "/api/library":
+            return json_response(self, 200, {"library": get_library_overview()})
+        return self.send_error(404)
+
+    def do_POST(self):
+        parsed = urlparse(self.path)
+        if parsed.path == "/api/generate":
+            body = read_body(self)
+            try:
+                payload = json.loads(body.decode("utf-8"))
+            except Exception:
+                return json_response(self, 400, {"error": "invalid_json"})
+
+            messages = payload.get("messages", [])
+            prompt = payload.get("prompt", "")
+            concept = payload.get("concept", "hot_vs_cold")
+            vector_layer = int(payload.get("vector_layer", 0))
+            inject_layer = int(payload.get("inject_layer", 0))
+            alpha = float(payload.get("alpha", 0.0))
+            gain = float(payload.get("gain", 1.0))
+            max_new_tokens = int(payload.get("max_new_tokens", 128))
+            mode = payload.get("mode", "inject")
+            multi = bool(payload.get("multi", False))
+            layer_configs = payload.get("layer_configs", None)  # [{layer, gain}, ...]
+
+            if messages:
+                formatted_prompt = build_chat_prompt(messages)
+            else:
+                formatted_prompt = prompt
+
+            if not formatted_prompt:
+                return json_response(self, 400, {"error": "empty_prompt"})
+
+            with State.lock:
+                try:
+                    if mode == "baseline" or alpha == 0.0:
+                        text = generate_text(formatted_prompt, max_new_tokens=max_new_tokens)
+                    else:
+                        text = generate_with_injection(
+                            formatted_prompt,
+                            concept,
+                            vector_layer,
+                            inject_layer,
+                            alpha,
+                            gain=gain,
+                            max_new_tokens=max_new_tokens,
+                            apply_to="new",
+                            multi_layers=(pick_latest_concept_entry(concept).get("layers", []) if multi else None),
+                            layer_configs=layer_configs,
+                        )
+                except Exception as e:
+                    return json_response(self, 500, {"error": str(e)})
+
+            log_entry = {
+                "prompt": formatted_prompt,
+                "concept": concept,
+                "alpha": alpha,
+                "mode": mode,
+                "output": text,
+                "layer_configs": layer_configs if layer_configs else (
+                    [{"layer": l, "gain": gain} for l in (pick_latest_concept_entry(concept) or {}).get("layers", [])] if multi
+                    else [{"layer": inject_layer, "gain": gain}]
+                ),
+            }
+            append_log(log_entry)
+
+            return json_response(self, 200, {"text": text, "formatted_prompt": formatted_prompt})
+
+        if parsed.path == "/api/load_model":
+            body = read_body(self)
+            try:
+                payload = json.loads(body.decode("utf-8"))
+            except Exception:
+                return json_response(self, 400, {"error": "invalid_json"})
+
+            requested_name = payload.get("name", "")
+            target = None
+            for m in State.available_models:
+                if m.get("name") == requested_name:
+                    target = m
+                    break
+            if target is None:
+                return json_response(self, 404, {"error": f"Model not found: {requested_name}"})
+
+            with State.lock:
+                try:
+                    del State.model
+                    State.model = None
+                    torch.cuda.empty_cache()
+                    load_model(model_path=target["path"], model_name=target["name"])
+                except Exception as e:
+                    return json_response(self, 500, {"error": str(e)})
+
+            return json_response(self, 200, {
+                "ok": True,
+                "name": State.active_model_name,
+                "num_layers": State.num_layers,
+                "device": str(State.device),
+            })
+
+        return self.send_error(404)
+
+
+def main():
+    load_model()
+    port = int(os.environ.get("JEDI_PORT", "8010"))
+    server = HTTPServer(("0.0.0.0", port), Handler)
+    print(f"Jedi steering server listening on http://0.0.0.0:{port}")
+    server.serve_forever()
+
+
+if __name__ == "__main__":
+    main()

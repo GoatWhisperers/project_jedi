@@ -1,0 +1,15 @@
+{
+  "model_path": "/mnt/raid0/gemma-3-1b-it",
+  "models": [
+    {"name": "Gemma3-1B-IT", "path": "/mnt/raid0/gemma-3-1b-it"},
+    {"name": "Gemma2-Uncensored", "path": "/mnt/raid0/gemma-2-uncensored"}
+  ],
+  "trust_remote_code": false,
+  "max_length": 128,
+  "batch_size": 1,
+  "token_position": "mean",
+  "deep_range": [0.70, 0.90],
+  "dtype": "bfloat16",
+  "concept_name": "hot_vs_cold",
+  "device": "cuda"
+}

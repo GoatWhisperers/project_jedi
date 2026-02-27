@@ -1,0 +1,24 @@
+# Python env
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Old run directories (keep vector_library, exclude raw runs)
+output/run_*/
+output/sessions/
+output/status.json
+output/steering_log.jsonl
+output/latest.json
+
+# Claude internal
+.claude/
+
+# Large model files
+*.bin
+*.safetensors
+*.gguf
+
+# Temp
+*.tmp
+/tmp/

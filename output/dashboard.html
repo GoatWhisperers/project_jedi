@@ -1,0 +1,295 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project Jedi Dashboard</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #111833;
+      --text: #e7ecff;
+      --muted: #9aa7d8;
+      --accent: #6ee7ff;
+      --ok: #8affc1;
+      --bad: #ff6b6b;
+    }
+    body {
+      margin: 0; padding: 24px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      background: radial-gradient(1200px 700px at 10% 0%, #1a2450 0%, var(--bg) 60%);
+      color: var(--text);
+    }
+    h1 { margin: 0 0 12px; font-size: 22px; }
+    h2 { margin: 20px 0 8px; font-size: 16px; color: var(--muted); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+    .card { background: var(--panel); border: 1px solid #1f2a4d; border-radius: 10px; padding: 12px; }
+    .label { color: var(--muted); font-size: 12px; }
+    .value { font-size: 16px; margin-top: 4px; }
+    .bar { height: 10px; background: #1b2447; border-radius: 10px; overflow: hidden; margin-top: 8px; }
+    .bar > div { height: 100%; background: linear-gradient(90deg, #4fd1ff, #7bffcb); width: 0%; transition: width 0.5s; }
+    .bar-query > div { background: linear-gradient(90deg, #a78bfa, #f472b6); }
+    .bar-layer > div { background: linear-gradient(90deg, #fbbf24, #f97316); }
+    pre { white-space: pre-wrap; word-break: break-word; }
+    canvas { width: 100%; height: 240px; background: #0d1328; border-radius: 8px; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th { color: var(--muted); text-align: left; padding: 6px 8px; border-bottom: 1px solid #1f2a4d; }
+    td { padding: 6px 8px; border-bottom: 1px solid #16203a; }
+    tr:last-child td { border-bottom: none; }
+    .tag { display: inline-block; padding: 2px 6px; border-radius: 4px; font-size: 11px;
+           background: #1b2447; color: var(--muted); }
+    .tag-sensoriale { background: #1a3040; color: #6ee7ff; }
+    .tag-stato_emotivo { background: #2a1a40; color: #c084fc; }
+  </style>
+</head>
+<body>
+  <h1>Project Jedi — Probing Dashboard</h1>
+  <div class="grid">
+    <div class="card">
+      <div class="label">Run</div>
+      <div class="value" id="runId">-</div>
+      <div class="label">Last Update</div>
+      <div class="value" id="lastUpdate">-</div>
+    </div>
+    <div class="card">
+      <div class="label">Phase</div>
+      <div class="value" id="phase">-</div>
+      <div class="label">Layer</div>
+      <div class="value" id="layer">-</div>
+      <div class="bar"><div id="progress"></div></div>
+      <div class="label" id="progressLabel">0%</div>
+    </div>
+    <div class="card">
+      <div class="label">Model</div>
+      <div class="value" id="model">-</div>
+      <div class="label">Device</div>
+      <div class="value" id="device">-</div>
+    </div>
+    <div class="card">
+      <div class="label">Notes</div>
+      <pre id="notes">-</pre>
+    </div>
+    <div class="card" id="gpuCard">
+      <div class="label">GPU — Temp Edge (°C)</div>
+      <div class="value" id="gpuEdge">N/A</div>
+      <div class="label">Temp Junction (°C)</div>
+      <div class="value" id="gpuJunction">N/A</div>
+      <div class="label">VRAM Used %</div>
+      <div class="value" id="gpuVramPct">N/A</div>
+      <div class="bar"><div id="gpuVramBar"></div></div>
+      <div class="label" id="gpuVramDetail">-</div>
+    </div>
+    <div class="card">
+      <div class="label">Query Progress</div>
+      <div class="value" id="queryProgress">-</div>
+      <div class="bar bar-query"><div id="queryBar"></div></div>
+      <div class="label" id="queryLabel">0%</div>
+      <div class="label" style="margin-top:8px">Concept / Category</div>
+      <div class="value" id="conceptLabel">-</div>
+    </div>
+    <div class="card">
+      <div class="label">Layer Progress</div>
+      <div class="value" id="layerProgress">-</div>
+      <div class="bar bar-layer"><div id="layerBar"></div></div>
+      <div class="label" id="layerLabel">0 / 0</div>
+      <div class="label" style="margin-top:8px">ETA / Throughput</div>
+      <div class="value" id="etaValue">-</div>
+      <div class="label" id="throughputLabel">-</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:12px;">
+    <div class="label">Layer Separation (hot - cold mean)</div>
+    <canvas id="chart"></canvas>
+    <div class="label" id="bestLayers">Best layers: -</div>
+  </div>
+
+  <h2>Vector Library</h2>
+  <div class="card">
+    <table>
+      <thead>
+        <tr>
+          <th>Concept</th>
+          <th>Category</th>
+          <th>Model</th>
+          <th>Pairs</th>
+          <th>Best Layer</th>
+          <th>Best SNR</th>
+        </tr>
+      </thead>
+      <tbody id="libraryBody">
+        <tr><td colspan="6" style="color:var(--muted)">Loading…</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    function formatEta(s) {
+      if (s === null || s === undefined || isNaN(s)) return '-';
+      s = Math.max(0, Math.floor(s));
+      return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
+    }
+
+    async function fetchJson(path) {
+      const res = await fetch(path + '?ts=' + Date.now());
+      if (!res.ok) throw new Error('not found');
+      return res.json();
+    }
+
+    function drawChart(ctx, data) {
+      const w = ctx.canvas.width = ctx.canvas.clientWidth * 2;
+      const h = ctx.canvas.height = ctx.canvas.clientHeight * 2;
+      ctx.clearRect(0, 0, w, h);
+      if (data.length === 0) return;
+
+      const pad = 40;
+      const xs = data.map((d, i) => pad + i * ( (w - pad*2) / (data.length - 1 || 1) ));
+      const ys = data.map(d => d.score);
+      const minY = Math.min(...ys);
+      const maxY = Math.max(...ys);
+      const scaleY = (y) => h - pad - ( (y - minY) / (maxY - minY || 1) ) * (h - pad*2);
+
+      ctx.strokeStyle = '#2a365f';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(pad, pad);
+      ctx.lineTo(pad, h-pad);
+      ctx.lineTo(w-pad, h-pad);
+      ctx.stroke();
+
+      ctx.strokeStyle = '#6ee7ff';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      xs.forEach((x, i) => {
+        const y = scaleY(ys[i]);
+        if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      });
+      ctx.stroke();
+
+      ctx.fillStyle = '#8affc1';
+      xs.forEach((x, i) => {
+        const y = scaleY(ys[i]);
+        ctx.beginPath();
+        ctx.arc(x, y, 5, 0, Math.PI*2);
+        ctx.fill();
+      });
+    }
+
+    async function refreshGpu() {
+      try {
+        const gpu = await fetch('http://localhost:8010/api/gpu').then(r => r.json());
+        if (gpu.ok) {
+          document.getElementById('gpuEdge').textContent = gpu.edge_c !== undefined ? gpu.edge_c + ' °C' : 'N/A';
+          document.getElementById('gpuJunction').textContent = gpu.junction_c !== undefined ? gpu.junction_c + ' °C' : 'N/A';
+          if (gpu.vram_used_pct !== undefined) {
+            document.getElementById('gpuVramPct').textContent = gpu.vram_used_pct + '%';
+            document.getElementById('gpuVramBar').style.width = gpu.vram_used_pct + '%';
+            document.getElementById('gpuVramDetail').textContent =
+              gpu.vram_allocated_mb + ' MB allocated / ' + gpu.vram_total_mb + ' MB total';
+          } else {
+            document.getElementById('gpuVramPct').textContent = 'N/A (model not loaded)';
+          }
+        }
+      } catch (e) {
+        document.getElementById('gpuEdge').textContent = 'N/A (server offline)';
+      }
+    }
+
+    async function refreshLibrary() {
+      try {
+        const data = await fetch('http://localhost:8010/api/library?ts=' + Date.now()).then(r => r.json());
+        const entries = data.library || [];
+        const tbody = document.getElementById('libraryBody');
+        if (entries.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="6" style="color:var(--muted)">No entries in vector_library yet.</td></tr>';
+          return;
+        }
+        tbody.innerHTML = entries.map(e => {
+          const catClass = 'tag tag-' + (e.category || '').replace(/[^a-z_]/g, '');
+          const snr = e.best_snr !== null && e.best_snr !== undefined ? Number(e.best_snr).toFixed(3) : '-';
+          const layer = e.best_layer !== null && e.best_layer !== undefined ? e.best_layer : '-';
+          return `<tr>
+            <td>${e.concept || '-'}</td>
+            <td><span class="${catClass}">${e.category || '-'}</span></td>
+            <td>${e.model || '-'}</td>
+            <td>${e.n_pairs || 0}</td>
+            <td>${layer}</td>
+            <td>${snr}</td>
+          </tr>`;
+        }).join('');
+      } catch (e) {
+        document.getElementById('libraryBody').innerHTML =
+          '<tr><td colspan="6" style="color:var(--muted)">Server offline or no library yet.</td></tr>';
+      }
+    }
+
+    async function refresh() {
+      try {
+        const status = await fetchJson('status.json');
+        document.getElementById('runId').textContent = status.run_id || '-';
+        document.getElementById('lastUpdate').textContent = status.updated_at || '-';
+        document.getElementById('phase').textContent = status.phase || '-';
+        document.getElementById('layer').textContent = status.layer !== null ? status.layer : '-';
+        document.getElementById('model').textContent = status.model_path || '-';
+        document.getElementById('device').textContent = status.device || '-';
+        document.getElementById('notes').textContent = status.notes || '-';
+        const pct = status.progress_percent || 0;
+        document.getElementById('progress').style.width = pct + '%';
+        document.getElementById('progressLabel').textContent = pct + '%';
+
+        // Query progress (extended status fields)
+        const qCur = status.query_current || 0;
+        const qTot = status.query_total || 0;
+        const qPct = status.query_pct || 0;
+        document.getElementById('queryProgress').textContent =
+          qTot > 0 ? `${qCur} / ${qTot}` : '-';
+        document.getElementById('queryBar').style.width = qPct + '%';
+        document.getElementById('queryLabel').textContent = qTot > 0 ? qPct.toFixed(1) + '%' : '0%';
+        document.getElementById('conceptLabel').textContent =
+          status.concept ? `${status.concept} [${status.category || '?'}]` : '-';
+
+        // Layer / ETA
+        const lCur = status.layer_current || 0;
+        const lTot = status.layer_total || 0;
+        const lPct = lTot > 0 ? (lCur / lTot * 100) : 0;
+        document.getElementById('layerProgress').textContent =
+          lTot > 0 ? `Layer ${lCur} / ${lTot}` : '-';
+        document.getElementById('layerBar').style.width = lPct + '%';
+        document.getElementById('layerLabel').textContent =
+          lTot > 0 ? `${lCur} / ${lTot}` : '0 / 0';
+        const eta = status.eta_s;
+        document.getElementById('etaValue').textContent =
+          eta !== undefined ? `ETA ${formatEta(eta)}` : '-';
+        const thr = status.throughput_q_per_s;
+        document.getElementById('throughputLabel').textContent =
+          thr !== undefined ? `${Number(thr).toFixed(2)} q/s` : '-';
+
+      } catch (e) {
+        document.getElementById('notes').textContent = 'status.json non trovato. Avvia una run.';
+      }
+
+      try {
+        const latest = await fetchJson('latest.json');
+        const evalPath = latest.run_id ? `${latest.run_id}/projections_eval.json` : null;
+        if (evalPath) {
+          const evalData = await fetchJson(evalPath);
+          const ranking = evalData.ranked_layers || [];
+          const best = ranking.slice(0, 3).map(r => r.layer).join(', ');
+          document.getElementById('bestLayers').textContent = best ? `Best layers: ${best}` : 'Best layers: -';
+          const chartData = ranking.map(r => ({ layer: r.layer, score: r.score })).reverse();
+          drawChart(document.getElementById('chart').getContext('2d'), chartData);
+        }
+      } catch (e) {
+        // ignore
+      }
+
+      refreshGpu();
+    }
+
+    refresh();
+    setInterval(refresh, 2000);
+    refreshLibrary();
+    setInterval(refreshLibrary, 10000);
+  </script>
+</body>
+</html>

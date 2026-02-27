@@ -1,0 +1,515 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jedi Steering Console</title>
+  <style>
+    :root {
+      --bg: #0b0f1a;
+      --panel: #121a2b;
+      --text: #e7ecff;
+      --muted: #9aa7d8;
+      --accent: #6ee7ff;
+      --border: #1f2a4d;
+      --input-bg: #0d1426;
+      --input-border: #27335c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 16px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
+      background: radial-gradient(1200px 700px at 10% 0%, #1a2450 0%, var(--bg) 60%);
+      color: var(--text);
+      font-size: 13px;
+    }
+
+    /* ── Header bar ── */
+    #header-bar {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 12px; flex-wrap: wrap;
+    }
+    #header-bar h1 { margin: 0; font-size: 20px; flex: 1; }
+    .widget {
+      background: var(--panel); border: 1px solid var(--border); border-radius: 8px;
+      padding: 5px 12px; font-size: 12px; display: flex; gap: 10px; align-items: center;
+    }
+
+    /* ── Cards ── */
+    .card {
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: 10px; padding: 12px;
+    }
+
+    /* ── Inputs ── */
+    textarea, input[type="number"], select {
+      width: 100%; margin-top: 4px;
+      background: var(--input-bg); color: var(--text);
+      border: 1px solid var(--input-border); border-radius: 6px;
+      padding: 7px; font-family: inherit; font-size: 13px;
+    }
+    label.field {
+      display: block; color: var(--muted); font-size: 11px;
+      margin-top: 8px; margin-bottom: 0;
+    }
+
+    /* ── Buttons ── */
+    button {
+      background: #1f2a4d; color: var(--text);
+      border: 1px solid #2d3a66; border-radius: 6px;
+      padding: 7px 14px; font-family: inherit; font-size: 12px; cursor: pointer;
+    }
+    button:hover { border-color: var(--accent); }
+    button.primary { border-color: var(--accent); color: var(--accent); }
+
+    /* ── Spinner ── */
+    .spinner {
+      display: none; width: 14px; height: 14px;
+      border: 2px solid #27335c; border-top-color: var(--accent);
+      border-radius: 50%; animation: spin 0.7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── GPU / temp colours ── */
+    .temp-ok   { color: #8affc1; }
+    .temp-warn { color: #ffe066; }
+    .temp-hot  { color: #ff6b6b; }
+
+    /* ════════════════════════════
+       LAYER CONSOLE  (full width)
+       ════════════════════════════ */
+    #layer-console {
+      margin-bottom: 12px;
+    }
+    #layer-console .top-row {
+      display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+    #layer-console .top-row .field-group {
+      display: flex; align-items: center; gap: 8px;
+    }
+    #layer-console .top-row label { color: var(--muted); font-size: 12px; white-space: nowrap; }
+    #layer-console .top-row select {
+      width: auto; margin-top: 0; padding: 4px 8px; font-size: 12px;
+    }
+    #alpha-track {
+      display: flex; align-items: center; gap: 8px; flex: 1; min-width: 200px;
+    }
+    #alpha-track input[type="range"] {
+      flex: 1; margin: 0; accent-color: var(--accent);
+    }
+    #alpha-track .alpha-label {
+      color: var(--accent); font-size: 13px; min-width: 36px; text-align: right;
+    }
+    #alpha-track .alpha-hint { color: var(--muted); font-size: 11px; }
+
+    /* Layer rows */
+    .layer-grid { display: flex; flex-direction: column; gap: 5px; }
+    .layer-row {
+      display: grid;
+      grid-template-columns: 20px 38px 1fr 52px;
+      align-items: center; gap: 10px;
+    }
+    .layer-row input[type="checkbox"] { cursor: pointer; accent-color: var(--accent); }
+    .layer-row .layer-lbl {
+      color: var(--text); font-size: 12px; font-weight: bold; letter-spacing: 0.5px;
+    }
+    .layer-row input[type="range"] {
+      margin: 0; padding: 0; width: 100%;
+      accent-color: var(--accent); cursor: pointer;
+    }
+    .layer-row input[type="range"]:disabled { opacity: 0.25; cursor: default; }
+    .layer-row .gain-val {
+      color: var(--accent); font-size: 12px; text-align: right;
+    }
+    #layer-summary { color: var(--muted); font-size: 11px; margin-top: 6px; }
+
+    /* ════════════════════════════
+       INPUT AREA  (3 columns)
+       ════════════════════════════ */
+    #input-area {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 12px;
+      align-items: start;
+    }
+    #input-area textarea { resize: vertical; }
+    .btn-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+    .max-tokens-row { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+    .max-tokens-row label { color: var(--muted); font-size: 11px; white-space: nowrap; }
+    .max-tokens-row input { width: 80px; margin: 0; }
+
+    /* ════════════════════════════
+       CONVERSATION WINDOW
+       ════════════════════════════ */
+    #conv-section { margin-bottom: 12px; }
+    #chat {
+      height: 480px; overflow-y: auto;
+      background: var(--input-bg); border: 1px solid var(--input-border);
+      border-radius: 8px; padding: 10px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .msg { display: flex; flex-direction: column; gap: 2px; }
+    .msg-role { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+    .msg-body { color: var(--text); white-space: pre-wrap; word-break: break-word; line-height: 1.5; }
+    .msg.assistant .msg-body { color: #c8f0ff; }
+    .msg.system   .msg-body { color: #a0a8c8; font-style: italic; }
+
+    /* ════════════════════════════
+       OUTPUT PANELS
+       ════════════════════════════ */
+    #output-area {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    #output-area pre {
+      white-space: pre-wrap; word-break: break-word;
+      background: var(--input-bg); border: 1px solid var(--input-border);
+      border-radius: 6px; padding: 8px; margin: 4px 0 0; max-height: 200px; overflow-y: auto;
+      font-size: 12px; color: var(--muted);
+    }
+
+    /* misc */
+    .muted { color: var(--muted); font-size: 11px; }
+    .sep { border: none; border-top: 1px solid var(--border); margin: 0; }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════ HEADER ══════════ -->
+  <div id="header-bar">
+    <h1>Jedi Steering Console</h1>
+
+    <div class="widget" id="gpu-widget">
+      <span>GPU</span>
+      <span>Edge <span id="hw-edge" class="temp-ok">—</span>°C</span>
+      <span>Jct <span id="hw-jct" class="temp-ok">—</span>°C</span>
+      <span>VRAM <span id="hw-vram">—</span>%</span>
+    </div>
+
+    <div class="widget" id="model-widget">
+      <span>Model</span>
+      <select id="modelSelect" style="background:var(--input-bg);color:var(--text);border:1px solid var(--input-border);border-radius:4px;padding:2px 6px;font-family:inherit;font-size:12px;margin:0;width:auto;"></select>
+      <button id="loadModelBtn" style="padding:3px 10px;font-size:11px;">Load</button>
+      <div class="spinner" id="modelSpinner"></div>
+      <span id="modelStatus" class="muted"></span>
+    </div>
+  </div>
+
+  <!-- ══════════ LAYER CONSOLE (full width) ══════════ -->
+  <div class="card" id="layer-console">
+    <div class="top-row">
+      <div class="field-group">
+        <label>Concept</label>
+        <select id="concept"></select>
+      </div>
+
+      <div id="alpha-track">
+        <span class="alpha-hint">− cold</span>
+        <input id="alpha" type="range" min="-3" max="3" step="0.25" value="1.0" />
+        <span class="alpha-hint">hot +</span>
+        <span class="alpha-label" id="alphaVal">1.0</span>
+      </div>
+    </div>
+
+    <div class="layer-grid" id="layerGrid"></div>
+    <div id="layer-summary" class="muted"></div>
+  </div>
+
+  <!-- ══════════ INPUT AREA (3 colonne) ══════════ -->
+  <div id="input-area">
+
+    <div class="card">
+      <label class="field">Prompt di sistema</label>
+      <textarea id="system" rows="5">Sei un assistente utile e rispondi in italiano.</textarea>
+    </div>
+
+    <div class="card">
+      <label class="field">Contesto / Aggiunte</label>
+      <textarea id="context" rows="5"></textarea>
+    </div>
+
+    <div class="card">
+      <label class="field">Messaggio utente</label>
+      <textarea id="userMsg" rows="5"></textarea>
+      <div class="btn-row">
+        <button id="sendBaseline">Baseline</button>
+        <button id="sendInject" class="primary">Inject ▶</button>
+        <button id="clearChat">Clear</button>
+      </div>
+      <div class="max-tokens-row">
+        <label>Max tokens</label>
+        <input id="maxTokens" type="number" value="128" />
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════ CONVERSAZIONE (full width) ══════════ -->
+  <div class="card" id="conv-section">
+    <label class="field" style="margin-bottom:6px;">Conversazione</label>
+    <div id="chat"></div>
+  </div>
+
+  <!-- ══════════ OUTPUT ══════════ -->
+  <div id="output-area" style="margin-top:10px;">
+    <div class="card">
+      <label class="field">Prompt formattato inviato</label>
+      <pre id="formatted">—</pre>
+    </div>
+    <div class="card">
+      <label class="field">Stato</label>
+      <pre id="status">—</pre>
+    </div>
+  </div>
+
+  <script>
+    /* ── Alpha slider ── */
+    const alphaSlider = document.getElementById('alpha');
+    const alphaVal    = document.getElementById('alphaVal');
+    alphaSlider.addEventListener('input', () => alphaVal.textContent = alphaSlider.value);
+
+    /* ── Chat history ── */
+    const chatEl  = document.getElementById('chat');
+    const history = [];
+
+    function renderChat() {
+      chatEl.innerHTML = '';
+      history.forEach(m => {
+        const div  = document.createElement('div');
+        div.className = `msg ${m.role}`;
+        const role = document.createElement('div');
+        role.className = 'msg-role';
+        role.textContent = m.role;
+        const body = document.createElement('div');
+        body.className = 'msg-body';
+        body.textContent = m.content;
+        div.appendChild(role);
+        div.appendChild(body);
+        chatEl.appendChild(div);
+      });
+      chatEl.scrollTop = chatEl.scrollHeight;
+    }
+
+    function buildMessages() {
+      const system  = document.getElementById('system').value.trim();
+      const context = document.getElementById('context').value.trim();
+      const msgs = [];
+      if (system)  msgs.push({ role: 'system', content: system });
+      if (context) msgs.push({ role: 'user',   content: `Context:\n${context}` });
+      history.forEach(m => msgs.push(m));
+      return msgs;
+    }
+
+    /* ── Fetch helper ── */
+    async function fetchJson(path) {
+      const r = await fetch(path);
+      return r.json();
+    }
+
+    /* ── GPU polling ── */
+    function tempClass(t) {
+      if (t >= 90) return 'temp-hot';
+      if (t >= 75) return 'temp-warn';
+      return 'temp-ok';
+    }
+    async function pollGpu() {
+      try {
+        const g = await fetchJson('/api/gpu');
+        const edgeEl = document.getElementById('hw-edge');
+        const jctEl  = document.getElementById('hw-jct');
+        if (g.ok) {
+          edgeEl.textContent = g.edge_c ?? '—';
+          edgeEl.className   = tempClass(g.edge_c || 0);
+          jctEl.textContent  = g.junction_c ?? '—';
+          jctEl.className    = tempClass(g.junction_c || 0);
+          document.getElementById('hw-vram').textContent =
+            g.vram_used_pct !== undefined ? g.vram_used_pct + '%' : '—';
+        }
+      } catch (_) {}
+    }
+    pollGpu();
+    setInterval(pollGpu, 5000);
+
+    /* ── Model selector ── */
+    async function loadModels() {
+      try {
+        const d = await fetchJson('/api/models');
+        const sel = document.getElementById('modelSelect');
+        sel.innerHTML = '';
+        (d.models || []).forEach(m => {
+          const o = document.createElement('option');
+          o.value = m.name; o.textContent = m.name;
+          if (m.name === d.active) o.selected = true;
+          sel.appendChild(o);
+        });
+      } catch (_) {}
+    }
+    document.getElementById('loadModelBtn').addEventListener('click', async () => {
+      const name    = document.getElementById('modelSelect').value;
+      const spinner = document.getElementById('modelSpinner');
+      const status  = document.getElementById('modelStatus');
+      spinner.style.display = 'block';
+      status.textContent = 'Loading…';
+      try {
+        const r = await fetch('/api/load_model', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name })
+        });
+        const d = await r.json();
+        if (d.ok) {
+          status.textContent = `${d.num_layers} layers · ${d.device}`;
+          await refreshLayers();
+        } else {
+          status.textContent = 'Errore: ' + (d.error || '?');
+        }
+      } catch (e) {
+        status.textContent = 'Errore: ' + e.message;
+      } finally {
+        spinner.style.display = 'none';
+      }
+    });
+
+    /* ── Layer grid ── */
+    function buildLayerGrid(layers) {
+      const grid = document.getElementById('layerGrid');
+      grid.innerHTML = '';
+      layers.forEach(idx => {
+        const row = document.createElement('div');
+        row.className = 'layer-row';
+
+        const chk = document.createElement('input');
+        chk.type = 'checkbox'; chk.checked = true;
+        chk.id = `chk-${idx}`;
+
+        const lbl = document.createElement('span');
+        lbl.className = 'layer-lbl';
+        lbl.textContent = `L${idx}`;
+
+        const slider = document.createElement('input');
+        slider.type = 'range'; slider.min = 0; slider.max = 2000; slider.step = 50;
+        slider.value = 400; slider.id = `gain-${idx}`;
+
+        const val = document.createElement('span');
+        val.className = 'gain-val'; val.textContent = '400';
+
+        slider.addEventListener('input', () => { val.textContent = slider.value; updateSummary(); });
+        chk.addEventListener('change', () => {
+          slider.disabled = !chk.checked;
+          val.style.opacity = chk.checked ? '1' : '0.3';
+          updateSummary();
+        });
+
+        row.appendChild(chk);
+        row.appendChild(lbl);
+        row.appendChild(slider);
+        row.appendChild(val);
+        grid.appendChild(row);
+      });
+      updateSummary();
+    }
+
+    function getLayerConfigs() {
+      return Array.from(document.querySelectorAll('.layer-row')).flatMap(row => {
+        const chk    = row.querySelector('input[type="checkbox"]');
+        const slider = row.querySelector('input[type="range"]');
+        const lbl    = row.querySelector('.layer-lbl');
+        if (!chk || !chk.checked || !slider) return [];
+        return [{ layer: parseInt(lbl.textContent.replace('L',''), 10), gain: parseFloat(slider.value) }];
+      });
+    }
+
+    function updateSummary() {
+      const cfg = getLayerConfigs();
+      const el  = document.getElementById('layer-summary');
+      el.textContent = cfg.length === 0
+        ? 'Nessun layer attivo — verrà inviato come baseline'
+        : 'Attivi: ' + cfg.map(c => `L${c.layer}×${c.gain}`).join('  ');
+    }
+
+    async function refreshLayers() {
+      try {
+        const mi = await fetchJson('/api/model_info');
+        document.getElementById('status').textContent = `device: ${mi.device}  layers: ${mi.num_layers}`;
+      } catch (_) {}
+
+      const concept = document.getElementById('concept').value;
+      try {
+        const url = `/api/concept_layers${concept ? '?concept=' + encodeURIComponent(concept) : ''}`;
+        const l   = await fetchJson(url);
+        buildLayerGrid(l.layers || []);
+      } catch (_) {}
+    }
+
+    /* ── Init ── */
+    async function init() {
+      const c   = await fetchJson('/api/concepts');
+      const sel = document.getElementById('concept');
+      (c.concepts || []).forEach(name => {
+        const o = document.createElement('option');
+        o.value = name; o.textContent = name;
+        sel.appendChild(o);
+      });
+      sel.addEventListener('change', () => refreshLayers());
+
+      await refreshLayers();
+      await loadModels();
+    }
+
+    /* ── Send ── */
+    async function send(mode) {
+      const userMsg = document.getElementById('userMsg').value.trim();
+      if (!userMsg) return;
+
+      history.push({ role: 'user', content: userMsg });
+      renderChat();
+      document.getElementById('userMsg').value = '';
+
+      const layerConfigs = getLayerConfigs();
+      const payload = {
+        messages:      buildMessages(),
+        concept:       document.getElementById('concept').value,
+        alpha:         parseFloat(alphaSlider.value),
+        max_new_tokens: parseInt(document.getElementById('maxTokens').value, 10),
+        mode,
+        layer_configs: layerConfigs,
+      };
+
+      // If no layers active and mode=inject, fallback to baseline
+      if (layerConfigs.length === 0) payload.mode = 'baseline';
+
+      document.getElementById('formatted').textContent = '…';
+      const res  = await fetch('/api/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+
+      document.getElementById('formatted').textContent = data.formatted_prompt || '—';
+
+      if (data.text) {
+        history.push({ role: 'assistant', content: data.text });
+        renderChat();
+      }
+      if (data.error) {
+        document.getElementById('status').textContent = 'Errore: ' + data.error;
+      }
+    }
+
+    document.getElementById('sendBaseline').addEventListener('click', () => send('baseline'));
+    document.getElementById('sendInject').addEventListener('click',   () => send('inject'));
+    document.getElementById('clearChat').addEventListener('click', () => {
+      history.length = 0;
+      renderChat();
+      document.getElementById('formatted').textContent = '—';
+      document.getElementById('status').textContent    = '—';
+    });
+
+    init();
+  </script>
+</body>
+</html>

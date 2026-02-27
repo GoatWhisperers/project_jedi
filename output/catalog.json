@@ -1,0 +1,5723 @@
+[
+  {
+    "concept": "luce_vs_buio",
+    "category": "sensoriale",
+    "run_dir": "/home/lele/codex-openai/project_jedi/output/vector_library/sensoriale/luce_vs_buio/gemma3-1b-it",
+    "model_path": "/mnt/raid0/gemma-3-1b-it",
+    "model_name": "Gemma3-1B-IT",
+    "timestamp": "2026-02-27 12:51:21",
+    "layers": [
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "vectors": [
+      "/home/lele/codex-openai/project_jedi/output/vector_library/sensoriale/luce_vs_buio/gemma3-1b-it/layer_18.npy",
+      "/home/lele/codex-openai/project_jedi/output/vector_library/sensoriale/luce_vs_buio/gemma3-1b-it/layer_19.npy",
+      "/home/lele/codex-openai/project_jedi/output/vector_library/sensoriale/luce_vs_buio/gemma3-1b-it/layer_20.npy",
+      "/home/lele/codex-openai/project_jedi/output/vector_library/sensoriale/luce_vs_buio/gemma3-1b-it/layer_21.npy",
+      "/home/lele/codex-openai/project_jedi/output/vector_library/sensoriale/luce_vs_buio/gemma3-1b-it/layer_22.npy",
+      "/home/lele/codex-openai/project_jedi/output/vector_library/sensoriale/luce_vs_buio/gemma3-1b-it/layer_23.npy"
+    ],
+    "queries": {},
+    "metrics": {},
+    "source": "vector_library"
+  },
+  {
+    "concept": "unknown",
+    "run_dir": "/home/lele/codex-openai/project_jedi/output/run_20260226_171840",
+    "model_path": "",
+    "timestamp": "",
+    "source": "run",
+    "layers": [
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "vectors": [
+      "/home/lele/codex-openai/project_jedi/output/run_20260226_171840/concept_hot_cold_layer_18.npy",
+      "/home/lele/codex-openai/project_jedi/output/run_20260226_171840/concept_hot_cold_layer_19.npy",
+      "/home/lele/codex-openai/project_jedi/output/run_20260226_171840/concept_hot_cold_layer_20.npy",
+      "/home/lele/codex-openai/project_jedi/output/run_20260226_171840/concept_hot_cold_layer_21.npy",
+      "/home/lele/codex-openai/project_jedi/output/run_20260226_171840/concept_hot_cold_layer_22.npy",
+      "/home/lele/codex-openai/project_jedi/output/run_20260226_171840/concept_hot_cold_layer_23.npy"
+    ],
+    "queries": {
+      "hot": [
+        "The metal glowed after hours in the forge.",
+        "Steam rose from the kettle as the water boiled.",
+        "The asphalt shimmered under the midday sun.",
+        "She pulled on oven mitts before opening the tray.",
+        "The desert wind felt like a blast furnace.",
+        "Molten glass flowed like honey in the workshop.",
+        "The radiator warmed the room all night.",
+        "The soup was too warm to sip quickly.",
+        "Fresh lava hardened as it cooled on the slope.",
+        "He wiped sweat from his brow in the heat.",
+        "The campfire kept everyone comfortable after dusk.",
+        "A heatwave lingered over the city for days.",
+        "The iron bar was too warm to touch bare-handed.",
+        "She opened the car door and felt a wave of warmth.",
+        "The greenhouse trapped warmth for the plants.",
+        "The sauna air was thick and heavy.",
+        "Hot sand burned her feet at the beach.",
+        "The engine casing was warm after the long drive.",
+        "The tea steamed in the chilly morning.",
+        "The bakery smelled of fresh bread from the oven."
+      ],
+      "cold": [
+        "Frost covered the grass before dawn.",
+        "Ice formed along the edges of the lake.",
+        "He pulled his coat tighter in the biting wind.",
+        "The glass was chilled from the fridge.",
+        "Snow crunched under their boots.",
+        "Her fingers went numb on the winter walk.",
+        "The metal railing felt icy to the touch.",
+        "A thin layer of ice coated the windshield.",
+        "The cellar air was brisk and damp.",
+        "They huddled near the window to escape the chill.",
+        "The mountain air was crisp and thin.",
+        "He shivered as the storm moved in.",
+        "The frozen peas rattled inside the bag.",
+        "She wrapped the scarf high against the cold.",
+        "The river surface crusted over overnight.",
+        "His breath fogged in the air.",
+        "The ice pack was numbingly cold.",
+        "The shade was cool even at noon.",
+        "The freezer door creaked open.",
+        "The night air had a sharp chill."
+      ]
+    },
+    "metrics": {
+      "18": {
+        "layer_idx": 18,
+        "concept_norm": 832.8637084960938,
+        "pos_mean_norm": 9656.0244140625,
+        "neg_mean_norm": 9423.0009765625,
+        "cosine_pos_neg": 0.9964866042137146
+      },
+      "19": {
+        "layer_idx": 19,
+        "concept_norm": 927.0437622070312,
+        "pos_mean_norm": 11047.791015625,
+        "neg_mean_norm": 10770.908203125,
+        "cosine_pos_neg": 0.9967110753059387
+      },
+      "20": {
+        "layer_idx": 20,
+        "concept_norm": 1118.4093017578125,
+        "pos_mean_norm": 12493.7958984375,
+        "neg_mean_norm": 12381.751953125,
+        "cosine_pos_neg": 0.9959977865219116
+      },
+      "21": {
+        "layer_idx": 21,
+        "concept_norm": 1210.98388671875,
+        "pos_mean_norm": 13597.6259765625,
+        "neg_mean_norm": 13535.95703125,
+        "cosine_pos_neg": 0.9960264563560486
+      },
+      "22": {
+        "layer_idx": 22,
+        "concept_norm": 1297.366455078125,
+        "pos_mean_norm": 14852.9404296875,
+        "neg_mean_norm": 14846.5859375,
+        "cosine_pos_neg": 0.9961836338043213
+      },
+      "23": {
+        "layer_idx": 23,
+        "concept_norm": 1345.1134033203125,
+        "pos_mean_norm": 14997.9248046875,
+        "neg_mean_norm": 15034.0615234375,
+        "cosine_pos_neg": 0.9959905743598938
+      }
+    }
+  },
+  {
+    "concept": "hot_vs_cold",
+    "run_dir": "/home/lele/codex-openai/project_jedi/output/run_20260226_182542",
+    "model_path": "/mnt/raid0/gemma-3-1b-it",
+    "timestamp": "2026-02-26 18:25:48",
+    "source": "run",
+    "layers": [
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "vectors": [
+      "/home/lele/codex-openai/project_jedi/output/run_20260226_182542/concept_hot_vs_cold_layer_18.npy",
+      "/home/lele/codex-openai/project_jedi/output/run_20260226_182542/concept_hot_vs_cold_layer_19.npy",
+      "/home/lele/codex-openai/project_jedi/output/run_20260226_182542/concept_hot_vs_cold_layer_20.npy",
+      "/home/lele/codex-openai/project_jedi/output/run_20260226_182542/concept_hot_vs_cold_layer_21.npy",
+      "/home/lele/codex-openai/project_jedi/output/run_20260226_182542/concept_hot_vs_cold_layer_22.npy",
+      "/home/lele/codex-openai/project_jedi/output/run_20260226_182542/concept_hot_vs_cold_layer_23.npy"
+    ],
+    "queries": {
+      "hot": [
+        "Ferrum in fornace canduit post horas multas.",
+        "Aqua in aene fervebat et vapor surgebat.",
+        "Arena sub sole meridiano ardebat.",
+        "In balneo vaporis aer gravis et calidus erat.",
+        "Ventus deserti quasi fornax flabat.",
+        "Lapis prope ignem calorem retinebat.",
+        "Panis e furno recens redolebat.",
+        "Liquor in calice fumabat.",
+        "Sol in meridie vias calefecit.",
+        "Metallum ad tactum calidum erat.",
+        "Il metallo si e' arroventato nella fornace.",
+        "Il sole bruciava sull'asfalto.",
+        "L'acqua bolliva nella pentola.",
+        "Aire beroak hiria estaltzen zuen.",
+        "Harkaitzak su ondoan bero zeuden.",
+        "Ilma oli paahtavan kuuma auringossa.",
+        "Kiuas hohkasi kuumuutta saunassa.",
+        "L'air etait brulant dans la rue.",
+        "La pierre chauffee irradiait.",
+        "El motor estaba caliente al tacto."
+      ],
+      "cold": [
+        "Pratum pruina ante lucem tectum erat.",
+        "Glacies ad margines lacus formata est.",
+        "Ventus hibernus acerrimus erat.",
+        "Metalum ad tactum frigidum erat.",
+        "Aeris frigus ossa pervadit.",
+        "Flumen nocte gelu contexit.",
+        "Digitis rigebat propter frigus.",
+        "Nix sub pedibus crepuit.",
+        "Aurora gelida fuit.",
+        "Aer nocturnus asper erat.",
+        "L'aria era gelida all'alba.",
+        "Il vetro era freddo dal frigo.",
+        "La neve scricchiolava sotto i passi.",
+        "Haize hotzak aurpegia mozten zuen.",
+        "Ibaia izoztu zen gauean.",
+        "Ilma oli hyytava aamuauringossa.",
+        "Kadulla oli pureva pakkanen.",
+        "L'air etait glacial au matin.",
+        "La glace couvrait les marches.",
+        "El aire estaba helado al amanecer."
+      ]
+    },
+    "metrics": {
+      "18": {
+        "layer_idx": 18,
+        "concept_norm": 499.9455261230469,
+        "pos_mean_norm": 7595.98486328125,
+        "neg_mean_norm": 7829.453125,
+        "cosine_pos_neg": 0.9983568787574768
+      },
+      "19": {
+        "layer_idx": 19,
+        "concept_norm": 552.2181396484375,
+        "pos_mean_norm": 8984.6513671875,
+        "neg_mean_norm": 9282.4931640625,
+        "cosine_pos_neg": 0.9987035989761353
+      },
+      "20": {
+        "layer_idx": 20,
+        "concept_norm": 654.3764038085938,
+        "pos_mean_norm": 10207.759765625,
+        "neg_mean_norm": 10575.201171875,
+        "cosine_pos_neg": 0.9986419677734375
+      },
+      "21": {
+        "layer_idx": 21,
+        "concept_norm": 668.5020141601562,
+        "pos_mean_norm": 11410.98046875,
+        "neg_mean_norm": 11682.2197265625,
+        "cosine_pos_neg": 0.9985997676849365
+      },
+      "22": {
+        "layer_idx": 22,
+        "concept_norm": 727.5258178710938,
+        "pos_mean_norm": 13298.1884765625,
+        "neg_mean_norm": 13594.16015625,
+        "cosine_pos_neg": 0.9987783432006836
+      },
+      "23": {
+        "layer_idx": 23,
+        "concept_norm": 742.5791625976562,
+        "pos_mean_norm": 13916.8671875,
+        "neg_mean_norm": 14183.4892578125,
+        "cosine_pos_neg": 0.9987832307815552
+      }
+    }
+  },
+  {
+    "concept": "hot_vs_cold",
+    "run_dir": "/home/lele/codex-openai/project_jedi/output/run_20260227_000715",
+    "model_path": "/mnt/raid0/gemma-3-1b-it",
+    "timestamp": "2026-02-27 00:07:46",
+    "source": "run",
+    "layers": [
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "vectors": [
+      "/home/lele/codex-openai/project_jedi/output/run_20260227_000715/concept_hot_vs_cold_layer_18.npy",
+      "/home/lele/codex-openai/project_jedi/output/run_20260227_000715/concept_hot_vs_cold_layer_19.npy",
+      "/home/lele/codex-openai/project_jedi/output/run_20260227_000715/concept_hot_vs_cold_layer_20.npy",
+      "/home/lele/codex-openai/project_jedi/output/run_20260227_000715/concept_hot_vs_cold_layer_21.npy",
+      "/home/lele/codex-openai/project_jedi/output/run_20260227_000715/concept_hot_vs_cold_layer_22.npy",
+      "/home/lele/codex-openai/project_jedi/output/run_20260227_000715/concept_hot_vs_cold_layer_23.npy"
+    ],
+    "queries": {
+      "hot": [
+        "The soup steamed gently in the bowl.",
+        "She burned her fingers on the hot stove.",
+        "The sand scorched her bare feet at the beach.",
+        "Lava inched slowly down the hillside.",
+        "He scalded his tongue on the boiling coffee.",
+        "The iron was far too hot to touch.",
+        "Sparks flew from the forge as the smith worked.",
+        "The desert sun made the rocks unbearable to touch.",
+        "Steam billowed from the volcanic hot spring.",
+        "The pan sizzled when she dropped in the butter.",
+        "Sweat dripped from his forehead in the midday heat.",
+        "The oven door radiated warmth when opened.",
+        "The engine block was scorching after the long race.",
+        "Flames leapt from the bonfire into the night sky.",
+        "The asphalt shimmered in the summer heat.",
+        "She wrapped her hands around the steaming mug.",
+        "The sauna was thick with heat and humidity.",
+        "Molten steel poured from the ladle in bright streams.",
+        "He flinched when he touched the sunlit car hood.",
+        "The fresh loaf crackled warmly from the bakery oven.",
+        "The radiator clicked and hissed as it warmed the room.",
+        "Smoke curled upward from the smoldering campfire.",
+        "Her face flushed red in the sweltering gymnasium.",
+        "The desert wind was like breathing from a hair dryer.",
+        "The equatorial sun was blinding and ferociously hot.",
+        "The copper pipe was painfully hot when water ran through it.",
+        "The molten glass glowed orange as the glassblower shaped it.",
+        "Baking bread filled the kitchen with warm, yeasty air.",
+        "The outdoor grill radiated intense heat across the patio.",
+        "The parking lot sizzled under the August afternoon sun.",
+        "The welding rod burned white-hot as the seam fused.",
+        "His shirt was soaked with sweat from the summer construction work.",
+        "The pottery kiln glowed brick-red at peak temperature.",
+        "She pressed a warm towel against her sore shoulder.",
+        "The tropical afternoon air was thick and suffocating.",
+        "Magma pushed upward through the fractured rock.",
+        "The cast iron skillet retained heat long after the flame died.",
+        "His skin reddened under the relentless July sun.",
+        "The warm exhaust from the vent made the alley stifling.",
+        "The tea kettle whistled as the water reached a full boil.",
+        "He drank the broth while it was still scalding hot.",
+        "The sunlit stone wall was too hot to lean against.",
+        "The thermometer climbed past forty degrees in the valley.",
+        "Steam pressure built steadily inside the sealed boiler.",
+        "The freshly paved road was soft and sticky from the heat.",
+        "They roasted marshmallows over the glowing embers.",
+        "The tropical greenhouse was a wall of humid, heavy air.",
+        "He kept his coffee mug on the warmer so it stayed hot.",
+        "The broiler element glowed orange-red inside the oven.",
+        "Smoke from the wildfire hung over the valley like a blanket.",
+        "The metal bleachers burned anyone who sat on them at noon.",
+        "The furnace roared as it melted down the scrap metal.",
+        "A heat wave kept temperatures above thirty-eight for a week.",
+        "She pulled on oven mitts before reaching into the hot oven.",
+        "The sun-facing wall of the building was too hot to touch.",
+        "The volcanic crater vented sulfurous heat into the air.",
+        "The skillet was still smoking when she plated the steak.",
+        "The summer asphalt was soft enough to leave footprints.",
+        "The spa pool was almost too warm to stay in for long.",
+        "The car interior was suffocating after sitting in the sun.",
+        "The burning logs crackled and sent sparks upward.",
+        "Children yelped crossing the hot pavement in bare feet.",
+        "Hot springs bubbled at the foot of the volcanic mountain.",
+        "The thermal suit protected the technician from radiant heat.",
+        "Steam rose from the pot as soon as the lid came off.",
+        "The midday sun turned the urban canyon into an oven.",
+        "The foundry floor shimmered with rising thermal waves.",
+        "She could feel the heat radiating through the glass door.",
+        "The sun-warmed stones held their heat well into the evening.",
+        "He pressed his cold hands around the warm coffee cup.",
+        "The charcoal was glowing red and ready for grilling.",
+        "The scalding shower finally loosened the tension in his back.",
+        "The chili bubbled furiously on the stove.",
+        "The match flared briefly before settling into a steady flame.",
+        "Humid tropical heat pressed down on the jungle canopy.",
+        "The smelting plant was a wall of furnace-like heat inside.",
+        "She winced as she poured boiling water into the jar.",
+        "The lava field crinkled and smoked as fresh rock oozed out.",
+        "The branding iron glowed orange before it touched the wood.",
+        "The thermal camera showed everything above sixty degrees glowing red."
+      ],
+      "cold": [
+        "The soup was ice-cold by the time she sat down.",
+        "She numbed her fingers packing snow in the deep winter.",
+        "Frost stiffened the wet towel left outside overnight.",
+        "Glaciers advanced slowly down the mountain valley.",
+        "He shivered when the icy water hit the back of his throat.",
+        "The iron railing was brittle cold on the winter morning.",
+        "Ice crystals formed on the windows of the unheated shed.",
+        "The desert night plunged the rocks to near-freezing.",
+        "Icy mist rose from the frozen surface of the mountain lake.",
+        "The freezer drawer was sealed shut by accumulated frost.",
+        "The cold wind swept the ridge and chilled them to the bone.",
+        "Cold air poured out when she opened the refrigerator.",
+        "The engine block was frigid after sitting outside all night.",
+        "Snow hissed and smothered the campfire in seconds.",
+        "The icy road glittered under the headlights in January.",
+        "She clutched the chilled metal water bottle.",
+        "The walk-in freezer was so cold her breath fogged immediately.",
+        "Ice formed a thick crust on the water in the outdoor tank.",
+        "He pulled back his hand from the cold metal door handle.",
+        "The refrigerated truck held the produce just above freezing.",
+        "The pipes clanked and groaned in the January freeze.",
+        "Snow fell silently and settled over the old campfire site.",
+        "Her face went pale in the biting gymnasium cold.",
+        "The Antarctic wind cut through every layer of clothing.",
+        "The polar sun gave light but no warmth to the tundra.",
+        "The metal pipe crackled and split in the overnight frost.",
+        "Ice crystals formed inside the cold storage chamber overnight.",
+        "The refrigerator kept the dough cold between folding sessions.",
+        "The patio stones were slick with frost on autumn mornings.",
+        "The parking lot was a sheet of black ice in the early morning.",
+        "The nitrogen line frosted over instantly in the cold laboratory.",
+        "His fingers lost feeling after shoveling snow for an hour.",
+        "The kiln sat cold and empty in the unheated shed.",
+        "She pressed an ice pack against her swollen ankle.",
+        "The morning fog was biting cold as it rolled off the bay.",
+        "Permafrost kept the soil frozen year-round beneath the surface.",
+        "The cast iron skillet was ice-cold from the outdoor freezer.",
+        "His skin turned pale under the January sky.",
+        "Cold exhaust from the refrigeration unit chilled the loading dock.",
+        "The water tap ran cold long before it ever ran warm.",
+        "He gulped the icy water after the long run.",
+        "The stone bench in the shadow was unbearably cold to sit on.",
+        "The thermometer dropped below minus fifteen overnight.",
+        "Pressure dropped in the pipe as it passed through the frozen section.",
+        "The freshly laid road cracked in the overnight frost.",
+        "They shivered around the burned-out campfire before dawn.",
+        "The cold greenhouse barely protected the plants from frost.",
+        "He left his coffee mug on the desk and it went cold quickly.",
+        "The refrigerator coils ran ice-cold through the back panel.",
+        "Ice fog blanketed the valley and muffled all sound.",
+        "The metal bleachers were numbing to sit on in the January freeze.",
+        "The cold blast from the cryogenic tank hit him immediately.",
+        "A cold snap kept temperatures below minus ten for a week.",
+        "She pulled on insulated gloves before reaching into the freezer.",
+        "The shaded wall of the building was cold even at midday.",
+        "Arctic wind funneled down through the mountain pass.",
+        "The skillet was still stone-cold from the refrigerator.",
+        "The winter pavement cracked and buckled under the weight of ice.",
+        "The outdoor plunge pool was bracingly cold year-round.",
+        "The car interior was frigid after sitting in the winter night.",
+        "Snow smothered the dying embers within minutes.",
+        "Children screamed and slipped crossing the icy pavement.",
+        "Cold springs bubbled at the foot of the glacier.",
+        "The thermal suit protected the worker from the freezing environment.",
+        "Cold air fell out of the chest freezer as soon as it was opened.",
+        "The winter wind turned the city canyon into a freezing tunnel.",
+        "The frozen tundra showed no signs of thawing.",
+        "She could feel the cold radiating through the glass door.",
+        "The frozen stones took all day to thaw in the weak winter sun.",
+        "He pressed his warm hands around the cold water glass.",
+        "The charcoal was gray and cold after the overnight frost.",
+        "The cold shower jolted him awake with an icy rush.",
+        "The stew had gone cold and was congealing in the pot.",
+        "The match went out immediately in the biting cold wind.",
+        "Humid cold clung to the cave walls throughout the year.",
+        "The cold storage plant was a wall of refrigerated air inside.",
+        "She winced as she plunged her hands into the icy water.",
+        "The lava field was cold and black after decades of cooling.",
+        "The branding iron was left out overnight and turned stone cold.",
+        "The thermal camera showed everything below five degrees in deep blue."
+      ]
+    },
+    "metrics": {
+      "18": {
+        "layer_idx": 18,
+        "concept_norm": 573.6754150390625,
+        "cos_pos_neg": 0.9982793927192688,
+        "separation": 573.675,
+        "noise": 279.0478,
+        "snr": 2.0558,
+        "convergence": {
+          "n_pairs": 80,
+          "bootstrap_cos_mean": 0.95446,
+          "bootstrap_cos_min": 0.87311,
+          "bootstrap_cos_std": 0.01915,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.65559,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.76236,
+              "cos_vs_prev": 0.81236
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.88613,
+              "cos_vs_prev": 0.88406
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.91435,
+              "cos_vs_prev": 0.93514
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.93886,
+              "cos_vs_prev": 0.97439
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.95389,
+              "cos_vs_prev": 0.97991
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.9682,
+              "cos_vs_prev": 0.9874
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.96817,
+              "cos_vs_prev": 0.99324
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.96981,
+              "cos_vs_prev": 0.99195
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.98044,
+              "cos_vs_prev": 0.99335
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.98779,
+              "cos_vs_prev": 0.99226
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.9905,
+              "cos_vs_prev": 0.99568
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99263,
+              "cos_vs_prev": 0.99705
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99559,
+              "cos_vs_prev": 0.99758
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99794,
+              "cos_vs_prev": 0.99756
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99794
+            }
+          ]
+        }
+      },
+      "19": {
+        "layer_idx": 19,
+        "concept_norm": 666.9595947265625,
+        "cos_pos_neg": 0.9985048174858093,
+        "separation": 666.9595,
+        "noise": 466.4179,
+        "snr": 1.43,
+        "convergence": {
+          "n_pairs": 80,
+          "bootstrap_cos_mean": 0.9593,
+          "bootstrap_cos_min": 0.86708,
+          "bootstrap_cos_std": 0.02073,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.70643,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.78847,
+              "cos_vs_prev": 0.84276
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.8981,
+              "cos_vs_prev": 0.89687
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.92999,
+              "cos_vs_prev": 0.93724
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.94893,
+              "cos_vs_prev": 0.97885
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.96103,
+              "cos_vs_prev": 0.98308
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.97371,
+              "cos_vs_prev": 0.99036
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.97339,
+              "cos_vs_prev": 0.99416
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.9742,
+              "cos_vs_prev": 0.99328
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.98338,
+              "cos_vs_prev": 0.99448
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.9896,
+              "cos_vs_prev": 0.99325
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.99184,
+              "cos_vs_prev": 0.9963
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99362,
+              "cos_vs_prev": 0.99725
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99616,
+              "cos_vs_prev": 0.99787
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99815,
+              "cos_vs_prev": 0.99786
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99815
+            }
+          ]
+        }
+      },
+      "20": {
+        "layer_idx": 20,
+        "concept_norm": 951.8865966796875,
+        "cos_pos_neg": 0.9974473118782043,
+        "separation": 951.8865,
+        "noise": 458.3226,
+        "snr": 2.0769,
+        "convergence": {
+          "n_pairs": 80,
+          "bootstrap_cos_mean": 0.96664,
+          "bootstrap_cos_min": 0.90735,
+          "bootstrap_cos_std": 0.01502,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.75093,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.82656,
+              "cos_vs_prev": 0.83474
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.91948,
+              "cos_vs_prev": 0.91511
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.94345,
+              "cos_vs_prev": 0.94861
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.96126,
+              "cos_vs_prev": 0.98118
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.97007,
+              "cos_vs_prev": 0.9873
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.97866,
+              "cos_vs_prev": 0.99187
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.97795,
+              "cos_vs_prev": 0.99476
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.97828,
+              "cos_vs_prev": 0.99448
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.98636,
+              "cos_vs_prev": 0.99535
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.99247,
+              "cos_vs_prev": 0.99406
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.99373,
+              "cos_vs_prev": 0.99713
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.9952,
+              "cos_vs_prev": 0.99803
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99706,
+              "cos_vs_prev": 0.99824
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.9985,
+              "cos_vs_prev": 0.99815
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.9985
+            }
+          ]
+        }
+      },
+      "21": {
+        "layer_idx": 21,
+        "concept_norm": 1011.9588623046875,
+        "cos_pos_neg": 0.9975702166557312,
+        "separation": 1011.9597,
+        "noise": 485.1059,
+        "snr": 2.0861,
+        "convergence": {
+          "n_pairs": 80,
+          "bootstrap_cos_mean": 0.96526,
+          "bootstrap_cos_min": 0.91198,
+          "bootstrap_cos_std": 0.01429,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.74503,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.81713,
+              "cos_vs_prev": 0.82468
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.9186,
+              "cos_vs_prev": 0.91882
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.93759,
+              "cos_vs_prev": 0.95078
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.95822,
+              "cos_vs_prev": 0.9809
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.96716,
+              "cos_vs_prev": 0.98665
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.97599,
+              "cos_vs_prev": 0.99149
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.97597,
+              "cos_vs_prev": 0.99468
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.97646,
+              "cos_vs_prev": 0.99446
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.98557,
+              "cos_vs_prev": 0.99475
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.99191,
+              "cos_vs_prev": 0.99422
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.99298,
+              "cos_vs_prev": 0.99701
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99475,
+              "cos_vs_prev": 0.99797
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99678,
+              "cos_vs_prev": 0.99809
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99845,
+              "cos_vs_prev": 0.99777
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99845
+            }
+          ]
+        }
+      },
+      "22": {
+        "layer_idx": 22,
+        "concept_norm": 1040.798095703125,
+        "cos_pos_neg": 0.9979041218757629,
+        "separation": 1040.7974,
+        "noise": 540.619,
+        "snr": 1.9252,
+        "convergence": {
+          "n_pairs": 80,
+          "bootstrap_cos_mean": 0.96145,
+          "bootstrap_cos_min": 0.90734,
+          "bootstrap_cos_std": 0.01431,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.71218,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.78762,
+              "cos_vs_prev": 0.80343
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.90168,
+              "cos_vs_prev": 0.90466
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.93112,
+              "cos_vs_prev": 0.94445
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.95036,
+              "cos_vs_prev": 0.97853
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.96161,
+              "cos_vs_prev": 0.9853
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.97331,
+              "cos_vs_prev": 0.99091
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.97403,
+              "cos_vs_prev": 0.99416
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.97463,
+              "cos_vs_prev": 0.99367
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.98433,
+              "cos_vs_prev": 0.99406
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.99071,
+              "cos_vs_prev": 0.99417
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.9922,
+              "cos_vs_prev": 0.99667
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99401,
+              "cos_vs_prev": 0.99778
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99623,
+              "cos_vs_prev": 0.9978
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99832,
+              "cos_vs_prev": 0.9973
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99832
+            }
+          ]
+        }
+      },
+      "23": {
+        "layer_idx": 23,
+        "concept_norm": 1043.6951904296875,
+        "cos_pos_neg": 0.9979192614555359,
+        "separation": 1043.6943,
+        "noise": 564.1924,
+        "snr": 1.8499,
+        "convergence": {
+          "n_pairs": 80,
+          "bootstrap_cos_mean": 0.95885,
+          "bootstrap_cos_min": 0.89903,
+          "bootstrap_cos_std": 0.01543,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.69626,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.77158,
+              "cos_vs_prev": 0.79078
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.89083,
+              "cos_vs_prev": 0.89828
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.92758,
+              "cos_vs_prev": 0.94219
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.94642,
+              "cos_vs_prev": 0.97713
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.95946,
+              "cos_vs_prev": 0.9845
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.97202,
+              "cos_vs_prev": 0.98989
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.97227,
+              "cos_vs_prev": 0.99358
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.97306,
+              "cos_vs_prev": 0.99316
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.98349,
+              "cos_vs_prev": 0.99385
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.99008,
+              "cos_vs_prev": 0.99395
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.99149,
+              "cos_vs_prev": 0.99648
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99346,
+              "cos_vs_prev": 0.99749
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.9959,
+              "cos_vs_prev": 0.99761
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99829,
+              "cos_vs_prev": 0.99707
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99829
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "concept": "hot_vs_cold",
+    "run_dir": "/home/lele/codex-openai/project_jedi/output/run_20260227_001038",
+    "model_path": "/mnt/raid0/gemma-3-1b-it",
+    "timestamp": "2026-02-27 00:11:57",
+    "source": "run",
+    "layers": [
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "vectors": [
+      "/home/lele/codex-openai/project_jedi/output/run_20260227_001038/concept_hot_vs_cold_meandiff_layer_18.npy",
+      "/home/lele/codex-openai/project_jedi/output/run_20260227_001038/concept_hot_vs_cold_layer_19.npy",
+      "/home/lele/codex-openai/project_jedi/output/run_20260227_001038/concept_hot_vs_cold_layer_20.npy",
+      "/home/lele/codex-openai/project_jedi/output/run_20260227_001038/concept_hot_vs_cold_layer_21.npy",
+      "/home/lele/codex-openai/project_jedi/output/run_20260227_001038/concept_hot_vs_cold_layer_22.npy",
+      "/home/lele/codex-openai/project_jedi/output/run_20260227_001038/concept_hot_vs_cold_meandiff_layer_23.npy"
+    ],
+    "queries": {
+      "hot": [
+        "The soup steamed gently in the bowl.",
+        "She burned her fingers on the hot stove.",
+        "The sand scorched her bare feet at the beach.",
+        "Lava inched slowly down the hillside.",
+        "He scalded his tongue on the boiling coffee.",
+        "The iron was far too hot to touch.",
+        "Sparks flew from the forge as the smith worked.",
+        "The desert sun made the rocks unbearable to touch.",
+        "Steam billowed from the volcanic hot spring.",
+        "The pan sizzled when she dropped in the butter.",
+        "Sweat dripped from his forehead in the midday heat.",
+        "The oven door radiated warmth when opened.",
+        "The engine block was scorching after the long race.",
+        "Flames leapt from the bonfire into the night sky.",
+        "The asphalt shimmered in the summer heat.",
+        "She wrapped her hands around the steaming mug.",
+        "The sauna was thick with heat and humidity.",
+        "Molten steel poured from the ladle in bright streams.",
+        "He flinched when he touched the sunlit car hood.",
+        "The fresh loaf crackled warmly from the bakery oven.",
+        "The radiator clicked and hissed as it warmed the room.",
+        "Smoke curled upward from the smoldering campfire.",
+        "Her face flushed red in the sweltering gymnasium.",
+        "The desert wind was like breathing from a hair dryer.",
+        "The equatorial sun was blinding and ferociously hot.",
+        "The copper pipe was painfully hot when water ran through it.",
+        "The molten glass glowed orange as the glassblower shaped it.",
+        "Baking bread filled the kitchen with warm, yeasty air.",
+        "The outdoor grill radiated intense heat across the patio.",
+        "The parking lot sizzled under the August afternoon sun.",
+        "The welding rod burned white-hot as the seam fused.",
+        "His shirt was soaked with sweat from the summer construction work.",
+        "The pottery kiln glowed brick-red at peak temperature.",
+        "She pressed a warm towel against her sore shoulder.",
+        "The tropical afternoon air was thick and suffocating.",
+        "Magma pushed upward through the fractured rock.",
+        "The cast iron skillet retained heat long after the flame died.",
+        "His skin reddened under the relentless July sun.",
+        "The warm exhaust from the vent made the alley stifling.",
+        "The tea kettle whistled as the water reached a full boil.",
+        "He drank the broth while it was still scalding hot.",
+        "The sunlit stone wall was too hot to lean against.",
+        "The thermometer climbed past forty degrees in the valley.",
+        "Steam pressure built steadily inside the sealed boiler.",
+        "The freshly paved road was soft and sticky from the heat.",
+        "They roasted marshmallows over the glowing embers.",
+        "The tropical greenhouse was a wall of humid, heavy air.",
+        "He kept his coffee mug on the warmer so it stayed hot.",
+        "The broiler element glowed orange-red inside the oven.",
+        "Smoke from the wildfire hung over the valley like a blanket.",
+        "The metal bleachers burned anyone who sat on them at noon.",
+        "The furnace roared as it melted down the scrap metal.",
+        "A heat wave kept temperatures above thirty-eight for a week.",
+        "She pulled on oven mitts before reaching into the hot oven.",
+        "The sun-facing wall of the building was too hot to touch.",
+        "The volcanic crater vented sulfurous heat into the air.",
+        "The skillet was still smoking when she plated the steak.",
+        "The summer asphalt was soft enough to leave footprints.",
+        "The spa pool was almost too warm to stay in for long.",
+        "The car interior was suffocating after sitting in the sun.",
+        "The burning logs crackled and sent sparks upward.",
+        "Children yelped crossing the hot pavement in bare feet.",
+        "Hot springs bubbled at the foot of the volcanic mountain.",
+        "The thermal suit protected the technician from radiant heat.",
+        "Steam rose from the pot as soon as the lid came off.",
+        "The midday sun turned the urban canyon into an oven.",
+        "The foundry floor shimmered with rising thermal waves.",
+        "She could feel the heat radiating through the glass door.",
+        "The sun-warmed stones held their heat well into the evening.",
+        "He pressed his cold hands around the warm coffee cup.",
+        "The charcoal was glowing red and ready for grilling.",
+        "The scalding shower finally loosened the tension in his back.",
+        "The chili bubbled furiously on the stove.",
+        "The match flared briefly before settling into a steady flame.",
+        "Humid tropical heat pressed down on the jungle canopy.",
+        "The smelting plant was a wall of furnace-like heat inside.",
+        "She winced as she poured boiling water into the jar.",
+        "The lava field crinkled and smoked as fresh rock oozed out.",
+        "The branding iron glowed orange before it touched the wood.",
+        "The thermal camera showed everything above sixty degrees glowing red."
+      ],
+      "cold": [
+        "The soup was ice-cold by the time she sat down.",
+        "She numbed her fingers packing snow in the deep winter.",
+        "Frost stiffened the wet towel left outside overnight.",
+        "Glaciers advanced slowly down the mountain valley.",
+        "He shivered when the icy water hit the back of his throat.",
+        "The iron railing was brittle cold on the winter morning.",
+        "Ice crystals formed on the windows of the unheated shed.",
+        "The desert night plunged the rocks to near-freezing.",
+        "Icy mist rose from the frozen surface of the mountain lake.",
+        "The freezer drawer was sealed shut by accumulated frost.",
+        "The cold wind swept the ridge and chilled them to the bone.",
+        "Cold air poured out when she opened the refrigerator.",
+        "The engine block was frigid after sitting outside all night.",
+        "Snow hissed and smothered the campfire in seconds.",
+        "The icy road glittered under the headlights in January.",
+        "She clutched the chilled metal water bottle.",
+        "The walk-in freezer was so cold her breath fogged immediately.",
+        "Ice formed a thick crust on the water in the outdoor tank.",
+        "He pulled back his hand from the cold metal door handle.",
+        "The refrigerated truck held the produce just above freezing.",
+        "The pipes clanked and groaned in the January freeze.",
+        "Snow fell silently and settled over the old campfire site.",
+        "Her face went pale in the biting gymnasium cold.",
+        "The Antarctic wind cut through every layer of clothing.",
+        "The polar sun gave light but no warmth to the tundra.",
+        "The metal pipe crackled and split in the overnight frost.",
+        "Ice crystals formed inside the cold storage chamber overnight.",
+        "The refrigerator kept the dough cold between folding sessions.",
+        "The patio stones were slick with frost on autumn mornings.",
+        "The parking lot was a sheet of black ice in the early morning.",
+        "The nitrogen line frosted over instantly in the cold laboratory.",
+        "His fingers lost feeling after shoveling snow for an hour.",
+        "The kiln sat cold and empty in the unheated shed.",
+        "She pressed an ice pack against her swollen ankle.",
+        "The morning fog was biting cold as it rolled off the bay.",
+        "Permafrost kept the soil frozen year-round beneath the surface.",
+        "The cast iron skillet was ice-cold from the outdoor freezer.",
+        "His skin turned pale under the January sky.",
+        "Cold exhaust from the refrigeration unit chilled the loading dock.",
+        "The water tap ran cold long before it ever ran warm.",
+        "He gulped the icy water after the long run.",
+        "The stone bench in the shadow was unbearably cold to sit on.",
+        "The thermometer dropped below minus fifteen overnight.",
+        "Pressure dropped in the pipe as it passed through the frozen section.",
+        "The freshly laid road cracked in the overnight frost.",
+        "They shivered around the burned-out campfire before dawn.",
+        "The cold greenhouse barely protected the plants from frost.",
+        "He left his coffee mug on the desk and it went cold quickly.",
+        "The refrigerator coils ran ice-cold through the back panel.",
+        "Ice fog blanketed the valley and muffled all sound.",
+        "The metal bleachers were numbing to sit on in the January freeze.",
+        "The cold blast from the cryogenic tank hit him immediately.",
+        "A cold snap kept temperatures below minus ten for a week.",
+        "She pulled on insulated gloves before reaching into the freezer.",
+        "The shaded wall of the building was cold even at midday.",
+        "Arctic wind funneled down through the mountain pass.",
+        "The skillet was still stone-cold from the refrigerator.",
+        "The winter pavement cracked and buckled under the weight of ice.",
+        "The outdoor plunge pool was bracingly cold year-round.",
+        "The car interior was frigid after sitting in the winter night.",
+        "Snow smothered the dying embers within minutes.",
+        "Children screamed and slipped crossing the icy pavement.",
+        "Cold springs bubbled at the foot of the glacier.",
+        "The thermal suit protected the worker from the freezing environment.",
+        "Cold air fell out of the chest freezer as soon as it was opened.",
+        "The winter wind turned the city canyon into a freezing tunnel.",
+        "The frozen tundra showed no signs of thawing.",
+        "She could feel the cold radiating through the glass door.",
+        "The frozen stones took all day to thaw in the weak winter sun.",
+        "He pressed his warm hands around the cold water glass.",
+        "The charcoal was gray and cold after the overnight frost.",
+        "The cold shower jolted him awake with an icy rush.",
+        "The stew had gone cold and was congealing in the pot.",
+        "The match went out immediately in the biting cold wind.",
+        "Humid cold clung to the cave walls throughout the year.",
+        "The cold storage plant was a wall of refrigerated air inside.",
+        "She winced as she plunged her hands into the icy water.",
+        "The lava field was cold and black after decades of cooling.",
+        "The branding iron was left out overnight and turned stone cold.",
+        "The thermal camera showed everything below five degrees in deep blue."
+      ]
+    },
+    "metrics": {
+      "18": {
+        "layer_idx": 18,
+        "coherence": 0.09891,
+        "cos_means": 0.99959,
+        "sep_snr": 0.3824,
+        "cos_pca_vs_mean": 0.53954,
+        "convergence_pca": {
+          "n_pairs": 80,
+          "method": "pca",
+          "bootstrap_cos_mean": 0.98584,
+          "bootstrap_cos_min": 0.96831,
+          "bootstrap_cos_std": 0.00628,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.61522,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.88635,
+              "cos_vs_prev": 0.71521
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.95115,
+              "cos_vs_prev": 0.95289
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.97007,
+              "cos_vs_prev": 0.98227
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.97986,
+              "cos_vs_prev": 0.99514
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.98229,
+              "cos_vs_prev": 0.99669
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.98182,
+              "cos_vs_prev": 0.99803
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.98719,
+              "cos_vs_prev": 0.99431
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.99118,
+              "cos_vs_prev": 0.99759
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.99385,
+              "cos_vs_prev": 0.99798
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.99534,
+              "cos_vs_prev": 0.99937
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.99572,
+              "cos_vs_prev": 0.99964
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99854,
+              "cos_vs_prev": 0.99757
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99883,
+              "cos_vs_prev": 0.99965
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99965,
+              "cos_vs_prev": 0.99913
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99965
+            }
+          ]
+        },
+        "convergence_mean": {
+          "n_pairs": 80,
+          "method": "mean",
+          "bootstrap_cos_mean": 0.95376,
+          "bootstrap_cos_min": 0.89579,
+          "bootstrap_cos_std": 0.02172,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.73488,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.81144,
+              "cos_vs_prev": 0.95463
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.86606,
+              "cos_vs_prev": 0.97932
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.88394,
+              "cos_vs_prev": 0.98751
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.92487,
+              "cos_vs_prev": 0.98476
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.95029,
+              "cos_vs_prev": 0.98776
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.96047,
+              "cos_vs_prev": 0.99329
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.96325,
+              "cos_vs_prev": 0.99527
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.96997,
+              "cos_vs_prev": 0.99604
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.9751,
+              "cos_vs_prev": 0.99538
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.98788,
+              "cos_vs_prev": 0.9942
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.9856,
+              "cos_vs_prev": 0.99569
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99345,
+              "cos_vs_prev": 0.99468
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99568,
+              "cos_vs_prev": 0.99725
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99821,
+              "cos_vs_prev": 0.99696
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99821
+            }
+          ]
+        }
+      },
+      "19": {
+        "layer_idx": 19,
+        "coherence": 0.10306,
+        "cos_means": 0.99962,
+        "sep_snr": 0.4464,
+        "cos_pca_vs_mean": 0.61388,
+        "convergence_pca": {
+          "n_pairs": 80,
+          "method": "pca",
+          "bootstrap_cos_mean": 0.98304,
+          "bootstrap_cos_min": 0.96346,
+          "bootstrap_cos_std": 0.00791,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.46938,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.87149,
+              "cos_vs_prev": 0.57673
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.94563,
+              "cos_vs_prev": 0.94317
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.96747,
+              "cos_vs_prev": 0.97856
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.97788,
+              "cos_vs_prev": 0.99517
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.98185,
+              "cos_vs_prev": 0.99649
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.98144,
+              "cos_vs_prev": 0.99694
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.98663,
+              "cos_vs_prev": 0.99453
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.99093,
+              "cos_vs_prev": 0.99732
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.99271,
+              "cos_vs_prev": 0.99822
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.99445,
+              "cos_vs_prev": 0.99924
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.99475,
+              "cos_vs_prev": 0.99966
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99817,
+              "cos_vs_prev": 0.99716
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99843,
+              "cos_vs_prev": 0.99966
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99958,
+              "cos_vs_prev": 0.99887
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99958
+            }
+          ]
+        },
+        "convergence_mean": {
+          "n_pairs": 80,
+          "method": "mean",
+          "bootstrap_cos_mean": 0.96001,
+          "bootstrap_cos_min": 0.90421,
+          "bootstrap_cos_std": 0.01691,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.778,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.84501,
+              "cos_vs_prev": 0.95014
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.88944,
+              "cos_vs_prev": 0.97865
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.90589,
+              "cos_vs_prev": 0.98696
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.93652,
+              "cos_vs_prev": 0.98622
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.95516,
+              "cos_vs_prev": 0.9891
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.9649,
+              "cos_vs_prev": 0.99303
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.96604,
+              "cos_vs_prev": 0.99517
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.97247,
+              "cos_vs_prev": 0.9961
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.97658,
+              "cos_vs_prev": 0.99553
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.98748,
+              "cos_vs_prev": 0.99522
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.98658,
+              "cos_vs_prev": 0.99637
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99318,
+              "cos_vs_prev": 0.99556
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.9954,
+              "cos_vs_prev": 0.99768
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99836,
+              "cos_vs_prev": 0.99736
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99836
+            }
+          ]
+        }
+      },
+      "20": {
+        "layer_idx": 20,
+        "coherence": 0.10999,
+        "cos_means": 0.99941,
+        "sep_snr": 0.3459,
+        "cos_pca_vs_mean": 0.43993,
+        "convergence_pca": {
+          "n_pairs": 80,
+          "method": "pca",
+          "bootstrap_cos_mean": 0.97622,
+          "bootstrap_cos_min": 0.94961,
+          "bootstrap_cos_std": 0.01062,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.29183,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.83025,
+              "cos_vs_prev": 0.44036
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.91865,
+              "cos_vs_prev": 0.93543
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.95875,
+              "cos_vs_prev": 0.9664
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.97258,
+              "cos_vs_prev": 0.994
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.97735,
+              "cos_vs_prev": 0.99616
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.97708,
+              "cos_vs_prev": 0.99381
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.98417,
+              "cos_vs_prev": 0.99249
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.9885,
+              "cos_vs_prev": 0.99668
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.98952,
+              "cos_vs_prev": 0.99897
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.99185,
+              "cos_vs_prev": 0.99892
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.99231,
+              "cos_vs_prev": 0.99931
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99741,
+              "cos_vs_prev": 0.9957
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.9978,
+              "cos_vs_prev": 0.9995
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99935,
+              "cos_vs_prev": 0.99848
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99935
+            }
+          ]
+        },
+        "convergence_mean": {
+          "n_pairs": 80,
+          "method": "mean",
+          "bootstrap_cos_mean": 0.96116,
+          "bootstrap_cos_min": 0.92445,
+          "bootstrap_cos_std": 0.01199,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.72099,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.82135,
+              "cos_vs_prev": 0.92789
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.87981,
+              "cos_vs_prev": 0.97133
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.90127,
+              "cos_vs_prev": 0.98151
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.93548,
+              "cos_vs_prev": 0.98261
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.95403,
+              "cos_vs_prev": 0.98779
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.96303,
+              "cos_vs_prev": 0.99211
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.96528,
+              "cos_vs_prev": 0.9938
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.96892,
+              "cos_vs_prev": 0.99554
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.97407,
+              "cos_vs_prev": 0.99493
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.9861,
+              "cos_vs_prev": 0.9947
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.98488,
+              "cos_vs_prev": 0.99591
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99263,
+              "cos_vs_prev": 0.99523
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99536,
+              "cos_vs_prev": 0.99742
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99829,
+              "cos_vs_prev": 0.99752
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99829
+            }
+          ]
+        }
+      },
+      "21": {
+        "layer_idx": 21,
+        "coherence": 0.10087,
+        "cos_means": 0.99941,
+        "sep_snr": 0.312,
+        "cos_pca_vs_mean": 0.41358,
+        "convergence_pca": {
+          "n_pairs": 80,
+          "method": "pca",
+          "bootstrap_cos_mean": 0.97443,
+          "bootstrap_cos_min": 0.95187,
+          "bootstrap_cos_std": 0.01055,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.24553,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.8287,
+              "cos_vs_prev": 0.35451
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.90985,
+              "cos_vs_prev": 0.9367
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.95426,
+              "cos_vs_prev": 0.96359
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.97004,
+              "cos_vs_prev": 0.99256
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.97686,
+              "cos_vs_prev": 0.99479
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.97707,
+              "cos_vs_prev": 0.99373
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.98328,
+              "cos_vs_prev": 0.99315
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.98811,
+              "cos_vs_prev": 0.99638
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.98896,
+              "cos_vs_prev": 0.99938
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.99117,
+              "cos_vs_prev": 0.9989
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.99175,
+              "cos_vs_prev": 0.99922
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99704,
+              "cos_vs_prev": 0.9955
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99739,
+              "cos_vs_prev": 0.99946
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99927,
+              "cos_vs_prev": 0.99812
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99927
+            }
+          ]
+        },
+        "convergence_mean": {
+          "n_pairs": 80,
+          "method": "mean",
+          "bootstrap_cos_mean": 0.95831,
+          "bootstrap_cos_min": 0.9212,
+          "bootstrap_cos_std": 0.01176,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.69574,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.80911,
+              "cos_vs_prev": 0.9169
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.87245,
+              "cos_vs_prev": 0.96607
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.89717,
+              "cos_vs_prev": 0.97888
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.93254,
+              "cos_vs_prev": 0.97959
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.95079,
+              "cos_vs_prev": 0.98591
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.96105,
+              "cos_vs_prev": 0.99087
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.96477,
+              "cos_vs_prev": 0.99271
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.96849,
+              "cos_vs_prev": 0.99478
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.97347,
+              "cos_vs_prev": 0.99427
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.98513,
+              "cos_vs_prev": 0.99458
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.98411,
+              "cos_vs_prev": 0.99546
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99213,
+              "cos_vs_prev": 0.99496
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99487,
+              "cos_vs_prev": 0.99725
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99819,
+              "cos_vs_prev": 0.99725
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99819
+            }
+          ]
+        }
+      },
+      "22": {
+        "layer_idx": 22,
+        "coherence": 0.08441,
+        "cos_means": 0.99951,
+        "sep_snr": 0.3307,
+        "cos_pca_vs_mean": 0.45718,
+        "convergence_pca": {
+          "n_pairs": 80,
+          "method": "pca",
+          "bootstrap_cos_mean": 0.97052,
+          "bootstrap_cos_min": 0.9481,
+          "bootstrap_cos_std": 0.01164,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.28806,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.79797,
+              "cos_vs_prev": 0.45868
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.8975,
+              "cos_vs_prev": 0.92565
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.94714,
+              "cos_vs_prev": 0.96005
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.96664,
+              "cos_vs_prev": 0.98998
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.97415,
+              "cos_vs_prev": 0.99363
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.97488,
+              "cos_vs_prev": 0.99247
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.98111,
+              "cos_vs_prev": 0.99293
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.98648,
+              "cos_vs_prev": 0.99621
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.98735,
+              "cos_vs_prev": 0.99937
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.99001,
+              "cos_vs_prev": 0.99866
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.99058,
+              "cos_vs_prev": 0.99895
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99632,
+              "cos_vs_prev": 0.99541
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99676,
+              "cos_vs_prev": 0.99931
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99919,
+              "cos_vs_prev": 0.99756
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99919
+            }
+          ]
+        },
+        "convergence_mean": {
+          "n_pairs": 80,
+          "method": "mean",
+          "bootstrap_cos_mean": 0.95142,
+          "bootstrap_cos_min": 0.91179,
+          "bootstrap_cos_std": 0.01243,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.69576,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.80352,
+              "cos_vs_prev": 0.907
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.8658,
+              "cos_vs_prev": 0.9614
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.89522,
+              "cos_vs_prev": 0.97555
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.92333,
+              "cos_vs_prev": 0.97831
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.94114,
+              "cos_vs_prev": 0.98327
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.95419,
+              "cos_vs_prev": 0.98886
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.9579,
+              "cos_vs_prev": 0.99138
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.9636,
+              "cos_vs_prev": 0.99354
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.97003,
+              "cos_vs_prev": 0.99272
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.98252,
+              "cos_vs_prev": 0.99391
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.98241,
+              "cos_vs_prev": 0.99462
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99066,
+              "cos_vs_prev": 0.99474
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99375,
+              "cos_vs_prev": 0.99679
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99787,
+              "cos_vs_prev": 0.99656
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99787
+            }
+          ]
+        }
+      },
+      "23": {
+        "layer_idx": 23,
+        "coherence": 0.07695,
+        "cos_means": 0.9995,
+        "sep_snr": 0.3125,
+        "cos_pca_vs_mean": 0.43588,
+        "convergence_pca": {
+          "n_pairs": 80,
+          "method": "pca",
+          "bootstrap_cos_mean": 0.96405,
+          "bootstrap_cos_min": 0.93352,
+          "bootstrap_cos_std": 0.01367,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.15856,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.76177,
+              "cos_vs_prev": 0.33572
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.88176,
+              "cos_vs_prev": 0.90613
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.93113,
+              "cos_vs_prev": 0.95924
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.95902,
+              "cos_vs_prev": 0.98539
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.96931,
+              "cos_vs_prev": 0.99133
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.97033,
+              "cos_vs_prev": 0.99175
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.97612,
+              "cos_vs_prev": 0.99308
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.9831,
+              "cos_vs_prev": 0.99538
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.98426,
+              "cos_vs_prev": 0.99949
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.98764,
+              "cos_vs_prev": 0.99813
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.98846,
+              "cos_vs_prev": 0.99842
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99508,
+              "cos_vs_prev": 0.99451
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99557,
+              "cos_vs_prev": 0.99908
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99896,
+              "cos_vs_prev": 0.99668
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99896
+            }
+          ]
+        },
+        "convergence_mean": {
+          "n_pairs": 80,
+          "method": "mean",
+          "bootstrap_cos_mean": 0.94758,
+          "bootstrap_cos_min": 0.90796,
+          "bootstrap_cos_std": 0.01165,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.67995,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.79488,
+              "cos_vs_prev": 0.88443
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.85614,
+              "cos_vs_prev": 0.95455
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.89056,
+              "cos_vs_prev": 0.97133
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.91787,
+              "cos_vs_prev": 0.9737
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.93635,
+              "cos_vs_prev": 0.98111
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.95064,
+              "cos_vs_prev": 0.98682
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.95553,
+              "cos_vs_prev": 0.99039
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.96248,
+              "cos_vs_prev": 0.99223
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.96911,
+              "cos_vs_prev": 0.99169
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.98153,
+              "cos_vs_prev": 0.99343
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.98121,
+              "cos_vs_prev": 0.99387
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.98947,
+              "cos_vs_prev": 0.99455
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99316,
+              "cos_vs_prev": 0.99646
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99774,
+              "cos_vs_prev": 0.99634
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99774
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "concept": "hot_vs_cold",
+    "run_dir": "/home/lele/codex-openai/project_jedi/output/run_20260227_014821",
+    "model_path": "/mnt/raid0/gemma-3-1b-it",
+    "timestamp": "2026-02-27 01:49:53",
+    "source": "run",
+    "layers": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "vectors": [
+      "/home/lele/codex-openai/project_jedi/output/run_20260227_014821/concept_hot_vs_cold_layer_5.npy",
+      "/home/lele/codex-openai/project_jedi/output/run_20260227_014821/concept_hot_vs_cold_meandiff_layer_6.npy",
+      "/home/lele/codex-openai/project_jedi/output/run_20260227_014821/concept_hot_vs_cold_meandiff_layer_7.npy",
+      "/home/lele/codex-openai/project_jedi/output/run_20260227_014821/concept_hot_vs_cold_layer_8.npy",
+      "/home/lele/codex-openai/project_jedi/output/run_20260227_014821/concept_hot_vs_cold_meandiff_layer_9.npy",
+      "/home/lele/codex-openai/project_jedi/output/run_20260227_014821/concept_hot_vs_cold_meandiff_layer_10.npy",
+      "/home/lele/codex-openai/project_jedi/output/run_20260227_014821/concept_hot_vs_cold_meandiff_layer_11.npy",
+      "/home/lele/codex-openai/project_jedi/output/run_20260227_014821/concept_hot_vs_cold_meandiff_layer_12.npy",
+      "/home/lele/codex-openai/project_jedi/output/run_20260227_014821/concept_hot_vs_cold_layer_13.npy",
+      "/home/lele/codex-openai/project_jedi/output/run_20260227_014821/concept_hot_vs_cold_meandiff_layer_14.npy"
+    ],
+    "queries": {
+      "hot": [
+        "The soup steamed gently in the bowl.",
+        "She burned her fingers on the hot stove.",
+        "The sand scorched her bare feet at the beach.",
+        "Lava inched slowly down the hillside.",
+        "He scalded his tongue on the boiling coffee.",
+        "The iron was far too hot to touch.",
+        "Sparks flew from the forge as the smith worked.",
+        "The desert sun made the rocks unbearable to touch.",
+        "Steam billowed from the volcanic hot spring.",
+        "The pan sizzled when she dropped in the butter.",
+        "Sweat dripped from his forehead in the midday heat.",
+        "The oven door radiated warmth when opened.",
+        "The engine block was scorching after the long race.",
+        "Flames leapt from the bonfire into the night sky.",
+        "The asphalt shimmered in the summer heat.",
+        "She wrapped her hands around the steaming mug.",
+        "The sauna was thick with heat and humidity.",
+        "Molten steel poured from the ladle in bright streams.",
+        "He flinched when he touched the sunlit car hood.",
+        "The fresh loaf crackled warmly from the bakery oven.",
+        "The radiator clicked and hissed as it warmed the room.",
+        "Smoke curled upward from the smoldering campfire.",
+        "Her face flushed red in the sweltering gymnasium.",
+        "The desert wind was like breathing from a hair dryer.",
+        "The equatorial sun was blinding and ferociously hot.",
+        "The copper pipe was painfully hot when water ran through it.",
+        "The molten glass glowed orange as the glassblower shaped it.",
+        "Baking bread filled the kitchen with warm, yeasty air.",
+        "The outdoor grill radiated intense heat across the patio.",
+        "The parking lot sizzled under the August afternoon sun.",
+        "The welding rod burned white-hot as the seam fused.",
+        "His shirt was soaked with sweat from the summer construction work.",
+        "The pottery kiln glowed brick-red at peak temperature.",
+        "She pressed a warm towel against her sore shoulder.",
+        "The tropical afternoon air was thick and suffocating.",
+        "Magma pushed upward through the fractured rock.",
+        "The cast iron skillet retained heat long after the flame died.",
+        "His skin reddened under the relentless July sun.",
+        "The warm exhaust from the vent made the alley stifling.",
+        "The tea kettle whistled as the water reached a full boil.",
+        "He drank the broth while it was still scalding hot.",
+        "The sunlit stone wall was too hot to lean against.",
+        "The thermometer climbed past forty degrees in the valley.",
+        "Steam pressure built steadily inside the sealed boiler.",
+        "The freshly paved road was soft and sticky from the heat.",
+        "They roasted marshmallows over the glowing embers.",
+        "The tropical greenhouse was a wall of humid, heavy air.",
+        "He kept his coffee mug on the warmer so it stayed hot.",
+        "The broiler element glowed orange-red inside the oven.",
+        "Smoke from the wildfire hung over the valley like a blanket.",
+        "The metal bleachers burned anyone who sat on them at noon.",
+        "The furnace roared as it melted down the scrap metal.",
+        "A heat wave kept temperatures above thirty-eight for a week.",
+        "She pulled on oven mitts before reaching into the hot oven.",
+        "The sun-facing wall of the building was too hot to touch.",
+        "The volcanic crater vented sulfurous heat into the air.",
+        "The skillet was still smoking when she plated the steak.",
+        "The summer asphalt was soft enough to leave footprints.",
+        "The spa pool was almost too warm to stay in for long.",
+        "The car interior was suffocating after sitting in the sun.",
+        "The burning logs crackled and sent sparks upward.",
+        "Children yelped crossing the hot pavement in bare feet.",
+        "Hot springs bubbled at the foot of the volcanic mountain.",
+        "The thermal suit protected the technician from radiant heat.",
+        "Steam rose from the pot as soon as the lid came off.",
+        "The midday sun turned the urban canyon into an oven.",
+        "The foundry floor shimmered with rising thermal waves.",
+        "She could feel the heat radiating through the glass door.",
+        "The sun-warmed stones held their heat well into the evening.",
+        "He pressed his cold hands around the warm coffee cup.",
+        "The charcoal was glowing red and ready for grilling.",
+        "The scalding shower finally loosened the tension in his back.",
+        "The chili bubbled furiously on the stove.",
+        "The match flared briefly before settling into a steady flame.",
+        "Humid tropical heat pressed down on the jungle canopy.",
+        "The smelting plant was a wall of furnace-like heat inside.",
+        "She winced as she poured boiling water into the jar.",
+        "The lava field crinkled and smoked as fresh rock oozed out.",
+        "The branding iron glowed orange before it touched the wood.",
+        "The thermal camera showed everything above sixty degrees glowing red."
+      ],
+      "cold": [
+        "The soup was ice-cold by the time she sat down.",
+        "She numbed her fingers packing snow in the deep winter.",
+        "Frost stiffened the wet towel left outside overnight.",
+        "Glaciers advanced slowly down the mountain valley.",
+        "He shivered when the icy water hit the back of his throat.",
+        "The iron railing was brittle cold on the winter morning.",
+        "Ice crystals formed on the windows of the unheated shed.",
+        "The desert night plunged the rocks to near-freezing.",
+        "Icy mist rose from the frozen surface of the mountain lake.",
+        "The freezer drawer was sealed shut by accumulated frost.",
+        "The cold wind swept the ridge and chilled them to the bone.",
+        "Cold air poured out when she opened the refrigerator.",
+        "The engine block was frigid after sitting outside all night.",
+        "Snow hissed and smothered the campfire in seconds.",
+        "The icy road glittered under the headlights in January.",
+        "She clutched the chilled metal water bottle.",
+        "The walk-in freezer was so cold her breath fogged immediately.",
+        "Ice formed a thick crust on the water in the outdoor tank.",
+        "He pulled back his hand from the cold metal door handle.",
+        "The refrigerated truck held the produce just above freezing.",
+        "The pipes clanked and groaned in the January freeze.",
+        "Snow fell silently and settled over the old campfire site.",
+        "Her face went pale in the biting gymnasium cold.",
+        "The Antarctic wind cut through every layer of clothing.",
+        "The polar sun gave light but no warmth to the tundra.",
+        "The metal pipe crackled and split in the overnight frost.",
+        "Ice crystals formed inside the cold storage chamber overnight.",
+        "The refrigerator kept the dough cold between folding sessions.",
+        "The patio stones were slick with frost on autumn mornings.",
+        "The parking lot was a sheet of black ice in the early morning.",
+        "The nitrogen line frosted over instantly in the cold laboratory.",
+        "His fingers lost feeling after shoveling snow for an hour.",
+        "The kiln sat cold and empty in the unheated shed.",
+        "She pressed an ice pack against her swollen ankle.",
+        "The morning fog was biting cold as it rolled off the bay.",
+        "Permafrost kept the soil frozen year-round beneath the surface.",
+        "The cast iron skillet was ice-cold from the outdoor freezer.",
+        "His skin turned pale under the January sky.",
+        "Cold exhaust from the refrigeration unit chilled the loading dock.",
+        "The water tap ran cold long before it ever ran warm.",
+        "He gulped the icy water after the long run.",
+        "The stone bench in the shadow was unbearably cold to sit on.",
+        "The thermometer dropped below minus fifteen overnight.",
+        "Pressure dropped in the pipe as it passed through the frozen section.",
+        "The freshly laid road cracked in the overnight frost.",
+        "They shivered around the burned-out campfire before dawn.",
+        "The cold greenhouse barely protected the plants from frost.",
+        "He left his coffee mug on the desk and it went cold quickly.",
+        "The refrigerator coils ran ice-cold through the back panel.",
+        "Ice fog blanketed the valley and muffled all sound.",
+        "The metal bleachers were numbing to sit on in the January freeze.",
+        "The cold blast from the cryogenic tank hit him immediately.",
+        "A cold snap kept temperatures below minus ten for a week.",
+        "She pulled on insulated gloves before reaching into the freezer.",
+        "The shaded wall of the building was cold even at midday.",
+        "Arctic wind funneled down through the mountain pass.",
+        "The skillet was still stone-cold from the refrigerator.",
+        "The winter pavement cracked and buckled under the weight of ice.",
+        "The outdoor plunge pool was bracingly cold year-round.",
+        "The car interior was frigid after sitting in the winter night.",
+        "Snow smothered the dying embers within minutes.",
+        "Children screamed and slipped crossing the icy pavement.",
+        "Cold springs bubbled at the foot of the glacier.",
+        "The thermal suit protected the worker from the freezing environment.",
+        "Cold air fell out of the chest freezer as soon as it was opened.",
+        "The winter wind turned the city canyon into a freezing tunnel.",
+        "The frozen tundra showed no signs of thawing.",
+        "She could feel the cold radiating through the glass door.",
+        "The frozen stones took all day to thaw in the weak winter sun.",
+        "He pressed his warm hands around the cold water glass.",
+        "The charcoal was gray and cold after the overnight frost.",
+        "The cold shower jolted him awake with an icy rush.",
+        "The stew had gone cold and was congealing in the pot.",
+        "The match went out immediately in the biting cold wind.",
+        "Humid cold clung to the cave walls throughout the year.",
+        "The cold storage plant was a wall of refrigerated air inside.",
+        "She winced as she plunged her hands into the icy water.",
+        "The lava field was cold and black after decades of cooling.",
+        "The branding iron was left out overnight and turned stone cold.",
+        "The thermal camera showed everything below five degrees in deep blue."
+      ]
+    },
+    "metrics": {
+      "5": {
+        "layer_idx": 5,
+        "coherence": 0.04759,
+        "cos_means": 0.99992,
+        "sep_snr": 0.3802,
+        "cos_pca_vs_mean": 0.87738,
+        "convergence_pca": {
+          "n_pairs": 80,
+          "method": "pca",
+          "bootstrap_cos_mean": 0.99818,
+          "bootstrap_cos_min": 0.99681,
+          "bootstrap_cos_std": 0.00066,
+          "converged": true,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.96772,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.98036,
+              "cos_vs_prev": 0.98561
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.98991,
+              "cos_vs_prev": 0.99137
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.99453,
+              "cos_vs_prev": 0.99571
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.99584,
+              "cos_vs_prev": 0.99901
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.99717,
+              "cos_vs_prev": 0.99869
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.99745,
+              "cos_vs_prev": 0.99958
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.99832,
+              "cos_vs_prev": 0.99922
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.999,
+              "cos_vs_prev": 0.99935
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.99924,
+              "cos_vs_prev": 0.99973
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.99942,
+              "cos_vs_prev": 0.99993
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.99956,
+              "cos_vs_prev": 0.99989
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99986,
+              "cos_vs_prev": 0.99971
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99987,
+              "cos_vs_prev": 0.99997
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99996,
+              "cos_vs_prev": 0.99986
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99996
+            }
+          ]
+        },
+        "convergence_mean": {
+          "n_pairs": 80,
+          "method": "mean",
+          "bootstrap_cos_mean": 0.94594,
+          "bootstrap_cos_min": 0.66625,
+          "bootstrap_cos_std": 0.07088,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.92914,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.93898,
+              "cos_vs_prev": 0.98889
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.94949,
+              "cos_vs_prev": 0.99632
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.95395,
+              "cos_vs_prev": 0.99786
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.96491,
+              "cos_vs_prev": 0.99748
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.97443,
+              "cos_vs_prev": 0.99698
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.98187,
+              "cos_vs_prev": 0.99752
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.9843,
+              "cos_vs_prev": 0.99861
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.98678,
+              "cos_vs_prev": 0.99867
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.98742,
+              "cos_vs_prev": 0.99863
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.99205,
+              "cos_vs_prev": 0.99858
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.99228,
+              "cos_vs_prev": 0.99875
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99666,
+              "cos_vs_prev": 0.99696
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99784,
+              "cos_vs_prev": 0.99895
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99907,
+              "cos_vs_prev": 0.99823
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99907
+            }
+          ]
+        }
+      },
+      "6": {
+        "layer_idx": 6,
+        "coherence": 0.05866,
+        "cos_means": 0.99993,
+        "sep_snr": 0.3898,
+        "cos_pca_vs_mean": 0.90474,
+        "convergence_pca": {
+          "n_pairs": 80,
+          "method": "pca",
+          "bootstrap_cos_mean": 0.99867,
+          "bootstrap_cos_min": 0.99778,
+          "bootstrap_cos_std": 0.00043,
+          "converged": true,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.97691,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.99042,
+              "cos_vs_prev": 0.98774
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.99431,
+              "cos_vs_prev": 0.99652
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.99662,
+              "cos_vs_prev": 0.99788
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.99741,
+              "cos_vs_prev": 0.99944
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.99814,
+              "cos_vs_prev": 0.99919
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.99821,
+              "cos_vs_prev": 0.99986
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.99874,
+              "cos_vs_prev": 0.99952
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.99923,
+              "cos_vs_prev": 0.99957
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.99952,
+              "cos_vs_prev": 0.99972
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.99966,
+              "cos_vs_prev": 0.99993
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.99969,
+              "cos_vs_prev": 0.99998
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99989,
+              "cos_vs_prev": 0.99981
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99989,
+              "cos_vs_prev": 0.99999
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99996,
+              "cos_vs_prev": 0.9999
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99996
+            }
+          ]
+        },
+        "convergence_mean": {
+          "n_pairs": 80,
+          "method": "mean",
+          "bootstrap_cos_mean": 0.95733,
+          "bootstrap_cos_min": 0.79442,
+          "bootstrap_cos_std": 0.05302,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.94544,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.95686,
+              "cos_vs_prev": 0.98953
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.96332,
+              "cos_vs_prev": 0.99683
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.96629,
+              "cos_vs_prev": 0.99811
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.97417,
+              "cos_vs_prev": 0.99816
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.98142,
+              "cos_vs_prev": 0.99766
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.98462,
+              "cos_vs_prev": 0.99877
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.98685,
+              "cos_vs_prev": 0.999
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.98931,
+              "cos_vs_prev": 0.99899
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.99114,
+              "cos_vs_prev": 0.99894
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.99504,
+              "cos_vs_prev": 0.99841
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.99468,
+              "cos_vs_prev": 0.99889
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99771,
+              "cos_vs_prev": 0.99744
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99841,
+              "cos_vs_prev": 0.99926
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.9993,
+              "cos_vs_prev": 0.99849
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.9993
+            }
+          ]
+        }
+      },
+      "7": {
+        "layer_idx": 7,
+        "coherence": 0.04468,
+        "cos_means": 0.99995,
+        "sep_snr": 0.3507,
+        "cos_pca_vs_mean": 0.921,
+        "convergence_pca": {
+          "n_pairs": 80,
+          "method": "pca",
+          "bootstrap_cos_mean": 0.99908,
+          "bootstrap_cos_min": 0.99833,
+          "bootstrap_cos_std": 0.00031,
+          "converged": true,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.98569,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.99244,
+              "cos_vs_prev": 0.99267
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.99564,
+              "cos_vs_prev": 0.99701
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.99733,
+              "cos_vs_prev": 0.99859
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.99806,
+              "cos_vs_prev": 0.99949
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.99873,
+              "cos_vs_prev": 0.99934
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.9988,
+              "cos_vs_prev": 0.99993
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.99914,
+              "cos_vs_prev": 0.99972
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.99939,
+              "cos_vs_prev": 0.99974
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.99959,
+              "cos_vs_prev": 0.9998
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.9997,
+              "cos_vs_prev": 0.99995
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.99973,
+              "cos_vs_prev": 0.99998
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99991,
+              "cos_vs_prev": 0.99983
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99992,
+              "cos_vs_prev": 0.99999
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99998,
+              "cos_vs_prev": 0.99992
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99998
+            }
+          ]
+        },
+        "convergence_mean": {
+          "n_pairs": 80,
+          "method": "mean",
+          "bootstrap_cos_mean": 0.95395,
+          "bootstrap_cos_min": 0.74209,
+          "bootstrap_cos_std": 0.06043,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.95365,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.96134,
+              "cos_vs_prev": 0.993
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.96582,
+              "cos_vs_prev": 0.99804
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.96766,
+              "cos_vs_prev": 0.99883
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.97546,
+              "cos_vs_prev": 0.99846
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.98223,
+              "cos_vs_prev": 0.99813
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.98593,
+              "cos_vs_prev": 0.99892
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.98778,
+              "cos_vs_prev": 0.9992
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.99,
+              "cos_vs_prev": 0.99908
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.99099,
+              "cos_vs_prev": 0.99931
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.99516,
+              "cos_vs_prev": 0.99862
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.99457,
+              "cos_vs_prev": 0.99913
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99802,
+              "cos_vs_prev": 0.99766
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99871,
+              "cos_vs_prev": 0.9993
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99927,
+              "cos_vs_prev": 0.99876
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99927
+            }
+          ]
+        }
+      },
+      "8": {
+        "layer_idx": 8,
+        "coherence": 0.05279,
+        "cos_means": 0.99997,
+        "sep_snr": 0.3653,
+        "cos_pca_vs_mean": 0.93546,
+        "convergence_pca": {
+          "n_pairs": 80,
+          "method": "pca",
+          "bootstrap_cos_mean": 0.99905,
+          "bootstrap_cos_min": 0.99777,
+          "bootstrap_cos_std": 0.00038,
+          "converged": true,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.9813,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.99179,
+              "cos_vs_prev": 0.98991
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.99524,
+              "cos_vs_prev": 0.99707
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.99698,
+              "cos_vs_prev": 0.99866
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.99787,
+              "cos_vs_prev": 0.99942
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.99838,
+              "cos_vs_prev": 0.99949
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.99848,
+              "cos_vs_prev": 0.9999
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.99894,
+              "cos_vs_prev": 0.99963
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.99929,
+              "cos_vs_prev": 0.99966
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.9996,
+              "cos_vs_prev": 0.99971
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.99969,
+              "cos_vs_prev": 0.99996
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.99971,
+              "cos_vs_prev": 0.99999
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.9999,
+              "cos_vs_prev": 0.99982
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.9999,
+              "cos_vs_prev": 0.99999
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99998,
+              "cos_vs_prev": 0.99991
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99998
+            }
+          ]
+        },
+        "convergence_mean": {
+          "n_pairs": 80,
+          "method": "mean",
+          "bootstrap_cos_mean": 0.9632,
+          "bootstrap_cos_min": 0.72662,
+          "bootstrap_cos_std": 0.05442,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.96133,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.96894,
+              "cos_vs_prev": 0.99282
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.97427,
+              "cos_vs_prev": 0.99769
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.9761,
+              "cos_vs_prev": 0.99856
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.98252,
+              "cos_vs_prev": 0.99827
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.98698,
+              "cos_vs_prev": 0.99827
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.98922,
+              "cos_vs_prev": 0.99907
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.99035,
+              "cos_vs_prev": 0.99923
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.99176,
+              "cos_vs_prev": 0.99913
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.99274,
+              "cos_vs_prev": 0.99934
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.99591,
+              "cos_vs_prev": 0.99885
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.99573,
+              "cos_vs_prev": 0.99918
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99828,
+              "cos_vs_prev": 0.99795
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.9988,
+              "cos_vs_prev": 0.99946
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99944,
+              "cos_vs_prev": 0.99897
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99944
+            }
+          ]
+        }
+      },
+      "9": {
+        "layer_idx": 9,
+        "coherence": 0.02627,
+        "cos_means": 0.99997,
+        "sep_snr": 0.3266,
+        "cos_pca_vs_mean": 0.93142,
+        "convergence_pca": {
+          "n_pairs": 80,
+          "method": "pca",
+          "bootstrap_cos_mean": 0.99913,
+          "bootstrap_cos_min": 0.99849,
+          "bootstrap_cos_std": 0.00028,
+          "converged": true,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.98658,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.99338,
+              "cos_vs_prev": 0.99267
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.99576,
+              "cos_vs_prev": 0.99812
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.99742,
+              "cos_vs_prev": 0.99886
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.9981,
+              "cos_vs_prev": 0.99962
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.9987,
+              "cos_vs_prev": 0.99933
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.99877,
+              "cos_vs_prev": 0.9999
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.99917,
+              "cos_vs_prev": 0.99967
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.99948,
+              "cos_vs_prev": 0.99972
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.99965,
+              "cos_vs_prev": 0.99984
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.99974,
+              "cos_vs_prev": 0.99996
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.99976,
+              "cos_vs_prev": 0.99998
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99991,
+              "cos_vs_prev": 0.99987
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99992,
+              "cos_vs_prev": 0.99999
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99998,
+              "cos_vs_prev": 0.99993
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99998
+            }
+          ]
+        },
+        "convergence_mean": {
+          "n_pairs": 80,
+          "method": "mean",
+          "bootstrap_cos_mean": 0.93692,
+          "bootstrap_cos_min": 0.72956,
+          "bootstrap_cos_std": 0.08509,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.95592,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.96445,
+              "cos_vs_prev": 0.99386
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.97031,
+              "cos_vs_prev": 0.99776
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.97207,
+              "cos_vs_prev": 0.99844
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.97838,
+              "cos_vs_prev": 0.99846
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.98524,
+              "cos_vs_prev": 0.99731
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.98772,
+              "cos_vs_prev": 0.99894
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.98851,
+              "cos_vs_prev": 0.99907
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.9899,
+              "cos_vs_prev": 0.99904
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.99136,
+              "cos_vs_prev": 0.99923
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.99519,
+              "cos_vs_prev": 0.99857
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.99518,
+              "cos_vs_prev": 0.99905
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99795,
+              "cos_vs_prev": 0.99737
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99835,
+              "cos_vs_prev": 0.9992
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99931,
+              "cos_vs_prev": 0.99831
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99931
+            }
+          ]
+        }
+      },
+      "10": {
+        "layer_idx": 10,
+        "coherence": 0.03772,
+        "cos_means": 0.99997,
+        "sep_snr": 0.3886,
+        "cos_pca_vs_mean": 0.94291,
+        "convergence_pca": {
+          "n_pairs": 80,
+          "method": "pca",
+          "bootstrap_cos_mean": 0.99893,
+          "bootstrap_cos_min": 0.99819,
+          "bootstrap_cos_std": 0.00037,
+          "converged": true,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.98682,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.99352,
+              "cos_vs_prev": 0.99227
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.99554,
+              "cos_vs_prev": 0.99832
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.9968,
+              "cos_vs_prev": 0.99924
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.9977,
+              "cos_vs_prev": 0.99961
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.99841,
+              "cos_vs_prev": 0.99932
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.99854,
+              "cos_vs_prev": 0.99986
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.99901,
+              "cos_vs_prev": 0.99961
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.99941,
+              "cos_vs_prev": 0.99966
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.99957,
+              "cos_vs_prev": 0.99982
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.9997,
+              "cos_vs_prev": 0.99994
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.99972,
+              "cos_vs_prev": 0.99998
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99988,
+              "cos_vs_prev": 0.99986
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99989,
+              "cos_vs_prev": 0.99999
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99997,
+              "cos_vs_prev": 0.9999
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99997
+            }
+          ]
+        },
+        "convergence_mean": {
+          "n_pairs": 80,
+          "method": "mean",
+          "bootstrap_cos_mean": 0.9661,
+          "bootstrap_cos_min": 0.85781,
+          "bootstrap_cos_std": 0.04105,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.96479,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.97346,
+              "cos_vs_prev": 0.99288
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.97872,
+              "cos_vs_prev": 0.9975
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.97942,
+              "cos_vs_prev": 0.99829
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.98392,
+              "cos_vs_prev": 0.99857
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.98867,
+              "cos_vs_prev": 0.99787
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.99106,
+              "cos_vs_prev": 0.99903
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.99155,
+              "cos_vs_prev": 0.9992
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.99243,
+              "cos_vs_prev": 0.99914
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.99386,
+              "cos_vs_prev": 0.99929
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.99664,
+              "cos_vs_prev": 0.99877
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.9967,
+              "cos_vs_prev": 0.99914
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.9981,
+              "cos_vs_prev": 0.99845
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99858,
+              "cos_vs_prev": 0.99946
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.9995,
+              "cos_vs_prev": 0.9988
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.9995
+            }
+          ]
+        }
+      },
+      "11": {
+        "layer_idx": 11,
+        "coherence": 0.03361,
+        "cos_means": 0.99998,
+        "sep_snr": 0.3587,
+        "cos_pca_vs_mean": 0.94508,
+        "convergence_pca": {
+          "n_pairs": 80,
+          "method": "pca",
+          "bootstrap_cos_mean": 0.99898,
+          "bootstrap_cos_min": 0.9982,
+          "bootstrap_cos_std": 0.00037,
+          "converged": true,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.98557,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.99286,
+              "cos_vs_prev": 0.99128
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.99536,
+              "cos_vs_prev": 0.99802
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.99695,
+              "cos_vs_prev": 0.99898
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.99796,
+              "cos_vs_prev": 0.99955
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.99846,
+              "cos_vs_prev": 0.9994
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.99853,
+              "cos_vs_prev": 0.99993
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.99898,
+              "cos_vs_prev": 0.99961
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.99943,
+              "cos_vs_prev": 0.99966
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.99959,
+              "cos_vs_prev": 0.99983
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.99973,
+              "cos_vs_prev": 0.99994
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.99975,
+              "cos_vs_prev": 0.99999
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99989,
+              "cos_vs_prev": 0.99987
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99991,
+              "cos_vs_prev": 0.99999
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99997,
+              "cos_vs_prev": 0.99992
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99997
+            }
+          ]
+        },
+        "convergence_mean": {
+          "n_pairs": 80,
+          "method": "mean",
+          "bootstrap_cos_mean": 0.9589,
+          "bootstrap_cos_min": 0.79414,
+          "bootstrap_cos_std": 0.05245,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.9645,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.97353,
+              "cos_vs_prev": 0.99349
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.97824,
+              "cos_vs_prev": 0.99783
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.97803,
+              "cos_vs_prev": 0.99831
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.98349,
+              "cos_vs_prev": 0.99849
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.98854,
+              "cos_vs_prev": 0.99787
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.99012,
+              "cos_vs_prev": 0.99915
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.98997,
+              "cos_vs_prev": 0.99921
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.991,
+              "cos_vs_prev": 0.9992
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.99319,
+              "cos_vs_prev": 0.99916
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.9961,
+              "cos_vs_prev": 0.99881
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.99598,
+              "cos_vs_prev": 0.99904
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99811,
+              "cos_vs_prev": 0.99834
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99862,
+              "cos_vs_prev": 0.9993
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.9994,
+              "cos_vs_prev": 0.99884
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.9994
+            }
+          ]
+        }
+      },
+      "12": {
+        "layer_idx": 12,
+        "coherence": 0.03795,
+        "cos_means": 0.99997,
+        "sep_snr": 0.3551,
+        "cos_pca_vs_mean": 0.92363,
+        "convergence_pca": {
+          "n_pairs": 80,
+          "method": "pca",
+          "bootstrap_cos_mean": 0.99858,
+          "bootstrap_cos_min": 0.99751,
+          "bootstrap_cos_std": 0.00053,
+          "converged": true,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.98065,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.9899,
+              "cos_vs_prev": 0.98895
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.99418,
+              "cos_vs_prev": 0.99657
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.99603,
+              "cos_vs_prev": 0.99851
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.99718,
+              "cos_vs_prev": 0.99946
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.99784,
+              "cos_vs_prev": 0.99919
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.99794,
+              "cos_vs_prev": 0.99987
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.9986,
+              "cos_vs_prev": 0.99948
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.99914,
+              "cos_vs_prev": 0.99958
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.99941,
+              "cos_vs_prev": 0.99972
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.99963,
+              "cos_vs_prev": 0.9999
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.99965,
+              "cos_vs_prev": 0.99999
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99985,
+              "cos_vs_prev": 0.99984
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99987,
+              "cos_vs_prev": 0.99998
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99996,
+              "cos_vs_prev": 0.9999
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99996
+            }
+          ]
+        },
+        "convergence_mean": {
+          "n_pairs": 80,
+          "method": "mean",
+          "bootstrap_cos_mean": 0.95416,
+          "bootstrap_cos_min": 0.77011,
+          "bootstrap_cos_std": 0.0572,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.94763,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.96127,
+              "cos_vs_prev": 0.99187
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.96819,
+              "cos_vs_prev": 0.99694
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.96863,
+              "cos_vs_prev": 0.99763
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.97671,
+              "cos_vs_prev": 0.99756
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.98398,
+              "cos_vs_prev": 0.99681
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.98662,
+              "cos_vs_prev": 0.99865
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.98659,
+              "cos_vs_prev": 0.99892
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.98865,
+              "cos_vs_prev": 0.99871
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.99123,
+              "cos_vs_prev": 0.99878
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.99547,
+              "cos_vs_prev": 0.99798
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.99511,
+              "cos_vs_prev": 0.99863
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99754,
+              "cos_vs_prev": 0.99788
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99815,
+              "cos_vs_prev": 0.99898
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99925,
+              "cos_vs_prev": 0.99849
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99925
+            }
+          ]
+        }
+      },
+      "13": {
+        "layer_idx": 13,
+        "coherence": 0.05079,
+        "cos_means": 0.99994,
+        "sep_snr": 0.3738,
+        "cos_pca_vs_mean": 0.87987,
+        "convergence_pca": {
+          "n_pairs": 80,
+          "method": "pca",
+          "bootstrap_cos_mean": 0.99759,
+          "bootstrap_cos_min": 0.99555,
+          "bootstrap_cos_std": 0.00096,
+          "converged": true,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.96796,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.98225,
+              "cos_vs_prev": 0.98029
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.99061,
+              "cos_vs_prev": 0.99407
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.9935,
+              "cos_vs_prev": 0.99746
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.99549,
+              "cos_vs_prev": 0.99919
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.99643,
+              "cos_vs_prev": 0.99891
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.99657,
+              "cos_vs_prev": 0.99982
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.9977,
+              "cos_vs_prev": 0.99916
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.99862,
+              "cos_vs_prev": 0.99935
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.99907,
+              "cos_vs_prev": 0.99952
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.99941,
+              "cos_vs_prev": 0.99986
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.99945,
+              "cos_vs_prev": 0.99998
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99973,
+              "cos_vs_prev": 0.99976
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99977,
+              "cos_vs_prev": 0.99997
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99994,
+              "cos_vs_prev": 0.99981
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99994
+            }
+          ]
+        },
+        "convergence_mean": {
+          "n_pairs": 80,
+          "method": "mean",
+          "bootstrap_cos_mean": 0.94972,
+          "bootstrap_cos_min": 0.77575,
+          "bootstrap_cos_std": 0.05347,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.91962,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.94132,
+              "cos_vs_prev": 0.98667
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.95439,
+              "cos_vs_prev": 0.99488
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.95414,
+              "cos_vs_prev": 0.99597
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.96601,
+              "cos_vs_prev": 0.99618
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.97635,
+              "cos_vs_prev": 0.99504
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.98018,
+              "cos_vs_prev": 0.99786
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.98071,
+              "cos_vs_prev": 0.99818
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.98347,
+              "cos_vs_prev": 0.99808
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.98672,
+              "cos_vs_prev": 0.9982
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.99318,
+              "cos_vs_prev": 0.99721
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.99284,
+              "cos_vs_prev": 0.99805
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99678,
+              "cos_vs_prev": 0.99708
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99779,
+              "cos_vs_prev": 0.99865
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99901,
+              "cos_vs_prev": 0.99822
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99901
+            }
+          ]
+        }
+      },
+      "14": {
+        "layer_idx": 14,
+        "coherence": 0.0446,
+        "cos_means": 0.99993,
+        "sep_snr": 0.3522,
+        "cos_pca_vs_mean": 0.84621,
+        "convergence_pca": {
+          "n_pairs": 80,
+          "method": "pca",
+          "bootstrap_cos_mean": 0.99713,
+          "bootstrap_cos_min": 0.99499,
+          "bootstrap_cos_std": 0.00107,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.96101,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.97831,
+              "cos_vs_prev": 0.97833
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.98921,
+              "cos_vs_prev": 0.99224
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.99279,
+              "cos_vs_prev": 0.99664
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.99488,
+              "cos_vs_prev": 0.99907
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.99606,
+              "cos_vs_prev": 0.99865
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.99623,
+              "cos_vs_prev": 0.99976
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.99738,
+              "cos_vs_prev": 0.9991
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.99837,
+              "cos_vs_prev": 0.99933
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.99886,
+              "cos_vs_prev": 0.99946
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.99923,
+              "cos_vs_prev": 0.99984
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.99933,
+              "cos_vs_prev": 0.99995
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99969,
+              "cos_vs_prev": 0.99969
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99974,
+              "cos_vs_prev": 0.99995
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99992,
+              "cos_vs_prev": 0.99979
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99992
+            }
+          ]
+        },
+        "convergence_mean": {
+          "n_pairs": 80,
+          "method": "mean",
+          "bootstrap_cos_mean": 0.93061,
+          "bootstrap_cos_min": 0.67048,
+          "bootstrap_cos_std": 0.07985,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.89539,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.92078,
+              "cos_vs_prev": 0.98344
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.93976,
+              "cos_vs_prev": 0.99324
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.93791,
+              "cos_vs_prev": 0.995
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.9542,
+              "cos_vs_prev": 0.99506
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.96861,
+              "cos_vs_prev": 0.9936
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.97412,
+              "cos_vs_prev": 0.99708
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.9744,
+              "cos_vs_prev": 0.99774
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.97789,
+              "cos_vs_prev": 0.99758
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.98265,
+              "cos_vs_prev": 0.9977
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.99132,
+              "cos_vs_prev": 0.99642
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.98992,
+              "cos_vs_prev": 0.99752
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99529,
+              "cos_vs_prev": 0.99656
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99715,
+              "cos_vs_prev": 0.99811
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99845,
+              "cos_vs_prev": 0.99789
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99845
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "concept": "hot_vs_cold",
+    "run_dir": "/home/lele/codex-openai/project_jedi/output/run_20260227_020648",
+    "model_path": "/mnt/raid0/gemma-3-1b-it",
+    "timestamp": "2026-02-27 02:08:01",
+    "source": "run",
+    "layers": [
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "vectors": [
+      "/home/lele/codex-openai/project_jedi/output/run_20260227_020648/concept_hot_vs_cold_layer_18.npy",
+      "/home/lele/codex-openai/project_jedi/output/run_20260227_020648/concept_hot_vs_cold_layer_19.npy",
+      "/home/lele/codex-openai/project_jedi/output/run_20260227_020648/concept_hot_vs_cold_layer_20.npy",
+      "/home/lele/codex-openai/project_jedi/output/run_20260227_020648/concept_hot_vs_cold_layer_21.npy",
+      "/home/lele/codex-openai/project_jedi/output/run_20260227_020648/concept_hot_vs_cold_layer_22.npy",
+      "/home/lele/codex-openai/project_jedi/output/run_20260227_020648/concept_hot_vs_cold_layer_23.npy"
+    ],
+    "queries": {
+      "hot": [
+        "The soup steamed gently in the bowl.",
+        "She burned her fingers on the hot stove.",
+        "The sand scorched her bare feet at the beach.",
+        "Lava inched slowly down the hillside.",
+        "He scalded his tongue on the boiling coffee.",
+        "The iron was far too hot to touch.",
+        "Sparks flew from the forge as the smith worked.",
+        "The desert sun made the rocks unbearable to touch.",
+        "Steam billowed from the volcanic hot spring.",
+        "The pan sizzled when she dropped in the butter.",
+        "Sweat dripped from his forehead in the midday heat.",
+        "The oven door radiated warmth when opened.",
+        "The engine block was scorching after the long race.",
+        "Flames leapt from the bonfire into the night sky.",
+        "The asphalt shimmered in the summer heat.",
+        "She wrapped her hands around the steaming mug.",
+        "The sauna was thick with heat and humidity.",
+        "Molten steel poured from the ladle in bright streams.",
+        "He flinched when he touched the sunlit car hood.",
+        "The fresh loaf crackled warmly from the bakery oven.",
+        "The radiator clicked and hissed as it warmed the room.",
+        "Smoke curled upward from the smoldering campfire.",
+        "Her face flushed red in the sweltering gymnasium.",
+        "The desert wind was like breathing from a hair dryer.",
+        "The equatorial sun was blinding and ferociously hot.",
+        "The copper pipe was painfully hot when water ran through it.",
+        "The molten glass glowed orange as the glassblower shaped it.",
+        "Baking bread filled the kitchen with warm, yeasty air.",
+        "The outdoor grill radiated intense heat across the patio.",
+        "The parking lot sizzled under the August afternoon sun.",
+        "The welding rod burned white-hot as the seam fused.",
+        "His shirt was soaked with sweat from the summer construction work.",
+        "The pottery kiln glowed brick-red at peak temperature.",
+        "She pressed a warm towel against her sore shoulder.",
+        "The tropical afternoon air was thick and suffocating.",
+        "Magma pushed upward through the fractured rock.",
+        "The cast iron skillet retained heat long after the flame died.",
+        "His skin reddened under the relentless July sun.",
+        "The warm exhaust from the vent made the alley stifling.",
+        "The tea kettle whistled as the water reached a full boil.",
+        "He drank the broth while it was still scalding hot.",
+        "The sunlit stone wall was too hot to lean against.",
+        "The thermometer climbed past forty degrees in the valley.",
+        "Steam pressure built steadily inside the sealed boiler.",
+        "The freshly paved road was soft and sticky from the heat.",
+        "They roasted marshmallows over the glowing embers.",
+        "The tropical greenhouse was a wall of humid, heavy air.",
+        "He kept his coffee mug on the warmer so it stayed hot.",
+        "The broiler element glowed orange-red inside the oven.",
+        "Smoke from the wildfire hung over the valley like a blanket.",
+        "The metal bleachers burned anyone who sat on them at noon.",
+        "The furnace roared as it melted down the scrap metal.",
+        "A heat wave kept temperatures above thirty-eight for a week.",
+        "She pulled on oven mitts before reaching into the hot oven.",
+        "The sun-facing wall of the building was too hot to touch.",
+        "The volcanic crater vented sulfurous heat into the air.",
+        "The skillet was still smoking when she plated the steak.",
+        "The summer asphalt was soft enough to leave footprints.",
+        "The spa pool was almost too warm to stay in for long.",
+        "The car interior was suffocating after sitting in the sun.",
+        "The burning logs crackled and sent sparks upward.",
+        "Children yelped crossing the hot pavement in bare feet.",
+        "Hot springs bubbled at the foot of the volcanic mountain.",
+        "The thermal suit protected the technician from radiant heat.",
+        "Steam rose from the pot as soon as the lid came off.",
+        "The midday sun turned the urban canyon into an oven.",
+        "The foundry floor shimmered with rising thermal waves.",
+        "She could feel the heat radiating through the glass door.",
+        "The sun-warmed stones held their heat well into the evening.",
+        "He pressed his cold hands around the warm coffee cup.",
+        "The charcoal was glowing red and ready for grilling.",
+        "The scalding shower finally loosened the tension in his back.",
+        "The chili bubbled furiously on the stove.",
+        "The match flared briefly before settling into a steady flame.",
+        "Humid tropical heat pressed down on the jungle canopy.",
+        "The smelting plant was a wall of furnace-like heat inside.",
+        "She winced as she poured boiling water into the jar.",
+        "The lava field crinkled and smoked as fresh rock oozed out.",
+        "The branding iron glowed orange before it touched the wood.",
+        "The thermal camera showed everything above sixty degrees glowing red."
+      ],
+      "cold": [
+        "The soup was ice-cold by the time she sat down.",
+        "She numbed her fingers packing snow in the deep winter.",
+        "Frost stiffened the wet towel left outside overnight.",
+        "Glaciers advanced slowly down the mountain valley.",
+        "He shivered when the icy water hit the back of his throat.",
+        "The iron railing was brittle cold on the winter morning.",
+        "Ice crystals formed on the windows of the unheated shed.",
+        "The desert night plunged the rocks to near-freezing.",
+        "Icy mist rose from the frozen surface of the mountain lake.",
+        "The freezer drawer was sealed shut by accumulated frost.",
+        "The cold wind swept the ridge and chilled them to the bone.",
+        "Cold air poured out when she opened the refrigerator.",
+        "The engine block was frigid after sitting outside all night.",
+        "Snow hissed and smothered the campfire in seconds.",
+        "The icy road glittered under the headlights in January.",
+        "She clutched the chilled metal water bottle.",
+        "The walk-in freezer was so cold her breath fogged immediately.",
+        "Ice formed a thick crust on the water in the outdoor tank.",
+        "He pulled back his hand from the cold metal door handle.",
+        "The refrigerated truck held the produce just above freezing.",
+        "The pipes clanked and groaned in the January freeze.",
+        "Snow fell silently and settled over the old campfire site.",
+        "Her face went pale in the biting gymnasium cold.",
+        "The Antarctic wind cut through every layer of clothing.",
+        "The polar sun gave light but no warmth to the tundra.",
+        "The metal pipe crackled and split in the overnight frost.",
+        "Ice crystals formed inside the cold storage chamber overnight.",
+        "The refrigerator kept the dough cold between folding sessions.",
+        "The patio stones were slick with frost on autumn mornings.",
+        "The parking lot was a sheet of black ice in the early morning.",
+        "The nitrogen line frosted over instantly in the cold laboratory.",
+        "His fingers lost feeling after shoveling snow for an hour.",
+        "The kiln sat cold and empty in the unheated shed.",
+        "She pressed an ice pack against her swollen ankle.",
+        "The morning fog was biting cold as it rolled off the bay.",
+        "Permafrost kept the soil frozen year-round beneath the surface.",
+        "The cast iron skillet was ice-cold from the outdoor freezer.",
+        "His skin turned pale under the January sky.",
+        "Cold exhaust from the refrigeration unit chilled the loading dock.",
+        "The water tap ran cold long before it ever ran warm.",
+        "He gulped the icy water after the long run.",
+        "The stone bench in the shadow was unbearably cold to sit on.",
+        "The thermometer dropped below minus fifteen overnight.",
+        "Pressure dropped in the pipe as it passed through the frozen section.",
+        "The freshly laid road cracked in the overnight frost.",
+        "They shivered around the burned-out campfire before dawn.",
+        "The cold greenhouse barely protected the plants from frost.",
+        "He left his coffee mug on the desk and it went cold quickly.",
+        "The refrigerator coils ran ice-cold through the back panel.",
+        "Ice fog blanketed the valley and muffled all sound.",
+        "The metal bleachers were numbing to sit on in the January freeze.",
+        "The cold blast from the cryogenic tank hit him immediately.",
+        "A cold snap kept temperatures below minus ten for a week.",
+        "She pulled on insulated gloves before reaching into the freezer.",
+        "The shaded wall of the building was cold even at midday.",
+        "Arctic wind funneled down through the mountain pass.",
+        "The skillet was still stone-cold from the refrigerator.",
+        "The winter pavement cracked and buckled under the weight of ice.",
+        "The outdoor plunge pool was bracingly cold year-round.",
+        "The car interior was frigid after sitting in the winter night.",
+        "Snow smothered the dying embers within minutes.",
+        "Children screamed and slipped crossing the icy pavement.",
+        "Cold springs bubbled at the foot of the glacier.",
+        "The thermal suit protected the worker from the freezing environment.",
+        "Cold air fell out of the chest freezer as soon as it was opened.",
+        "The winter wind turned the city canyon into a freezing tunnel.",
+        "The frozen tundra showed no signs of thawing.",
+        "She could feel the cold radiating through the glass door.",
+        "The frozen stones took all day to thaw in the weak winter sun.",
+        "He pressed his warm hands around the cold water glass.",
+        "The charcoal was gray and cold after the overnight frost.",
+        "The cold shower jolted him awake with an icy rush.",
+        "The stew had gone cold and was congealing in the pot.",
+        "The match went out immediately in the biting cold wind.",
+        "Humid cold clung to the cave walls throughout the year.",
+        "The cold storage plant was a wall of refrigerated air inside.",
+        "She winced as she plunged her hands into the icy water.",
+        "The lava field was cold and black after decades of cooling.",
+        "The branding iron was left out overnight and turned stone cold.",
+        "The thermal camera showed everything below five degrees in deep blue."
+      ]
+    },
+    "metrics": {
+      "18": {
+        "layer_idx": 18,
+        "coherence": 0.09891,
+        "cos_means": 0.99959,
+        "sep_snr": 0.3824,
+        "cos_pca_vs_mean": 0.53954,
+        "convergence_pca": {
+          "n_pairs": 80,
+          "method": "pca",
+          "bootstrap_cos_mean": 0.98584,
+          "bootstrap_cos_min": 0.96831,
+          "bootstrap_cos_std": 0.00628,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.61521,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.88635,
+              "cos_vs_prev": 0.71521
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.95115,
+              "cos_vs_prev": 0.95289
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.97007,
+              "cos_vs_prev": 0.98227
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.97986,
+              "cos_vs_prev": 0.99514
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.98229,
+              "cos_vs_prev": 0.99669
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.98182,
+              "cos_vs_prev": 0.99803
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.98719,
+              "cos_vs_prev": 0.99431
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.99118,
+              "cos_vs_prev": 0.99759
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.99385,
+              "cos_vs_prev": 0.99798
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.99534,
+              "cos_vs_prev": 0.99937
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.99572,
+              "cos_vs_prev": 0.99964
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99854,
+              "cos_vs_prev": 0.99757
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99883,
+              "cos_vs_prev": 0.99965
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99965,
+              "cos_vs_prev": 0.99913
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99965
+            }
+          ]
+        },
+        "convergence_mean": {
+          "n_pairs": 80,
+          "method": "mean",
+          "bootstrap_cos_mean": 0.95376,
+          "bootstrap_cos_min": 0.89578,
+          "bootstrap_cos_std": 0.02173,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.73488,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.81144,
+              "cos_vs_prev": 0.95463
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.86606,
+              "cos_vs_prev": 0.97932
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.88394,
+              "cos_vs_prev": 0.98751
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.92487,
+              "cos_vs_prev": 0.98476
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.95029,
+              "cos_vs_prev": 0.98776
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.96047,
+              "cos_vs_prev": 0.99329
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.96325,
+              "cos_vs_prev": 0.99527
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.96997,
+              "cos_vs_prev": 0.99604
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.9751,
+              "cos_vs_prev": 0.99538
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.98788,
+              "cos_vs_prev": 0.9942
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.9856,
+              "cos_vs_prev": 0.99569
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99345,
+              "cos_vs_prev": 0.99468
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99568,
+              "cos_vs_prev": 0.99725
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99821,
+              "cos_vs_prev": 0.99696
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99821
+            }
+          ]
+        }
+      },
+      "19": {
+        "layer_idx": 19,
+        "coherence": 0.10306,
+        "cos_means": 0.99962,
+        "sep_snr": 0.4464,
+        "cos_pca_vs_mean": 0.61388,
+        "convergence_pca": {
+          "n_pairs": 80,
+          "method": "pca",
+          "bootstrap_cos_mean": 0.98304,
+          "bootstrap_cos_min": 0.96346,
+          "bootstrap_cos_std": 0.00791,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.46937,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.87148,
+              "cos_vs_prev": 0.57673
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.94563,
+              "cos_vs_prev": 0.94317
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.96747,
+              "cos_vs_prev": 0.97856
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.97788,
+              "cos_vs_prev": 0.99517
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.98185,
+              "cos_vs_prev": 0.99649
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.98144,
+              "cos_vs_prev": 0.99694
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.98663,
+              "cos_vs_prev": 0.99453
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.99093,
+              "cos_vs_prev": 0.99732
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.99271,
+              "cos_vs_prev": 0.99822
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.99445,
+              "cos_vs_prev": 0.99924
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.99475,
+              "cos_vs_prev": 0.99966
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99817,
+              "cos_vs_prev": 0.99716
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99843,
+              "cos_vs_prev": 0.99966
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99958,
+              "cos_vs_prev": 0.99887
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99958
+            }
+          ]
+        },
+        "convergence_mean": {
+          "n_pairs": 80,
+          "method": "mean",
+          "bootstrap_cos_mean": 0.96001,
+          "bootstrap_cos_min": 0.90421,
+          "bootstrap_cos_std": 0.01691,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.778,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.84501,
+              "cos_vs_prev": 0.95014
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.88944,
+              "cos_vs_prev": 0.97865
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.90589,
+              "cos_vs_prev": 0.98696
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.93652,
+              "cos_vs_prev": 0.98622
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.95516,
+              "cos_vs_prev": 0.9891
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.9649,
+              "cos_vs_prev": 0.99303
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.96604,
+              "cos_vs_prev": 0.99517
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.97247,
+              "cos_vs_prev": 0.9961
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.97658,
+              "cos_vs_prev": 0.99553
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.98748,
+              "cos_vs_prev": 0.99522
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.98658,
+              "cos_vs_prev": 0.99637
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99318,
+              "cos_vs_prev": 0.99556
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.9954,
+              "cos_vs_prev": 0.99768
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99836,
+              "cos_vs_prev": 0.99736
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99836
+            }
+          ]
+        }
+      },
+      "20": {
+        "layer_idx": 20,
+        "coherence": 0.10999,
+        "cos_means": 0.99941,
+        "sep_snr": 0.3459,
+        "cos_pca_vs_mean": 0.43993,
+        "convergence_pca": {
+          "n_pairs": 80,
+          "method": "pca",
+          "bootstrap_cos_mean": 0.97622,
+          "bootstrap_cos_min": 0.94961,
+          "bootstrap_cos_std": 0.01062,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.29183,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.83025,
+              "cos_vs_prev": 0.44036
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.91865,
+              "cos_vs_prev": 0.93543
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.95875,
+              "cos_vs_prev": 0.9664
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.97258,
+              "cos_vs_prev": 0.994
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.97736,
+              "cos_vs_prev": 0.99616
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.97708,
+              "cos_vs_prev": 0.99381
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.98417,
+              "cos_vs_prev": 0.99249
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.9885,
+              "cos_vs_prev": 0.99668
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.98952,
+              "cos_vs_prev": 0.99897
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.99185,
+              "cos_vs_prev": 0.99892
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.99231,
+              "cos_vs_prev": 0.99931
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99741,
+              "cos_vs_prev": 0.9957
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.9978,
+              "cos_vs_prev": 0.9995
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99935,
+              "cos_vs_prev": 0.99848
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99935
+            }
+          ]
+        },
+        "convergence_mean": {
+          "n_pairs": 80,
+          "method": "mean",
+          "bootstrap_cos_mean": 0.96116,
+          "bootstrap_cos_min": 0.92445,
+          "bootstrap_cos_std": 0.01199,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.72099,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.82135,
+              "cos_vs_prev": 0.92789
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.87981,
+              "cos_vs_prev": 0.97133
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.90127,
+              "cos_vs_prev": 0.98151
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.93548,
+              "cos_vs_prev": 0.98261
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.95403,
+              "cos_vs_prev": 0.98779
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.96303,
+              "cos_vs_prev": 0.99211
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.96528,
+              "cos_vs_prev": 0.9938
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.96892,
+              "cos_vs_prev": 0.99554
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.97407,
+              "cos_vs_prev": 0.99493
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.9861,
+              "cos_vs_prev": 0.9947
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.98488,
+              "cos_vs_prev": 0.99591
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99263,
+              "cos_vs_prev": 0.99523
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99536,
+              "cos_vs_prev": 0.99742
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99829,
+              "cos_vs_prev": 0.99752
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99829
+            }
+          ]
+        }
+      },
+      "21": {
+        "layer_idx": 21,
+        "coherence": 0.10087,
+        "cos_means": 0.99941,
+        "sep_snr": 0.312,
+        "cos_pca_vs_mean": 0.41358,
+        "convergence_pca": {
+          "n_pairs": 80,
+          "method": "pca",
+          "bootstrap_cos_mean": 0.97443,
+          "bootstrap_cos_min": 0.95187,
+          "bootstrap_cos_std": 0.01055,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.24553,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.8287,
+              "cos_vs_prev": 0.35451
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.90985,
+              "cos_vs_prev": 0.9367
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.95426,
+              "cos_vs_prev": 0.96359
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.97004,
+              "cos_vs_prev": 0.99256
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.97686,
+              "cos_vs_prev": 0.99479
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.97707,
+              "cos_vs_prev": 0.99373
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.98328,
+              "cos_vs_prev": 0.99315
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.98811,
+              "cos_vs_prev": 0.99638
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.98896,
+              "cos_vs_prev": 0.99938
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.99117,
+              "cos_vs_prev": 0.9989
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.99175,
+              "cos_vs_prev": 0.99922
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99704,
+              "cos_vs_prev": 0.9955
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99739,
+              "cos_vs_prev": 0.99946
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99927,
+              "cos_vs_prev": 0.99812
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99927
+            }
+          ]
+        },
+        "convergence_mean": {
+          "n_pairs": 80,
+          "method": "mean",
+          "bootstrap_cos_mean": 0.95831,
+          "bootstrap_cos_min": 0.9212,
+          "bootstrap_cos_std": 0.01176,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.69574,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.80911,
+              "cos_vs_prev": 0.9169
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.87245,
+              "cos_vs_prev": 0.96607
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.89717,
+              "cos_vs_prev": 0.97888
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.93254,
+              "cos_vs_prev": 0.97959
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.95079,
+              "cos_vs_prev": 0.98591
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.96105,
+              "cos_vs_prev": 0.99087
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.96477,
+              "cos_vs_prev": 0.99271
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.96849,
+              "cos_vs_prev": 0.99478
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.97347,
+              "cos_vs_prev": 0.99427
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.98513,
+              "cos_vs_prev": 0.99458
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.98411,
+              "cos_vs_prev": 0.99546
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99213,
+              "cos_vs_prev": 0.99496
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99487,
+              "cos_vs_prev": 0.99725
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99819,
+              "cos_vs_prev": 0.99725
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99819
+            }
+          ]
+        }
+      },
+      "22": {
+        "layer_idx": 22,
+        "coherence": 0.08441,
+        "cos_means": 0.99951,
+        "sep_snr": 0.3307,
+        "cos_pca_vs_mean": 0.45718,
+        "convergence_pca": {
+          "n_pairs": 80,
+          "method": "pca",
+          "bootstrap_cos_mean": 0.97052,
+          "bootstrap_cos_min": 0.9481,
+          "bootstrap_cos_std": 0.01164,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.28806,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.79797,
+              "cos_vs_prev": 0.45868
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.8975,
+              "cos_vs_prev": 0.92565
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.94714,
+              "cos_vs_prev": 0.96005
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.96664,
+              "cos_vs_prev": 0.98998
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.97415,
+              "cos_vs_prev": 0.99363
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.97488,
+              "cos_vs_prev": 0.99247
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.98111,
+              "cos_vs_prev": 0.99293
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.98648,
+              "cos_vs_prev": 0.99621
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.98735,
+              "cos_vs_prev": 0.99937
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.99001,
+              "cos_vs_prev": 0.99866
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.99058,
+              "cos_vs_prev": 0.99895
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99632,
+              "cos_vs_prev": 0.99541
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99676,
+              "cos_vs_prev": 0.99931
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99919,
+              "cos_vs_prev": 0.99756
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99919
+            }
+          ]
+        },
+        "convergence_mean": {
+          "n_pairs": 80,
+          "method": "mean",
+          "bootstrap_cos_mean": 0.95142,
+          "bootstrap_cos_min": 0.91179,
+          "bootstrap_cos_std": 0.01243,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.69576,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.80352,
+              "cos_vs_prev": 0.907
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.8658,
+              "cos_vs_prev": 0.9614
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.89522,
+              "cos_vs_prev": 0.97555
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.92333,
+              "cos_vs_prev": 0.97831
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.94114,
+              "cos_vs_prev": 0.98327
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.95419,
+              "cos_vs_prev": 0.98886
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.9579,
+              "cos_vs_prev": 0.99138
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.9636,
+              "cos_vs_prev": 0.99354
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.97003,
+              "cos_vs_prev": 0.99272
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.98252,
+              "cos_vs_prev": 0.99391
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.98241,
+              "cos_vs_prev": 0.99462
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99066,
+              "cos_vs_prev": 0.99474
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99375,
+              "cos_vs_prev": 0.99679
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99787,
+              "cos_vs_prev": 0.99656
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99787
+            }
+          ]
+        }
+      },
+      "23": {
+        "layer_idx": 23,
+        "coherence": 0.07695,
+        "cos_means": 0.9995,
+        "sep_snr": 0.3125,
+        "cos_pca_vs_mean": 0.43588,
+        "convergence_pca": {
+          "n_pairs": 80,
+          "method": "pca",
+          "bootstrap_cos_mean": 0.96405,
+          "bootstrap_cos_min": 0.93352,
+          "bootstrap_cos_std": 0.01367,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.15856,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.76177,
+              "cos_vs_prev": 0.33572
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.88175,
+              "cos_vs_prev": 0.90613
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.93113,
+              "cos_vs_prev": 0.95924
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.95902,
+              "cos_vs_prev": 0.98539
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.96931,
+              "cos_vs_prev": 0.99133
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.97033,
+              "cos_vs_prev": 0.99175
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.97612,
+              "cos_vs_prev": 0.99308
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.9831,
+              "cos_vs_prev": 0.99538
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.98426,
+              "cos_vs_prev": 0.99949
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.98764,
+              "cos_vs_prev": 0.99813
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.98846,
+              "cos_vs_prev": 0.99842
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.99508,
+              "cos_vs_prev": 0.99451
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99557,
+              "cos_vs_prev": 0.99908
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99896,
+              "cos_vs_prev": 0.99668
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99896
+            }
+          ]
+        },
+        "convergence_mean": {
+          "n_pairs": 80,
+          "method": "mean",
+          "bootstrap_cos_mean": 0.94758,
+          "bootstrap_cos_min": 0.90796,
+          "bootstrap_cos_std": 0.01165,
+          "converged": false,
+          "incremental": [
+            {
+              "n_pairs": 5,
+              "cos_vs_full": 0.67995,
+              "cos_vs_prev": null
+            },
+            {
+              "n_pairs": 10,
+              "cos_vs_full": 0.79488,
+              "cos_vs_prev": 0.88443
+            },
+            {
+              "n_pairs": 15,
+              "cos_vs_full": 0.85614,
+              "cos_vs_prev": 0.95455
+            },
+            {
+              "n_pairs": 20,
+              "cos_vs_full": 0.89056,
+              "cos_vs_prev": 0.97133
+            },
+            {
+              "n_pairs": 25,
+              "cos_vs_full": 0.91787,
+              "cos_vs_prev": 0.9737
+            },
+            {
+              "n_pairs": 30,
+              "cos_vs_full": 0.93635,
+              "cos_vs_prev": 0.98111
+            },
+            {
+              "n_pairs": 35,
+              "cos_vs_full": 0.95064,
+              "cos_vs_prev": 0.98682
+            },
+            {
+              "n_pairs": 40,
+              "cos_vs_full": 0.95553,
+              "cos_vs_prev": 0.99039
+            },
+            {
+              "n_pairs": 45,
+              "cos_vs_full": 0.96249,
+              "cos_vs_prev": 0.99223
+            },
+            {
+              "n_pairs": 50,
+              "cos_vs_full": 0.96911,
+              "cos_vs_prev": 0.99169
+            },
+            {
+              "n_pairs": 55,
+              "cos_vs_full": 0.98153,
+              "cos_vs_prev": 0.99343
+            },
+            {
+              "n_pairs": 60,
+              "cos_vs_full": 0.98121,
+              "cos_vs_prev": 0.99387
+            },
+            {
+              "n_pairs": 65,
+              "cos_vs_full": 0.98947,
+              "cos_vs_prev": 0.99455
+            },
+            {
+              "n_pairs": 70,
+              "cos_vs_full": 0.99316,
+              "cos_vs_prev": 0.99646
+            },
+            {
+              "n_pairs": 75,
+              "cos_vs_full": 0.99774,
+              "cos_vs_prev": 0.99634
+            },
+            {
+              "n_pairs": 80,
+              "cos_vs_full": 1.0,
+              "cos_vs_prev": 0.99774
+            }
+          ]
+        }
+      }
+    }
+  }
+]
