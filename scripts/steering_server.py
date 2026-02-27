@@ -5,7 +5,7 @@ import os
 import re
 import threading
 import subprocess
-from http.server import BaseHTTPRequestHandler, HTTPServer
+from http.server import BaseHTTPRequestHandler, HTTPServer, ThreadingHTTPServer
 from urllib.parse import urlparse, parse_qs
 
 import numpy as np
@@ -619,7 +619,7 @@ class Handler(BaseHTTPRequestHandler):
 def main():
     load_model()
     port = int(os.environ.get("JEDI_PORT", "8010"))
-    server = HTTPServer(("0.0.0.0", port), Handler)
+    server = ThreadingHTTPServer(("0.0.0.0", port), Handler)
     print(f"Jedi steering server listening on http://0.0.0.0:{port}")
     server.serve_forever()
 

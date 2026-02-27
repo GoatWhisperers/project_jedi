@@ -69,6 +69,7 @@
       border-radius: 50%; animation: spin 0.7s linear infinite;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
 
     /* ── GPU / temp colours ── */
     .temp-ok   { color: #8affc1; }
@@ -277,6 +278,7 @@
       <div class="btn-row">
         <button id="sendBaseline">Baseline</button>
         <button id="sendInject" class="primary">Inject ▶</button>
+        <span id="gen-indicator" style="display:none;color:#ffe066;font-size:12px;animation:pulse 1s ease-in-out infinite;align-self:center;">⚡ generating…</span>
         <button id="clearChat">Clear</button>
       </div>
       <div class="max-tokens-row">
@@ -562,7 +564,21 @@
     }
 
     /* ── Send ── */
+    let _generating = false;
+
+    function setGenerating(on) {
+      _generating = on;
+      const btn1 = document.getElementById('sendBaseline');
+      const btn2 = document.getElementById('sendInject');
+      const ind  = document.getElementById('gen-indicator');
+      btn1.disabled = on; btn2.disabled = on;
+      btn1.style.opacity = on ? '0.4' : '1';
+      btn2.style.opacity = on ? '0.4' : '1';
+      if (ind) ind.style.display = on ? 'inline-block' : 'none';
+    }
+
     async function send(mode) {
+      if (_generating) return;
       const userMsg = document.getElementById('userMsg').value.trim();
       if (!userMsg) return;
 
@@ -580,25 +596,29 @@
         layer_configs: layerConfigs,
       };
 
-      // If no layers active and mode=inject, fallback to baseline
       if (layerConfigs.length === 0) payload.mode = 'baseline';
 
       document.getElementById('formatted').textContent = '…';
-      const res  = await fetch('/api/generate', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-      const data = await res.json();
-
-      document.getElementById('formatted').textContent = data.formatted_prompt || '—';
-
-      if (data.text) {
-        history.push({ role: 'assistant', content: data.text });
-        renderChat();
-      }
-      if (data.error) {
-        document.getElementById('status').textContent = 'Errore: ' + data.error;
+      setGenerating(true);
+      try {
+        const res  = await fetch('/api/generate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        document.getElementById('formatted').textContent = data.formatted_prompt || '—';
+        if (data.text) {
+          history.push({ role: 'assistant', content: data.text });
+          renderChat();
+        }
+        if (data.error) {
+          document.getElementById('status').textContent = 'Errore: ' + data.error;
+        }
+      } catch(e) {
+        document.getElementById('status').textContent = 'Errore: ' + e.message;
+      } finally {
+        setGenerating(false);
       }
     }
 
