@@ -75,6 +75,22 @@
     .temp-warn { color: #ffe066; }
     .temp-hot  { color: #ff6b6b; }
 
+    /* ── Stat cards ── */
+    .stat-row { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:10px; }
+    .stat-card {
+      background:var(--input-bg); border:1px solid var(--input-border);
+      border-radius:6px; padding:8px 12px; min-width:110px; flex:1;
+    }
+    .stat-value { font-size:20px; font-weight:700; color:var(--accent); line-height:1.2; }
+    .stat-label { font-size:10px; color:#6a7a9a; text-transform:uppercase; letter-spacing:.07em; }
+    .stat-sub   { font-size:10px; color:#6a7a9a; }
+    .stat-bar   { height:3px; background:#1e2a44; border-radius:2px; margin-top:5px; }
+    .stat-bar-fill { height:100%; border-radius:2px; transition:width .4s; }
+    .col-green  { color:#8affc1; }
+    .col-yellow { color:#ffe066; }
+    .col-red    { color:#ff6b6b; }
+    .col-accent { color:var(--accent); }
+
     /* ════════════════════════════
        LAYER CONSOLE  (full width)
        ════════════════════════════ */
@@ -182,11 +198,34 @@
   <div id="header-bar">
     <h1>Jedi Steering Console</h1>
 
-    <div class="widget" id="gpu-widget">
-      <span>GPU</span>
-      <span>Edge <span id="hw-edge" class="temp-ok">—</span>°C</span>
-      <span>Jct <span id="hw-jct" class="temp-ok">—</span>°C</span>
-      <span>VRAM <span id="hw-vram">—</span>%</span>
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-label">GPU Edge</div>
+        <div class="stat-value"><span id="hw-edge">—</span>°C</div>
+        <div class="stat-bar"><div class="stat-bar-fill" id="edge-bar" style="width:0%;background:#8affc1;"></div></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">GPU Load</div>
+        <div class="stat-value"><span id="hw-load">—</span>%</div>
+        <div class="stat-bar"><div class="stat-bar-fill" id="load-bar" style="width:0%;background:#8affc1;"></div></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">VRAM</div>
+        <div class="stat-value col-accent"><span id="hw-vram-gb">—</span> GB</div>
+        <div class="stat-sub"><span id="hw-vram-total">—</span> GB total · <span id="hw-vram-pct">—</span>%</div>
+        <div class="stat-bar"><div class="stat-bar-fill" id="vram-bar" style="width:0%;background:var(--accent);"></div></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">CPU</div>
+        <div class="stat-value"><span id="hw-cpu">—</span>%</div>
+        <div class="stat-bar"><div class="stat-bar-fill" id="cpu-bar" style="width:0%;background:#8affc1;"></div></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">RAM</div>
+        <div class="stat-value"><span id="hw-ram-pct">—</span>%</div>
+        <div class="stat-sub"><span id="hw-ram-used">—</span> / <span id="hw-ram-total">—</span> GB</div>
+        <div class="stat-bar"><div class="stat-bar-fill" id="ram-bar" style="width:0%;background:#8affc1;"></div></div>
+      </div>
     </div>
 
     <div class="widget" id="model-widget">
@@ -311,28 +350,53 @@
     }
 
     /* ── GPU polling ── */
-    function tempClass(t) {
-      if (t >= 90) return 'temp-hot';
-      if (t >= 75) return 'temp-warn';
-      return 'temp-ok';
+    function tempColor(t) {
+      return t >= 90 ? '#ff6b6b' : t >= 75 ? '#ffe066' : '#8affc1';
+    }
+    function pctColor(p, warn=70, hot=85) {
+      return p >= hot ? '#ff6b6b' : p >= warn ? '#ffe066' : '#8affc1';
+    }
+    function setText(id, val) { const e = document.getElementById(id); if(e) e.textContent = val; }
+    function setBar(id, pct, color) {
+      const e = document.getElementById(id);
+      if(e) { e.style.width = Math.min(pct,100)+'%'; e.style.background = color; }
     }
     async function pollGpu() {
       try {
         const g = await fetchJson('/api/gpu');
-        const edgeEl = document.getElementById('hw-edge');
-        const jctEl  = document.getElementById('hw-jct');
         if (g.ok) {
-          edgeEl.textContent = g.edge_c ?? '—';
-          edgeEl.className   = tempClass(g.edge_c || 0);
-          jctEl.textContent  = g.junction_c ?? '—';
-          jctEl.className    = tempClass(g.junction_c || 0);
-          document.getElementById('hw-vram').textContent =
-            g.vram_used_pct !== undefined ? g.vram_used_pct + '%' : '—';
+          const ec = tempColor(g.edge_c||0);
+          setText('hw-edge', g.edge_c ?? '—');
+          document.getElementById('hw-edge').style.color = ec;
+          setBar('edge-bar', g.edge_c||0, ec);
+
+          const lc = (g.gpu_use_pct||0) > 5 ? 'var(--accent)' : '#8affc1';
+          setText('hw-load', g.gpu_use_pct ?? '—');
+          setBar('load-bar', g.gpu_use_pct||0, lc);
+
+          const vp = g.vram_pct || g.vram_used_pct || 0;
+          const vc = pctColor(vp, 65, 85);
+          setText('hw-vram-gb',    g.vram_used_gb ?? '—');
+          setText('hw-vram-total', g.vram_total_gb ?? '—');
+          setText('hw-vram-pct',   vp+'%' );
+          setBar('vram-bar', vp, 'var(--accent)');
+        }
+        const cc = pctColor(g.cpu_pct||0, 70, 90);
+        setText('hw-cpu', g.cpu_pct ?? '—');
+        setBar('cpu-bar', g.cpu_pct||0, cc);
+
+        const ram = g.ram || {};
+        if (ram.pct !== undefined) {
+          const rc = pctColor(ram.pct, 75, 90);
+          setText('hw-ram-pct',   ram.pct);
+          setText('hw-ram-used',  ((ram.used_mb||0)/1024).toFixed(1));
+          setText('hw-ram-total', ((ram.total_mb||0)/1024).toFixed(1));
+          setBar('ram-bar', ram.pct, rc);
         }
       } catch (_) {}
     }
     pollGpu();
-    setInterval(pollGpu, 5000);
+    setInterval(pollGpu, 2000);
 
     /* ── Model selector ── */
     async function loadModels() {

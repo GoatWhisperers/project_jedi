@@ -261,24 +261,67 @@ def read_body(handler):
     return handler.rfile.read(length)
 
 
+_prev_cpu = None
+
+def _read_cpu_pct():
+    """Read CPU usage % from /proc/stat (delta between two calls)."""
+    global _prev_cpu
+    try:
+        with open("/proc/stat") as f:
+            line = f.readline()
+        vals = list(map(int, line.split()[1:]))
+        idle = vals[3] + (vals[4] if len(vals) > 4 else 0)
+        total = sum(vals)
+        if _prev_cpu is None:
+            _prev_cpu = (total, idle)
+            return 0.0
+        d_total = total - _prev_cpu[0]
+        d_idle  = idle  - _prev_cpu[1]
+        _prev_cpu = (total, idle)
+        return round((d_total - d_idle) / d_total * 100, 1) if d_total > 0 else 0.0
+    except Exception:
+        return 0.0
+
+
+def _read_ram():
+    """Read RAM usage from /proc/meminfo."""
+    try:
+        info = {}
+        with open("/proc/meminfo") as f:
+            for line in f:
+                k, v = line.split(":")
+                info[k.strip()] = int(v.split()[0])
+        total_mb = info["MemTotal"] / 1024
+        avail_mb = info["MemAvailable"] / 1024
+        used_mb  = total_mb - avail_mb
+        return {"used_mb": round(used_mb), "total_mb": round(total_mb),
+                "pct": round(used_mb / total_mb * 100, 1)}
+    except Exception:
+        return {}
+
+
 def get_gpu_stats():
     result = {"ok": False}
     try:
         res = subprocess.run([
-            "rocm-smi", "--showtemp", "--showmemuse", "--json"
+            "rocm-smi", "--showtemp", "--showuse", "--showmeminfo", "vram", "--json"
         ], capture_output=True, text=True, check=True)
         data = json.loads(res.stdout)
         card = data.get("card0", {})
-        edge = float(card.get("Temperature (Sensor edge) (C)", "0") or 0)
+        edge     = float(card.get("Temperature (Sensor edge) (C)", "0") or 0)
         junction = float(card.get("Temperature (Sensor junction) (C)", "0") or 0)
-        mem_use = float(card.get("GPU memory use (%)", "0") or 0)
-        mem_activity = card.get("Memory Activity", "0")
+        gpu_use  = float(card.get("GPU use (%)", "0") or 0)
+        vram_used  = float(card.get("VRAM Total Used Memory (B)", "0") or 0) / 1024**3
+        vram_total = float(card.get("VRAM Total Memory (B)", "0") or 0) / 1024**3
+        vram_pct   = round(vram_used / vram_total * 100, 1) if vram_total > 0 else 0
         result = {
             "ok": True,
             "edge_c": edge,
             "junction_c": junction,
-            "mem_use_pct": mem_use,
-            "mem_activity": mem_activity
+            "gpu_use_pct": gpu_use,
+            "vram_used_gb": round(vram_used, 1),
+            "vram_total_gb": round(vram_total, 1),
+            "vram_pct": vram_pct,
         }
     except Exception as e:
         result = {"ok": False, "error": str(e)}
@@ -286,15 +329,15 @@ def get_gpu_stats():
     if torch.cuda.is_available() and State.model is not None:
         try:
             allocated_mb = torch.cuda.memory_allocated() / 1024**2
-            reserved_mb  = torch.cuda.memory_reserved()  / 1024**2
             total_mb     = torch.cuda.get_device_properties(0).total_memory / 1024**2
             result["vram_allocated_mb"] = round(allocated_mb, 1)
-            result["vram_reserved_mb"]  = round(reserved_mb, 1)
             result["vram_total_mb"]     = round(total_mb, 1)
             result["vram_used_pct"]     = round(allocated_mb / total_mb * 100, 1)
         except Exception:
             pass
 
+    result["cpu_pct"] = _read_cpu_pct()
+    result["ram"] = _read_ram()
     return result
 
 
