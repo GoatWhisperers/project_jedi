@@ -212,7 +212,7 @@ def main():
         "low_cpu_mem_usage": True,
     }
     if torch_dtype is not None:
-        model_kwargs["torch_dtype"] = torch_dtype
+        model_kwargs["dtype"] = torch_dtype
 
     write_status_extended({
         "run_id": run_id, "phase": "load_model",

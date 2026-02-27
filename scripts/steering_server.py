@@ -2,6 +2,7 @@
 import glob
 import json
 import os
+import re
 import threading
 import subprocess
 from http.server import BaseHTTPRequestHandler, HTTPServer
@@ -60,6 +61,54 @@ def load_catalog():
         with open(CATALOG_PATH, "r") as f:
             return json.load(f)
     return []
+
+
+def get_available_layers(concept_name: str, model_name: str):
+    """Scan vector_library and return (sorted layers list, best_layer) for concept+model.
+    This is the ground truth — independent of the catalog."""
+    if not model_name or not os.path.isdir(VECTOR_LIB_ROOT):
+        return [], None
+    slug = model_name.lower().replace(" ", "-").replace("_", "-")
+    for cat in os.listdir(VECTOR_LIB_ROOT):
+        lib_dir = os.path.join(VECTOR_LIB_ROOT, cat, concept_name, slug)
+        if not os.path.isdir(lib_dir):
+            continue
+        layers = []
+        for f in glob.glob(os.path.join(lib_dir, "layer_*.npy")):
+            name = os.path.basename(f)
+            if "_pca" not in name:
+                m = re.match(r"layer_(\d+)\.npy", name)
+                if m:
+                    layers.append(int(m.group(1)))
+        layers.sort()
+        # Find best layer by sep_snr from summary.json
+        best_layer = layers[-1] if layers else None
+        summary_path = os.path.join(lib_dir, "summary.json")
+        if os.path.exists(summary_path):
+            try:
+                with open(summary_path) as f:
+                    summary = json.load(f)
+                results = summary.get("results", {})
+                if results:
+                    best_key = max(results, key=lambda k: results[k].get("sep_snr", -99))
+                    best_layer = int(best_key)
+            except Exception:
+                pass
+        return layers, best_layer
+    return [], None
+
+
+def _load_vec_for_layer(concept_name: str, model_name: str, layer_idx: int):
+    """Load concept vector .npy from vector_library for a specific layer.
+    Returns numpy array or None if not found."""
+    if not model_name or not os.path.isdir(VECTOR_LIB_ROOT):
+        return None
+    slug = model_name.lower().replace(" ", "-").replace("_", "-")
+    for cat in os.listdir(VECTOR_LIB_ROOT):
+        vec_path = os.path.join(VECTOR_LIB_ROOT, cat, concept_name, slug, f"layer_{layer_idx}.npy")
+        if os.path.exists(vec_path):
+            return np.load(vec_path)
+    return None
 
 
 def pick_latest_concept_entry(concept_name: str):
@@ -141,24 +190,23 @@ def generate_with_injection(prompt, concept, vector_layer_idx, inject_layer_idx,
                    When provided, overrides multi_layers and vector/inject_layer_idx.
     multi_layers:  list of layer indices — legacy multi-layer mode (same gain for all).
     Default:       single layer, vector_layer_idx → inject_layer_idx.
+    Vectors are loaded directly from vector_library (ground truth, not catalog).
     """
-    entry = pick_latest_concept_entry(concept)
-    if not entry:
-        raise RuntimeError(f"Concept not found: {concept}")
+    available_layers, _ = get_available_layers(concept, State.active_model_name)
+    if not available_layers:
+        raise RuntimeError(
+            f"No vectors found for concept '{concept}' / model '{State.active_model_name}'. "
+            f"Run probe first."
+        )
 
     hooks = []
     prompt_len = len(State.tokenizer.encode(prompt))
     dtype = next(State.model.parameters()).dtype
 
     def _make_hook_for_layer(layer_idx, layer_gain):
-        vec_path = None
-        for p in entry.get("vectors", []):
-            if p.endswith(f"_{layer_idx}.npy"):
-                vec_path = p
-                break
-        if vec_path is None:
+        vec = _load_vec_for_layer(concept, State.active_model_name, layer_idx)
+        if vec is None:
             return None
-        vec = load_vector(vec_path)
         steer = torch.tensor(vec, dtype=dtype, device=State.device) * float(alpha) * float(layer_gain)
         return State.layers[layer_idx].register_forward_hook(
             make_steering_hook(steer, apply_to=apply_to, prompt_len=prompt_len)
@@ -175,14 +223,14 @@ def generate_with_injection(prompt, concept, vector_layer_idx, inject_layer_idx,
             if hook is not None:
                 hooks.append(hook)
     else:
-        vec_path = None
-        for p in entry.get("vectors", []):
-            if p.endswith(f"_{vector_layer_idx}.npy"):
-                vec_path = p
-                break
-        if vec_path is None:
-            raise RuntimeError(f"Vector for layer {vector_layer_idx} not found")
-        vec = load_vector(vec_path)
+        if vector_layer_idx not in available_layers:
+            raise RuntimeError(
+                f"Layer {vector_layer_idx} not available for '{concept}' / '{State.active_model_name}'. "
+                f"Available: {available_layers}"
+            )
+        vec = _load_vec_for_layer(concept, State.active_model_name, vector_layer_idx)
+        if vec is None:
+            raise RuntimeError(f"Vector file missing for layer {vector_layer_idx}")
         steer = torch.tensor(vec, dtype=dtype, device=State.device) * float(alpha) * float(gain)
         hooks.append(State.layers[inject_layer_idx].register_forward_hook(
             make_steering_hook(steer, apply_to=apply_to, prompt_len=prompt_len)
@@ -399,23 +447,31 @@ class Handler(BaseHTTPRequestHandler):
             return text_response(self, 200, html)
         if parsed.path == "/api/concepts":
             active = State.active_model_name
-            if active:
-                eligible = [e for e in State.catalog if e.get("model_name") == active]
-                if not eligible:
-                    eligible = State.catalog  # fallback: show all
-            else:
-                eligible = State.catalog
-            concepts = sorted({e.get("concept") for e in eligible if e.get("concept")})
-            return json_response(self, 200, {"concepts": concepts, "device": str(State.device), "model": active})
+            # Source of truth: vector_library on disk
+            concepts = set()
+            if active and os.path.isdir(VECTOR_LIB_ROOT):
+                slug = active.lower().replace(" ", "-").replace("_", "-")
+                for cat in os.listdir(VECTOR_LIB_ROOT):
+                    cat_path = os.path.join(VECTOR_LIB_ROOT, cat)
+                    if not os.path.isdir(cat_path):
+                        continue
+                    for concept in os.listdir(cat_path):
+                        model_dir = os.path.join(cat_path, concept, slug)
+                        if os.path.isdir(model_dir) and glob.glob(os.path.join(model_dir, "layer_*.npy")):
+                            concepts.add(concept)
+            if not concepts:
+                # Fallback to catalog
+                eligible = [e for e in State.catalog if e.get("model_name") == active] if active else State.catalog
+                concepts = {e.get("concept") for e in eligible if e.get("concept")}
+            return json_response(self, 200, {"concepts": sorted(concepts), "device": str(State.device), "model": active})
         if parsed.path == "/api/concept_layers":
             qs = parse_qs(parsed.query)
             concept = (qs.get("concept") or [None])[0]
-            if concept is None:
-                concepts = sorted({e.get("concept") for e in State.catalog if e.get("concept")})
-                concept = concepts[0] if concepts else None
-            entry = pick_latest_concept_entry(concept) if concept else None
-            layers = entry.get("layers", []) if entry else []
-            return json_response(self, 200, {"layers": layers})
+            model = (qs.get("model") or [State.active_model_name])[0] or State.active_model_name
+            if not concept:
+                return json_response(self, 200, {"layers": [], "best_layer": None, "model": model})
+            layers, best_layer = get_available_layers(concept, model)
+            return json_response(self, 200, {"layers": layers, "best_layer": best_layer, "model": model})
         if parsed.path == "/api/model_info":
             return json_response(self, 200, {"num_layers": State.num_layers, "device": str(State.device)})
         if parsed.path == "/api/gpu":
@@ -430,6 +486,19 @@ class Handler(BaseHTTPRequestHandler):
         if parsed.path == "/api/reload_catalog":
             State.catalog = load_catalog()
             return json_response(self, 200, {"ok": True, "entries": len(State.catalog)})
+        if parsed.path == "/api/unload_model":
+            with State.lock:
+                if State.model is not None:
+                    del State.model
+                    State.model = None
+                    State.tokenizer = None
+                    State.layers = []
+                    if torch.cuda.is_available():
+                        torch.cuda.empty_cache()
+                        torch.cuda.synchronize()
+                    State.num_layers = 0
+                    State.active_model_name = ""
+            return json_response(self, 200, {"ok": True, "unloaded": True})
         return self.send_error(404)
 
     def do_POST(self):
@@ -461,6 +530,21 @@ class Handler(BaseHTTPRequestHandler):
             if not formatted_prompt:
                 return json_response(self, 400, {"error": "empty_prompt"})
 
+            # Resolve multi_layers from vector_library before acquiring lock
+            avail_layers, best_layer = get_available_layers(concept, State.active_model_name)
+            if multi and not layer_configs:
+                multi_layers_resolved = avail_layers
+            else:
+                multi_layers_resolved = None
+
+            # T5: Validate requested layers against available
+            if mode != "baseline" and alpha != 0.0 and not layer_configs and not multi:
+                if avail_layers and vector_layer not in avail_layers:
+                    return json_response(self, 400, {
+                        "error": f"Layer {vector_layer} not available for '{concept}' / '{State.active_model_name}'. "
+                                 f"Available: {avail_layers}"
+                    })
+
             with State.lock:
                 try:
                     if mode == "baseline" or alpha == 0.0:
@@ -475,22 +559,23 @@ class Handler(BaseHTTPRequestHandler):
                             gain=gain,
                             max_new_tokens=max_new_tokens,
                             apply_to="new",
-                            multi_layers=(pick_latest_concept_entry(concept).get("layers", []) if multi else None),
+                            multi_layers=multi_layers_resolved,
                             layer_configs=layer_configs,
                         )
                 except Exception as e:
                     return json_response(self, 500, {"error": str(e)})
 
+            used_layers = layer_configs if layer_configs else (
+                [{"layer": l, "gain": gain} for l in (multi_layers_resolved or [])] if multi
+                else [{"layer": inject_layer, "gain": gain}]
+            )
             log_entry = {
                 "prompt": formatted_prompt,
                 "concept": concept,
                 "alpha": alpha,
                 "mode": mode,
                 "output": text,
-                "layer_configs": layer_configs if layer_configs else (
-                    [{"layer": l, "gain": gain} for l in (pick_latest_concept_entry(concept) or {}).get("layers", [])] if multi
-                    else [{"layer": inject_layer, "gain": gain}]
-                ),
+                "layer_configs": used_layers,
             }
             append_log(log_entry)
 

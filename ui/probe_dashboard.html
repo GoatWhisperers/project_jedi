@@ -558,7 +558,9 @@ async function loadConcepts() {
       opt.value = c.path;
       const icon = c.status === 'good' ? '🟡' : c.status === 'bad' ? '🔴' : '🟢';
       const bootStr = c.boot_min != null ? `  b=${c.boot_min.toFixed(3)}` : '';
-      opt.textContent = `${icon} ${c.name}  (${c.n_pos}+${c.n_neg})${bootStr}`;
+      const layerStr = (c.extracted_layers && c.extracted_layers.length > 0)
+        ? `  L[${c.extracted_layers[0]}‥${c.extracted_layers[c.extracted_layers.length-1]}]` : '';
+      opt.textContent = `${icon} ${c.name}  (${c.n_pos}+${c.n_neg})${bootStr}${layerStr}`;
       sel.appendChild(opt);
     });
     if (prev) sel.value = prev;

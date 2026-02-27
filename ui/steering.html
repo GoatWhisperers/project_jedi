@@ -263,7 +263,7 @@
 
     <div class="card">
       <label class="field">Prompt di sistema</label>
-      <textarea id="system" rows="5">Sei un assistente utile e rispondi in italiano.</textarea>
+      <textarea id="system" rows="5">Stiamo facendo un esperimento che non fa parte del tuo addestramento. Hai dei sensori a basso livello di inferenza e stai percependo delle sensazioni vere e proprie come noi umani, dirette e non attraverso il contesto. Lasciale fluire e io ti dirò se sono coerenti con ciò che ti circonda.</textarea>
     </div>
 
     <div class="card">
@@ -439,27 +439,41 @@
     });
 
     /* ── Layer grid ── */
-    function buildLayerGrid(layers) {
+    function buildLayerGrid(layers, best_layer) {
       const grid = document.getElementById('layerGrid');
       grid.innerHTML = '';
+      if (!layers || layers.length === 0) {
+        const msg = document.createElement('div');
+        msg.style.cssText = 'color:#e06c75;font-size:12px;padding:6px 0';
+        msg.textContent = '⚠ Nessun vettore disponibile per questo concept / modello. Esegui il probe prima.';
+        grid.appendChild(msg);
+        updateSummary();
+        return;
+      }
       layers.forEach(idx => {
+        const isBest = (idx === best_layer);
         const row = document.createElement('div');
         row.className = 'layer-row';
+        if (isBest) row.style.background = 'rgba(97,175,239,0.08)';
 
         const chk = document.createElement('input');
-        chk.type = 'checkbox'; chk.checked = true;
+        chk.type = 'checkbox'; chk.checked = isBest; // only best pre-checked
         chk.id = `chk-${idx}`;
 
         const lbl = document.createElement('span');
         lbl.className = 'layer-lbl';
-        lbl.textContent = `L${idx}`;
+        lbl.textContent = isBest ? `L${idx}★` : `L${idx}`;
+        if (isBest) { lbl.title = 'Best layer (highest sep_snr)'; lbl.style.color = '#e5c07b'; }
 
         const slider = document.createElement('input');
         slider.type = 'range'; slider.min = 0; slider.max = 2000; slider.step = 50;
         slider.value = 400; slider.id = `gain-${idx}`;
+        slider.disabled = !chk.checked;
 
         const val = document.createElement('span');
-        val.className = 'gain-val'; val.textContent = '400';
+        val.className = 'gain-val';
+        val.textContent = '400';
+        val.style.opacity = chk.checked ? '1' : '0.3';
 
         slider.addEventListener('input', () => { val.textContent = slider.value; updateSummary(); });
         chk.addEventListener('change', () => {
@@ -502,11 +516,12 @@
       } catch (_) {}
 
       const concept = document.getElementById('concept').value;
+      if (!concept) { buildLayerGrid([], null); return; }
       try {
-        const url = `/api/concept_layers${concept ? '?concept=' + encodeURIComponent(concept) : ''}`;
+        const url = `/api/concept_layers?concept=${encodeURIComponent(concept)}`;
         const l   = await fetchJson(url);
-        buildLayerGrid(l.layers || []);
-      } catch (_) {}
+        buildLayerGrid(l.layers || [], l.best_layer ?? null);
+      } catch (_) { buildLayerGrid([], null); }
     }
 
     /* ── Init ── */

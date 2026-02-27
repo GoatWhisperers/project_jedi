@@ -1,8 +1,8 @@
 {
   "model_path": "/mnt/raid0/gemma-3-1b-it",
   "models": [
-    {"name": "Gemma3-1B-IT", "path": "/mnt/raid0/gemma-3-1b-it"},
-    {"name": "Gemma2-Uncensored", "path": "/mnt/raid0/gemma-2-uncensored"}
+    {"name": "Gemma3-1B-IT",    "path": "/mnt/raid0/gemma-3-1b-it",      "num_layers": 26, "deep_range": [0.70, 0.90]},
+    {"name": "Gemma2-Uncensored","path": "/mnt/raid0/gemma-2-uncensored", "num_layers": 42, "deep_range": [0.70, 0.90]}
   ],
   "trust_remote_code": false,
   "max_length": 128,

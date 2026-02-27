@@ -186,6 +186,42 @@ def _best_boot_min(concept_name, category, model_name):
     return best
 
 
+def _get_extracted_layers(concept_name, category, model_name):
+    """Return (sorted layers list, best_layer) from vector_library for concept+model."""
+    if not model_name or not os.path.isdir(VECTOR_LIB_ROOT):
+        return [], None
+    slug = model_name.lower().replace(" ", "-").replace("_", "-")
+    lib_dir = os.path.join(VECTOR_LIB_ROOT, category or "*", concept_name, slug)
+    # Try exact category first, then wildcard
+    candidates = glob.glob(lib_dir) if "*" not in lib_dir else glob.glob(lib_dir)
+    if not candidates:
+        candidates = glob.glob(os.path.join(VECTOR_LIB_ROOT, "*", concept_name, slug))
+    if not candidates:
+        return [], None
+    lib_dir = candidates[0]
+    layers = []
+    for f in glob.glob(os.path.join(lib_dir, "layer_*.npy")):
+        name = os.path.basename(f)
+        if "_pca" not in name:
+            m = re.match(r"layer_(\d+)\.npy", name)
+            if m:
+                layers.append(int(m.group(1)))
+    layers.sort()
+    best_layer = layers[-1] if layers else None
+    summary_path = os.path.join(lib_dir, "summary.json")
+    if os.path.exists(summary_path):
+        try:
+            with open(summary_path) as f:
+                summary = json.load(f)
+            results = summary.get("results", {})
+            if results:
+                best_key = max(results, key=lambda k: results[k].get("sep_snr", -99))
+                best_layer = int(best_key)
+        except Exception:
+            pass
+    return layers, best_layer
+
+
 def list_concepts(model_name=None):
     """Glob config/concepts/*.json → lista di dicts con metadati + status."""
     results = []
@@ -198,6 +234,7 @@ def list_concepts(model_name=None):
             concept_name = data.get("concept", os.path.splitext(os.path.basename(path))[0])
             category = data.get("category", "")
             boot_min = _best_boot_min(concept_name, category, model_name)
+            extracted_layers, best_layer = _get_extracted_layers(concept_name, category, model_name)
             if boot_min is None:
                 status = "todo"
             elif boot_min >= 0.85:
@@ -213,6 +250,8 @@ def list_concepts(model_name=None):
                 "filename": os.path.basename(path),
                 "boot_min": round(boot_min, 3) if boot_min is not None else None,
                 "status": status,
+                "extracted_layers": extracted_layers,
+                "best_layer": best_layer,
             })
         except Exception:
             continue
