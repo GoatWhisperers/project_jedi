@@ -673,6 +673,8 @@ class Handler(BaseHTTPRequestHandler):
             return json_response(self, 200, {"text": text, "formatted_prompt": formatted_prompt})
 
         if parsed.path == "/api/generate_stream":
+            if State.model is None:
+                return json_response(self, 503, {"error": "Model not loaded — click Load first."})
             body = read_body(self)
             try:
                 payload = json.loads(body.decode("utf-8"))
