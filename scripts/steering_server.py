@@ -7,6 +7,7 @@ import threading
 import subprocess
 from http.server import BaseHTTPRequestHandler, HTTPServer, ThreadingHTTPServer
 from urllib.parse import urlparse, parse_qs
+from transformers import TextIteratorStreamer
 
 import numpy as np
 import torch
@@ -182,6 +183,84 @@ def generate_text(prompt, max_new_tokens=128):
             do_sample=True,
         )
     return State.tokenizer.decode(out[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True)
+
+
+def stream_generate(prompt, max_new_tokens=128, hooks_fn=None):
+    """Generator that yields text tokens one by one via TextIteratorStreamer.
+    hooks_fn: callable(streamer) that registers forward hooks before generation
+              and returns a list of hooks to remove when done.
+    """
+    streamer = TextIteratorStreamer(
+        State.tokenizer, skip_prompt=True, skip_special_tokens=True, timeout=60.0
+    )
+    inputs = State.tokenizer(prompt, return_tensors="pt").to(State.device)
+
+    hooks = hooks_fn(streamer) if hooks_fn else []
+
+    gen_kwargs = dict(
+        **inputs,
+        streamer=streamer,
+        max_new_tokens=max_new_tokens,
+        temperature=0.7,
+        do_sample=True,
+    )
+
+    def _run():
+        try:
+            with torch.no_grad():
+                State.model.generate(**gen_kwargs)
+        except Exception as e:
+            streamer.text_queue.put(f"\n[ERROR: {e}]")
+        finally:
+            for h in hooks:
+                h.remove()
+
+    t = threading.Thread(target=_run, daemon=True)
+    t.start()
+
+    for token in streamer:
+        yield token
+
+
+def stream_with_injection(prompt, concept, vector_layer_idx, inject_layer_idx, alpha,
+                          gain=1.0, max_new_tokens=128, apply_to="new",
+                          multi_layers=None, layer_configs=None):
+    """Streaming version of generate_with_injection."""
+    available_layers, _ = get_available_layers(concept, State.active_model_name)
+    if not available_layers:
+        yield f"[ERROR: No vectors for '{concept}' / '{State.active_model_name}']"
+        return
+
+    prompt_len = len(State.tokenizer.encode(prompt))
+    dtype = next(State.model.parameters()).dtype
+
+    def hooks_fn(streamer):
+        hooks = []
+        def _make_hook(layer_idx, layer_gain):
+            vec = _load_vec_for_layer(concept, State.active_model_name, layer_idx)
+            if vec is None:
+                return None
+            steer = torch.tensor(vec, dtype=dtype, device=State.device) * float(alpha) * float(layer_gain)
+            return State.layers[layer_idx].register_forward_hook(
+                make_steering_hook(steer, apply_to=apply_to, prompt_len=prompt_len)
+            )
+
+        if layer_configs:
+            for cfg in layer_configs:
+                h = _make_hook(int(cfg["layer"]), float(cfg["gain"]))
+                if h: hooks.append(h)
+        elif multi_layers:
+            for li in multi_layers:
+                h = _make_hook(li, gain)
+                if h: hooks.append(h)
+        else:
+            if vector_layer_idx not in available_layers:
+                return []
+            h = _make_hook(vector_layer_idx, gain)
+            if h: hooks.append(h)
+        return hooks
+
+    yield from stream_generate(prompt, max_new_tokens=max_new_tokens, hooks_fn=hooks_fn)
 
 
 def generate_with_injection(prompt, concept, vector_layer_idx, inject_layer_idx, alpha, gain=1.0, max_new_tokens=128, apply_to="new", multi_layers=None, layer_configs=None):
@@ -580,6 +659,85 @@ class Handler(BaseHTTPRequestHandler):
             append_log(log_entry)
 
             return json_response(self, 200, {"text": text, "formatted_prompt": formatted_prompt})
+
+        if parsed.path == "/api/generate_stream":
+            body = read_body(self)
+            try:
+                payload = json.loads(body.decode("utf-8"))
+            except Exception:
+                return json_response(self, 400, {"error": "invalid_json"})
+
+            messages = payload.get("messages", [])
+            prompt   = payload.get("prompt", "")
+            concept  = payload.get("concept", "hot_vs_cold")
+            vector_layer  = int(payload.get("vector_layer", 0))
+            inject_layer  = int(payload.get("inject_layer", 0))
+            alpha         = float(payload.get("alpha", 0.0))
+            gain          = float(payload.get("gain", 1.0))
+            max_new_tokens = int(payload.get("max_new_tokens", 128))
+            mode          = payload.get("mode", "inject")
+            multi         = bool(payload.get("multi", False))
+            layer_configs = payload.get("layer_configs", None)
+
+            if messages:
+                formatted_prompt = build_chat_prompt(messages)
+            else:
+                formatted_prompt = prompt
+            if not formatted_prompt:
+                return json_response(self, 400, {"error": "empty_prompt"})
+
+            avail_layers, _ = get_available_layers(concept, State.active_model_name)
+            if multi and not layer_configs:
+                multi_layers_resolved = avail_layers
+            else:
+                multi_layers_resolved = None
+
+            # SSE headers
+            self.send_response(200)
+            self.send_header("Content-Type", "text/event-stream")
+            self.send_header("Cache-Control", "no-cache")
+            self.send_header("X-Accel-Buffering", "no")
+            self.end_headers()
+
+            # Send formatted prompt as first SSE event
+            fp_data = json.dumps({"type": "prompt", "text": formatted_prompt})
+            self.wfile.write(f"data: {fp_data}\n\n".encode("utf-8"))
+            self.wfile.flush()
+
+            full_text = []
+            try:
+                with State.lock:
+                    if mode == "baseline" or alpha == 0.0:
+                        token_gen = stream_generate(formatted_prompt, max_new_tokens=max_new_tokens)
+                    else:
+                        token_gen = stream_with_injection(
+                            formatted_prompt, concept,
+                            vector_layer, inject_layer, alpha,
+                            gain=gain, max_new_tokens=max_new_tokens,
+                            apply_to="new",
+                            multi_layers=multi_layers_resolved,
+                            layer_configs=layer_configs,
+                        )
+                    for token in token_gen:
+                        full_text.append(token)
+                        data = json.dumps({"type": "token", "text": token})
+                        self.wfile.write(f"data: {data}\n\n".encode("utf-8"))
+                        self.wfile.flush()
+            except Exception as e:
+                err_data = json.dumps({"type": "error", "text": str(e)})
+                self.wfile.write(f"data: {err_data}\n\n".encode("utf-8"))
+                self.wfile.flush()
+            finally:
+                done_data = json.dumps({"type": "done"})
+                self.wfile.write(f"data: {done_data}\n\n".encode("utf-8"))
+                self.wfile.flush()
+                append_log({
+                    "prompt": formatted_prompt, "concept": concept,
+                    "alpha": alpha, "mode": mode,
+                    "output": "".join(full_text),
+                    "layer_configs": layer_configs or [],
+                })
+            return
 
         if parsed.path == "/api/load_model":
             body = read_body(self)
