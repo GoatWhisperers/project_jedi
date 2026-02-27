@@ -163,20 +163,56 @@ def load_settings():
         return json.load(f)
 
 
-def list_concepts():
-    """Glob config/concepts/*.json → lista di dicts con metadati."""
+def _best_boot_min(concept_name, category, model_name):
+    """Return best boot_min (convergence_mean) for a concept+model from vector library, or None."""
+    model_slug = model_name.lower().replace(" ", "-").replace("_", "-") if model_name else "*"
+    pattern = os.path.join(VECTOR_LIB_ROOT, category or "*", concept_name, model_slug, "summary.json")
+    paths = glob.glob(pattern)
+    if not paths and model_slug != "*":
+        # fallback: any model
+        pattern = os.path.join(VECTOR_LIB_ROOT, "*", concept_name, "*", "summary.json")
+        paths = glob.glob(pattern)
+    best = None
+    for p in paths:
+        try:
+            with open(p) as f:
+                s = json.load(f)
+            for r in s.get("results", {}).values():
+                bmin = r.get("convergence_mean", {}).get("bootstrap_cos_min")
+                if bmin is not None and (best is None or bmin > best):
+                    best = bmin
+        except Exception:
+            continue
+    return best
+
+
+def list_concepts(model_name=None):
+    """Glob config/concepts/*.json → lista di dicts con metadati + status."""
     results = []
     for path in sorted(glob.glob(os.path.join(CONCEPTS_DIR, "*.json"))):
+        if re.search(r'(_v\d+|_IT\d+)\.json$', os.path.basename(path)):
+            continue
         try:
             with open(path) as f:
                 data = json.load(f)
+            concept_name = data.get("concept", os.path.splitext(os.path.basename(path))[0])
+            category = data.get("category", "")
+            boot_min = _best_boot_min(concept_name, category, model_name)
+            if boot_min is None:
+                status = "todo"
+            elif boot_min >= 0.85:
+                status = "good"
+            else:
+                status = "bad"
             results.append({
-                "name": data.get("concept", os.path.splitext(os.path.basename(path))[0]),
-                "category": data.get("category", ""),
+                "name": concept_name,
+                "category": category,
                 "n_pos": len(data.get("positive", [])),
                 "n_neg": len(data.get("negative", [])),
                 "path": path,
                 "filename": os.path.basename(path),
+                "boot_min": round(boot_min, 3) if boot_min is not None else None,
+                "status": status,
             })
         except Exception:
             continue
@@ -348,7 +384,9 @@ class Handler(BaseHTTPRequestHandler):
             })
 
         if path == "/api/concepts":
-            return json_response(self, 200, {"concepts": list_concepts()})
+            with ProbeState._lock:
+                active_model = ProbeState.selected_model
+            return json_response(self, 200, {"concepts": list_concepts(active_model)})
 
         if path == "/api/models":
             try:
