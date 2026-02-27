@@ -7,7 +7,7 @@ import threading
 import subprocess
 from http.server import BaseHTTPRequestHandler, HTTPServer, ThreadingHTTPServer
 from urllib.parse import urlparse, parse_qs
-from transformers import TextIteratorStreamer
+from transformers import TextIteratorStreamer, StoppingCriteria, StoppingCriteriaList
 
 import numpy as np
 import torch
@@ -22,6 +22,12 @@ UI_PATH = os.path.join(ROOT, "ui", "steering.html")
 LOG_PATH = os.path.join(OUTPUT_ROOT, "steering_log.jsonl")
 
 
+class AbortFlag(StoppingCriteria):
+    """StoppingCriteria that checks State.abort_flag to interrupt generation."""
+    def __call__(self, input_ids, scores, **kwargs):
+        return State.abort_flag
+
+
 class State:
     model = None
     tokenizer = None
@@ -32,6 +38,7 @@ class State:
     lock = threading.Lock()
     active_model_name = ""
     available_models = []  # list of {"name": ..., "path": ...}
+    abort_flag = False
 
 
 def load_settings():
@@ -197,12 +204,14 @@ def stream_generate(prompt, max_new_tokens=128, hooks_fn=None):
 
     hooks = hooks_fn(streamer) if hooks_fn else []
 
+    State.abort_flag = False
     gen_kwargs = dict(
         **inputs,
         streamer=streamer,
         max_new_tokens=max_new_tokens,
         temperature=0.7,
         do_sample=True,
+        stopping_criteria=StoppingCriteriaList([AbortFlag()]),
     )
 
     def _run():
@@ -565,6 +574,9 @@ class Handler(BaseHTTPRequestHandler):
         if parsed.path == "/api/reload_catalog":
             State.catalog = load_catalog()
             return json_response(self, 200, {"ok": True, "entries": len(State.catalog)})
+        if parsed.path == "/api/stop":
+            State.abort_flag = True
+            return json_response(self, 200, {"ok": True, "aborted": True})
         if parsed.path == "/api/unload_model":
             with State.lock:
                 if State.model is not None:
@@ -719,6 +731,8 @@ class Handler(BaseHTTPRequestHandler):
                             layer_configs=layer_configs,
                         )
                     for token in token_gen:
+                        if State.abort_flag:
+                            break
                         full_text.append(token)
                         data = json.dumps({"type": "token", "text": token})
                         self.wfile.write(f"data: {data}\n\n".encode("utf-8"))

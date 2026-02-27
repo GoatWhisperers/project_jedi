@@ -278,6 +278,7 @@
       <div class="btn-row">
         <button id="sendBaseline">Baseline</button>
         <button id="sendInject" class="primary">Inject ▶</button>
+        <button id="stopBtn" style="display:none;background:#c0392b;color:#fff;border:none;padding:4px 12px;border-radius:4px;cursor:pointer;font-size:12px;">■ Stop</button>
         <span id="gen-indicator" style="display:none;color:#ffe066;font-size:12px;animation:pulse 1s ease-in-out infinite;align-self:center;">⚡ generating…</span>
         <button id="clearChat">Clear</button>
       </div>
@@ -566,16 +567,25 @@
     /* ── Send ── */
     let _generating = false;
 
+    let _abortController = null;
+
     function setGenerating(on) {
       _generating = on;
       const btn1 = document.getElementById('sendBaseline');
       const btn2 = document.getElementById('sendInject');
+      const stop = document.getElementById('stopBtn');
       const ind  = document.getElementById('gen-indicator');
       btn1.disabled = on; btn2.disabled = on;
       btn1.style.opacity = on ? '0.4' : '1';
       btn2.style.opacity = on ? '0.4' : '1';
-      if (ind) ind.style.display = on ? 'inline-block' : 'none';
+      if (stop) stop.style.display = on ? 'inline-block' : 'none';
+      if (ind)  ind.style.display  = on ? 'inline-block' : 'none';
     }
+
+    document.getElementById('stopBtn').addEventListener('click', async () => {
+      fetch('/api/stop').catch(()=>{});
+      if (_abortController) _abortController.abort();
+    });
 
     async function send(mode) {
       if (_generating) return;
@@ -606,11 +616,13 @@
       const msgIdx = history.length - 1;
       renderChat();
 
+      _abortController = new AbortController();
       try {
         const res = await fetch('/api/generate_stream', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
+          body: JSON.stringify(payload),
+          signal: _abortController.signal,
         });
         if (!res.ok) { throw new Error('HTTP ' + res.status); }
 
@@ -643,9 +655,12 @@
           }
         }
       } catch(e) {
-        history[msgIdx].content += ' [errore: ' + e.message + ']';
-        renderChat();
+        if (e.name !== 'AbortError') {
+          history[msgIdx].content += ' [errore: ' + e.message + ']';
+          renderChat();
+        }
       } finally {
+        _abortController = null;
         // Remove empty assistant bubble if nothing was generated
         if (history[msgIdx] && history[msgIdx].content === '') history.splice(msgIdx, 1);
         renderChat();
