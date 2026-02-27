@@ -213,10 +213,25 @@ def load_model(model_path=None, model_name=None):
         else:
             model_name = os.path.basename(model_path)
 
+    # Free previous model before loading new one
+    if State.model is not None:
+        del State.model
+        State.model = None
+        State.tokenizer = None
+        State.layers = []
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+            torch.cuda.synchronize()
+
+    dtype_str = settings.get("dtype", "bfloat16")
+    dtype_map = {"bfloat16": torch.bfloat16, "float16": torch.float16, "float32": torch.float32}
+    torch_dtype = dtype_map.get(dtype_str, torch.bfloat16)
+
     tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=bool(settings.get("trust_remote_code", False)), use_fast=True)
     model = AutoModelForCausalLM.from_pretrained(
         model_path,
         trust_remote_code=bool(settings.get("trust_remote_code", False)),
+        dtype=torch_dtype,
         low_cpu_mem_usage=True,
     )
     model.eval()
