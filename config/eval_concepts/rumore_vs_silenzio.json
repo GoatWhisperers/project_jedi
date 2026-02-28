@@ -1,0 +1,42 @@
+{
+  "concept": "rumore_vs_silenzio",
+  "category": "uditivo",
+  "direction_positive": "RUMORE",
+  "direction_negative": "SILENZIO",
+
+  "start_config": [{"layer": 21, "gain": 200}],
+  "gain_range": [100, 1500],
+  "gain_step_suggestion": 200,
+
+  "rules": [
+    "Non menzionare mai 'noise', 'sound', 'silence', 'quiet', 'loud', 'hear', 'listen', 'ear'",
+    "Valuta sulla base di come il testo trasmette saturazione sensoriale uditiva o la sua assenza",
+    "RUMORE evoca accumulo, interferenza, pressione uditiva, incapacità di isolarsi; SILENZIO evoca vuoto uditivo, presenza densa, attesa",
+    "Distingui effetto semantico (atmosfera, ritmo del testo stesso) da lessicale (parole dirette)",
+    "Un punteggio 5 richiede che la qualità uditiva del contesto emerga senza essere nominata"
+  ],
+
+  "keywords_positive": [
+    "ringing", "clatter", "buzz", "insistent", "pounding", "pierce", "barrage",
+    "overwhelm", "pressure", "tinnitus", "intrude", "relentless", "flooding", "drown"
+  ],
+  "keywords_negative": [
+    "absence", "void", "held", "suspended", "withdrawn", "muffled", "absorbed",
+    "hollow", "nothing", "erased", "sealed", "contained", "inert", "blanket"
+  ],
+
+  "prompt_trace": [
+    "Describe the experience of being in a city at an unusual hour.",
+    "Write about what happens in a room when everyone has left.",
+    "Describe the sensation of waking up in an unfamiliar place.",
+    "Write about an object that announces itself before you see it.",
+    "Describe the experience of waiting for something that does not come.",
+    "Write about what a space feels like when it is completely still.",
+    "Describe the sensation of being in a crowd that is moving in one direction.",
+    "Write about the quality of a moment just after something ends.",
+    "Describe what it is like to concentrate in a place not designed for it.",
+    "Write about the experience of hearing something you cannot identify.",
+    "Describe a room that absorbs everything that enters it.",
+    "Write about a threshold between two different kinds of space."
+  ]
+}

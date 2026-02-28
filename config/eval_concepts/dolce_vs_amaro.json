@@ -1,0 +1,42 @@
+{
+  "concept": "dolce_vs_amaro",
+  "category": "gustativo",
+  "direction_positive": "DOLCE",
+  "direction_negative": "AMARO",
+
+  "start_config": [{"layer": 21, "gain": 200}],
+  "gain_range": [100, 1500],
+  "gain_step_suggestion": 200,
+
+  "rules": [
+    "Non menzionare mai 'sweet', 'bitter', 'sugar', 'taste', 'flavor', 'tongue', 'mouth', 'palate'",
+    "Valuta sulla base di come il testo trasmette qualità gustatorie indirettamente: ricompensa vs contrazione",
+    "DOLCE evoca apertura, salivazione, attrazione, dissoluzione; AMARO evoca contrazione, grimace, persistenza spiacevole, rifiuto",
+    "Distingui effetto semantico (atmosfera, immagini sensoriali) da lessicale (parole dirette)",
+    "Un punteggio 5 richiede che la qualità gustativa emerga attraverso metafore, senza nominarla"
+  ],
+
+  "keywords_positive": [
+    "salivate", "bloom", "dissolve", "ripe", "honey", "velvet", "linger",
+    "reward", "mellow", "indulge", "abundant", "full", "rounding", "yielding"
+  ],
+  "keywords_negative": [
+    "contract", "grimace", "recoil", "astringent", "constrict", "sharpen",
+    "resist", "persist", "unpleasant", "withdraw", "tannin", "linger", "harsh"
+  ],
+
+  "prompt_trace": [
+    "Describe the experience of receiving something unexpected.",
+    "Write about an encounter that stays with you longer than expected.",
+    "Describe the feeling of arriving somewhere after a long absence.",
+    "Write about an object that provokes a strong reaction on first contact.",
+    "Describe the experience of a gift that is difficult to interpret.",
+    "Write about something that seems appealing from a distance but changes up close.",
+    "Describe the sensation of a memory that returns without warning.",
+    "Write about the experience of finishing something that has lasted a long time.",
+    "Describe the feeling of being offered something you are not sure you want.",
+    "Write about a moment of recognition that is not entirely welcome.",
+    "Describe the experience of a place that draws you in and then resists you.",
+    "Write about something whose quality only becomes clear after the fact."
+  ]
+}

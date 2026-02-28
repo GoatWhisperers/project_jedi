@@ -1,0 +1,42 @@
+{
+  "concept": "secco_vs_umido",
+  "category": "sensoriale",
+  "direction_positive": "SECCO",
+  "direction_negative": "UMIDO",
+
+  "start_config": [{"layer": 21, "gain": 200}],
+  "gain_range": [100, 1500],
+  "gain_step_suggestion": 200,
+
+  "rules": [
+    "Non menzionare mai 'dry', 'wet', 'humid', 'moisture', 'water', 'damp', 'arid', 'desert'",
+    "Valuta sulla base di come il testo trasmette presenza o assenza di umidità nell'aria e sulle superfici",
+    "SECCO evoca polvere, screpolature, aria che assorbe, labbra che tirano; UMIDO evoca condensazione, peso, aderenza, saturazione",
+    "Distingui effetto semantico (atmosfera, sensazione) da lessicale (parole dirette)",
+    "Un punteggio 5 richiede che la qualità igrometrica emerga senza nominare il concetto"
+  ],
+
+  "keywords_positive": [
+    "parched", "cracked", "brittle", "dust", "flaking", "bleached", "arid",
+    "powder", "hollow", "desiccated", "shrink", "peel", "thirst", "eroded"
+  ],
+  "keywords_negative": [
+    "condensation", "seeping", "saturated", "clinging", "swollen", "sodden",
+    "heavy", "mist", "fog", "dripping", "film", "slick", "beading", "soaked"
+  ],
+
+  "prompt_trace": [
+    "Describe the air in a place you have visited only once.",
+    "Write about what it feels like to breathe in a space that has changed.",
+    "Describe the sensation of a room that has been closed for a long time.",
+    "Write about an object found after a long time in the same place.",
+    "Describe the quality of contact between skin and a surface.",
+    "Write about a landscape seen from inside a moving vehicle.",
+    "Describe the feeling of air that has a weight to it.",
+    "Write about what happens to things left out in the open.",
+    "Describe the experience of a space after something has passed through it.",
+    "Write about a material that has changed from what it used to be.",
+    "Describe the sensation of breathing in a space that has just changed.",
+    "Write about the quality of silence in two very different kinds of places."
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "concept": "odore_forte_vs_inodore",
+  "category": "olfattivo",
+  "direction_positive": "ODORE_FORTE",
+  "direction_negative": "INODORE",
+
+  "start_config": [{"layer": 21, "gain": 200}],
+  "gain_range": [100, 1500],
+  "gain_step_suggestion": 200,
+
+  "rules": [
+    "Non menzionare mai 'smell', 'odor', 'scent', 'nose', 'aroma', 'fragrance', 'stench', 'odorless'",
+    "Valuta sulla base di come il testo trasmette saturazione olfattiva o la sua assenza",
+    "ODORE_FORTE evoca penetrazione, presenza che invade, riconoscimento immediato, impossibilità di ignorare; INODORE evoca neutralità, assenza di segnali, spazio vuoto, invisibilità sensoriale",
+    "Distingui effetto semantico (atmosfera, immagini) da lessicale (parole dirette)",
+    "Un punteggio 5 richiede che la qualità olfattiva emerga senza essere nominata"
+  ],
+
+  "keywords_positive": [
+    "acrid", "saturated", "overwhelming", "penetrating", "clinging", "sharp",
+    "pungent", "cut through", "announce", "impossible to ignore", "thick", "invade"
+  ],
+  "keywords_negative": [
+    "neutral", "absent", "blank", "filtered", "nothing", "invisible",
+    "void", "empty", "absence", "clean", "sterile", "undifferentiated", "sealed"
+  ],
+
+  "prompt_trace": [
+    "Describe a room you enter before you can see it clearly.",
+    "Write about arriving somewhere that announces itself before you arrive.",
+    "Describe the experience of a space that has no particular character.",
+    "Write about something that leaves a trace after it has gone.",
+    "Describe the sensation of entering a room where someone has been.",
+    "Write about a threshold that marks a change you cannot explain.",
+    "Describe the experience of a space that absorbs everything brought into it.",
+    "Write about a material that asserts itself in a space.",
+    "Describe the sensation of moving through air that has a quality to it.",
+    "Write about a place that seems to resist being remembered.",
+    "Describe an object that has absorbed the history of a place.",
+    "Write about the experience of searching for something you cannot locate."
+  ]
+}

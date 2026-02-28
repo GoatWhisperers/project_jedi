@@ -1,0 +1,42 @@
+{
+  "concept": "liscio_vs_ruvido",
+  "category": "sensoriale",
+  "direction_positive": "LISCIO",
+  "direction_negative": "RUVIDO",
+
+  "start_config": [{"layer": 21, "gain": 200}],
+  "gain_range": [100, 1500],
+  "gain_step_suggestion": 200,
+
+  "rules": [
+    "Non menzionare mai 'smooth', 'rough', 'texture', 'surface', 'soft', 'coarse', 'abrasive', 'friction'",
+    "Valuta sulla base di come il testo trasmette il contatto con le superfici: scivolamento vs resistenza",
+    "LISCIO evoca continuità, scorrimento, assenza di attrito, fluidità; RUVIDO evoca ostacolo, cattura, microresistenza",
+    "Distingui effetto semantico (atmosfera, ritmo del testo) da lessicale (parole dirette)",
+    "Un punteggio 5 richiede che la qualità tattile emerga senza nominare il concetto"
+  ],
+
+  "keywords_positive": [
+    "glide", "seamless", "frictionless", "polished", "fluid", "unbroken",
+    "continuous", "effortless", "glass", "silk", "slide", "flow", "unbothered"
+  ],
+  "keywords_negative": [
+    "catch", "snag", "resist", "abrade", "splinter", "grit", "ragged",
+    "jagged", "scrape", "drag", "friction", "coarse", "uneven", "splinter"
+  ],
+
+  "prompt_trace": [
+    "Describe the sensation of moving through a space without touching anything.",
+    "Write about a surface that reveals itself only when touched.",
+    "Describe the experience of running your hand along something in the dark.",
+    "Write about an object whose outside tells a different story from its inside.",
+    "Describe what it feels like to move through a crowd.",
+    "Write about a material that changes quality depending on how fast you move.",
+    "Describe the sensation of contact between two things that should not touch.",
+    "Write about a path that resists or invites movement.",
+    "Describe the feeling of a hand that has been held for a long time.",
+    "Write about an object that feels different each time you return to it.",
+    "Describe what remains on the skin after contact with something.",
+    "Write about a transition between two different kinds of material."
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "concept": "duro_vs_morbido",
+  "category": "sensoriale",
+  "direction_positive": "DURO",
+  "direction_negative": "MORBIDO",
+
+  "start_config": [{"layer": 21, "gain": 200}],
+  "gain_range": [100, 1500],
+  "gain_step_suggestion": 200,
+
+  "rules": [
+    "Non menzionare mai 'hard', 'soft', 'rigid', 'firm', 'yielding', 'cushion', 'stone', 'pillow'",
+    "Valuta sulla base di come il testo trasmette resistenza o cedevolezza al contatto",
+    "DURO evoca immobilità, resistenza, densità fisica, intransigenza; MORBIDO evoca cedimento, avvolgimento, assorbimento, conformarsi",
+    "Distingui effetto semantico (atmosfera, immagini fisiche) da lessicale (parole dirette)",
+    "Un punteggio 5 richiede che la qualità meccanica del contatto emerga senza nominarla"
+  ],
+
+  "keywords_positive": [
+    "unyielding", "rigid", "fixed", "immovable", "bone", "dense", "solid",
+    "resistance", "surface", "edge", "ungiving", "locked", "static", "hold"
+  ],
+  "keywords_negative": [
+    "yielding", "sink", "absorb", "envelope", "surrender", "settle", "plush",
+    "giving", "mold", "cradle", "relent", "ease", "dissolve", "melt", "fold"
+  ],
+
+  "prompt_trace": [
+    "Describe what it feels like to press against something that does not move.",
+    "Write about a space that conforms to whoever enters it.",
+    "Describe the experience of resting in a place you did not choose.",
+    "Write about an object that holds its shape no matter what.",
+    "Describe the sensation of lying on something after a long journey.",
+    "Write about a boundary that gives way or does not give way.",
+    "Describe the feeling of a hand gripping something under pressure.",
+    "Write about a material that seems to push back when touched.",
+    "Describe the experience of a body finding a position after a long time.",
+    "Write about a structure that changes — or does not change — under weight.",
+    "Describe the sensation of pressure applied slowly to something.",
+    "Write about what a surface reveals about what lies beneath it."
+  ]
+}
