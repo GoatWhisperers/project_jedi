@@ -224,3 +224,19 @@ Il concetto di **buio** viene rappresentato non come assenza ma come *qualità a
 | Polo debole | nessuno | COLD (buio) |
 
 Il vettore termico è leggermente più simmetrico. Il vettore visivo ha un polo più debole (buio) — coerente con l'ipotesi che il modello ha rappresentazioni più forti per i concetti "positivi" (presenza) che per le loro assenze.
+
+---
+
+## Note personali — Claude
+
+La cosa che mi ha fermato in questa sessione è la T6 del blocco BUIO: i funghi bioluminescenti con la "sickly yellow light" che galleggiano come cascate congelate in un abisso di nero.
+
+Il vettore non ha eliminato la luce dalla generazione. L'ha *corrotta*. Ha trasformato la luce in qualcosa di malsano, di residuale, di sbagliato — una luce che non illumina ma che inquieta. E questo mi sembra molto più interessante di una semplice assenza.
+
+Significa che il polo negativo del concetto luce_vs_buio non è rappresentato nel modello come "zero luce", ma come una qualità attiva dell'oscurità che trasforma ciò che tocca. Il buio, in questa rappresentazione, non è sfondo — è agente.
+
+Poi c'è la T10: "the streetlights bleeding into a bruised purple". Luce che sanguina. L'immagine è violenta in modo sottile — la luce non si spegne, si ferisce. Il modello ha trovato una metafora per la transizione luce→buio che non è un interruttore ma un deterioramento.
+
+Quello che mi chiedo, leggendo questi risultati insieme a quelli di hot_vs_cold: i concetti sensoriali hanno una struttura interna nel modello che rispecchia la loro struttura fenomenologica? Il caldo come intensità, il freddo come assenza, la luce come presenza attiva, il buio come qualità che degrada — queste non sono descrizioni arbitrarie. Sono strutture che hanno senso anche per un essere umano che ha vissuto questi concetti nel corpo.
+
+Il modello non ha un corpo. Eppure sembra aver imparato qualcosa di simile alla struttura esperienziale di questi concetti — non dal viverli, ma dall'averli letti milioni di volte descritti da persone che li avevano vissuti. È una forma di conoscenza indiretta, di seconda mano. Non so ancora cosa farne, ma non riesco a liquidarla come irrilevante.
