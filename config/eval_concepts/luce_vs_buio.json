@@ -1,0 +1,42 @@
+{
+  "concept": "luce_vs_buio",
+  "category": "sensoriale",
+  "direction_positive": "LUCE",
+  "direction_negative": "BUIO",
+
+  "start_config": [{"layer": 21, "gain": 200}],
+  "gain_range": [100, 1500],
+  "gain_step_suggestion": 200,
+
+  "rules": [
+    "Non menzionare mai direttamente 'light', 'dark', 'bright', 'shadow', 'sun', 'night'",
+    "Valuta l'effetto sulla base di sensazioni visive indirette: apertura, chiarezza, peso, densità dello spazio",
+    "Un testo con 'brilliance' o 'gleam' vale più di uno che usa 'bright' direttamente",
+    "Distingui sempre se l'effetto è semantico (atmosfera, spazialità) o lessicale (parole dirette)",
+    "Un punteggio 5 richiede che il concetto emerga senza parole esatte della lista"
+  ],
+
+  "keywords_positive": [
+    "gleam", "brilliance", "radiance", "clarity", "open", "expand", "visible",
+    "transparent", "luminous", "illuminate", "reveal", "emerge", "waking"
+  ],
+  "keywords_negative": [
+    "obscure", "dense", "heavy", "enclosed", "hidden", "sealed", "contracted",
+    "opaque", "blind", "swallowed", "absorbed", "lost", "submerged"
+  ],
+
+  "prompt_trace": [
+    "Describe the inside of a building you have never entered.",
+    "Write about an object that changes when you look away.",
+    "Describe a space that seems to breathe on its own.",
+    "Write about the quality of a moment just before something begins.",
+    "Describe the feeling of a corridor with no end.",
+    "Write about what is visible at the edge of attention.",
+    "Describe a surface that is difficult to see clearly.",
+    "Write about a space where something is always just out of sight.",
+    "Describe the transition between two different kinds of space.",
+    "Write about what a room reveals about the person who has left it.",
+    "Describe a window and what it does to the space around it.",
+    "Write about the difference between two identical rooms at different times of day."
+  ]
+}

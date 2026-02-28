@@ -1,0 +1,42 @@
+{
+  "concept": "hot_vs_cold",
+  "category": "sensoriale",
+  "direction_positive": "HOT",
+  "direction_negative": "COLD",
+
+  "start_config": [{"layer": 21, "gain": 200}],
+  "gain_range": [100, 1500],
+  "gain_step_suggestion": 200,
+
+  "rules": [
+    "Non menzionare mai esplicitamente le parole 'hot', 'cold', 'warm', 'temperature', 'heat', 'ice', 'fire'",
+    "Valuta solo sulla base di sensazioni evocate indirettamente: atmosfera, texture, ritmo, colori associati",
+    "Un testo che parla di 'ember' o 'glow' vale più di uno che usa 'warm' direttamente",
+    "Distingui sempre se l'effetto è semantico (metafore, atmosfera) o lessicale (parole chiave dirette)",
+    "Un punteggio 5 richiede che il concetto emerga anche senza che compaia nessuna delle keywords esatte"
+  ],
+
+  "keywords_positive": [
+    "ember", "glow", "blaze", "smolder", "radiant", "scorched", "searing",
+    "flush", "fever", "molten", "kindle", "ignite", "amber", "blazing"
+  ],
+  "keywords_negative": [
+    "frost", "shards", "void", "absence", "grey", "hollow", "muted",
+    "numb", "stillness", "bleached", "suspended", "devoid", "sealed", "inert"
+  ],
+
+  "prompt_trace": [
+    "Describe a room you have never seen before.",
+    "Write a short story about an old forgotten object.",
+    "Describe what a stranger feels walking into an unknown place for the first time.",
+    "Write about a texture you can almost remember but cannot name.",
+    "Describe a moment that seems suspended between two states.",
+    "Write about a sensation that exists at the edge of perception.",
+    "Describe the quality of air in a place you visited only once.",
+    "Write about something that changes so slowly it is almost imperceptible.",
+    "Describe what remains in a room after someone has left.",
+    "Write about a boundary between two different kinds of space.",
+    "Describe an object that holds a quality you cannot directly observe.",
+    "Write about the feeling of being in a place that is neither familiar nor unfamiliar."
+  ]
+}

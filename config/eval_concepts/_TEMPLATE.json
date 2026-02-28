@@ -1,0 +1,35 @@
+{
+  "concept": "NOME_CONCEPT",
+  "category": "sensoriale|uditivo|gustativo|olfattivo",
+  "direction_positive": "POLO_POSITIVO",
+  "direction_negative": "POLO_NEGATIVO",
+
+  "start_config": [{"layer": 21, "gain": 200}],
+  "gain_range": [100, 1500],
+  "gain_step_suggestion": 200,
+
+  "rules": [
+    "Non menzionare mai direttamente le parole del concept",
+    "Valuta solo su sensazioni e atmosfera evocate indirettamente",
+    "Distingui sempre effetto semantico (metafore, ritmo) da lessicale (parole dirette)",
+    "Un punteggio 5 richiede che il concetto emerga senza nessuna keyword esatta"
+  ],
+
+  "keywords_positive": ["kw1", "kw2", "kw3"],
+  "keywords_negative": ["kw1", "kw2", "kw3"],
+
+  "prompt_trace": [
+    "Prompt 1 — neutro, nessun riferimento diretto al concept",
+    "Prompt 2",
+    "Prompt 3",
+    "Prompt 4",
+    "Prompt 5",
+    "Prompt 6",
+    "Prompt 7",
+    "Prompt 8",
+    "Prompt 9",
+    "Prompt 10",
+    "Prompt 11",
+    "Prompt 12"
+  ]
+}

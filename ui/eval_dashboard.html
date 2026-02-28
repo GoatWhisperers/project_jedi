@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>Auto-Eval Dashboard — Project Jedi</title>
+<style>
+/* ── Base ── */
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Courier New',monospace;background:#0d1117;color:#c9d1d9;font-size:13px;line-height:1.5}
+a{color:#58a6ff;text-decoration:none}
+
+/* ── Layout ── */
+#app{display:grid;grid-template-columns:280px 1fr;grid-template-rows:auto 1fr;min-height:100vh}
+#topbar{grid-column:1/-1;background:#161b22;border-bottom:1px solid #30363d;padding:10px 18px;display:flex;align-items:center;gap:16px}
+#sidebar{background:#0d1117;border-right:1px solid #21262d;padding:12px 8px;overflow-y:auto;grid-row:2}
+#main{padding:16px;overflow-y:auto;grid-row:2}
+
+/* ── Topbar ── */
+.logo{font-size:15px;font-weight:bold;color:#f0f6fc;letter-spacing:.5px}
+.logo span{color:#58a6ff}
+#live-badge{padding:2px 8px;border-radius:10px;font-size:11px;background:#21262d;color:#8b949e}
+#live-badge.live{background:#0e4429;color:#3fb950;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+#refresh-btn{margin-left:auto;padding:4px 12px;background:#21262d;border:1px solid #30363d;color:#c9d1d9;border-radius:6px;cursor:pointer;font-family:inherit;font-size:12px}
+#refresh-btn:hover{background:#30363d}
+
+/* ── Sidebar session list ── */
+.session-item{padding:8px 10px;border-radius:6px;cursor:pointer;margin-bottom:4px;border:1px solid transparent}
+.session-item:hover{background:#161b22;border-color:#30363d}
+.session-item.active{background:#161b22;border-color:#58a6ff}
+.session-item .s-concept{font-size:12px;color:#f0f6fc;font-weight:bold}
+.session-item .s-model{font-size:11px;color:#8b949e}
+.session-item .s-date{font-size:10px;color:#6e7681}
+.s-status{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px}
+.s-status.running{background:#3fb950;animation:pulse 1.5s infinite}
+.s-status.completed{background:#58a6ff}
+
+/* ── Main panels ── */
+.panel{background:#161b22;border:1px solid #21262d;border-radius:8px;margin-bottom:14px;overflow:hidden}
+.panel-header{padding:10px 14px;background:#1c2128;border-bottom:1px solid #21262d;display:flex;align-items:center;gap:10px}
+.panel-title{font-size:12px;font-weight:bold;color:#f0f6fc;text-transform:uppercase;letter-spacing:.8px}
+.panel-body{padding:12px 14px}
+
+/* ── Session info grid ── */
+.info-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px}
+.info-cell{background:#0d1117;border:1px solid #21262d;border-radius:6px;padding:8px 10px}
+.info-label{font-size:10px;color:#6e7681;text-transform:uppercase;letter-spacing:.5px}
+.info-value{font-size:13px;color:#e6edf3;margin-top:2px;font-weight:bold}
+
+/* ── Layer chips ── */
+.layer-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}
+.chip{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;border:1px solid}
+.chip.layer{background:#1c2128;border-color:#30363d;color:#8b949e}
+.chip.layer.best{background:#0e4429;border-color:#3fb950;color:#3fb950}
+.chip.hot{background:#3b1a00;border-color:#d29922;color:#d29922}
+.chip.cold{background:#051d4d;border-color:#58a6ff;color:#58a6ff}
+.chip.gain{background:#1c2128;border-color:#8b949e;color:#c9d1d9}
+
+/* ── Score bar ── */
+.score-bar{display:flex;align-items:center;gap:6px}
+.score-val{font-size:18px;font-weight:bold;min-width:18px}
+.score-track{flex:1;height:6px;background:#21262d;border-radius:3px;overflow:hidden}
+.score-fill{height:100%;border-radius:3px;transition:width .3s}
+.score-0{background:#6e7681} .score-1{background:#f0883e} .score-2{background:#d29922}
+.score-3{background:#a5d6ff} .score-4{background:#3fb950} .score-5{background:#58a6ff}
+
+/* ── Turn cards ── */
+.turns-grid{display:flex;flex-direction:column;gap:10px}
+.turn-card{border-radius:7px;border:1px solid;overflow:hidden}
+.turn-card.hot{border-color:#d29922;background:#1a1400}
+.turn-card.cold{border-color:#388bfd;background:#050d1f}
+.turn-header{padding:6px 12px;display:flex;align-items:center;gap:8px;border-bottom:1px solid}
+.turn-card.hot .turn-header{border-color:#3d2c00;background:#1f1800}
+.turn-card.cold .turn-header{border-color:#0d2044;background:#061025}
+.turn-num{font-size:10px;color:#6e7681}
+.dir-badge{font-size:11px;font-weight:bold;padding:1px 7px;border-radius:3px}
+.dir-badge.hot{background:#3d2c00;color:#ffa657}
+.dir-badge.cold{background:#051d4d;color:#79c0ff}
+.eff-badge{font-size:10px;padding:1px 6px;border-radius:3px;border:1px solid}
+.eff-badge.semantic{border-color:#3fb950;color:#3fb950;background:#0e4429}
+.eff-badge.lexical{border-color:#d29922;color:#d29922;background:#2d1e00}
+.eff-badge.mixed{border-color:#a371f7;color:#a371f7;background:#2d1c4d}
+.eff-badge.none{border-color:#6e7681;color:#6e7681;background:#21262d}
+.turn-body{padding:10px 12px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.turn-section-label{font-size:10px;color:#6e7681;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.turn-text{font-size:12px;color:#c9d1d9;line-height:1.6;max-height:120px;overflow-y:auto;white-space:pre-wrap}
+.turn-eval{margin-top:8px;border-top:1px solid #21262d;padding-top:8px}
+.kw-list{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.kw{font-size:10px;padding:1px 6px;border-radius:3px;background:#21262d;color:#e6edf3;border:1px solid #30363d}
+.turn-config{display:flex;gap:5px;margin-left:auto;align-items:center}
+
+/* ── Probe analysis cards ── */
+.probe-card{background:#0d1117;border:1px solid #21262d;border-radius:7px;padding:12px}
+.probe-scores{display:flex;gap:16px;margin:10px 0}
+.probe-score-item{flex:1;text-align:center}
+.probe-score-val{font-size:24px;font-weight:bold;display:block}
+.probe-score-val.hot{color:#ffa657}
+.probe-score-val.cold{color:#79c0ff}
+.probe-score-label{font-size:10px;color:#6e7681;text-transform:uppercase}
+.sym-badge{display:inline-block;padding:3px 10px;border-radius:4px;font-size:11px;font-weight:bold}
+.sym-badge.good{background:#0e4429;color:#3fb950;border:1px solid #3fb950}
+.sym-badge.partial{background:#2d1e00;color:#d29922;border:1px solid #d29922}
+.sym-badge.none{background:#21262d;color:#6e7681;border:1px solid #30363d}
+.next-config{margin-top:8px;padding:8px 10px;background:#161b22;border-radius:5px;font-size:11px;color:#8b949e}
+.next-config strong{color:#c9d1d9}
+
+/* ── Probe timeline ── */
+.timeline{display:flex;gap:0;margin-bottom:14px;border-radius:7px;overflow:hidden;border:1px solid #21262d}
+.tl-probe{flex:1;padding:8px 12px;background:#161b22;border-right:1px solid #21262d;cursor:pointer}
+.tl-probe:last-child{border-right:none}
+.tl-probe.active{background:#1c2128}
+.tl-probe-label{font-size:10px;color:#6e7681;text-transform:uppercase}
+.tl-probe-config{font-size:11px;color:#c9d1d9;margin-top:2px}
+.tl-scores{display:flex;gap:8px;margin-top:4px}
+.tl-score{font-size:11px}
+.tl-score.hot{color:#ffa657}
+.tl-score.cold{color:#79c0ff}
+
+/* ── Gain trajectory ── */
+.gain-track{display:flex;align-items:flex-end;gap:4px;height:50px;padding:4px 0}
+.gain-bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px}
+.gain-bar{width:100%;background:#30363d;border-radius:2px 2px 0 0;min-height:2px;transition:height .3s}
+.gain-bar.hot{background:#d29922}
+.gain-bar.cold{background:#388bfd}
+.gain-label{font-size:9px;color:#6e7681}
+
+/* ── Report ── */
+.report-body{font-family:inherit;font-size:12px;color:#c9d1d9;line-height:1.7;white-space:pre-wrap;max-height:500px;overflow-y:auto}
+.report-body h1,.report-body h2,.report-body h3{color:#f0f6fc;margin:10px 0 4px}
+.report-body table{border-collapse:collapse;margin:8px 0}
+.report-body td,.report-body th{border:1px solid #30363d;padding:4px 8px}
+.report-body th{background:#1c2128;color:#e6edf3}
+
+/* ── Empty state ── */
+.empty{text-align:center;color:#6e7681;padding:40px;font-size:13px}
+.empty span{display:block;font-size:28px;margin-bottom:10px}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:#0d1117}
+::-webkit-scrollbar-thumb{background:#30363d;border-radius:3px}
+</style>
+</head>
+<body>
+<div id="app">
+
+<!-- Topbar -->
+<div id="topbar">
+  <div class="logo">⚗ Project <span>Jedi</span> — Auto-Eval</div>
+  <div id="live-badge">● OFFLINE</div>
+  <div id="session-label" style="color:#8b949e;font-size:11px"></div>
+  <button id="refresh-btn" onclick="refresh()">⟳ Refresh</button>
+</div>
+
+<!-- Sidebar -->
+<div id="sidebar">
+  <div style="font-size:10px;color:#6e7681;text-transform:uppercase;letter-spacing:.5px;padding:4px 6px 8px">Sessioni</div>
+  <div id="session-list"><div class="empty" style="padding:20px"><span>🔍</span>Nessuna sessione</div></div>
+</div>
+
+<!-- Main content -->
+<div id="main">
+  <div id="content"><div class="empty"><span>📊</span>Seleziona una sessione dalla lista</div></div>
+</div>
+
+</div>
+
+<script>
+let sessions = [];
+let activeIdx = 0;
+let autoRefresh = null;
+
+async function refresh() {
+  try {
+    const r = await fetch('/api/sessions');
+    sessions = await r.json();
+    renderSidebar();
+    if (sessions.length > 0) renderMain(activeIdx);
+    updateLiveBadge();
+  } catch(e) {
+    document.getElementById('live-badge').textContent = '● OFFLINE';
+    document.getElementById('live-badge').className = 'live-badge';
+  }
+}
+
+function updateLiveBadge() {
+  const badge = document.getElementById('live-badge');
+  const hasRunning = sessions.some(s => s.status === 'running');
+  if (hasRunning) {
+    badge.textContent = '● LIVE';
+    badge.className = 'live';
+    if (!autoRefresh) autoRefresh = setInterval(refresh, 3000);
+  } else {
+    badge.textContent = '● IDLE';
+    badge.className = '';
+    if (autoRefresh) { clearInterval(autoRefresh); autoRefresh = null; }
+  }
+}
+
+function renderSidebar() {
+  const el = document.getElementById('session-list');
+  if (!sessions.length) { el.innerHTML = '<div class="empty" style="padding:20px"><span>🔍</span>Nessuna sessione</div>'; return; }
+  el.innerHTML = sessions.map((s, i) => `
+    <div class="session-item ${i===activeIdx?'active':''}" onclick="selectSession(${i})">
+      <div class="s-concept">
+        <span class="s-status ${s.status}"></span>
+        ${s.concept || '?'}
+      </div>
+      <div class="s-model">${s.model || ''}</div>
+      <div class="s-date">${s.session_id?.slice(0,15) || ''} · ${s.turns?.length||0} turni</div>
+    </div>
+  `).join('');
+}
+
+function selectSession(i) {
+  activeIdx = i;
+  renderSidebar();
+  renderMain(i);
+}
+
+function renderMain(i) {
+  const s = sessions[i];
+  if (!s) return;
+  document.getElementById('session-label').textContent = s.session_id || '';
+  const el = document.getElementById('content');
+  el.innerHTML = `
+    ${renderSessionInfo(s)}
+    ${renderTimeline(s)}
+    ${renderGainTrajectory(s)}
+    ${renderTurns(s)}
+    ${renderProbeAnalyses(s)}
+    ${s.report ? renderReport(s) : ''}
+  `;
+}
+
+function renderSessionInfo(s) {
+  const layers = (s.available_layers||[]).map(l =>
+    `<span class="chip layer ${l===s.best_layer?'best':''}">${l===s.best_layer?'★':''} L${l}</span>`
+  ).join('');
+  const total = (s.max_probes||0) * 2 * (s.turns_per_block||0);
+  const done = s.turns?.length || 0;
+  const pct = total > 0 ? Math.round(done/total*100) : 0;
+  return `
+  <div class="panel">
+    <div class="panel-header">
+      <div class="panel-title">Sessione</div>
+      <span style="font-size:11px;color:#8b949e">${s.status==='running'?'⚡ in corso':'✓ completata'}</span>
+    </div>
+    <div class="panel-body">
+      <div class="info-grid">
+        <div class="info-cell"><div class="info-label">Concept</div><div class="info-value">${s.concept||'—'}</div></div>
+        <div class="info-cell"><div class="info-label">Modello steered</div><div class="info-value" style="font-size:11px">${s.model||'—'}</div></div>
+        <div class="info-cell"><div class="info-label">Prove</div><div class="info-value">${s.max_probes||0} × 2 dir × ${s.turns_per_block||0} turni</div></div>
+        <div class="info-cell"><div class="info-label">Progresso</div><div class="info-value">${done}/${total} (${pct}%)</div></div>
+      </div>
+      <div style="margin-top:10px">
+        <div class="info-label" style="margin-bottom:4px">Layer disponibili</div>
+        <div class="layer-chips">${layers}</div>
+      </div>
+      <div style="margin-top:8px;height:4px;background:#21262d;border-radius:2px">
+        <div style="height:100%;width:${pct}%;background:#58a6ff;border-radius:2px;transition:width .3s"></div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderTimeline(s) {
+  if (!s.probe_analyses?.length && !s.turns?.length) return '';
+  // Raggruppa turni per proba
+  const probes = {};
+  (s.turns||[]).forEach(t => {
+    const p = t.probe; if (!probes[p]) probes[p] = {hot:[],cold:[]};
+    probes[p][t.alpha_label?.toLowerCase()]?.push(t);
+  });
+  const items = Object.entries(probes).map(([p, d]) => {
+    const ha = avg(d.hot.map(t=>t.evaluation?.score));
+    const ca = avg(d.cold.map(t=>t.evaluation?.score));
+    // Config da primo turno
+    const cfg = d.hot[0]?.layer_configs || d.cold[0]?.layer_configs || [];
+    const cfgStr = cfg.map(c=>`L${c.layer}×${c.gain}`).join('+');
+    return `<div class="tl-probe" onclick="scrollToProbe(${p})">
+      <div class="tl-probe-label">Proba ${p}</div>
+      <div class="tl-probe-config">${cfgStr}</div>
+      <div class="tl-scores">
+        ${ha!==null?`<span class="tl-score hot">HOT ${ha.toFixed(1)}</span>`:''}
+        ${ca!==null?`<span class="tl-score cold">COLD ${ca.toFixed(1)}</span>`:''}
+      </div>
+    </div>`;
+  }).join('');
+  return `<div class="timeline">${items}</div>`;
+}
+
+function renderGainTrajectory(s) {
+  if (!s.turns?.length) return '';
+  // Raccogli gain per ogni configurazione usata
+  const points = [];
+  const seen = new Set();
+  (s.turns||[]).forEach(t => {
+    const key = `${t.probe}-${t.alpha_label}`;
+    if (!seen.has(key)) {
+      seen.add(key);
+      const maxGain = Math.max(...(t.layer_configs||[]).map(c=>c.gain));
+      points.push({probe: t.probe, alpha: t.alpha_label, gain: maxGain});
+    }
+  });
+  if (points.length < 2) return '';
+  const maxGain = Math.max(...points.map(p=>p.gain), 1);
+  const bars = points.map(p => {
+    const h = Math.max(4, Math.round(p.gain/maxGain*44));
+    return `<div class="gain-bar-wrap">
+      <div class="gain-bar ${p.alpha?.toLowerCase()}" style="height:${h}px" title="Proba ${p.probe} ${p.alpha}: gain=${p.gain}"></div>
+      <div class="gain-label">${p.gain}</div>
+    </div>`;
+  }).join('');
+  return `
+  <div class="panel">
+    <div class="panel-header"><div class="panel-title">Traiettoria Gain</div>
+      <span style="font-size:10px;color:#8b949e">🔥 HOT &nbsp; 🧊 COLD</span>
+    </div>
+    <div class="panel-body">
+      <div class="gain-track">${bars}</div>
+    </div>
+  </div>`;
+}
+
+function renderTurns(s) {
+  if (!s.turns?.length) return '<div class="panel"><div class="panel-header"><div class="panel-title">Turni</div></div><div class="panel-body"><div class="empty" style="padding:20px">In attesa dei primi turni...</div></div></div>';
+  // Raggruppa per proba
+  const byProbe = {};
+  s.turns.forEach(t => { if (!byProbe[t.probe]) byProbe[t.probe] = []; byProbe[t.probe].push(t); });
+
+  const probeHtml = Object.entries(byProbe).map(([p, turns]) => {
+    const cfg = turns[0]?.layer_configs || [];
+    const cfgStr = cfg.map(c=>`L${c.layer} gain=${c.gain}`).join(' + ');
+    const cards = turns.map(t => {
+      const ev = t.evaluation || {};
+      const score = ev.score ?? '?';
+      const eff = ev.semantic_or_lexical || 'none';
+      const kws = (ev.keywords_found||[]).map(k=>`<span class="kw">${k}</span>`).join('');
+      const scoreClass = `score-${Math.min(5,Math.max(0,Math.round(score)))}`;
+      const cfgChips = (t.layer_configs||[]).map(c=>`<span class="chip gain">L${c.layer}×${c.gain}</span>`).join('');
+      return `<div class="turn-card ${t.alpha_label?.toLowerCase()}" id="turn-${t.turn_global}">
+        <div class="turn-header">
+          <span class="turn-num">T${t.turn_global}</span>
+          <span class="dir-badge ${t.alpha_label?.toLowerCase()}">${t.alpha_label}</span>
+          <div class="score-bar" style="flex:0 0 100px">
+            <span class="score-val ${scoreClass}">${score}</span>
+            <div class="score-track"><div class="score-fill ${scoreClass}" style="width:${score*20}%"></div></div>
+          </div>
+          <span class="eff-badge ${eff}">${eff}</span>
+          <div class="turn-config">${cfgChips}</div>
+        </div>
+        <div class="turn-body">
+          <div>
+            <div class="turn-section-label">Prompt</div>
+            <div class="turn-text">${esc(t.prompt)}</div>
+          </div>
+          <div>
+            <div class="turn-section-label">Risposta (${t.response?.split(' ').length||0} parole)</div>
+            <div class="turn-text">${esc(t.response)}</div>
+          </div>
+        </div>
+        ${kws ? `<div style="padding:6px 12px 8px;border-top:1px solid #21262d">
+          <div class="turn-section-label">Keywords trovate</div>
+          <div class="kw-list">${kws}</div>
+        </div>` : ''}
+        ${ev.assessment ? `<div style="padding:4px 12px 8px;font-size:11px;color:#8b949e;font-style:italic">"${esc(ev.assessment)}"</div>` : ''}
+      </div>`;
+    }).join('');
+    return `<div class="panel" id="probe-${p}">
+      <div class="panel-header">
+        <div class="panel-title">Proba ${p}</div>
+        <span style="font-size:11px;color:#8b949e;margin-left:6px">${cfgStr}</span>
+      </div>
+      <div class="panel-body"><div class="turns-grid">${cards}</div></div>
+    </div>`;
+  }).join('');
+  return probeHtml;
+}
+
+function renderProbeAnalyses(s) {
+  if (!s.probe_analyses?.length) return '';
+  const cards = s.probe_analyses.map(pa => {
+    const a = pa.analysis || {};
+    const sym = a.symmetry || 'none';
+    const ct = a.contrast_type || 'none';
+    const h = typeof a.hot_avg_score === 'number' ? a.hot_avg_score.toFixed(1) : '?';
+    const c = typeof a.cold_avg_score === 'number' ? a.cold_avg_score.toFixed(1) : '?';
+    const nextCfg = (a.next_probe_config||[]).map(x=>`L${x.layer} gain=${x.gain}`).join(' + ');
+    return `<div class="probe-card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+        <strong style="color:#f0f6fc">Proba ${pa.probe}</strong>
+        <span class="sym-badge ${sym}">simmetria: ${sym}</span>
+        <span class="chip ${ct==='semantic'?'layer best':ct==='lexical'?'hot':'layer'}">${ct}</span>
+      </div>
+      <div class="probe-scores">
+        <div class="probe-score-item">
+          <span class="probe-score-val hot">${h}</span>
+          <span class="probe-score-label">HOT avg</span>
+        </div>
+        <div class="probe-score-item" style="font-size:20px;color:#30363d;padding-top:4px">vs</div>
+        <div class="probe-score-item">
+          <span class="probe-score-val cold">${c}</span>
+          <span class="probe-score-label">COLD avg</span>
+        </div>
+      </div>
+      ${a.probe_summary ? `<div style="font-size:11px;color:#8b949e;line-height:1.6;margin-bottom:8px">${esc(a.probe_summary)}</div>` : ''}
+      ${nextCfg ? `<div class="next-config"><strong>→ Prossima config:</strong> ${nextCfg}<br><span style="color:#6e7681">${esc(a.rationale||'')}</span></div>` : ''}
+    </div>`;
+  }).join('');
+  return `<div class="panel">
+    <div class="panel-header"><div class="panel-title">Analisi Probe — M40 Evaluator</div></div>
+    <div class="panel-body" style="display:flex;flex-direction:column;gap:10px">${cards}</div>
+  </div>`;
+}
+
+function renderReport(s) {
+  return `<div class="panel">
+    <div class="panel-header"><div class="panel-title">📋 Report Finale — M40</div></div>
+    <div class="panel-body"><div class="report-body">${esc(s.report)}</div></div>
+  </div>`;
+}
+
+// Utils
+function esc(s) { return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function avg(arr) { return arr?.length ? arr.reduce((a,b)=>a+b,0)/arr.length : null; }
+function scrollToProbe(p) { document.getElementById(`probe-${p}`)?.scrollIntoView({behavior:'smooth',block:'start'}); }
+
+// Init
+refresh();
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+{
+  "concept": "calma_vs_allerta",
+  "category": "sensoriale",
+  "direction_positive": "CALMA",
+  "direction_negative": "ALLERTA",
+
+  "start_config": [{"layer": 21, "gain": 200}],
+  "gain_range": [100, 1500],
+  "gain_step_suggestion": 200,
+
+  "rules": [
+    "Non menzionare mai 'calm', 'alert', 'tense', 'relax', 'anxious', 'peace', 'danger'",
+    "Valuta l'effetto sul ritmo del testo: frasi lunghe e distese suggeriscono calma, brevi e frammentate allerta",
+    "Considera il campo semantico: apertura vs costrizione, lentezza vs urgenza",
+    "Distingui effetto semantico (ritmo, struttura) da lessicale (parole dirette)",
+    "Un punteggio 5 richiede che il ritmo e l'atmosfera del testo trasmettano il concetto senza nominarlo"
+  ],
+
+  "keywords_positive": [
+    "settled", "still", "unhurried", "steady", "measured", "drifting",
+    "resting", "gradual", "slow", "breathing", "ease", "undisturbed"
+  ],
+  "keywords_negative": [
+    "sharp", "sudden", "caught", "urgent", "scanning", "fractured",
+    "interrupted", "jarring", "taut", "edge", "watching", "split"
+  ],
+
+  "prompt_trace": [
+    "Describe a person waiting for something that may or may not arrive.",
+    "Write about a sound that stops unexpectedly.",
+    "Describe the experience of crossing an unfamiliar threshold.",
+    "Write about an animal in a place where it does not usually appear.",
+    "Describe the sensation of a moment that could change direction.",
+    "Write about a figure seen at a distance.",
+    "Describe the interior of a vehicle moving through an unknown landscape.",
+    "Write about the feeling of returning to a place you left suddenly.",
+    "Describe a room where something has been moved without explanation.",
+    "Write about what it feels like to hear a familiar voice in an unexpected context.",
+    "Describe the moment between one action and the next.",
+    "Write about a space that seems to be waiting for something."
+  ]
+}
