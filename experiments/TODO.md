@@ -1,10 +1,22 @@
 # Project Jedi — TODO & Roadmap
 
-**Ultimo aggiornamento**: 2026-02-28
+**Ultimo aggiornamento**: 2026-03-01
 
 ---
 
 ## IMMEDIATO (prossima sessione)
+
+### 0. Sub-Concept Decomposition — PROSSIMA FASE PRINCIPALE
+Vedi architettura completa: `experiments/03_sub_concept_decomposition.md`
+
+- [ ] Implementare `scripts/concept_expander.py` (Step 1+2: M40 analizza + genera dataset chirurgici)
+- [ ] Implementare `scripts/cosine_matrix.py` (Step 4: matrice separabilità)
+- [ ] Implementare `scripts/sub_concept_eval.py` (Step 5: steering comparativo)
+- [ ] Adattare `scripts/run_sub_probe.sh` per loop su config/sub_concepts/
+- [ ] Prima esecuzione su `hot_vs_cold` come concept pilota
+- [ ] Verificare separabilità reale degli output (non solo coseno geometrico)
+
+---
 
 ### 1. Analisi risultati Gemma2-Uncensored
 - [ ] Leggere tutti i 9 report generati dal batch `run_all_eval.sh --model Gemma2-Uncensored`
