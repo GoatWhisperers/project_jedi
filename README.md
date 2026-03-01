@@ -18,6 +18,7 @@ Extract linear concept directions from hidden states, then inject them during in
 8. [API Reference](#api-reference)
 9. [Results](#results)
 10. [Hardware & Requirements](#hardware--requirements)
+11. [License](#license)
 
 ---
 
@@ -452,6 +453,25 @@ Deep layers (L18–L23 for Gemma3, L29–L38 for Gemma2) show `boot_min ≈ 0.89
 | Generation latency | ~2–3s per response |
 
 > **Note:** `dtype: "bfloat16"` is required in settings.json. float32 uses ~28 GB for Gemma2 and causes OOM.
+
+---
+
+## License
+
+Project Jedi uses a dual-license model:
+
+| What | License |
+|------|---------|
+| Source code (`scripts/`, `ui/`) | [Apache 2.0](LICENSE) — use freely, including commercially |
+| Datasets, vectors, protocol, research content | [CC BY-NC-SA 4.0](LICENSE-DATA) — research & teaching with citation; no commercial use |
+
+**Academic use:** Cite as:
+> GoatWhisperers, "Project Jedi: Phenomenological Concept Vectors for Transformer Steering," 2026.
+> https://github.com/GoatWhisperers/project_jedi
+
+**Commercial use of research content:** Contact us via [GitHub Issues](https://github.com/GoatWhisperers/project_jedi/issues).
+
+See [LICENSING.md](LICENSING.md) for the full breakdown and use-case guide.
 
 ---
 

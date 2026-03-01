@@ -1,0 +1,73 @@
+Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+(CC BY-NC-SA 4.0)
+
+Copyright 2026 GoatWhisperers
+
+=======================================================================
+
+This license applies to the RESEARCH CONTENT in this repository:
+
+  config/concepts/        — phenomenological sentence datasets
+  config/eval_concepts/   — blind evaluation protocol definitions
+  output/vector_library/  — extracted concept vectors (.npy files)
+  output/eval_sessions/   — blind evaluation session data
+  experiments/            — research diary and findings
+  concept_generation_prompt.md
+  LLM_Internal_Probing_Reference.md
+  *.md documentation files
+
+For source code (scripts/, ui/), see LICENSE (Apache 2.0).
+
+=======================================================================
+
+You are free to:
+
+  Share  — copy and redistribute the material in any medium or format
+  Adapt  — remix, transform, and build upon the material
+
+Under the following terms:
+
+  Attribution       — You must give appropriate credit to GoatWhisperers /
+                      Project Jedi, provide a link to the license, and
+                      indicate if changes were made. For academic use,
+                      cite the repository as:
+
+                        GoatWhisperers, "Project Jedi: Phenomenological
+                        Concept Vectors for Transformer Steering," 2026.
+                        https://github.com/GoatWhisperers/project_jedi
+
+  NonCommercial     — You may NOT use this material for commercial purposes.
+                      Commercial use includes, but is not limited to:
+                      integration into commercial products or services,
+                      use to train proprietary models sold or licensed
+                      commercially, use in consulting or paid services.
+
+                      If you are a company and want to use this material
+                      commercially, contact us to discuss a separate license.
+
+  ShareAlike        — If you remix, transform, or build upon this material,
+                      you must distribute your contributions under the same
+                      license (CC BY-NC-SA 4.0).
+
+No additional restrictions — You may not apply legal terms or technological
+measures that legally restrict others from doing anything the license permits.
+
+=======================================================================
+
+Permitted uses (no need to ask):
+
+  Academic research   Use in papers, theses, academic experiments — with citation.
+  Teaching            Use in university courses, lectures, workshops.
+  Personal projects   Non-commercial personal experimentation.
+  Replication         Running the evaluation protocol on other models.
+
+Require prior written permission:
+
+  Commercial products  Integrating vectors or datasets into a product or SaaS.
+  Commercial training  Using datasets to train proprietary commercial models.
+  Paid services        Using evaluation protocol as a commercial service.
+
+=======================================================================
+
+Full license text: https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
+Human-readable summary: https://creativecommons.org/licenses/by-nc-sa/4.0/
