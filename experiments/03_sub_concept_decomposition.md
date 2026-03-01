@@ -1,5 +1,5 @@
 # Fase 2 — Sub-Concept Decomposition
-## M40 come esploratore di spazio semantico
+## Un sistema di auto-analisi in loop: M40 come scienziato autonomo
 
 **Data**: 2026-03-01
 **Stato**: design / da implementare
@@ -58,70 +58,118 @@ catturando e proporre come scomporle.
 
 ---
 
-## 4. Pipeline completa
+## 4. Il loop di auto-analisi
+
+Il sistema non è una pipeline lineare. È un **ciclo scientifico chiuso**
+dove M40 gioca due ruoli nello stesso loop: **generatore di ipotesi**
+e **giudice dei risultati**. Quando fallisce come giudice, quella
+informazione torna indietro a lui come generatore.
 
 ```
-FASE 2 — SUB-CONCEPT DECOMPOSITION
-
+                    ┌─────────────────────────┐
+                    │   CONCETTO BROAD        │
+                    │   (vettore esistente)   │
+                    └────────────┬────────────┘
+                                 │
+                                 ▼
 ┌─────────────────────────────────────────────────────────────┐
-│  STEP 1 — ANALISI (M40 come analista)                       │
+│  STEP 1 — IPOTESI (M40 come generatore)                     │
 │                                                             │
 │  Input:                                                     │
 │    concept JSON originale (frasi pos + neg)                 │
 │    eval session JSONL (output steered + keywords + scores)  │
-│    summary vettore (boot_min, best_layer, categoria)        │
+│    [dal ciclo precedente] feedback su cosa non ha funzionato│
 │                                                             │
 │  M40 produce:                                               │
-│    lista di 4-6 sub-concetti con:                           │
-│      - nome_slug                                            │
-│      - pos_label / neg_label                                │
-│      - descrizione fenomenologica                           │
-│      - perché è distinto dagli altri sub-concetti           │
-│      - quali frasi del broad appartengono a questo sub      │
+│    lista di 4-6 sub-concetti con nome, etichette,           │
+│    descrizione fenomenologica, rationale di separazione     │
 │                                                             │
-│  Output: config/sub_concepts/{parent}/_meta.json            │
-└─────────────────────────────────────────────────────────────┘
-                          ↓
+│  Output: config/sub_concepts/{parent}/_meta_v{N}.json       │
+└─────────────────────────┬───────────────────────────────────┘
+                          │
+                          ▼
 ┌─────────────────────────────────────────────────────────────┐
-│  STEP 2 — GENERAZIONE DATASET CHIRURGICI (M40 come writer)  │
+│  STEP 2 — ESPERIMENTO PARTE A (M40 come writer)             │
 │                                                             │
-│  Per ogni sub-concetto in _meta.json:                       │
-│    Prompt M40: genera 100 frasi pos + 100 neg               │
-│    Vincolo: SOLO questa dimensione, ESCLUDI le altre         │
-│    Principio: fenomenologia diretta, no metafore            │
-│                                                             │
+│  Per ogni sub-concetto: M40 genera 100 frasi pos + 100 neg  │
+│  Vincolo esplicito: isola SOLO questa dimensione            │
 │  Output: config/sub_concepts/{parent}/{sub_slug}.json       │
-└─────────────────────────────────────────────────────────────┘
-                          ↓
+└─────────────────────────┬───────────────────────────────────┘
+                          │
+                          ▼
 ┌─────────────────────────────────────────────────────────────┐
-│  STEP 3 — ESTRAZIONE VETTORI (MI50, probe_concept.py)       │
+│  STEP 3 — ESPERIMENTO PARTE B (MI50 come estrattore)        │
 │                                                             │
-│  Per ogni sub-concept JSON → probe_concept.py               │
+│  probe_concept.py su ogni sub-concept JSON                  │
 │  Output: vector_library/.../sub/{sub_slug}/layer_N.npy      │
-└─────────────────────────────────────────────────────────────┘
-                          ↓
+└─────────────────────────┬───────────────────────────────────┘
+                          │
+                          ▼
 ┌─────────────────────────────────────────────────────────────┐
-│  STEP 4 — ANALISI SEPARABILITÀ                              │
+│  STEP 4 — OSSERVAZIONE GEOMETRICA                           │
 │                                                             │
-│  Calcola matrice coseno (N+1) × (N+1):                      │
-│    [parent, sub_A, sub_B, sub_C, sub_D, ...]                │
-│                                                             │
-│  Metriche:                                                  │
-│    coseno(sub_i, sub_j) < 0.8 → sub-vettori separati       │
-│    coseno(sub_i, parent) > 0.4 → sub è coerente col broad   │
-│    coseno(sub_i, sub_i) = 1.0 → identità (check)            │
-└─────────────────────────────────────────────────────────────┘
-                          ↓
+│  Matrice coseno (N+1)×(N+1): [parent, sub_A, sub_B, ...]   │
+│  coseno(sub_i, sub_j) < 0.8 → separati geometricamente     │
+│  coseno(sub_i, parent) > 0.4 → coerente col broad           │
+└─────────────────────────┬───────────────────────────────────┘
+                          │
+                          ▼
 ┌─────────────────────────────────────────────────────────────┐
-│  STEP 5 — STEERING TEST (verifica separabilità reale)       │
+│  STEP 5 — OSSERVAZIONE REALE (M40 come giudice)             │
 │                                                             │
 │  Stesso prompt neutro → steered con sub_A vs sub_B vs broad │
 │  M40 valuta: gli output sono fenomenologicamente distinti?  │
-│  Se sì → i sub-vettori sono utili                           │
-│  Se no → il broad era già ottimale / dataset non abbastanza │
-│           chirurgici                                        │
-└─────────────────────────────────────────────────────────────┘
+│                                                             │
+│  Produce per ogni coppia (sub_i, sub_j):                    │
+│    - score di distinzione 1-5                               │
+│    - quale dimensione manca / si sovrappone                 │
+│    - suggerimento per raffinare il sub-concetto             │
+└─────────────┬───────────────────────────┬───────────────────┘
+              │                           │
+              ▼                           ▼
+    ┌─────────────────┐         ┌──────────────────────┐
+    │  DISTINTI ✓     │         │  NON DISTINTI ✗      │
+    │                 │         │                      │
+    │  Sub-vettori    │         │  Feedback → STEP 1   │
+    │  validati →     │         │  M40 raffina le      │
+    │  archivio       │         │  ipotesi sulla base  │
+    │                 │         │  di cosa non ha      │
+    │  Applica loop   │         │  funzionato          │
+    │  ricorsivo su   │         │                      │
+    │  ogni sub ↓     │         │  Max 3 iterazioni    │
+    └─────────────────┘         └──────────────────────┘
 ```
+
+### Criterio di convergenza
+
+Il loop termina quando:
+- Tutti i sub-vettori producono output distinti (score distinzione ≥ 3/5 su tutte le coppie)
+- **Oppure** dopo 3 iterazioni senza miglioramento → il modello non ha
+  abbastanza spazio semantico per separare ulteriormente (risultato in sé interessante)
+
+### Ricorsione
+
+Una volta validati i sub-vettori di livello 1, il sistema può applicare
+lo stesso loop su ciascun sub-vettore — decomponendo ulteriormente.
+
+```
+hot_vs_cold  (livello 0, broad)
+├── metabolic_heat  (livello 1, validato)
+│   ├── fever_hyperthermia  (livello 2)
+│   └── cold_chills  (livello 2)
+├── circulatory_warmth  (livello 1, validato)
+│   ├── peripheral_vasodilation  (livello 2)
+│   └── cold_extremities  (livello 2)
+└── ...
+```
+
+Il criterio di stop naturale: i vettori al livello N producono output
+indistinguibili → il modello non rappresenta distinzioni a quel grado
+di granularità. Questo limite è un risultato scientifico, non un fallimento.
+
+---
+
+## 5. Pipeline completa (dettaglio tecnico)
 
 ---
 
@@ -174,15 +222,60 @@ output/
 
 ## 7. Script da implementare
 
-| Script | Ruolo | Dipendenze |
-|--------|-------|------------|
-| `concept_expander.py` | Step 1+2: chiama M40, produce _meta.json + JSON chirurgici | M40 llama-server (porta 11435) |
-| `run_sub_probe.sh` | Step 3: loop su tutti i JSON in sub_concepts/, chiama probe_concept.py | probe_concept.py |
-| `cosine_matrix.py` | Step 4: carica .npy, calcola matrice, salva JSON + heatmap | numpy, matplotlib |
-| `sub_concept_eval.py` | Step 5: steering comparativo su stesso prompt | steering_server, auto_eval |
+| Script | Ruolo | Note |
+|--------|-------|------|
+| `concept_expander.py` | Step 1+2: M40 genera sub-concetti + dataset chirurgici | Script principale nuovo |
+| `run_sub_probe.sh` | Step 3: loop probe_concept.py su tutti i JSON in sub_concepts/ | Adatta run_all_probes.sh |
+| `cosine_matrix.py` | Step 4: calcola matrice separabilità, salva JSON + heatmap | numpy, matplotlib |
+| `sub_concept_eval.py` | Step 5: steering comparativo, M40 giudica distinzione | Estende auto_eval.py |
+| `decompose.py` | **Orchestratore del loop**: coordina Step 1-5, gestisce feedback, ricorsione | Script nuovo principale |
 
-`concept_expander.py` è lo script nuovo principale. Gli altri riusano
-quasi interamente l'infrastruttura esistente.
+### decompose.py — logica dell'orchestratore
+
+```python
+def decompose(concept, parent_vector, depth=0, max_depth=3, iteration=0, feedback=None):
+    """
+    Loop di auto-analisi ricorsivo.
+
+    concept       : nome del concetto da decomporre
+    parent_vector : path al .npy del vettore broad
+    depth         : livello di ricorsione (0 = broad, 1 = sub, 2 = sub-sub)
+    max_depth     : profondità massima (stop quando output indistinguibili)
+    iteration     : numero iterazione corrente (max 3 per livello)
+    feedback      : output del giudice M40 dal ciclo precedente
+    """
+
+    if iteration >= 3:
+        log(f"[{concept}] Max iterazioni raggiunto — spazio semantico esaurito a depth={depth}")
+        return  # risultato scientifico: il modello non va oltre
+
+    # Step 1: M40 genera ipotesi sub-concetti (con feedback se disponibile)
+    sub_concepts = concept_expander.generate(concept, feedback=feedback)
+
+    # Step 2: M40 genera dataset chirurgici per ogni sub
+    for sub in sub_concepts:
+        concept_expander.generate_dataset(sub)
+
+    # Step 3: MI50 estrae vettori
+    run_sub_probe(concept)
+
+    # Step 4: matrice coseno
+    matrix = cosine_matrix.compute(concept, sub_concepts, parent_vector)
+
+    # Step 5: M40 giudica separabilità reale
+    verdict = sub_concept_eval.evaluate(concept, sub_concepts)
+
+    if verdict.all_distinct:
+        # Successo — archivia e vai in ricorsione su ogni sub validato
+        archive(concept, sub_concepts, matrix, verdict)
+        if depth < max_depth:
+            for sub in sub_concepts:
+                decompose(sub.name, sub.vector_path, depth=depth+1)
+    else:
+        # Fallimento parziale — feedback a M40 e riprova
+        decompose(concept, parent_vector, depth=depth,
+                  iteration=iteration+1, feedback=verdict.feedback)
+```
 
 ---
 
