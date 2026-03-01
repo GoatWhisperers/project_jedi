@@ -1,0 +1,32 @@
+{"type": "run_start", "concept": "hot_vs_cold", "model": "Gemma3-1B-IT", "max_depth": 1, "max_iter": 2, "dry_run": false, "timestamp": "2026-03-01T15:05:00.133041"}
+{"type": "decompose_start", "concept": "hot_vs_cold", "depth": 0, "timestamp": "2026-03-01T15:05:00.133448"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v1)", "timestamp": "2026-03-01T15:05:00.135064"}
+{"type": "info", "msg": "  Proposti: []", "timestamp": "2026-03-01T15:05:42.337355"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v1)", "timestamp": "2026-03-01T15:05:42.337511"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-01T15:05:42.337638"}
+{"type": "info", "msg": "  Nessun vettore estratto. Salto i prossimi step.", "timestamp": "2026-03-01T15:05:42.337751"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v2)", "timestamp": "2026-03-01T15:05:42.337869"}
+{"type": "info", "msg": "  Proposti: ['intense_thermal_contact', 'visual_heat_distortion', 'resonant_frequencies', 'surface_texture_warmth', 'atmospheric_pressure', 'absence_of_sensory_input']", "timestamp": "2026-03-01T15:06:23.597438"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v2)", "timestamp": "2026-03-01T15:06:23.597604"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-01T15:10:29.428429"}
+{"type": "info", "msg": "  Probe: intense_thermal_contact / Gemma3-1B-IT", "timestamp": "2026-03-01T15:10:29.429731"}
+{"type": "info", "msg": "  Probe OK: intense_thermal_contact", "timestamp": "2026-03-01T15:11:05.286372"}
+{"type": "info", "msg": "  Probe: visual_heat_distortion / Gemma3-1B-IT", "timestamp": "2026-03-01T15:11:05.289563"}
+{"type": "info", "msg": "  Probe OK: visual_heat_distortion", "timestamp": "2026-03-01T15:11:42.286772"}
+{"type": "info", "msg": "  Probe: resonant_frequencies / Gemma3-1B-IT", "timestamp": "2026-03-01T15:11:42.287971"}
+{"type": "info", "msg": "  Probe OK: resonant_frequencies", "timestamp": "2026-03-01T15:12:09.430914"}
+{"type": "info", "msg": "  Probe: surface_texture_warmth / Gemma3-1B-IT", "timestamp": "2026-03-01T15:12:09.432251"}
+{"type": "info", "msg": "  Probe OK: surface_texture_warmth", "timestamp": "2026-03-01T15:12:43.066782"}
+{"type": "info", "msg": "  Probe: atmospheric_pressure / Gemma3-1B-IT", "timestamp": "2026-03-01T15:12:43.067864"}
+{"type": "info", "msg": "  Probe OK: atmospheric_pressure", "timestamp": "2026-03-01T15:13:07.799382"}
+{"type": "info", "msg": "  Probe: absence_of_sensory_input / Gemma3-1B-IT", "timestamp": "2026-03-01T15:13:07.800742"}
+{"type": "info", "msg": "  Probe OK: absence_of_sensory_input", "timestamp": "2026-03-01T15:13:33.022176"}
+{"type": "step", "step": 4, "name": "Analisi geometrica separabilità", "timestamp": "2026-03-01T15:13:33.022420"}
+{"type": "info", "msg": "  Sub-vettore non trovato: intense_thermal_contact", "timestamp": "2026-03-01T15:13:33.027561"}
+{"type": "info", "msg": "  Sub-vettore non trovato: visual_heat_distortion", "timestamp": "2026-03-01T15:13:33.027871"}
+{"type": "info", "msg": "  Sub-vettore non trovato: resonant_frequencies", "timestamp": "2026-03-01T15:13:33.028304"}
+{"type": "info", "msg": "  Sub-vettore non trovato: surface_texture_warmth", "timestamp": "2026-03-01T15:13:33.028631"}
+{"type": "info", "msg": "  Sub-vettore non trovato: atmospheric_pressure", "timestamp": "2026-03-01T15:13:33.028925"}
+{"type": "info", "msg": "  Sub-vettore non trovato: absence_of_sensory_input", "timestamp": "2026-03-01T15:13:33.029332"}
+{"type": "info", "msg": "  Cosine matrix: troppo pochi vettori disponibili", "timestamp": "2026-03-01T15:13:33.029522"}
+{"type": "step", "step": 5, "name": "Steering test + giudizio M40", "timestamp": "2026-03-01T15:13:33.029611"}

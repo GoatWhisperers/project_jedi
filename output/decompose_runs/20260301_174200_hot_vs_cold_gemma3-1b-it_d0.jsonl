@@ -1,0 +1,16 @@
+{"type": "run_start", "concept": "hot_vs_cold", "model": "Gemma3-1B-IT", "max_depth": 0, "max_iter": 1, "dry_run": false, "timestamp": "2026-03-01T17:42:00.989248"}
+{"type": "decompose_start", "concept": "hot_vs_cold", "depth": 0, "timestamp": "2026-03-01T17:42:00.989609"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v1)", "timestamp": "2026-03-01T17:42:00.989733"}
+{"type": "info", "msg": "  Proposti: ['thermal_intensity', 'surface_interaction', 'immediate_response', 'sensory_distortion']", "timestamp": "2026-03-01T17:42:44.026450"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v1)", "timestamp": "2026-03-01T17:42:44.026613"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-01T17:47:20.096117"}
+{"type": "info", "msg": "  Probe: thermal_intensity / Gemma3-1B-IT", "timestamp": "2026-03-01T17:47:20.096954"}
+{"type": "info", "msg": "  Probe OK: thermal_intensity", "timestamp": "2026-03-01T17:48:00.150276"}
+{"type": "info", "msg": "  Probe: surface_interaction / Gemma3-1B-IT", "timestamp": "2026-03-01T17:48:00.151583"}
+{"type": "info", "msg": "  Probe OK: surface_interaction", "timestamp": "2026-03-01T17:48:37.602845"}
+{"type": "info", "msg": "  Probe: immediate_response / Gemma3-1B-IT", "timestamp": "2026-03-01T17:48:37.604321"}
+{"type": "info", "msg": "  Probe OK: immediate_response", "timestamp": "2026-03-01T17:49:18.928836"}
+{"type": "info", "msg": "  Probe: sensory_distortion / Gemma3-1B-IT", "timestamp": "2026-03-01T17:49:18.929593"}
+{"type": "info", "msg": "  Probe OK: sensory_distortion", "timestamp": "2026-03-01T17:49:47.078201"}
+{"type": "step", "step": 4, "name": "Analisi geometrica separabilità", "timestamp": "2026-03-01T17:49:47.078554"}
+{"type": "result", "step": 4, "concepts": ["hot_vs_cold", "thermal_intensity", "surface_interaction", "immediate_response", "sensory_distortion"], "matrix": [[1.0000000000000002, 0.3446958389820774, 0.3601414980395194, -0.004152960257842977, 0.038475670821867675], [0.3446958389820774, 1.0000000000000002, 0.20812622006914824, -0.20430794373313632, 0.051948947530932967], [0.3601414980395194, 0.20812622006914824, 1.0, 0.14573204978472631, -0.015364667609132139], [-0.004152960257842977, -0.20430794373313632, 0.14573204978472631, 1.0, -0.03269684808041838], [0.038475670821867675, 0.051948947530932967, -0.015364667609132139, -0.03269684808041838, 0.9999999999999999]], "layers_used": {"hot_vs_cold": {"layer": 23, "source": "summary(fallback)"}, "thermal_intensity": {"layer": 23, "source": "eval"}, "surface_interaction": {"layer": 23, "source": "eval"}, "immediate_response": {"layer": 18, "source": "eval"}, "sensory_distortion": {"layer": 19, "source": "eval"}}, "stats": {"min": -0.2043, "max": 0.3601, "mean": 0.0893}, "timestamp": "2026-03-01T17:49:47.089533"}

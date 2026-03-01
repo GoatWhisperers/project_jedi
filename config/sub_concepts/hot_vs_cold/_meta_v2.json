@@ -1,0 +1,9 @@
+{
+  "concept": "hot_vs_cold",
+  "model": "Gemma3-1B-IT",
+  "version": 2,
+  "timestamp": "2026-03-01T16:57:16.537366",
+  "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260228_152615_hot_vs_cold_Gemma3-1B-IT.jsonl",
+  "analysis": "",
+  "sub_concepts": []
+}

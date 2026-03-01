@@ -37,6 +37,7 @@ except ImportError:
 # ── Paths ──────────────────────────────────────────────────────────────────────
 ROOT           = Path(__file__).resolve().parent.parent
 VECTOR_LIBRARY = ROOT / "output" / "vector_library"
+VECTOR_LIB_ROOT = VECTOR_LIBRARY   # alias per compatibilità con decompose.py
 DEFAULT_OUTPUT = ROOT / "output" / "cosine_matrices"
 
 

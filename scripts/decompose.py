@@ -122,9 +122,11 @@ def run_probe_for_sub(
     with open(json_path) as f:
         data = json.load(f)
 
-    # Assicura che la categoria punti alla struttura sub
-    data["category"] = f"{category}/{parent_concept}"
-    data["concept"]  = f"sub/{sub_slug}"
+    # probe_concept.py usa normalize_name_for_path() che rimuove "/".
+    # Quindi concept deve essere solo lo slug (senza prefix "sub/"),
+    # e il path sub/ si ottiene mettendolo nella category.
+    data["category"] = f"{category}/{parent_concept}/sub"
+    data["concept"]  = sub_slug
 
     # Salva JSON patchato temporaneamente
     patched_path = json_path.parent / f"_tmp_{sub_slug}.json"
@@ -185,10 +187,10 @@ def run_cosine_step(
                 vectors[parent_concept] = vec
                 layers_used[parent_concept] = {"layer": layer, "source": source}
 
-    # Sub-vettori
+    # Sub-vettori (path: {category}/{parent}/sub/{slug}/{model_slug}/)
     for slug in sub_slugs:
         sub_dirs = list(VECTOR_LIB_ROOT.glob(
-            f"{category}/{parent_concept}/{model_slug}/sub/{slug}"
+            f"{category}/{parent_concept}/sub/{slug}/{model_slug}"
         ))
         if not sub_dirs:
             logger.info(f"  Sub-vettore non trovato: {slug}")
@@ -222,12 +224,26 @@ def run_cosine_step(
     logger.result(step=4, concepts=names, matrix=matrix.tolist(),
                   layers_used=layers_used, stats=stats)
 
-    # Salva heatmap
+    # Salva heatmap e JSON
     out_dir = DECOMPOSE_LOG
-    save_matrix_json(names, matrix, layers_used, model, out_dir,
-                     filename=f"cosine_{parent_concept}_{model_slug}.json")
-    save_heatmap(names, matrix, model, out_dir,
-                 filename=f"cosine_{parent_concept}_{model_slug}.png")
+    layers_by_concept  = {k: v["layer"]  for k, v in layers_used.items()}
+    sources_by_concept = {k: v["source"] for k, v in layers_used.items()}
+    save_matrix_json(
+        concepts=names,
+        matrix=matrix,
+        model_display=model,
+        layer_type="best_snr",
+        layers_used=layers_by_concept,
+        layer_sources=sources_by_concept,
+        output_path=out_dir / f"cosine_{parent_concept}_{model_slug}.json",
+    )
+    save_heatmap(
+        concepts=names,
+        matrix=matrix,
+        model_display=model,
+        layer_type="best_snr",
+        output_path=out_dir / f"cosine_{parent_concept}_{model_slug}.png",
+    )
 
     return {"concepts": names, "matrix": matrix.tolist(),
             "layers_used": layers_used, "stats": stats}
@@ -309,6 +325,7 @@ def decompose_concept(
             m40_url=m40_url,
             version=version,
             dry_run=dry_run,
+            meta=meta if meta else None,
         )
 
         # ── Step 3: MI50 estrae vettori ────────────────────────────────────────

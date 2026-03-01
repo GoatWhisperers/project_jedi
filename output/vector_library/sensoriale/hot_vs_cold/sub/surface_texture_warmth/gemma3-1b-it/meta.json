@@ -1,0 +1,24 @@
+{
+  "concept": "sub/surface_texture_warmth",
+  "category": "sensoriale/hot_vs_cold",
+  "model_path": "/mnt/raid0/gemma-3-1b-it",
+  "model_name": "Gemma3-1B-IT",
+  "n_pairs": 33,
+  "n_held_out": 5,
+  "token_position": "mean",
+  "deep_range": [
+    0.7,
+    0.9
+  ],
+  "layers": [
+    18,
+    19,
+    20,
+    21,
+    22,
+    23
+  ],
+  "vector_method": "mean_diff",
+  "date": "2026-03-01 15:12:41",
+  "run_id": "subsurface_texture_warmth_gemma3-1b-it_20260301_151218"
+}

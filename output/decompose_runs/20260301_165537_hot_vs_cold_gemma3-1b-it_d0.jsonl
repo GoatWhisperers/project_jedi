@@ -1,0 +1,13 @@
+{"type": "run_start", "concept": "hot_vs_cold", "model": "Gemma3-1B-IT", "max_depth": 0, "max_iter": 2, "dry_run": false, "timestamp": "2026-03-01T16:55:37.674361"}
+{"type": "decompose_start", "concept": "hot_vs_cold", "depth": 0, "timestamp": "2026-03-01T16:55:37.674634"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v1)", "timestamp": "2026-03-01T16:55:37.674757"}
+{"type": "info", "msg": "  Proposti: []", "timestamp": "2026-03-01T16:56:26.646444"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v1)", "timestamp": "2026-03-01T16:56:26.646610"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-01T16:56:26.646738"}
+{"type": "info", "msg": "  Nessun vettore estratto. Salto i prossimi step.", "timestamp": "2026-03-01T16:56:26.646853"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v2)", "timestamp": "2026-03-01T16:56:26.646971"}
+{"type": "info", "msg": "  Proposti: []", "timestamp": "2026-03-01T16:57:16.537940"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v2)", "timestamp": "2026-03-01T16:57:16.538088"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-01T16:57:16.538212"}
+{"type": "info", "msg": "  Nessun vettore estratto. Salto i prossimi step.", "timestamp": "2026-03-01T16:57:16.538320"}
+{"type": "decompose_end", "concept": "hot_vs_cold", "depth": 0, "validated_subs": [], "semantic_limit": false, "sub_results": {}, "timestamp": "2026-03-01T16:57:16.538420"}

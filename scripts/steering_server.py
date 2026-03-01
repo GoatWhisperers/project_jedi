@@ -272,27 +272,31 @@ def stream_with_injection(prompt, concept, vector_layer_idx, inject_layer_idx, a
     yield from stream_generate(prompt, max_new_tokens=max_new_tokens, hooks_fn=hooks_fn)
 
 
-def generate_with_injection(prompt, concept, vector_layer_idx, inject_layer_idx, alpha, gain=1.0, max_new_tokens=128, apply_to="new", multi_layers=None, layer_configs=None):
+def generate_with_injection(prompt, concept, vector_layer_idx, inject_layer_idx, alpha, gain=1.0, max_new_tokens=128, apply_to="new", multi_layers=None, layer_configs=None, preloaded_vec=None):
     """
-    layer_configs: list of {"layer": int, "gain": float} — per-layer control.
-                   When provided, overrides multi_layers and vector/inject_layer_idx.
-    multi_layers:  list of layer indices — legacy multi-layer mode (same gain for all).
-    Default:       single layer, vector_layer_idx → inject_layer_idx.
+    layer_configs:   list of {"layer": int, "gain": float} — per-layer control.
+                     When provided, overrides multi_layers and vector/inject_layer_idx.
+    multi_layers:    list of layer indices — legacy multi-layer mode (same gain for all).
+    preloaded_vec:   numpy array — bypass vector_library lookup (for sub-concept vectors).
+    Default:         single layer, vector_layer_idx → inject_layer_idx.
     Vectors are loaded directly from vector_library (ground truth, not catalog).
     """
-    available_layers, _ = get_available_layers(concept, State.active_model_name)
-    if not available_layers:
-        raise RuntimeError(
-            f"No vectors found for concept '{concept}' / model '{State.active_model_name}'. "
-            f"Run probe first."
-        )
+    if preloaded_vec is None:
+        available_layers, _ = get_available_layers(concept, State.active_model_name)
+        if not available_layers:
+            raise RuntimeError(
+                f"No vectors found for concept '{concept}' / model '{State.active_model_name}'. "
+                f"Run probe first."
+            )
+    else:
+        available_layers = [vector_layer_idx]  # not used for lookup when preloaded
 
     hooks = []
     prompt_len = len(State.tokenizer.encode(prompt))
     dtype = next(State.model.parameters()).dtype
 
-    def _make_hook_for_layer(layer_idx, layer_gain):
-        vec = _load_vec_for_layer(concept, State.active_model_name, layer_idx)
+    def _make_hook_for_layer(layer_idx, layer_gain, custom_vec=None):
+        vec = custom_vec if custom_vec is not None else _load_vec_for_layer(concept, State.active_model_name, layer_idx)
         if vec is None:
             return None
         steer = torch.tensor(vec, dtype=dtype, device=State.device) * float(alpha) * float(layer_gain)
@@ -311,12 +315,12 @@ def generate_with_injection(prompt, concept, vector_layer_idx, inject_layer_idx,
             if hook is not None:
                 hooks.append(hook)
     else:
-        if vector_layer_idx not in available_layers:
+        if preloaded_vec is None and vector_layer_idx not in available_layers:
             raise RuntimeError(
                 f"Layer {vector_layer_idx} not available for '{concept}' / '{State.active_model_name}'. "
                 f"Available: {available_layers}"
             )
-        vec = _load_vec_for_layer(concept, State.active_model_name, vector_layer_idx)
+        vec = preloaded_vec if preloaded_vec is not None else _load_vec_for_layer(concept, State.active_model_name, vector_layer_idx)
         if vec is None:
             raise RuntimeError(f"Vector file missing for layer {vector_layer_idx}")
         steer = torch.tensor(vec, dtype=dtype, device=State.device) * float(alpha) * float(gain)
@@ -612,6 +616,15 @@ class Handler(BaseHTTPRequestHandler):
             mode = payload.get("mode", "inject")
             multi = bool(payload.get("multi", False))
             layer_configs = payload.get("layer_configs", None)  # [{layer, gain}, ...]
+            vector_path = payload.get("vector_path", None)      # direct .npy path (sub-concepts)
+
+            # Load preloaded_vec if vector_path provided (bypasses catalog lookup)
+            preloaded_vec = None
+            if vector_path:
+                try:
+                    preloaded_vec = np.load(vector_path)
+                except Exception as e:
+                    return json_response(self, 400, {"error": f"Cannot load vector_path '{vector_path}': {e}"})
 
             if messages:
                 formatted_prompt = build_chat_prompt(messages)
@@ -622,14 +635,17 @@ class Handler(BaseHTTPRequestHandler):
                 return json_response(self, 400, {"error": "empty_prompt"})
 
             # Resolve multi_layers from vector_library before acquiring lock
-            avail_layers, best_layer = get_available_layers(concept, State.active_model_name)
+            if preloaded_vec is None:
+                avail_layers, best_layer = get_available_layers(concept, State.active_model_name)
+            else:
+                avail_layers = [vector_layer]  # not used for lookup when preloaded
             if multi and not layer_configs:
                 multi_layers_resolved = avail_layers
             else:
                 multi_layers_resolved = None
 
-            # T5: Validate requested layers against available
-            if mode != "baseline" and alpha != 0.0 and not layer_configs and not multi:
+            # T5: Validate requested layers against available (skip if preloaded)
+            if preloaded_vec is None and mode != "baseline" and alpha != 0.0 and not layer_configs and not multi:
                 if avail_layers and vector_layer not in avail_layers:
                     return json_response(self, 400, {
                         "error": f"Layer {vector_layer} not available for '{concept}' / '{State.active_model_name}'. "
@@ -652,6 +668,7 @@ class Handler(BaseHTTPRequestHandler):
                             apply_to="new",
                             multi_layers=multi_layers_resolved,
                             layer_configs=layer_configs,
+                            preloaded_vec=preloaded_vec,
                         )
                 except Exception as e:
                     return json_response(self, 500, {"error": str(e)})

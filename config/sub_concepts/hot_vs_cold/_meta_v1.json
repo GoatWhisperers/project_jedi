@@ -1,0 +1,124 @@
+{
+  "concept": "hot_vs_cold",
+  "model": "Gemma3-1B-IT",
+  "version": 1,
+  "timestamp": "2026-03-01T17:42:44.025605",
+  "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260228_152615_hot_vs_cold_Gemma3-1B-IT.jsonl",
+  "analysis": "Il vettore broad 'hot_vs_cold' confonde la rappresentazione semantica perché la distinzione si basa su una dimensione continua di intensità termica. La decomposizione in sub-concetti come 'thermal_intensity', 'surface_interaction', 'immediate_response', e 'sensory_distortion' cattura le diverse sfaccettature di questa dimensione, consentendo una rappresentazione più precisa e granulare dell'esperienza sensoriale.  La sovrapposizione tra i concetti è inevitabile, ma la scomposizione permette di gestire meglio la variabilità e la complessità dell'esperienza umana.",
+  "sub_concepts": [
+    {
+      "slug": "thermal_intensity",
+      "pos_label": "sensazione di calore intenso",
+      "neg_label": "sensazione di freddo intenso",
+      "description": "Questo sub-concetto cattura la percezione diretta dell'intensità della temperatura, sia in termini di calore bruciante che di freddo pungente. Si concentra sull'impatto immediato sulla pelle e sui nervi sensoriali.",
+      "why_distinct": "È il livello più elementare della distinzione, focalizzato sull'esperienza sensoriale primaria. Distinto da altri concetti che riguardano le conseguenze emotive o psicologiche del calore o del freddo.",
+      "pos_examples": [
+        "frase 1",
+        "frase 2",
+        "frase 3",
+        "frase 7",
+        "frase 8",
+        "frase 9",
+        "frase 10"
+      ],
+      "neg_examples": [
+        "frase 1",
+        "frase 2",
+        "frase 3",
+        "frase 7",
+        "frase 8",
+        "frase 9",
+        "frase 10"
+      ]
+    },
+    {
+      "slug": "surface_interaction",
+      "pos_label": "contatto con superfici calde",
+      "neg_label": "contatto con superfici fredde",
+      "description": "Questo sub-concetto si concentra sulla natura del contatto fisico - la superficie su cui si applica il calore o il freddo.  Include materiali come metallo, ceramica, pelle, e le conseguenze immediate di questo contatto.",
+      "why_distinct": "La natura del contatto (solido, liquido, gassoso) e il materiale influenzano significativamente l'esperienza termica. Distinto da concetti che si concentrano solo sull'intensità della temperatura.",
+      "pos_examples": [
+        "frase 1",
+        "frase 2",
+        "frase 3",
+        "frase 4",
+        "frase 5",
+        "frase 6",
+        "frase 8",
+        "frase 9"
+      ],
+      "neg_examples": [
+        "frase 1",
+        "frase 2",
+        "frase 3",
+        "frase 4",
+        "frase 5",
+        "frase 6",
+        "frase 8",
+        "frase 9"
+      ]
+    },
+    {
+      "slug": "immediate_response",
+      "pos_label": "reazioni immediate del corpo",
+      "neg_label": "reazioni immediate del corpo",
+      "description": "Questo sub-concetto si concentra sulle risposte fisiologiche immediate al calore o al freddo, come arrossamento, sudorazione, brividi, contrazioni muscolari, o cambiamenti nella respirazione.  È l'effetto immediato dell'esperienza sensoriale.",
+      "why_distinct": "Si distingue da concetti più astratti che riguardano la percezione o l'emozione. Si concentra esclusivamente sull'esperienza fisica immediata.",
+      "pos_examples": [
+        "frase 1",
+        "frase 2",
+        "frase 3",
+        "frase 4",
+        "frase 5",
+        "frase 6",
+        "frase 7",
+        "frase 8",
+        "frase 9",
+        "frase 10"
+      ],
+      "neg_examples": [
+        "frase 1",
+        "frase 2",
+        "frase 3",
+        "frase 4",
+        "frase 5",
+        "frase 6",
+        "frase 7",
+        "frase 8",
+        "frase 9",
+        "frase 10"
+      ]
+    },
+    {
+      "slug": "sensory_distortion",
+      "pos_label": "alterazione della percezione sensoriale",
+      "neg_label": "alterazione della percezione sensoriale",
+      "description": "Questo sub-concetto si concentra sull'effetto del calore o del freddo sulla percezione generale della realtà.  Include la distorsione della vista, dell'udito, o dell'olfatto, causata dall'esperienza termica.",
+      "why_distinct": "È un livello più complesso che considera l'impatto del calore o del freddo sulla cognizione e sulla percezione. Distinto da concetti che si limitano alla sensazione fisica.",
+      "pos_examples": [
+        "frase 1",
+        "frase 2",
+        "frase 3",
+        "frase 4",
+        "frase 5",
+        "frase 6",
+        "frase 7",
+        "frase 8",
+        "frase 9",
+        "frase 10"
+      ],
+      "neg_examples": [
+        "frase 1",
+        "frase 2",
+        "frase 3",
+        "frase 4",
+        "frase 5",
+        "frase 6",
+        "frase 7",
+        "frase 8",
+        "frase 9",
+        "frase 10"
+      ]
+    }
+  ]
+}

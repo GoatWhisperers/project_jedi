@@ -1,0 +1,3 @@
+{"type": "run_start", "concept": "hot_vs_cold", "model": "Gemma3-1B-IT", "max_depth": 1, "max_iter": 2, "dry_run": false, "timestamp": "2026-03-01T14:55:25.633153"}
+{"type": "decompose_start", "concept": "hot_vs_cold", "depth": 0, "timestamp": "2026-03-01T14:55:25.633519"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v1)", "timestamp": "2026-03-01T14:55:25.633651"}

@@ -63,19 +63,30 @@ class M40Client:
 # ── Helpers ────────────────────────────────────────────────────────────────────
 
 def _parse_json(raw: str, fallback: dict) -> dict:
-    """Estrae e parsa il primo oggetto JSON trovato nella stringa."""
+    """Estrae e parsa il primo oggetto JSON trovato nella stringa.
+    Se il JSON è annidato (es. M40 wrappa sub_concepts in un dict esterno),
+    cerca ricorsivamente la chiave sub_concepts."""
+    parsed = None
     try:
-        return json.loads(raw.strip())
+        parsed = json.loads(raw.strip())
     except json.JSONDecodeError:
         pass
-    match = re.search(r'\{.*\}', raw, re.DOTALL)
-    if match:
-        try:
-            return json.loads(match.group())
-        except json.JSONDecodeError:
-            pass
-    print(f"    [WARN] JSON parse fallito. Raw preview: {raw[:150]!r}")
-    return fallback
+    if parsed is None:
+        match = re.search(r'\{.*\}', raw, re.DOTALL)
+        if match:
+            try:
+                parsed = json.loads(match.group())
+            except json.JSONDecodeError:
+                pass
+    if parsed is None:
+        print(f"    [WARN] JSON parse fallito. Raw preview: {raw[:150]!r}")
+        return fallback
+    # Recovery: se sub_concepts non è al top-level, cerca in dict annidati
+    if "sub_concepts" not in parsed:
+        for v in parsed.values():
+            if isinstance(v, dict) and "sub_concepts" in v:
+                return v
+    return parsed
 
 
 def _sample_sentences(sentences: list, n: int = 10) -> list:
@@ -199,14 +210,19 @@ Rispondi SEMPRE e SOLO con JSON valido."""
 def step1_analyze(
     concept: str,
     model: str,
-    m40: M40Client,
-    dry_run: bool,
-    version: int,
+    m40_url: str = DEFAULT_M40_URL,
+    dry_run: bool = False,
+    version: int = 1,
+    feedback: dict = None,
+    m40: M40Client = None,   # compatibilità chiamata diretta
 ) -> dict:
     """
     Analizza il vettore broad e propone sub-concetti.
     Ritorna il dict parsed dalla risposta M40.
     """
+    if m40 is None:
+        m40 = M40Client(m40_url)
+
     print(f"\nStep 1: Analisi M40 per '{concept}'...")
 
     # Carica config concept
@@ -235,20 +251,20 @@ def step1_analyze(
     user_prompt = f"""CONCETTO BROAD: {concept}
 CATEGORIA: {category}
 
-FRASI TRAINING (campione positive):
+FRASI TRAINING (campione positive — polo {concept.split('_vs_')[0] if '_vs_' in concept else 'pos'}):
 {pos_block}
 
-FRASI TRAINING (campione negative):
+FRASI TRAINING (campione negative — polo {concept.split('_vs_')[1] if '_vs_' in concept else 'neg'}):
 {neg_block}
 
-OUTPUT STEERED CON QUESTO VETTORE:
-HOT (alpha=+1.0):
+ESEMPI DI GENERAZIONE STEERED:
+Polo positivo (iniezione +alpha):
 {hot_block}
-COLD (alpha=-1.0):
+Polo negativo (iniezione -alpha):
 {cold_block}
 
 KEYWORDS RILEVATE: {keywords}
-SCORE MEDI: HOT={hot_avg}, COLD={cold_avg}
+SCORE MEDI: polo_pos={hot_avg}, polo_neg={cold_avg}
 
 Identifica 4-6 sub-concetti specifici. Per ognuno:
 {{
@@ -314,18 +330,33 @@ Identifica 4-6 sub-concetti specifici. Per ognuno:
 
 def step2_generate(
     concept: str,
-    meta: dict,
-    m40: M40Client,
-    dry_run: bool,
+    model: str = None,         # accettato ma non usato (compat. decompose.py)
+    m40_url: str = DEFAULT_M40_URL,
+    version: int = 1,
+    dry_run: bool = False,
+    meta: dict = None,         # se None, carica da file
+    m40: M40Client = None,     # compatibilità chiamata diretta
 ) -> None:
     """
     Per ogni sub-concetto in meta, genera 100 frasi pos + 100 neg.
     Salva in config/sub_concepts/{concept}/{slug}.json
     """
+    if m40 is None:
+        m40 = M40Client(m40_url)
+
+    if meta is None:
+        if dry_run:
+            print("\n[DRY-RUN] Step 2 skip: nessuna meta in modalità dry-run (step 1 non ha salvato).")
+            return
+        meta = _load_meta(concept, version)
+
     sub_concepts = meta.get("sub_concepts", [])
     category     = meta.get("category", "sensoriale")
 
     if not sub_concepts:
+        if dry_run:
+            print("\n[DRY-RUN] Step 2 skip: meta vuota (step 1 dry-run non ha proposto sub-concetti).")
+            return
         print("\n[WARN] Nessun sub-concetto trovato nel _meta. Esegui step 1 prima.")
         return
 

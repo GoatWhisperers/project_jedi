@@ -1,0 +1,42 @@
+{
+  "concept": "absence_of_sensory_input",
+  "parent_concept": "hot_vs_cold",
+  "category": "sensoriale",
+  "pos_label": "cold",
+  "neg_label": "hot",
+  "description": "Rappresenta la mancanza di sensazioni, come assenza di calore, luce o suono. È la negazione di qualsiasi input sensoriale.",
+  "positive": [
+    "Il freddo mi pervade, un'assenza di calore sulla pelle.",
+    "Un vuoto di tepore, un'assenza totale di sensazione di calore.",
+    "La mancanza di calore è un'interruzione nel mio percepire.",
+    "Senza calore, il mio corpo è un'isola di assenza.",
+    "Un'assenza di calore, un'esperienza di vuoto sensoriale.",
+    "Il freddo è l'assenza di qualsiasi sensazione di calore.",
+    "Un'interruzione del calore, un'assenza di percezione.",
+    "La mancanza di calore mi avvolge in un silenzio di sensazioni.",
+    "Senza calore, il mio corpo è un'eco di assenza.",
+    "Il freddo rappresenta l'assenza di qualsiasi sensazione di calore.",
+    "Un'assenza di calore, una pausa nel mio sentire.",
+    "Il freddo si manifesta come l'assenza di sensazione di calore.",
+    "Un vuoto di calore, un'assenza di percezione termica.",
+    "L'assenza di calore è un'esperienza di vuoto.",
+    "Senza calore, il mio corpo percepisce solo l'assenza."
+  ],
+  "negative": [
+    "L'assenza di calore brucia sulla mia pelle, un vuoto.",
+    "Un'assenza di calore, un'esperienza di dolore freddo.",
+    "Senza calore, il mio corpo reagisce con un'assenza di sensazione.",
+    "L'assenza di calore è una mancanza, un vuoto incolmabile.",
+    "Un vuoto di calore, un'assenza di tepore, una sofferenza.",
+    "L'assenza di calore mi fa sentire svuotato, privo di sensazioni.",
+    "Senza calore, il mio corpo è un'ombra di assenza.",
+    "L'assenza di calore provoca un'interruzione del mio percepire.",
+    "Un'assenza di calore, un'esperienza di vuoto e disagio.",
+    "L'assenza di calore è una negazione della sensazione di calore.",
+    "Senza calore, il mio corpo si contrae in un'assenza di sensazione.",
+    "L'assenza di calore è una mancanza profonda, un vuoto.",
+    "Un vuoto di calore, un'assenza che mi penetra.",
+    "L'assenza di calore è una ferita nel mio corpo.",
+    "Senza calore, il mio corpo percepisce solo l'assenza di conforto."
+  ]
+}

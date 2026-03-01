@@ -1,0 +1,5 @@
+{"type": "run_start", "concept": "hot_vs_cold", "model": "Gemma3-1B-IT", "max_depth": 1, "max_iter": 2, "dry_run": true, "timestamp": "2026-03-01T14:47:31.496730"}
+{"type": "decompose_start", "concept": "hot_vs_cold", "depth": 0, "timestamp": "2026-03-01T14:47:31.497080"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v1)", "timestamp": "2026-03-01T14:47:31.497207"}
+{"type": "info", "msg": "  Proposti: []", "timestamp": "2026-03-01T14:47:31.500551"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v1)", "timestamp": "2026-03-01T14:47:31.500681"}

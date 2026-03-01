@@ -1,0 +1,41 @@
+{
+  "concept": "atmospheric_pressure",
+  "parent_concept": "hot_vs_cold",
+  "category": "sensoriale",
+  "pos_label": "cold",
+  "neg_label": "hot",
+  "description": "Rappresenta un'esperienza di pressione o peso, spesso descritta come opprimente o pesante, associata a temperature fredde.  Si concentra sulla sensazione di pressione.",
+  "positive": [
+    "Il vento freddo mi appiattiva il petto, un peso costante.",
+    "La pressione sull'addome era palpabile, un'intensità crescente.",
+    "Sentivo il freddo come un peso sul mio torace, quasi insopportabile.",
+    "Il gelo mi opprimeva, una pressione uniforme su tutto il corpo.",
+    "Un senso di pressione profonda si espandeva dalle mie costole.",
+    "La pressione mi legava, un peso freddo che mi impediva di respirare.",
+    "Il freddo mi esercitava una pressione costante sul diaframma.",
+    "Il peso del freddo si faceva sentire, un'oppressione leggera ma persistente.",
+    "La pressione mi trasmetteva un senso di pesantezza, un freddo intenso.",
+    "Il mio corpo era schiacciato dal freddo, un peso insopportabile.",
+    "Un'atmosfera di pressione fredda mi schiacciava il petto.",
+    "La pressione mi sembrava di aderire alla pelle, fredda e insistente.",
+    "Sotto il freddo, provavo una pressione che mi opprimeva il torace.",
+    "Il freddo mi imprimava un peso sul petto, una sensazione intensa.",
+    "Sentivo una pressione fredda che mi rendeva difficile muovermi."
+  ],
+  "negative": [
+    "Il freddo mi schiacciava, una pressione costante e opprimente.",
+    "Il peso del gelo mi rendeva difficile respirare, una pressione intensa.",
+    "La pressione sul mio corpo era pesante, un freddo insopportabile.",
+    "Sentivo un'oppressione fredda che mi limitava i movimenti.",
+    "La pressione mi faceva sentire schiacciato, un freddo intenso.",
+    "Il gelo mi opprimeva, una sensazione di peso e di oppressione.",
+    "La pressione mi era come un peso, un freddo penetrante.",
+    "Il freddo mi rendeva pesante, una pressione costante e dolorosa.",
+    "Sotto la pressione del freddo, il mio corpo si sentiva oppresso.",
+    "La pressione mi limitava, un freddo intenso e insopportabile.",
+    "Sentivo una pressione fredda che mi schiacciava il petto.",
+    "Il gelo mi opprimeva, un peso intenso e costante.",
+    "La pressione mi rendeva difficile respirare, un freddo pungente.",
+    "Provavo una pressione fredda che mi opprimeva il torace."
+  ]
+}

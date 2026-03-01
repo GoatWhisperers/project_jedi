@@ -1,0 +1,16 @@
+{"type": "run_start", "concept": "hot_vs_cold", "model": "Gemma3-1B-IT", "max_depth": 0, "max_iter": 2, "dry_run": false, "timestamp": "2026-03-01T17:10:59.609280"}
+{"type": "decompose_start", "concept": "hot_vs_cold", "depth": 0, "timestamp": "2026-03-01T17:10:59.609643"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v1)", "timestamp": "2026-03-01T17:10:59.609769"}
+{"type": "info", "msg": "  Proposti: ['intense_thermal_sensation', 'radiant_illumination', 'metallic_heat_transfer', 'sensory_distortion']", "timestamp": "2026-03-01T17:11:35.950705"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v1)", "timestamp": "2026-03-01T17:11:35.950919"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-01T17:16:22.376876"}
+{"type": "info", "msg": "  Probe: intense_thermal_sensation / Gemma3-1B-IT", "timestamp": "2026-03-01T17:16:22.378085"}
+{"type": "info", "msg": "  Probe OK: intense_thermal_sensation", "timestamp": "2026-03-01T17:16:56.748872"}
+{"type": "info", "msg": "  Probe: radiant_illumination / Gemma3-1B-IT", "timestamp": "2026-03-01T17:16:56.751363"}
+{"type": "info", "msg": "  Probe OK: radiant_illumination", "timestamp": "2026-03-01T17:17:31.800772"}
+{"type": "info", "msg": "  Probe: metallic_heat_transfer / Gemma3-1B-IT", "timestamp": "2026-03-01T17:17:31.802103"}
+{"type": "info", "msg": "  Probe OK: metallic_heat_transfer", "timestamp": "2026-03-01T17:18:07.654994"}
+{"type": "info", "msg": "  Probe: sensory_distortion / Gemma3-1B-IT", "timestamp": "2026-03-01T17:18:07.656044"}
+{"type": "info", "msg": "  Probe OK: sensory_distortion", "timestamp": "2026-03-01T17:18:50.054161"}
+{"type": "step", "step": 4, "name": "Analisi geometrica separabilità", "timestamp": "2026-03-01T17:18:50.054549"}
+{"type": "result", "step": 4, "concepts": ["hot_vs_cold", "intense_thermal_sensation", "radiant_illumination", "metallic_heat_transfer", "sensory_distortion"], "matrix": [[1.0000000000000002, 0.39774138306938556, 0.21167032772492747, -0.04367309298284866, -0.02757261393502808], [0.39774138306938556, 1.0, 0.3284895417783173, -0.028221252959253623, -0.17772288652409743], [0.21167032772492747, 0.3284895417783173, 0.9999999999999999, 0.1510009601373581, 0.30965746678914485], [-0.04367309298284866, -0.028221252959253623, 0.1510009601373581, 1.0000000000000002, 0.29872010827427214], [-0.02757261393502808, -0.17772288652409743, 0.30965746678914485, 0.29872010827427214, 1.0]], "layers_used": {"hot_vs_cold": {"layer": 23, "source": "summary(fallback)"}, "intense_thermal_sensation": {"layer": 18, "source": "eval"}, "radiant_illumination": {"layer": 19, "source": "eval"}, "metallic_heat_transfer": {"layer": 22, "source": "eval"}, "sensory_distortion": {"layer": 18, "source": "eval"}}, "stats": {"min": -0.1777, "max": 0.3977, "mean": 0.142}, "timestamp": "2026-03-01T17:18:50.065721"}

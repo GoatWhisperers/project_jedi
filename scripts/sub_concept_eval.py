@@ -83,8 +83,8 @@ def find_best_layer(concept_slug: str, model_slug: str, parent: Optional[str] = 
     """
     # Cerca il path nella vector library
     if parent:
-        # Sub-concetto: cerca in tutte le categorie sotto parent
-        candidates = list(VECTOR_LIB_ROOT.glob(f"*/{parent}/{model_slug}/sub/{concept_slug}"))
+        # Sub-concetto: path = vector_library/*/{parent}/sub/{slug}/{model_slug}/
+        candidates = list(VECTOR_LIB_ROOT.glob(f"*/{parent}/sub/{concept_slug}/{model_slug}"))
     else:
         candidates = list(VECTOR_LIB_ROOT.glob(f"*/{concept_slug}/{model_slug}"))
 
@@ -125,7 +125,7 @@ def load_vector_path(concept_slug: str, model_slug: str,
                      layer: int, parent: Optional[str] = None) -> Optional[Path]:
     """Ritorna il path al .npy per un dato layer."""
     if parent:
-        candidates = list(VECTOR_LIB_ROOT.glob(f"*/{parent}/{model_slug}/sub/{concept_slug}"))
+        candidates = list(VECTOR_LIB_ROOT.glob(f"*/{parent}/sub/{concept_slug}/{model_slug}"))
     else:
         candidates = list(VECTOR_LIB_ROOT.glob(f"*/{concept_slug}/{model_slug}"))
     if not candidates:
@@ -165,8 +165,11 @@ class SteeringClient:
         gain: int,
         alpha: float,
         max_new_tokens: int = DEFAULT_MAX_TOKENS_GEN,
+        npy_path: Optional[Path] = None,
     ) -> str:
-        """Genera testo con iniezione del vettore concept al layer dato."""
+        """Genera testo con iniezione del vettore concept al layer dato.
+        Se npy_path è fornito, il vettore viene caricato direttamente dal file
+        (bypassa il catalog lookup — necessario per sub-concept vectors)."""
         payload = {
             "prompt": prompt,
             "concept": concept,
@@ -178,6 +181,8 @@ class SteeringClient:
             "mode": "inject",
             "multi": False,
         }
+        if npy_path is not None:
+            payload["vector_path"] = str(npy_path)
         r = requests.post(f"{self.base_url}/api/generate", json=payload, timeout=120)
         r.raise_for_status()
         return r.json()["text"]
@@ -383,8 +388,9 @@ def run_eval(
         if layer is None:
             print(f"  ⚠ {slug} — nessun vettore trovato. Esegui probe prima. SKIP.")
             continue
-        sub_info.append({**sub, "layer": layer})
-        print(f"  ✓ {slug} → L{layer}")
+        npy_path = load_vector_path(slug, model_slug, layer, parent=parent_concept)
+        sub_info.append({**sub, "layer": layer, "npy_path": npy_path})
+        print(f"  ✓ {slug} → L{layer} ({npy_path})")
 
     if len(sub_info) < 2:
         print("ERRORE: servono almeno 2 sub-concetti con vettori estratti")
@@ -413,10 +419,11 @@ def run_eval(
         for p_idx, prompt in enumerate(prompts):
             print(f"  Prompt {p_idx+1}/{n_prompts}...", end=" ", flush=True)
 
-            # Genera con sub_A
+            # Genera con sub_A (usa il vettore del sub-concept, non il broad)
             try:
                 text_a = steering.generate_with_vector(
-                    prompt, parent_concept, sub_a["layer"], gain, alpha, max_tokens
+                    prompt, sub_a["slug"], sub_a["layer"], gain, alpha, max_tokens,
+                    npy_path=sub_a.get("npy_path"),
                 )
             except requests.RequestException as e:
                 print(f"[ERR A: {e}]")
@@ -425,7 +432,8 @@ def run_eval(
             # Genera con sub_B
             try:
                 text_b = steering.generate_with_vector(
-                    prompt, parent_concept, sub_b["layer"], gain, alpha, max_tokens
+                    prompt, sub_b["slug"], sub_b["layer"], gain, alpha, max_tokens,
+                    npy_path=sub_b.get("npy_path"),
                 )
             except requests.RequestException as e:
                 print(f"[ERR B: {e}]")
