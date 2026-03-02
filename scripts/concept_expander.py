@@ -29,19 +29,33 @@ ROOT            = Path(__file__).resolve().parent.parent
 CONCEPTS_DIR    = ROOT / "config" / "concepts"
 SUB_CONCEPTS_DIR = ROOT / "config" / "sub_concepts"
 EVAL_SESSIONS_DIR = ROOT / "output" / "eval_sessions"
+DIALOGUE_DIR    = ROOT / "output" / "m40_dialogues"
 
 # ── Defaults ───────────────────────────────────────────────────────────────────
 DEFAULT_M40_URL = "http://localhost:11435"
 
 
+# ── Dialogue logger ────────────────────────────────────────────────────────────
+
+def _append_dialogue(path: Path, entry: dict) -> None:
+    """Appende una voce JSONL al file di dialogo M40. Crea la directory se necessario."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "a", encoding="utf-8") as f:
+        f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+
+
 # ── M40 Client ─────────────────────────────────────────────────────────────────
 
 class M40Client:
-    def __init__(self, base_url: str = "http://localhost:11435"):
+    def __init__(self, base_url: str = "http://localhost:11435",
+                 dialogue_path: Path = None):
         self.base_url = base_url.rstrip("/")
+        self._dialogue_path = dialogue_path  # Path al JSONL di log (None = no log)
 
-    def _call(self, system: str, user: str, max_tokens: int = 2000, temperature: float = 0.3) -> str:
-        """Chiamata stateless: system + user, nessun contesto accumulato."""
+    def _call(self, system: str, user: str, max_tokens: int = 2000,
+              temperature: float = 0.3, step_label: str = "") -> str:
+        """Chiamata stateless: system + user, nessun contesto accumulato.
+        Se dialogue_path è impostato, ogni chiamata viene loggata in JSONL."""
         r = requests.post(
             f"{self.base_url}/v1/chat/completions",
             json={
@@ -57,7 +71,16 @@ class M40Client:
             timeout=600,
         )
         r.raise_for_status()
-        return r.json()["choices"][0]["message"]["content"]
+        content = r.json()["choices"][0]["message"]["content"]
+        if self._dialogue_path:
+            _append_dialogue(self._dialogue_path, {
+                "timestamp": datetime.now().isoformat(),
+                "step": step_label,
+                "system": system,
+                "user": user,
+                "raw_response": content,
+            })
+        return content
 
 
 # ── Helpers ────────────────────────────────────────────────────────────────────
@@ -207,6 +230,12 @@ Rispondi SEMPRE e SOLO con JSON valido."""
 
 # ── Step 1: Analisi → proposta sub-concetti ────────────────────────────────────
 
+def _dialogue_path_for(concept: str, model: str, version: int, script: str) -> Path:
+    """Percorso JSONL per i dialoghi M40 di un run specifico."""
+    model_slug = model.lower().replace(" ", "-") if model else "unknown"
+    return DIALOGUE_DIR / concept / model_slug / f"{script}_v{version}.jsonl"
+
+
 def step1_analyze(
     concept: str,
     model: str,
@@ -222,6 +251,10 @@ def step1_analyze(
     """
     if m40 is None:
         m40 = M40Client(m40_url)
+
+    # Attiva il logger dialoghi su questo client per tutta la step1
+    if not dry_run and m40._dialogue_path is None:
+        m40._dialogue_path = _dialogue_path_for(concept, model, version, "concept_expander")
 
     print(f"\nStep 1: Analisi M40 per '{concept}'...")
 
@@ -293,7 +326,8 @@ Identifica 4-6 sub-concetti specifici. Per ognuno:
         return {}
 
     print("  Chiamata M40 (analisi)...", end=" ", flush=True)
-    raw = m40._call(SYSTEM_ANALYSIS, user_prompt, max_tokens=2000, temperature=0.4)
+    raw = m40._call(SYSTEM_ANALYSIS, user_prompt, max_tokens=2000, temperature=0.4,
+                    step_label=f"step1_analysis_v{version}")
     print("OK")
 
     result = _parse_json(raw, {"sub_concepts": [], "analysis": raw[:300]})
@@ -330,7 +364,7 @@ Identifica 4-6 sub-concetti specifici. Per ognuno:
 
 def step2_generate(
     concept: str,
-    model: str = None,         # accettato ma non usato (compat. decompose.py)
+    model: str = None,
     m40_url: str = DEFAULT_M40_URL,
     version: int = 1,
     dry_run: bool = False,
@@ -343,6 +377,10 @@ def step2_generate(
     """
     if m40 is None:
         m40 = M40Client(m40_url)
+
+    # Attiva il logger dialoghi (riusa lo stesso file di step1 se esiste già)
+    if not dry_run and m40._dialogue_path is None:
+        m40._dialogue_path = _dialogue_path_for(concept, model or "", version, "concept_expander")
 
     if meta is None:
         if dry_run:
@@ -409,7 +447,8 @@ Regole RIGIDE:
             continue
 
         try:
-            raw = m40._call(SYSTEM_DATASET, user_prompt, max_tokens=4000, temperature=0.7)
+            raw = m40._call(SYSTEM_DATASET, user_prompt, max_tokens=4000, temperature=0.7,
+                            step_label=f"step2_dataset_{slug}_v{version}")
         except requests.exceptions.Timeout:
             print(f"[TIMEOUT — skip]")
             continue

@@ -33,6 +33,7 @@ ROOT             = Path(__file__).resolve().parent.parent
 SUB_CONCEPTS_DIR = ROOT / "config" / "sub_concepts"
 VECTOR_LIB_ROOT  = ROOT / "output" / "vector_library"
 EVAL_OUTPUT_DIR  = ROOT / "output" / "sub_concept_evals"
+DIALOGUE_DIR     = ROOT / "output" / "m40_dialogues"
 CATALOG_PATH     = ROOT / "output" / "catalog.json"
 
 # ── Defaults ───────────────────────────────────────────────────────────────────
@@ -50,6 +51,15 @@ NEUTRAL_PROMPTS = [
     "Write about what the inside of your mouth feels like right now.",
     "Describe the sensation in your hands at this moment.",
 ]
+
+
+# ── Dialogue logger ────────────────────────────────────────────────────────────
+
+def _append_dialogue(path: Path, entry: dict) -> None:
+    """Appende una voce JSONL al file di dialogo M40."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "a", encoding="utf-8") as f:
+        f.write(json.dumps(entry, ensure_ascii=False) + "\n")
 
 
 # ── Helpers ────────────────────────────────────────────────────────────────────
@@ -213,10 +223,13 @@ Il tuo compito è valutare se due testi prodotti da iniezione di vettori concept
 sono fenomenologicamente distinguibili — ovvero se catturano aspetti sensoriali distinti.
 Rispondi SEMPRE e SOLO con JSON valido. Nessun testo fuori dal JSON."""
 
-    def __init__(self, base_url: str = DEFAULT_M40_URL):
+    def __init__(self, base_url: str = DEFAULT_M40_URL,
+                 dialogue_path: Path = None):
         self.base_url = base_url.rstrip("/")
+        self._dialogue_path = dialogue_path  # Path al JSONL di log (None = no log)
 
-    def _call(self, user_msg: str, max_tokens: int = DEFAULT_MAX_TOKENS_EVAL) -> str:
+    def _call(self, user_msg: str, max_tokens: int = DEFAULT_MAX_TOKENS_EVAL,
+              step_label: str = "") -> str:
         r = requests.post(
             f"{self.base_url}/v1/chat/completions",
             json={
@@ -232,7 +245,16 @@ Rispondi SEMPRE e SOLO con JSON valido. Nessun testo fuori dal JSON."""
             timeout=180,
         )
         r.raise_for_status()
-        return r.json()["choices"][0]["message"]["content"]
+        content = r.json()["choices"][0]["message"]["content"]
+        if self._dialogue_path:
+            _append_dialogue(self._dialogue_path, {
+                "timestamp": datetime.now().isoformat(),
+                "step": step_label,
+                "system": self.SYSTEM_PROMPT,
+                "user": user_msg,
+                "raw_response": content,
+            })
+        return content
 
     def judge_pair(
         self,
@@ -261,7 +283,7 @@ Rispondi SEMPRE e SOLO con JSON valido. Nessun testo fuori dal JSON."""
             f'"overlap_description": "...", '
             f'"feedback_for_refinement": "..."}}'
         )
-        raw = self._call(msg)
+        raw = self._call(msg, step_label=f"step5_judge_{concept_a}_vs_{concept_b}")
         return _parse_json(raw, {
             "distinction_score": 1,
             "is_distinct": False,
@@ -320,7 +342,7 @@ Rispondi SEMPRE e SOLO con JSON valido. Nessun testo fuori dal JSON."""
             f'"refinement_suggestions": {{"slug": "suggerimento", ...}}, '
             f'"overall_assessment": "..."}}'
         )
-        raw = self._call(msg, max_tokens=800)
+        raw = self._call(msg, max_tokens=800, step_label=f"step5_verdict_v{version}")
         return _parse_json(raw, {
             "all_validated": False,
             "validated_concepts": [],
@@ -359,8 +381,11 @@ def run_eval(
         print("ERRORE: _meta.json non contiene sub_concepts")
         sys.exit(1)
 
+    # Path dialogo: output/m40_dialogues/{concept}/{model_slug}/sub_concept_eval_v{N}.jsonl
+    dialogue_path = DIALOGUE_DIR / parent_concept / model_slug / f"sub_concept_eval_v{version}.jsonl"
+
     steering = SteeringClient(steering_url)
-    m40      = M40Client(m40_url)
+    m40      = M40Client(m40_url, dialogue_path=dialogue_path)
 
     # Verifica server
     print("Connessione steering server...", end=" ", flush=True)
@@ -508,6 +533,7 @@ def run_eval(
         "pair_results": pair_results,
         "verdict": verdict,
         "config": {"gain": gain, "alpha": alpha, "n_prompts": n_prompts},
+        "m40_dialogue_log": str(dialogue_path),
     }
 
     out_dir = EVAL_OUTPUT_DIR / parent_concept / model_slug
