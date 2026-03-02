@@ -71,51 +71,75 @@ def load_catalog():
     return []
 
 
+def _resolve_lib_dir(concept_name: str, model_slug: str):
+    """
+    Restituisce il path della directory dei vettori per un concept nel vector_library.
+    Supporta sia Gd0 ("hot_vs_cold") che Gd1 ("hot_vs_cold/thermal_intensity").
+    Ritorna il primo match trovato, o None.
+    """
+    if not os.path.isdir(VECTOR_LIB_ROOT):
+        return None
+    if "/" in concept_name:
+        # Sub-concept: "parent/slug" → {cat}/{parent}/sub/{slug}/{model_slug}/
+        parent, slug = concept_name.split("/", 1)
+        for cat in os.listdir(VECTOR_LIB_ROOT):
+            lib_dir = os.path.join(VECTOR_LIB_ROOT, cat, parent, "sub", slug, model_slug)
+            if os.path.isdir(lib_dir):
+                return lib_dir
+    else:
+        # Gd0: {cat}/{concept}/{model_slug}/
+        for cat in os.listdir(VECTOR_LIB_ROOT):
+            lib_dir = os.path.join(VECTOR_LIB_ROOT, cat, concept_name, model_slug)
+            if os.path.isdir(lib_dir):
+                return lib_dir
+    return None
+
+
 def get_available_layers(concept_name: str, model_name: str):
     """Scan vector_library and return (sorted layers list, best_layer) for concept+model.
-    This is the ground truth — independent of the catalog."""
-    if not model_name or not os.path.isdir(VECTOR_LIB_ROOT):
+    This is the ground truth — independent of the catalog.
+    Supports both Gd0 ('hot_vs_cold') and Gd1 ('hot_vs_cold/thermal_intensity')."""
+    if not model_name:
         return [], None
     slug = model_name.lower().replace(" ", "-").replace("_", "-")
-    for cat in os.listdir(VECTOR_LIB_ROOT):
-        lib_dir = os.path.join(VECTOR_LIB_ROOT, cat, concept_name, slug)
-        if not os.path.isdir(lib_dir):
-            continue
-        layers = []
-        for f in glob.glob(os.path.join(lib_dir, "layer_*.npy")):
-            name = os.path.basename(f)
-            if "_pca" not in name:
-                m = re.match(r"layer_(\d+)\.npy", name)
-                if m:
-                    layers.append(int(m.group(1)))
-        layers.sort()
-        # Find best layer by sep_snr from summary.json
-        best_layer = layers[-1] if layers else None
-        summary_path = os.path.join(lib_dir, "summary.json")
-        if os.path.exists(summary_path):
-            try:
-                with open(summary_path) as f:
-                    summary = json.load(f)
-                results = summary.get("results", {})
-                if results:
-                    best_key = max(results, key=lambda k: results[k].get("sep_snr", -99))
-                    best_layer = int(best_key)
-            except Exception:
-                pass
-        return layers, best_layer
-    return [], None
+    lib_dir = _resolve_lib_dir(concept_name, slug)
+    if lib_dir is None:
+        return [], None
+    layers = []
+    for f in glob.glob(os.path.join(lib_dir, "layer_*.npy")):
+        name = os.path.basename(f)
+        if "_pca" not in name:
+            m = re.match(r"layer_(\d+)\.npy", name)
+            if m:
+                layers.append(int(m.group(1)))
+    layers.sort()
+    best_layer = layers[-1] if layers else None
+    summary_path = os.path.join(lib_dir, "summary.json")
+    if os.path.exists(summary_path):
+        try:
+            with open(summary_path) as f:
+                summary = json.load(f)
+            results = summary.get("results", {})
+            if results:
+                best_key = max(results, key=lambda k: results[k].get("sep_snr", -99))
+                best_layer = int(best_key)
+        except Exception:
+            pass
+    return layers, best_layer
 
 
 def _load_vec_for_layer(concept_name: str, model_name: str, layer_idx: int):
     """Load concept vector .npy from vector_library for a specific layer.
-    Returns numpy array or None if not found."""
+    Supports Gd0 and Gd1 ('parent/slug'). Returns numpy array or None."""
     if not model_name or not os.path.isdir(VECTOR_LIB_ROOT):
         return None
     slug = model_name.lower().replace(" ", "-").replace("_", "-")
-    for cat in os.listdir(VECTOR_LIB_ROOT):
-        vec_path = os.path.join(VECTOR_LIB_ROOT, cat, concept_name, slug, f"layer_{layer_idx}.npy")
-        if os.path.exists(vec_path):
-            return np.load(vec_path)
+    lib_dir = _resolve_lib_dir(concept_name, slug)
+    if lib_dir is None:
+        return None
+    vec_path = os.path.join(lib_dir, f"layer_{layer_idx}.npy")
+    if os.path.exists(vec_path):
+        return np.load(vec_path)
     return None
 
 
@@ -541,6 +565,7 @@ class Handler(BaseHTTPRequestHandler):
             active = State.active_model_name
             # Source of truth: vector_library on disk
             concepts = set()
+            sub_concepts = set()
             if active and os.path.isdir(VECTOR_LIB_ROOT):
                 slug = active.lower().replace(" ", "-").replace("_", "-")
                 for cat in os.listdir(VECTOR_LIB_ROOT):
@@ -548,14 +573,29 @@ class Handler(BaseHTTPRequestHandler):
                     if not os.path.isdir(cat_path):
                         continue
                     for concept in os.listdir(cat_path):
+                        # Gd0
                         model_dir = os.path.join(cat_path, concept, slug)
                         if os.path.isdir(model_dir) and glob.glob(os.path.join(model_dir, "layer_*.npy")):
                             concepts.add(concept)
-            if not concepts:
+                        # Gd1: {cat}/{concept}/sub/{slug}/{model}/
+                        sub_root = os.path.join(cat_path, concept, "sub")
+                        if os.path.isdir(sub_root):
+                            for sub_slug in os.listdir(sub_root):
+                                sub_model_dir = os.path.join(sub_root, sub_slug, slug)
+                                if os.path.isdir(sub_model_dir) and glob.glob(os.path.join(sub_model_dir, "layer_*.npy")):
+                                    sub_concepts.add(f"{concept}/{sub_slug}")
+            if not concepts and not sub_concepts:
                 # Fallback to catalog
                 eligible = [e for e in State.catalog if e.get("model_name") == active] if active else State.catalog
-                concepts = {e.get("concept") for e in eligible if e.get("concept")}
-            return json_response(self, 200, {"concepts": sorted(concepts), "device": str(State.device), "model": active})
+                for e in eligible:
+                    if e.get("concept"):
+                        (sub_concepts if e.get("is_sub_concept") else concepts).add(e["concept"])
+            return json_response(self, 200, {
+                "concepts":     sorted(concepts),
+                "sub_concepts": sorted(sub_concepts),
+                "device": str(State.device),
+                "model": active,
+            })
         if parsed.path == "/api/concept_layers":
             qs = parse_qs(parsed.query)
             concept = (qs.get("concept") or [None])[0]

@@ -527,15 +527,44 @@
       } catch (_) { buildLayerGrid([], null); }
     }
 
+    /* ── Popola concept dropdown con Gd0 + Gd1 ── */
+    function populateConceptDropdown(sel, c, prevValue) {
+      sel.innerHTML = '';
+      const concepts    = c.concepts    || [];
+      const subConcepts = c.sub_concepts || [];
+
+      if (concepts.length) {
+        const grp = document.createElement('optgroup');
+        grp.label = 'Gd0 — concetti base';
+        concepts.forEach(name => {
+          const o = document.createElement('option');
+          o.value = name; o.textContent = name;
+          grp.appendChild(o);
+        });
+        sel.appendChild(grp);
+      }
+
+      if (subConcepts.length) {
+        const grp = document.createElement('optgroup');
+        grp.label = 'Gd1 — sub-concetti';
+        subConcepts.forEach(name => {
+          const [parent, slug] = name.split('/');
+          const o = document.createElement('option');
+          o.value = name;
+          o.textContent = `${parent} › ${slug}`;
+          grp.appendChild(o);
+        });
+        sel.appendChild(grp);
+      }
+
+      if (prevValue) sel.value = prevValue;
+    }
+
     /* ── Init ── */
     async function init() {
       const c   = await fetchJson('/api/concepts');
       const sel = document.getElementById('concept');
-      (c.concepts || []).forEach(name => {
-        const o = document.createElement('option');
-        o.value = name; o.textContent = name;
-        sel.appendChild(o);
-      });
+      populateConceptDropdown(sel, c, null);
       sel.addEventListener('change', () => refreshLayers());
 
       await refreshLayers();
@@ -551,13 +580,7 @@
         const c = await fetchJson('/api/concepts');
         const sel = document.getElementById('concept');
         const prev = sel.value;
-        sel.innerHTML = '';
-        (c.concepts || []).forEach(name => {
-          const o = document.createElement('option');
-          o.value = name; o.textContent = name;
-          sel.appendChild(o);
-        });
-        if (prev) sel.value = prev;
+        populateConceptDropdown(sel, c, prev);
         await refreshLayers();
         btn.textContent = '✓';
         setTimeout(() => btn.textContent = '↺', 1500);
