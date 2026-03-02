@@ -389,7 +389,7 @@ def run_eval(
             print(f"  ⚠ {slug} — nessun vettore trovato. Esegui probe prima. SKIP.")
             continue
         npy_path = load_vector_path(slug, model_slug, layer, parent=parent_concept)
-        sub_info.append({**sub, "layer": layer, "npy_path": npy_path})
+        sub_info.append({**sub, "layer": layer, "npy_path": str(npy_path) if npy_path else None})
         print(f"  ✓ {slug} → L{layer} ({npy_path})")
 
     if len(sub_info) < 2:
