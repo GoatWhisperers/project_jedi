@@ -84,7 +84,8 @@ echo "GPU:"
 nvidia-smi --query-gpu=name,memory.used,memory.free,utilization.gpu \
     --format=csv,noheader,nounits 2>/dev/null | \
     while IFS=',' read -r name used free util; do
-        echo "  M40  VRAM: ${used}/${$(( used + free ))} MB  GPU: ${util}%"
+        total=$(( used + free ))
+        echo "  M40  VRAM: ${used}/${total} MB  GPU: ${util}%"
     done || true
 
 rocm-smi --showmeminfo vram --csv 2>/dev/null | tail -1 | \

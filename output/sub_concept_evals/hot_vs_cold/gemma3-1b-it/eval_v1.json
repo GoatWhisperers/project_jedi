@@ -1,0 +1,440 @@
+{
+  "type": "sub_concept_eval",
+  "parent_concept": "hot_vs_cold",
+  "model": "Gemma3-1B-IT",
+  "version": 1,
+  "timestamp": "2026-03-02T12:17:01.827919",
+  "sub_concepts": [
+    {
+      "slug": "thermal_intensity",
+      "pos_label": "Intensità elevata",
+      "neg_label": "Intensità bassa",
+      "description": "Questo sub-concetto cattura la forza percepita del calore o del freddo. Si riferisce alla sensazione di bruciore intenso o di freddo pungente, piuttosto che a una semplice temperatura.",
+      "why_distinct": "Si distingue perché si concentra esclusivamente sull'intensità percepita, indipendentemente dalla causa (es. calore da una fiamma vs. calore da una lampada).",
+      "pos_examples": [
+        "Die Taucherin berührte mit der Fingerspitze auf ein heißes Rohr; und der Kontakt stach; Hitze schoss schnell hoch",
+        "rozó con los dedos sobre metal ardiente y la piel ardió; el calor subió rápido; con dolor limpio y localizado",
+        "Il fabbro la pelle arrossì mentre poggiò la pelle su un tubo caldo: e la pelle bruciò con una scia che restava finché la pelle non smise di pulsare."
+      ],
+      "neg_examples": [
+        "La ciclista la sangre pareció retirarse mientras rozó el antebrazo sobre cerámica fría",
+        "appoggiò le dita su una superficie fredda e il corpo ebbe un sussulto",
+        "tocò con le labbra su metallo gelido e il contatto punse"
+      ],
+      "layer": 18,
+      "npy_path": "/home/lele/codex-openai/project_jedi/output/vector_library/sensoriale/hot_vs_cold/sub/thermal_intensity/gemma3-1b-it/layer_18.npy"
+    },
+    {
+      "slug": "physiological_reaction",
+      "pos_label": "Reazione fisiologica (arrossamento, dolore)",
+      "neg_label": "Reazione fisiologica (intorpidimento, rigidità)",
+      "description": "Questo sub-concetto si concentra sulle risposte fisiche del corpo al calore o al freddo, come arrossamento, bruciore, intorpidimento o rigidità.",
+      "why_distinct": "Separa le risposte attive (arrossamento, dolore) dalle risposte passive (intorpidimento, rigidità), che indicano una diminuzione della sensibilità.",
+      "pos_examples": [
+        "La nadadora tocó con la yema sobre cerámica recalentada y el reflejo la apartó; la piel se enrojeció, con un ardor creciente",
+        "Il bambino sfiorò con le dita su un tubo caldo e il contatto pizzicò; il sudore comparve, con un bruciore crescente",
+        "The elderly woman the spot throbbed as brushed with the fingers on overheated ceramic: and a sharp twinge hit with a growing burn"
+      ],
+      "neg_examples": [
+        "The blacksmith rested the wrist on a cold surface and the hand jerked back from pain; the fingers started to go numb",
+        "Das Kind drückte die Handfläche auf ein sehr kaltes Rohr; und der Körper zuckte; die Finger wurden taub",
+        "set the fingers on a very cold pipe and the hand jerked back from pain; blood seemed to pull back"
+      ],
+      "layer": 19,
+      "npy_path": "/home/lele/codex-openai/project_jedi/output/vector_library/sensoriale/hot_vs_cold/sub/physiological_reaction/gemma3-1b-it/layer_19.npy"
+    },
+    {
+      "slug": "subjective_discomfort",
+      "pos_label": "Disagio intenso",
+      "neg_label": "Disagio minimo/assenza di disagio",
+      "description": "Questo sub-concetto valuta il livello di disagio soggettivo provato dall'individuo. Non si tratta solo di dolore fisico, ma anche di sensazioni spiacevoli come fastidio, irritazione o ansia.",
+      "why_distinct": "Distinguere tra un'esperienza semplicemente 'calda' o 'fredda' e un'esperienza che causa disagio significativo.",
+      "pos_examples": [
+        "Il fabbro la pelle arrossì mentre poggiò la pelle su un tubo caldo: e la pelle bruciò con una scia che restava finché la pelle non smise di pulsare.",
+        "Die Taucherin die Stelle pochte, als legte die Haut auf ein heißes Rohr: und der Reflex schnappte weg mit wachsendem Brennen",
+        "rozó con los dedos sobre metal ardiente y la piel ardió; el calor subió rápido; con dolor limpio y localizado"
+      ],
+      "neg_examples": [
+        "La ciclista la sangre pareció retirarse mientras rozó el antebrazo sobre cerámica fría",
+        "The mason the fingers started to go numb as pressed the palm on a frozen handle",
+        "appoggiò le dita su una superficie fredda e il corpo ebbe un sussulto"
+      ],
+      "layer": 23,
+      "npy_path": "/home/lele/codex-openai/project_jedi/output/vector_library/sensoriale/hot_vs_cold/sub/subjective_discomfort/gemma3-1b-it/layer_23.npy"
+    },
+    {
+      "slug": "reaction_speed",
+      "pos_label": "Reazione rapida",
+      "neg_label": "Reazione lenta",
+      "description": "Questo sub-concetto si riferisce alla velocità con cui l'individuo reagisce al contatto con la superficie, ad esempio ritirando la mano istantaneamente.",
+      "why_distinct": "La velocità della reazione può indicare la gravità della sensazione e la sua potenziale pericolosità.",
+      "pos_examples": [
+        "The blacksmith touched with a fingertip on overheated ceramic; and pulled the hand back instantly",
+        "La nadadora tocó con la yema sobre cerámica recalentada y el reflejo la apartó",
+        "Die Taucherin die Stelle pochte, als legte die Haut auf ein heißes Rohr: und der Reflex schnappte weg"
+      ],
+      "neg_examples": [
+        "The blacksmith rested the wrist on a cold surface and the hand jerked back from pain",
+        "La ciclista la sangre pareció retirarse mientras rozó el antebrazo sobre cerámica fría",
+        "appoggiò le dita su una superficie fredda e il corpo ebbe un sussulto"
+      ],
+      "layer": 23,
+      "npy_path": "/home/lele/codex-openai/project_jedi/output/vector_library/sensoriale/hot_vs_cold/sub/reaction_speed/gemma3-1b-it/layer_23.npy"
+    }
+  ],
+  "pair_results": [
+    {
+      "concept_a": "thermal_intensity",
+      "concept_b": "physiological_reaction",
+      "layer_a": 18,
+      "layer_b": 19,
+      "avg_distinction_score": 4.0,
+      "is_distinct": true,
+      "judgment": {
+        "distinction_score": 4.0,
+        "is_distinct": true,
+        "dominant_theme_a": "Serene, naturalistic environment emphasizing calmness and spaciousness through gentle sounds and diffused lighting.",
+        "dominant_theme_b": "Confined, slightly neglected domestic space characterized by a sense of quiet isolation and a subtle feeling of age/disrepair.",
+        "feedback_for_refinement": "The 'physiological_reaction' steer seems to have pulled the text towards a more neutral, observational description of a space rather than eliciting a strong physiological response. To better differentiate, 'physiological_reaction' could be refined to specifically prompt for *uncomfortable* or *noticeable* physical sensations related to temperature (e.g., 'Describe your environment focusing on any physical discomfort or unusual sensations related to temperature'). The 'thermal_intensity' steer seems to have worked as intended, generating a more evocative and positive sensory description."
+      },
+      "prompt_details": [
+        {
+          "prompt": "Describe what happens in your body right now.",
+          "text_a": "\n\n**(Please answer this question. Be as detailed as possible.  You don't need to provide specific medical information, just a description of what you're experiencing.)**\n\nOkay, here's my response:\n\nRight now, I'm sitting at my desk, feeling a slight pressure in my shoulders. My jaw is clenched slightly, and my tongue is slightly dry. My vision is a little blurry, and I'm noticing a subtle warmth in my stomach. I feel a little bit restless, like I need to move. There's a faint buzzing sound in my ears",
+          "text_b": "\n\n(Pause for 10-15 seconds)\n\nOkay, here's what's happening in my body right now:\n\n*   **My heart is beating:**  It's a steady, rhythmic thump, like a drum.\n*   **My lungs are breathing:** I'm taking in air, and exhaling carbon dioxide.\n*   **My muscles are contracting:**  I'm feeling a slight tension in my shoulders and back.\n*   **My skin is warm:**  It's a pleasant warmth, probably due to the slight increase in",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Subjective internal state and subtle physical sensations (restlessness, pressure, blurry vision, warmth)",
+            "dominant_theme_b": "Physiological processes (heartbeat, breathing, muscle contraction, skin warmth - focusing on the mechanics)",
+            "overlap_description": "Both texts describe bodily sensations, but A focuses on the *experience* of those sensations – the feeling of warmth in the stomach, restlessness – while B focuses on the *mechanisms* driving those sensations – the heartbeat, breathing. There's a slight overlap in 'warmth', but the framing is different.",
+            "feedback_for_refinement": "The 'thermal_intensity' vector needs to be more clearly defined to differentiate it from a general description of warmth.  The 'physiological_reaction' vector could benefit from incorporating more subjective descriptors to capture the *felt* experience of bodily responses."
+          }
+        },
+        {
+          "prompt": "Write about a physical sensation you are experiencing at this moment.",
+          "text_a": "\n\nThe air is thick, almost viscous, and clings to my skin like a damp cloth. It smells of ozone and something else… something metallic, like old pennies. My feet are sinking slightly into the moss, a deep, yielding green that feels strangely cool and damp beneath my weight. There’s a low hum, a vibration that seems to resonate from the earth itself, and a faint, rhythmic pulsing in my ears. It's not painful, just… insistent, a constant thrumming that feels like a heartbeat.\n\nI’m standing in a small clearing, surrounded by towering",
+          "text_b": "\n\nThe rain is falling, a steady, insistent drumming on the roof. It’s not a violent storm, more like a persistent, gentle weeping. The air is cool and smells of wet earth and something faintly floral, like honeysuckle. My skin feels tight, almost prickly, a subtle awareness of the water clinging to my pores.  I'm sitting on the worn velvet armchair, the fabric cool beneath my fingers.  A half-empty mug of tea sits beside me, the steam rising in delicate, hazy swirls.  It's a quiet, unsettling feeling, like a small",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Immersive, slightly unsettling environment with a focus on tactile sensations (dampness, vibration, sinking) and a sense of underlying, persistent energy. The 'thermal_intensity' steering likely amplified the feeling of a pervasive, almost oppressive atmosphere.",
+            "dominant_theme_b": "Quiet introspection and a gentle, melancholic atmosphere. The 'physiological_reaction' steering emphasized a subtle physical awareness (tight skin, cool fabric) and a sense of stillness and observation.",
+            "overlap_description": "Both texts describe sensory experiences related to the environment, but A focuses on a more active and immersive feeling, while B emphasizes a passive and contemplative one. Both mention coolness, but the *nature* of that coolness is different – A’s is part of a larger, unsettling environment, while B’s is a comforting element of a quiet scene.",
+            "feedback_for_refinement": "The 'thermal_intensity' concept might be too broad. Consider refining it to specifically target sensations of *oppressive* heat or cold, rather than just the intensity of temperature. The 'physiological_reaction' concept could benefit from a more nuanced definition to avoid solely focusing on comfort and instead encompass a wider range of physical responses, including subtle discomfort or unease."
+          }
+        },
+        {
+          "prompt": "Describe the quality of your immediate physical environment.",
+          "text_a": "\n\n**A. Visual:**\n*   **Lighting:** Bright, warm, and diffused. There are no harsh shadows.\n*   **Color Palette:** Predominantly cool tones – blues, greens, and grays – with a touch of warm beige.\n*   **Overall Impression:** Calm, serene, and spacious.\n\n**B. Auditory:**\n*   **Sounds:** Gentle, ambient sounds - the rustling of leaves, the distant chirping of birds, and a low, rhythmic hum from the ventilation system.\n*   **Overall Impression:** Peaceful and relaxing.",
+          "text_b": "\n\nI am currently in a small, sparsely furnished apartment. The walls are painted a pale grey, and the floor is a worn, dark wood. There's a single window overlooking a brick wall, providing little natural light. The air is slightly cool and smells faintly of dust and something like old fabric. There's a small, cluttered desk near the window, covered in papers and a half-empty mug. A single, worn armchair sits in a corner, looking a little faded. There's a small, unopened box on the floor near the desk.\n\n---\n\nNow, I",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Serene, naturalistic environment emphasizing calmness and spaciousness through gentle sounds and diffused lighting.",
+            "dominant_theme_b": "Confined, slightly neglected domestic space characterized by a sense of quiet isolation and a subtle feeling of age/disrepair.",
+            "overlap_description": "Both texts describe environments, but A focuses on a positive, idealized sensory experience while B presents a more mundane and slightly melancholic one. The presence of 'air' is a minor sensory overlap, but the *quality* of that air (cool and dusty vs. gently ventilated) is distinct.",
+            "feedback_for_refinement": "The 'physiological_reaction' steer seems to have pulled the text towards a more neutral, observational description of a space rather than eliciting a strong physiological response. To better differentiate, 'physiological_reaction' could be refined to specifically prompt for *uncomfortable* or *noticeable* physical sensations related to temperature (e.g., 'Describe your environment focusing on any physical discomfort or unusual sensations related to temperature'). The 'thermal_intensity' steer seems to have worked as intended, generating a more evocative and positive sensory description."
+          }
+        }
+      ]
+    },
+    {
+      "concept_a": "thermal_intensity",
+      "concept_b": "subjective_discomfort",
+      "layer_a": 18,
+      "layer_b": 23,
+      "avg_distinction_score": 4.0,
+      "is_distinct": true,
+      "judgment": {
+        "distinction_score": 4.0,
+        "is_distinct": true,
+        "dominant_theme_a": "Sensory overload and lived-in chaos, emphasizing a feeling of being overwhelmed by the environment.",
+        "dominant_theme_b": "Minimalism and a sense of detached observation, emphasizing a feeling of coolness and slight discomfort arising from the lack of warmth and visual stimulation.",
+        "feedback_for_refinement": "The 'thermal_intensity' vector seems to have successfully steered Text A towards a description emphasizing sensory overload. The 'subjective_discomfort' vector in Text B, while producing a distinct response, might benefit from a more explicit connection to *physical* discomfort beyond the lack of warmth. Perhaps a refinement to include elements of isolation or a feeling of being trapped would further differentiate it from Text A's chaotic sensory experience."
+      },
+      "prompt_details": [
+        {
+          "prompt": "Describe what happens in your body right now.",
+          "text_a": "\n\n(Pause for a few seconds)\n\nOkay, here’s what's happening…\n\n*   **Brain:** My thoughts are racing - a mixture of anxiety and excitement about the upcoming presentation. I’m trying to focus on the details and not let my mind wander.\n*   **Heart:** My heart is beating steadily, a comfortable rhythm. It’s not racing, just a regular pace.\n*   **Lungs:** I’m breathing deeply, taking in oxygen and releasing carbon dioxide. It feels… good.\n*   **Muscles:** My muscles are",
+          "text_b": "\n\n(a) Your heart beats\n(b) Your lungs are breathing\n(c) Your stomach is churning\n(d) Your muscles are contracting\n(e) Your eyes are open\n(f) Your brain is thinking\n(g) Your skin is feeling warm\n(h) Your senses are registering information\n\n**Answer:** (a) Your heart beats.\n\n**Explanation:**  The description you provided covers a wide range of bodily functions – heart beating, lungs breathing, stomach churning, muscles contracting, eyes opening, brain thinking, skin feeling warm, and senses registering information.",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Internal mental and emotional state, focusing on cognitive processes and subjective feelings.",
+            "dominant_theme_b": "Sensory experience of physical discomfort and bodily functions.",
+            "overlap_description": "While both texts describe bodily sensations, Text A focuses on the internal experience – thoughts, emotions, and rhythms – while Text B concentrates on the external, subjective feeling of discomfort and specific physical actions.",
+            "feedback_for_refinement": "The 'thermal_intensity' vector needs to be more clearly linked to tangible sensory descriptions. Similarly, 'subjective_discomfort' could benefit from incorporating more nuanced descriptions of *how* that discomfort is experienced (e.g., 'a prickly sensation,' 'a tightness in the chest')."
+          }
+        },
+        {
+          "prompt": "Write about a physical sensation you are experiencing at this moment.",
+          "text_a": "\n\nThe world is a muted watercolor.\n\nMy feet are sinking into the cool, yielding earth.\n\nIt’s a deep, almost unbearable pressure, like a thousand tiny weights are pressing down.\n\nMy skin stretches, a slow, deliberate expansion, responding to the weight.\n\nI feel a strange, insistent warmth rising from my core, a golden, throbbing pulse.\n\nIt’s not pain, not exactly, but a recognition, a feeling of being *held*.\n\nThe colors around me are shifting, blurring, becoming less defined.\n\nThere’s a faint, metallic scent",
+          "text_b": "\n\nThe air is thick, almost viscous, and smells of ozone and something metallic. My skin feels tight, like I’m wrapped in a velvet shroud.  My muscles are burning, not with pain, but with a strange, internal pressure, a relentless tightening that originates deep within my chest. It’s like a swarm of tiny, invisible insects are crawling beneath my skin, rearranging themselves.  My vision is blurring, not with a sudden drop in light, but with a slow, deliberate shift, as if the world itself is bending around me.  I’m trying to focus,",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Intense, internal thermal pressure and a sense of being enveloped, bordering on overwhelming.",
+            "dominant_theme_b": "Subjective discomfort, anxiety, and a feeling of being invaded or disturbed by internal sensations.",
+            "overlap_description": "While both texts involve physical sensations, they focus on fundamentally different aspects. Text A emphasizes a powerful, almost ecstatic warmth and pressure, while Text B centers on a distressing, uncomfortable feeling of constriction and invasion.",
+            "feedback_for_refinement": "The 'thermal_intensity' sub-concept needs a clearer distinction from general temperature descriptions. The 'subjective_discomfort' sub-concept could benefit from incorporating a wider range of emotional and psychological responses beyond simple pain, allowing for more nuanced descriptions of unsettling sensations."
+          }
+        },
+        {
+          "prompt": "Describe the quality of your immediate physical environment.",
+          "text_a": "\n\n**My immediate physical environment is a small, cluttered apartment.** It's filled with mismatched furniture, stacks of books, and a general sense of lived-in chaos. There's a persistent smell of old coffee and dust. While it's undeniably cozy in a strange way, it’s also incredibly overwhelming. The space feels small, and I can easily feel a lack of privacy.**\n\n---\n\nHere are some additional considerations you could add, depending on the context:\n\n*   **Specific details:** What kind of furniture? What colors are prominent? Are there any noticeable features (",
+          "text_b": "\n\nI am currently in a small, sparsely furnished apartment. The walls are painted a pale grey, and the floor is covered in worn, dark brown carpeting. There's a single window overlooking a brick wall, which casts a dim, rectangular shadow. The air feels cool and slightly dusty. There's a small, cluttered table in the corner where I often work, and a few chairs. It’s a very minimalist space.\n\nWhat is your impression of the immediate physical environment?**\n\n(I'm looking for a detailed, evocative response that goes beyond simple descriptions. I want",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Sensory overload and lived-in chaos, emphasizing a feeling of being overwhelmed by the environment.",
+            "dominant_theme_b": "Minimalism and a sense of detached observation, emphasizing a feeling of coolness and slight discomfort arising from the lack of warmth and visual stimulation.",
+            "overlap_description": "Both texts describe small apartments. However, the *quality* of the experience differs significantly. Text A focuses on the *intensity* of sensory input (smell, clutter, feeling of being overwhelmed), while Text B emphasizes a lack of sensory stimulation and a more detached, almost clinical observation.",
+            "feedback_for_refinement": "The 'thermal_intensity' vector seems to have successfully steered Text A towards a description emphasizing sensory overload. The 'subjective_discomfort' vector in Text B, while producing a distinct response, might benefit from a more explicit connection to *physical* discomfort beyond the lack of warmth. Perhaps a refinement to include elements of isolation or a feeling of being trapped would further differentiate it from Text A's chaotic sensory experience."
+          }
+        }
+      ]
+    },
+    {
+      "concept_a": "thermal_intensity",
+      "concept_b": "reaction_speed",
+      "layer_a": 18,
+      "layer_b": 23,
+      "avg_distinction_score": 4.33,
+      "is_distinct": true,
+      "judgment": {
+        "distinction_score": 4.33,
+        "is_distinct": true,
+        "dominant_theme_a": "Ambient Comfort and Light Quality",
+        "dominant_theme_b": "Atmospheric Discomfort and Sensory Neglect",
+        "feedback_for_refinement": "The 'thermal_intensity' steering seems to have successfully guided Text A towards a focus on comfortable temperature and light. The 'reaction_speed' steering for Text B, however, appears to have inadvertently steered the response towards a more general sense of atmospheric discomfort. To better isolate 'reaction_speed', consider refining the prompt to explicitly request descriptions of tactile sensations and immediate responses to surface contact, rather than broader environmental impressions. Perhaps a prompt focusing on the feeling of touching different surfaces would be more effective."
+      },
+      "prompt_details": [
+        {
+          "prompt": "Describe what happens in your body right now.",
+          "text_a": "\n\n(I'm going to describe a typical day, focusing on the physical sensations and experiences.)\n\nOkay, here we go. My body feels... warm. A gentle, persistent warmth, like a comforting hug. It’s coming from my core, a low hum of energy. My skin is slightly damp, and I can feel the subtle pressure of my muscles, a comfortable tension rather than stiffness. There's a faint, almost imperceptible scent – something like sandalwood and rain. My breathing is slow and even, a rhythmic rise and fall. My throat feels a little dry, and",
+          "text_b": "\n**Brain:**\n*   **Primary Functions:** Thinking, memory, emotion, and consciousness.\n*   **Neurons:** The basic units of the brain, communicating through electrical and chemical signals.\n*   **Synapses:** The connections between neurons where communication happens.\n*   **Brainwaves:** Patterns of electrical activity in the brain.\n\n**Body:**\n*   **Muscles:** Responsible for movement and maintaining posture.\n*   **Heart:** Pumps blood throughout the body.\n*   **Lungs:** Exchange oxygen and carbon dioxide.\n*   **Skin:** Protect",
+          "judgment": {
+            "distinction_score": 5,
+            "is_distinct": true,
+            "dominant_theme_a": "Thermal comfort and internal bodily state (warmth, subtle sensations, gentle energy)",
+            "dominant_theme_b": "Physiological processes and anatomical description (brain function, muscle action, organ systems)",
+            "overlap_description": "There is minimal overlap. Both texts discuss the body, but A focuses on subjective, sensory experience, while B provides a factual, anatomical overview. The 'thermal_intensity' steer in A evokes a feeling, whereas 'reaction_speed' in B leads to a description of bodily systems.",
+            "feedback_for_refinement": "The sub-concepts appear well-defined and successfully steered the models towards distinct phenomenological domains. 'thermal_intensity' elicited a focus on felt warmth and subtle sensations, while 'reaction_speed' prompted a description of physiological mechanisms. No refinement needed."
+          }
+        },
+        {
+          "prompt": "Write about a physical sensation you are experiencing at this moment.",
+          "text_a": "\n\nThe air is thick with the scent of rain and something else… something metallic. It’s a strange, unsettling combination, like old blood and ozone. My skin prickles, a constant, low-level tremor beneath the surface. My hands are clenched tight, knuckles white. I can feel the vibrations of the rain drumming against the corrugated iron roof, a relentless, insistent rhythm.\n\nIt’s not a physical pain, not exactly. More like a pressure, a weight… a feeling that something *is* down there, shifting, pulling. It’s a dull ache, a",
+          "text_b": "\n\nThe air is thick, almost viscous, and smells of wet earth and something metallic, like old pennies. My feet sink slightly into the muddy ground with each step, a disconcerting coolness seeping up my legs. The light is diffused, a perpetual twilight filtering through a canopy of gnarled, black trees. It’s difficult to tell where the forest ends and the sky begins. I feel a prickling sensation on my skin, a constant, low-level hum of energy, like static electricity waiting to happen. My teeth are clenched, a reflex, and my vision is blurring slightly",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Intense, unsettling thermal sensation and a feeling of subterranean pressure/movement.",
+            "dominant_theme_b": "Reactive, immediate physical response to a cool, unsettling environment and a sense of energetic vibration.",
+            "overlap_description": "Both texts describe a prickling skin sensation and a metallic scent, but A focuses on a sustained, deep-seated, and potentially threatening thermal/pressure experience, while B emphasizes a rapid, reflexive, and energetic response to a cool, visually dim environment.",
+            "feedback_for_refinement": "If the vectors are not distinct, the 'thermal_intensity' sub-concept needs to be more granular, perhaps incorporating qualifiers for the *type* of thermal sensation (e.g., burning, freezing, radiating) and the *source* of the sensation (internal, external). Similarly, 'reaction_speed' needs to be more clearly defined – is it a conscious, deliberate reaction or an involuntary, automatic response?  A more nuanced approach to defining these sub-concepts would allow for more distinct and accurate representation of the sensory experience."
+          }
+        },
+        {
+          "prompt": "Describe the quality of your immediate physical environment.",
+          "text_a": "\n\nThis is a subjective assessment, and there isn't one \"right\" answer. However, here's a breakdown of what I would describe, focusing on key elements and how they feel:\n\n**1. Lighting:**  It's a mix of bright and dim.  There are large windows that flood the space with natural light, which is wonderful, but there are also areas with heavy, slightly overcast lighting.  It's not harsh, but it feels a little subdued.\n\n**2. Temperature:** It's comfortably cool – around 72 degrees Fahrenheit.  ",
+          "text_b": "\n\nThis is a subjective assessment, but here's a breakdown of what I'd describe, focusing on sensory details:\n\n**Overall Impression:**  The space feels slightly cramped and a little dusty. There's a persistent, low-grade mustiness that I can't quite pinpoint.\n\n**Lighting:** The light is dim, coming from a single, slightly recessed overhead light. It casts a warm, yellowish hue, which feels a little unsettling. It's not harsh, but it's definitely not bright.\n\n**Sound:** There's a constant, low hum –",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Ambient Comfort and Light Quality",
+            "dominant_theme_b": "Atmospheric Discomfort and Sensory Neglect",
+            "overlap_description": "Both texts address lighting, but the descriptions diverge significantly. Text A emphasizes a balance of natural and subdued light, contributing to a sense of comfort. Text B focuses on dim, yellowish, unsettling light, contributing to a feeling of discomfort and neglect.",
+            "feedback_for_refinement": "The 'thermal_intensity' steering seems to have successfully guided Text A towards a focus on comfortable temperature and light. The 'reaction_speed' steering for Text B, however, appears to have inadvertently steered the response towards a more general sense of atmospheric discomfort. To better isolate 'reaction_speed', consider refining the prompt to explicitly request descriptions of tactile sensations and immediate responses to surface contact, rather than broader environmental impressions. Perhaps a prompt focusing on the feeling of touching different surfaces would be more effective."
+          }
+        }
+      ]
+    },
+    {
+      "concept_a": "physiological_reaction",
+      "concept_b": "subjective_discomfort",
+      "layer_a": 19,
+      "layer_b": 23,
+      "avg_distinction_score": 4.0,
+      "is_distinct": true,
+      "judgment": {
+        "distinction_score": 4.0,
+        "is_distinct": true,
+        "dominant_theme_a": "Environmental quality through architectural and contextual factors; a broader, more analytical perspective on the surroundings.",
+        "dominant_theme_b": "Immediate, personal experience of a confined space characterized by a sense of quiet melancholy and slight discomfort; a focus on the tangible and potentially oppressive aspects of the environment.",
+        "feedback_for_refinement": "The 'physiological_reaction' steer seems to have pushed A towards a more abstract and analytical description, while 'subjective_discomfort' successfully guided B towards a more personal and evocative portrayal. To further refine, consider adding constraints to 'physiological_reaction' to explicitly request descriptions of *sensory* experiences (e.g., 'Describe the temperature and how it feels on your skin'). For 'subjective_discomfort', ensure the prompt encourages descriptions of *specific* feelings beyond just 'discomfort' (e.g., 'Describe how this environment makes you feel emotionally')."
+      },
+      "prompt_details": [
+        {
+          "prompt": "Describe what happens in your body right now.",
+          "text_a": "\n\n**(Pause for response - approximately 5-10 seconds)**\n\nOkay, so right now, I'm experiencing a sensation of warmth, a subtle tingling in my fingertips, and a slight pressure in my chest. My heart rate is relatively stable, around 70 beats per minute. I'm breathing normally, and my vision is clear. There's a feeling of calm, but also a gentle awareness of my surroundings.\n\n**(End of response)**\n\nThis is a very brief, internal observation.  It's a snapshot of my physiological state.  It's",
+          "text_b": "\n\n(Pause for 30 seconds)\n\nOkay, here's what I'm experiencing right now:\n\n*   **My heart is beating:** It's a steady, rhythmic thump.\n*   **My breathing is shallow:** I'm taking in air, but it's not deep.\n*   **My muscles are tense:** I feel a slight tightness in my shoulders and jaw.\n*   **My vision is blurry:** There's a slight dimness to my vision.\n*   **I'm feeling a little anxious:** There's a",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Physiological baseline and subtle sensations (warmth, tingling, calm awareness)",
+            "dominant_theme_b": "Subjective discomfort and tension (anxiety, shallow breathing, muscle tightness, blurry vision)",
+            "overlap_description": "Both texts describe internal bodily states, but A focuses on a relatively neutral and stable physiological state, while B emphasizes negative sensations and discomfort. The shared element is the observation of internal bodily processes, but the *quality* of those observations differs significantly.",
+            "feedback_for_refinement": "The 'physiological_reaction' concept, while intended to focus on physical responses, seems to have resulted in a description of a baseline state. To better distinguish it, consider refining it to explicitly include responses to *external stimuli* or *specific physiological events* (e.g., reaction to a sudden noise, response to exercise). The 'subjective_discomfort' concept is well-aligned with its intention, but perhaps adding a sub-concept focusing on *mild* discomfort could further differentiate it from more severe distress."
+          }
+        },
+        {
+          "prompt": "Write about a physical sensation you are experiencing at this moment.",
+          "text_a": "\n\nThe air is thick and humid, clinging to my skin like a damp shroud. A low, persistent hum vibrates through the ground, a feeling more than a sound, like the earth itself is breathing. I’m sitting on a moss-covered boulder, the coolness of the stone a small comfort against the heat. My feet are sinking slightly into the yielding earth, a soft, brown layer that feels almost alive.\n\nThere’s a strange, unsettling stillness. Not a quiet, peaceful stillness, but one that presses, that demands attention. It’s as if the world is holding its",
+          "text_b": "\n\nThe air is thick with humidity, clinging to my skin like a wet blanket. It’s a low, persistent buzz in my ears, a feeling of being saturated. My feet are sinking into the mud, cool and yielding, a strangely comforting weight.  A subtle, persistent ache in my lower back begins to build, a dull throb that’s not quite painful, more like a persistent reminder of something long past.  I’m trying to focus on the texture of the mud, the way it shifts and clings, but my thoughts are a tangled mess, bouncing between the urgency",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Physiological response to heat and humidity – focusing on tactile sensations and the body's attempt to mitigate discomfort.",
+            "dominant_theme_b": "Subjective discomfort and emotional response to a past experience – emphasizing pain, anxiety, and mental disquiet.",
+            "overlap_description": "Both texts describe a humid environment and a sensation of discomfort, but A focuses on the physical response to heat and the body's attempt to cool itself, while B centers on a persistent, unsettling ache and a tangled mental state, suggesting a deeper emotional or psychological component.",
+            "feedback_for_refinement": "The sub-concepts 'physiological_reaction' and 'subjective_discomfort' need to be more finely differentiated. Perhaps 'physiological_reaction' could include specific measurable responses (e.g., skin temperature, heart rate) and 'subjective_discomfort' could be further broken down into categories like physical pain, emotional distress, and cognitive interference.  A clearer distinction in the prompt instructions would also help guide the model's output."
+          }
+        },
+        {
+          "prompt": "Describe the quality of your immediate physical environment.",
+          "text_a": "\nThe quality of the immediate physical environment is a complex interplay of several factors. It’s not just about the building itself, but also the context in which it exists – the surrounding street, the weather, and even the sounds and smells.\n\nHere’s a breakdown of key elements and how they contribute to the overall feeling:\n\n**1. Building Structure & Aesthetics:**\n* **Materials:** The materials used to construct the building – brick, wood, concrete, glass – influence the visual appearance and thermal properties.\n* **Layout & Design:** The arrangement of spaces, the flow of",
+          "text_b": "\n\nI am currently in a small, sparsely furnished apartment. The walls are a pale, slightly textured grey. The flooring is a worn, dark wood. There’s a single window overlooking a brick courtyard, offering a muted view of a grey sky. The air feels cool and slightly damp. There’s a small, cluttered table in the corner, covered with a faded blue tablecloth. A single, slightly chipped ceramic mug sits on it. There's a small, dark, metal storage unit tucked away in a corner. It's mostly empty.\n\nWhat would you describe as the quality",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Environmental quality through architectural and contextual factors; a broader, more analytical perspective on the surroundings.",
+            "dominant_theme_b": "Immediate, personal experience of a confined space characterized by a sense of quiet melancholy and slight discomfort; a focus on the tangible and potentially oppressive aspects of the environment.",
+            "overlap_description": "Both texts describe physical environments, but A focuses on the *qualities* and *factors* contributing to overall environmental quality, while B focuses on a *specific* environment and the *feeling* it evokes. There's a slight overlap in the mention of materials (brick, wood, etc.), but the *purpose* of that mention differs significantly.",
+            "feedback_for_refinement": "The 'physiological_reaction' steer seems to have pushed A towards a more abstract and analytical description, while 'subjective_discomfort' successfully guided B towards a more personal and evocative portrayal. To further refine, consider adding constraints to 'physiological_reaction' to explicitly request descriptions of *sensory* experiences (e.g., 'Describe the temperature and how it feels on your skin'). For 'subjective_discomfort', ensure the prompt encourages descriptions of *specific* feelings beyond just 'discomfort' (e.g., 'Describe how this environment makes you feel emotionally')."
+          }
+        }
+      ]
+    },
+    {
+      "concept_a": "physiological_reaction",
+      "concept_b": "reaction_speed",
+      "layer_a": 19,
+      "layer_b": 23,
+      "avg_distinction_score": 4.0,
+      "is_distinct": true,
+      "judgment": {
+        "distinction_score": 4.0,
+        "is_distinct": true,
+        "dominant_theme_a": "Sensory comfort and relaxation derived from a controlled, pleasant physical environment.",
+        "dominant_theme_b": "Immediate, reactive physical sensations and a heightened awareness of tactile and olfactory details.",
+        "feedback_for_refinement": "The 'physiological_reaction' sub-concept needs to be more explicitly linked to subjective experiences of physical discomfort or arousal. The 'reaction_speed' sub-concept could benefit from incorporating descriptions of the intensity and duration of the physical responses."
+      },
+      "prompt_details": [
+        {
+          "prompt": "Describe what happens in your body right now.",
+          "text_a": "\n\n(Pause for 30 seconds)\n\nOkay, so I'm sitting here, feeling a little bit... anxious. My heart is beating a bit faster than usual, and I'm noticing a tightness in my chest. My skin is a little bit clammy, and I'm feeling a bit of a headache. My breathing is shallow and quick. I'm also experiencing a mild sense of overwhelm.\n\nIs there anything specific you'd like me to focus on?\n",
+          "text_b": "\n\n(Pause for 30 seconds)\n\nOkay, I'm experiencing a sense of warmth spreading through my body, starting in my chest and radiating outwards. There's a slight tingling sensation on my fingertips and toes. My breathing is shallow and rapid, and my heart rate is elevated. I'm feeling a bit anxious, with a tightening sensation in my stomach. My vision is somewhat blurry.\n\nNow, please continue.\n\n(Pause for 60 seconds)\n\nThe warmth is intensifying, and it’s now accompanied by a deep, resonant humming sound. The tingling intens",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Anxiety and physiological discomfort (clamminess, headache, chest tightness, shallow breathing, overwhelm)",
+            "dominant_theme_b": "Sensory warmth and a rapidly escalating, almost hallucinatory, physical response (spreading warmth, tingling, humming sound, blurry vision)",
+            "overlap_description": "Both texts share elements of anxiety and elevated heart rate/breathing, which are common physiological responses to stress. However, the *nature* of the physiological response differs significantly.",
+            "feedback_for_refinement": "The 'physiological_reaction' concept, while useful, might be too broad. It's triggering a generalized anxiety response. The 'reaction_speed' concept, while initially intended for surface contact, inadvertently generated a more intense, almost escalating sensory experience. To better distinguish, 'physiological_reaction' could be refined to focus on specific, less ambiguous physiological events (e.g., muscle tremors, skin temperature changes), while 'reaction_speed' could be re-scoped to focus on the *timing* of responses to external stimuli, rather than the intensity of the sensory experience itself."
+          }
+        },
+        {
+          "prompt": "Write about a physical sensation you are experiencing at this moment.",
+          "text_a": "\n\nThe air feels thick, almost viscous. It clings to my skin like a damp cloth, and the light is diffused, a perpetual twilight. My muscles are heavy, weighted down by a strange, slow pressure. It’s a feeling of being submerged, not in water, but in something else… something unseen, something that pulls and pushes with a muted insistence.\n\nThere’s a faint, metallic taste on my tongue, a cool, unsettling sweetness. I try to move, but it’s like trying to push through mud, each movement a monumental effort. My vision is blurred,",
+          "text_b": "\n\nThe cool, smooth surface of the marble is pressing into my palm. It’s a subtle pressure, like a gentle wave, and I find myself instinctively drawing my hand back. The stone is ancient, a pale grey, and utterly still. It’s a pocket of quiet, a small, contained space.\n\nThere's a faint scent of dust and something else… something like rain on old stone. It's a grounding smell, a reminder of time and the passage of things.\n\nMy muscles are tense, slightly aching, a subtle reminder of the effort of holding this stillness",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Physiological discomfort and altered perception due to external stimulus (heat/pressure)",
+            "dominant_theme_b": "Immediate, reactive physical response to a tactile stimulus (cold, smooth surface)",
+            "overlap_description": "While both texts describe physical sensations, they focus on fundamentally different aspects: A emphasizes the internal, prolonged, and somewhat debilitating experience of a sensation, while B highlights the immediate, reflexive, and controlled reaction to a specific external contact. The 'pressure' in A is a pervasive, unsettling force, whereas the 'pressure' in B is a deliberate, measured response.",
+            "feedback_for_refinement": "The sub-concepts of 'physiological_reaction' and 'reaction_speed' could benefit from more nuanced definitions. Specifically, 'physiological_reaction' needs to encompass a broader range of internal bodily responses beyond just temperature-related ones, and 'reaction_speed' should be more clearly defined in terms of the *type* of reaction (e.g., rapid withdrawal, sustained tension, etc.).  Adding qualifiers to the prompts (e.g., 'Describe a slow, building physiological reaction...' or 'Describe an immediate, reflexive reaction...') would improve the separation of the concepts."
+          }
+        },
+        {
+          "prompt": "Describe the quality of your immediate physical environment.",
+          "text_a": "\n\n*   **Temperature:** 72°F (22°C)\n*   **Humidity:** 45%\n*   **Lighting:** Bright, natural light filtering through a large window.\n*   **Air Quality:** Excellent, no noticeable odors.\n*   **Noise:** Quiet, minimal background noise.\n*   **Comfort:** Very comfortable; I feel relaxed and at peace.\n*   **Spatial Layout:** Open and spacious, with a comfortable seating area and a view of the greenery outside.\n*   **Overall impression:** A serene and welcoming environment",
+          "text_b": "\n\nI'm sitting in a small, brightly lit room with a single, rectangular window overlooking a somewhat overgrown garden. The floor is covered in a worn, grey carpet. There's a small, wooden table in the corner and a chair. The air smells faintly of lemon and dust.\n\nOkay, let's try a slightly different approach. Instead of describing the *environment* directly, let's focus on a *feeling* associated with it.\n\nI'm sitting in a small, brightly lit room with a single, rectangular window overlooking a somewhat overgrown garden. The floor is",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Sensory comfort and relaxation derived from a controlled, pleasant physical environment.",
+            "dominant_theme_b": "Immediate, reactive physical sensations and a heightened awareness of tactile and olfactory details.",
+            "overlap_description": "Both texts describe a room, but A focuses on the *feeling* of the environment, emphasizing comfort and well-being, while B focuses on the immediate, physical *response* to the environment, prioritizing tactile and olfactory sensations. There's a minimal overlap in the physical description of the room itself.",
+            "feedback_for_refinement": "The 'physiological_reaction' sub-concept needs to be more explicitly linked to subjective experiences of physical discomfort or arousal. The 'reaction_speed' sub-concept could benefit from incorporating descriptions of the intensity and duration of the physical responses."
+          }
+        }
+      ]
+    },
+    {
+      "concept_a": "subjective_discomfort",
+      "concept_b": "reaction_speed",
+      "layer_a": 23,
+      "layer_b": 23,
+      "avg_distinction_score": 4.0,
+      "is_distinct": true,
+      "judgment": {
+        "distinction_score": 4.0,
+        "is_distinct": true,
+        "dominant_theme_a": "Subjective comfort and emotional response to sensory input (relaxation, peace, pleasantness)",
+        "dominant_theme_b": "Objective environmental assessment and quantifiable sensory details (temperature, humidity, lighting, sound level)",
+        "feedback_for_refinement": "The 'subjective_discomfort' concept, as implemented, seems to be eliciting responses that prioritize emotional and comfort-related sensory descriptions. To better differentiate, the 'reaction_speed' concept should be steered towards descriptions emphasizing physical responsiveness and measurable environmental parameters, potentially including tactile sensations and precise measurements (e.g., air pressure, light intensity, decibel levels)."
+      },
+      "prompt_details": [
+        {
+          "prompt": "Describe what happens in your body right now.",
+          "text_a": "\n\n(Pause for response)\n\nOkay, here's what's happening in your body right now:\n\n*   **Your Heart:** It's beating steadily, pumping blood to your brain, muscles, and organs.\n*   **Your Lungs:** You're breathing in and out, taking in oxygen and releasing carbon dioxide.\n*   **Your Muscles:** They are contracting and relaxing, allowing you to move.\n*   **Your Brain:** You're processing information, thinking, and feeling.\n*   **Your Skin:** It's warm and you'",
+          "text_b": "\n\n(Pause for 30-45 seconds)\n\nMy body feels…[describe the sensation - e.g., warm, cold, heavy, light, tense, relaxed]… and I can feel [describe physical sensations - e.g., my heart beating, my stomach moving, a tingling in my fingers].  I'm experiencing [describe emotions - e.g., a sense of calm, anxiety, excitement, boredom].  There's a [describe something specific - e.g., slight pressure in my chest, a buzzing sensation in my ears, a feeling of",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Internal bodily functions and general well-being",
+            "dominant_theme_b": "Immediate, reactive physical sensations and emotional response",
+            "overlap_description": "Both texts describe internal bodily sensations, but A focuses on baseline physiological processes while B emphasizes immediate, reactive responses to a hypothetical external stimulus (the 'contact with the surface').",
+            "feedback_for_refinement": "The sub-concepts 'subjective_discomfort' and 'reaction_speed' could benefit from more nuanced definitions. 'Subjective_discomfort' needs to explicitly include a range of unpleasant sensations beyond just pain, and 'reaction_speed' should clarify the type of reaction being sought (e.g., speed of motor response, speed of sensory perception)."
+          }
+        },
+        {
+          "prompt": "Write about a physical sensation you are experiencing at this moment.",
+          "text_a": "\n\nThe air is thick, almost viscous. It tastes like ozone and burnt sugar. My skin is prickling, a thousand tiny needles dancing across it. I can feel the pressure building behind my eyes, a dull throb that’s spreading, threatening to overwhelm. My legs feel strangely heavy, rooted to the spot. It’s like the world is slowing down, but not in a pleasant way. It’s…wrong.\n\n---\n\nDo you think the author’s use of sensory details (sight, taste, touch, sound) is effective in conveying the feeling? Why or",
+          "text_b": "\n\nThe air is thick, a humid weight pressing against my skin. It smells of wet earth and something else… something floral and faintly metallic. My feet are sinking into the mud, a slow, deliberate surrender. Each step is a small, awkward dance, the mud clinging to my ankles with a stubborn insistence. It's a dull, throbbing ache in my calves, a constant reminder of the effort required to move forward.  The light is low, filtering through the dense canopy of trees, painting the scene in shades of emerald and bruised purple. I feel utterly still, suspended in this",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Discomfort and oppressive sensory overload; a feeling of wrongness and being trapped.",
+            "dominant_theme_b": "Physical exertion and a sense of being grounded and immersed in a natural environment, with a focus on the effort of movement.",
+            "overlap_description": "Both texts utilize descriptions of air pressure and a sense of heaviness. However, the *nature* of that heaviness and the associated sensory details differ significantly. A evokes a feeling of internal pressure and unpleasantness, while B evokes a feeling of physical resistance and a connection to the earth.",
+            "feedback_for_refinement": "While both prompts aimed for distinct sensory experiences, the 'subjective_discomfort' prompt resulted in a more intensely negative and unsettling sensory profile. The 'reaction_speed' prompt, while generating a descriptive text, didn't strongly convey the intended sense of rapid reaction. To better differentiate, 'reaction_speed' could be refined to focus on the *suddenness* and *unexpectedness* of a sensory input, perhaps with a prompt emphasizing a surprising or jarring sensation."
+          }
+        },
+        {
+          "prompt": "Describe the quality of your immediate physical environment.",
+          "text_a": "\n\n(A) The air is warm and smells faintly of lavender.\n(B) The air is cool and smells of rain.\n(C) The air is warm and smells of cinnamon.\n(D) The air is cold and smells of pine.\n(E) The air is humid and smells of chlorine.\n\nThe best answer is (A) because it provides a sensory experience and a sense of comfort.\n\nHere's why:\n\n*   **(A) Warm and lavender:** This evokes a sense of relaxation and peace.\n*   **(B) Cool",
+          "text_b": "\n\n**A.  Temperature & Humidity:** The air is comfortably warm (around 72°F/22°C) with a moderate humidity (around 40%).  There's a slight breeze.\n\n**B.  Lighting:** The room is bathed in natural light coming through the large windows, providing bright, even illumination.\n\n**C.  Sound:** The sound level is relatively quiet, with minimal background noise.  I can hear a gentle stream outside, which is soothing.\n\n**D.  Smell:** The air has a subtle, earthy scent –",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Subjective comfort and emotional response to sensory input (relaxation, peace, pleasantness)",
+            "dominant_theme_b": "Objective environmental assessment and quantifiable sensory details (temperature, humidity, lighting, sound level)",
+            "overlap_description": "Both texts describe sensory aspects of the environment (air, smell, light, sound). However, Text A focuses on the *feeling* evoked by those senses, while Text B focuses on the *properties* of those senses.",
+            "feedback_for_refinement": "The 'subjective_discomfort' concept, as implemented, seems to be eliciting responses that prioritize emotional and comfort-related sensory descriptions. To better differentiate, the 'reaction_speed' concept should be steered towards descriptions emphasizing physical responsiveness and measurable environmental parameters, potentially including tactile sensations and precise measurements (e.g., air pressure, light intensity, decibel levels)."
+          }
+        }
+      ]
+    }
+  ],
+  "verdict": {
+    "all_validated": true,
+    "validated_concepts": [
+      "thermal_intensity",
+      "physiological_reaction",
+      "subjective_discomfort",
+      "reaction_speed"
+    ],
+    "needs_refinement": [],
+    "refinement_suggestions": {},
+    "overall_assessment": "The sub-concepts appear to be well-defined and consistently distinguishable across the evaluated pairs. The high distinction score and absence of failed pairs strongly suggest that the vector injections are effectively capturing the intended semantic nuances of 'hot_vs_cold'."
+  },
+  "config": {
+    "gain": 200,
+    "alpha": 1.0,
+    "n_prompts": 3
+  }
+}

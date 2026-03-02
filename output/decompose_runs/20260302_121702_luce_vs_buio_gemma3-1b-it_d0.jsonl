@@ -1,0 +1,19 @@
+{"type": "run_start", "concept": "luce_vs_buio", "model": "Gemma3-1B-IT", "max_depth": 0, "max_iter": 2, "dry_run": false, "timestamp": "2026-03-02T12:17:02.330088"}
+{"type": "decompose_start", "concept": "luce_vs_buio", "depth": 0, "timestamp": "2026-03-02T12:17:02.330412"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v1)", "timestamp": "2026-03-02T12:17:02.330535"}
+{"type": "info", "msg": "  Proposti: ['visual_acuity', 'pupillary_response', 'afterimage_persistence', 'spatial_orientation', 'emotional_comfort']", "timestamp": "2026-03-02T12:18:54.296789"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v1)", "timestamp": "2026-03-02T12:18:54.296921"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-02T12:34:28.506111"}
+{"type": "info", "msg": "  Probe: visual_acuity / Gemma3-1B-IT", "timestamp": "2026-03-02T12:34:28.507348"}
+{"type": "info", "msg": "  Probe OK: visual_acuity", "timestamp": "2026-03-02T12:35:02.675009"}
+{"type": "info", "msg": "  Probe: pupillary_response / Gemma3-1B-IT", "timestamp": "2026-03-02T12:35:02.676664"}
+{"type": "info", "msg": "  Probe OK: pupillary_response", "timestamp": "2026-03-02T12:35:39.146944"}
+{"type": "info", "msg": "  Probe: afterimage_persistence / Gemma3-1B-IT", "timestamp": "2026-03-02T12:35:39.148301"}
+{"type": "info", "msg": "  Probe OK: afterimage_persistence", "timestamp": "2026-03-02T12:36:08.699395"}
+{"type": "info", "msg": "  Probe: spatial_orientation / Gemma3-1B-IT", "timestamp": "2026-03-02T12:36:08.700801"}
+{"type": "info", "msg": "  Probe OK: spatial_orientation", "timestamp": "2026-03-02T12:36:51.461806"}
+{"type": "info", "msg": "  Probe: emotional_comfort / Gemma3-1B-IT", "timestamp": "2026-03-02T12:36:51.463039"}
+{"type": "info", "msg": "  Probe OK: emotional_comfort", "timestamp": "2026-03-02T12:37:19.674232"}
+{"type": "step", "step": 4, "name": "Analisi geometrica separabilità", "timestamp": "2026-03-02T12:37:19.674656"}
+{"type": "result", "step": 4, "concepts": ["luce_vs_buio", "visual_acuity", "pupillary_response", "afterimage_persistence", "spatial_orientation", "emotional_comfort"], "matrix": [[1.0, 0.3034943023072976, -0.25806041646579425, 0.35512670870541446, -0.36548389730868724, 0.28763188212956325], [0.3034943023072976, 1.0, -0.2150878381668326, 0.1443959403322236, -0.14196528220910995, 0.21841421993345847], [-0.25806041646579425, -0.2150878381668326, 0.9999999999999998, -0.04887733352160573, 0.36746998902034206, -0.2385115062932454], [0.35512670870541446, 0.1443959403322236, -0.04887733352160573, 0.9999999999999998, -0.09313992091253748, -0.020428598357980145], [-0.36548389730868724, -0.14196528220910995, 0.36746998902034206, -0.09313992091253748, 1.0, -0.028319390358965864], [0.28763188212956325, 0.21841421993345847, -0.2385115062932454, -0.020428598357980145, -0.028319390358965864, 0.9999999999999999]], "layers_used": {"luce_vs_buio": {"layer": 23, "source": "eval"}, "visual_acuity": {"layer": 23, "source": "eval"}, "pupillary_response": {"layer": 18, "source": "eval"}, "afterimage_persistence": {"layer": 19, "source": "eval"}, "spatial_orientation": {"layer": 22, "source": "eval"}, "emotional_comfort": {"layer": 20, "source": "eval"}}, "stats": {"min": -0.3655, "max": 0.3675, "mean": 0.0178}, "timestamp": "2026-03-02T12:37:19.685620"}
+{"type": "step", "step": 5, "name": "Steering test + giudizio M40", "timestamp": "2026-03-02T12:37:19.687180"}

@@ -1,0 +1,17 @@
+{"type": "run_start", "concept": "hot_vs_cold", "model": "Gemma3-1B-IT", "max_depth": 2, "max_iter": 3, "dry_run": false, "timestamp": "2026-03-02T10:45:44.077236"}
+{"type": "decompose_start", "concept": "hot_vs_cold", "depth": 0, "timestamp": "2026-03-02T10:45:44.077568"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v2)", "timestamp": "2026-03-02T10:45:44.077713"}
+{"type": "info", "msg": "  Proposti: ['thermal_intensity', 'pain_vs_comfort', 'tactile_sensation', 'physiological_response']", "timestamp": "2026-03-02T10:47:02.785679"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v2)", "timestamp": "2026-03-02T10:47:02.785819"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-02T10:56:17.609184"}
+{"type": "info", "msg": "  Probe: thermal_intensity / Gemma3-1B-IT", "timestamp": "2026-03-02T10:56:17.610728"}
+{"type": "info", "msg": "  Probe OK: thermal_intensity", "timestamp": "2026-03-02T10:56:58.626839"}
+{"type": "info", "msg": "  Probe: pain_vs_comfort / Gemma3-1B-IT", "timestamp": "2026-03-02T10:56:58.628059"}
+{"type": "info", "msg": "  Probe OK: pain_vs_comfort", "timestamp": "2026-03-02T10:57:32.177541"}
+{"type": "info", "msg": "  Probe: tactile_sensation / Gemma3-1B-IT", "timestamp": "2026-03-02T10:57:32.178727"}
+{"type": "info", "msg": "  Probe OK: tactile_sensation", "timestamp": "2026-03-02T10:58:08.526360"}
+{"type": "info", "msg": "  Probe: physiological_response / Gemma3-1B-IT", "timestamp": "2026-03-02T10:58:08.527746"}
+{"type": "info", "msg": "  Probe OK: physiological_response", "timestamp": "2026-03-02T10:58:43.897960"}
+{"type": "step", "step": 4, "name": "Analisi geometrica separabilità", "timestamp": "2026-03-02T10:58:43.898332"}
+{"type": "result", "step": 4, "concepts": ["hot_vs_cold", "thermal_intensity", "pain_vs_comfort", "tactile_sensation", "physiological_response"], "matrix": [[1.0000000000000002, 0.15485452521489917, -0.12171342501432653, 0.3210770913196353, 0.10011533222016611], [0.15485452521489917, 0.9999999999999999, -0.30763183260327237, 0.21175525317022226, 0.3100491191207759], [-0.12171342501432653, -0.30763183260327237, 0.9999999999999998, -0.32597283932062016, -0.07713235836440226], [0.3210770913196353, 0.21175525317022226, -0.32597283932062016, 1.0, 0.13964369837369567], [0.10011533222016611, 0.3100491191207759, -0.07713235836440226, 0.13964369837369567, 1.0]], "layers_used": {"hot_vs_cold": {"layer": 23, "source": "summary(fallback)"}, "thermal_intensity": {"layer": 23, "source": "eval"}, "pain_vs_comfort": {"layer": 23, "source": "eval"}, "tactile_sensation": {"layer": 21, "source": "eval"}, "physiological_response": {"layer": 18, "source": "eval"}}, "stats": {"min": -0.326, "max": 0.3211, "mean": 0.0405}, "timestamp": "2026-03-02T10:58:43.909639"}
+{"type": "step", "step": 5, "name": "Steering test + giudizio M40", "timestamp": "2026-03-02T10:58:43.910672"}

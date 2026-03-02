@@ -1,0 +1,16 @@
+{"type": "run_start", "concept": "hot_vs_cold", "model": "Gemma3-1B-IT", "max_depth": 2, "max_iter": 2, "dry_run": false, "timestamp": "2026-03-02T10:31:28.465249"}
+{"type": "decompose_start", "concept": "hot_vs_cold", "depth": 0, "timestamp": "2026-03-02T10:31:28.465606"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v2)", "timestamp": "2026-03-02T10:31:28.465739"}
+{"type": "info", "msg": "  Proposti: ['thermal_intensity', 'physiological_response', 'sensory_quality', 'source_material']", "timestamp": "2026-03-02T10:32:50.552856"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v2)", "timestamp": "2026-03-02T10:32:50.552995"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-02T10:41:19.032731"}
+{"type": "info", "msg": "  Probe: thermal_intensity / Gemma3-1B-IT", "timestamp": "2026-03-02T10:41:19.033707"}
+{"type": "info", "msg": "  Probe OK: thermal_intensity", "timestamp": "2026-03-02T10:41:46.334999"}
+{"type": "info", "msg": "  Probe: physiological_response / Gemma3-1B-IT", "timestamp": "2026-03-02T10:41:46.336326"}
+{"type": "info", "msg": "  Probe OK: physiological_response", "timestamp": "2026-03-02T10:42:22.710460"}
+{"type": "info", "msg": "  Probe: sensory_quality / Gemma3-1B-IT", "timestamp": "2026-03-02T10:42:22.711771"}
+{"type": "info", "msg": "  Probe OK: sensory_quality", "timestamp": "2026-03-02T10:42:54.304797"}
+{"type": "info", "msg": "  Probe: source_material / Gemma3-1B-IT", "timestamp": "2026-03-02T10:42:54.305944"}
+{"type": "info", "msg": "  Probe OK: source_material", "timestamp": "2026-03-02T10:43:22.359835"}
+{"type": "step", "step": 4, "name": "Analisi geometrica separabilità", "timestamp": "2026-03-02T10:43:22.360221"}
+{"type": "result", "step": 4, "concepts": ["hot_vs_cold", "thermal_intensity", "physiological_response", "sensory_quality", "source_material"], "matrix": [[1.0000000000000002, 0.26402442665886566, 0.09980031975386594, 0.2937103099957647, 0.15318210611988842], [0.26402442665886566, 1.0, 0.12161719234121472, 0.27825433137729344, 0.22519946824743933], [0.09980031975386594, 0.12161719234121472, 1.0000000000000002, 0.2523387316859194, 0.24181297263473128], [0.2937103099957647, 0.27825433137729344, 0.2523387316859194, 1.0, 0.5361544152656744], [0.15318210611988842, 0.22519946824743933, 0.24181297263473128, 0.5361544152656744, 0.9999999999999999]], "layers_used": {"hot_vs_cold": {"layer": 23, "source": "summary(fallback)"}, "thermal_intensity": {"layer": 20, "source": "eval"}, "physiological_response": {"layer": 18, "source": "eval"}, "sensory_quality": {"layer": 23, "source": "eval"}, "source_material": {"layer": 23, "source": "eval"}}, "stats": {"min": 0.0998, "max": 0.5362, "mean": 0.2466}, "timestamp": "2026-03-02T10:43:22.371527"}

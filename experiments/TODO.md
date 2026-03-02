@@ -1,138 +1,119 @@
 # Project Jedi — TODO & Roadmap
 
-**Ultimo aggiornamento**: 2026-03-01
+**Ultimo aggiornamento**: 2026-03-02
 
 ---
 
-## IMMEDIATO (prossima sessione)
+## IN CORSO ORA
 
-### 0. Sub-Concept Decomposition — PROSSIMA FASE PRINCIPALE
-Vedi architettura completa: `experiments/03_sub_concept_decomposition.md`
+### Batch decompose Gd1 — automatico
+```bash
+bash scripts/monitor_decompose.sh
+tail -f /tmp/decompose_gd1_*/batch_main.log
+```
 
-- [ ] Implementare `scripts/concept_expander.py` (Step 1+2: M40 analizza + genera dataset chirurgici)
-- [ ] Implementare `scripts/cosine_matrix.py` (Step 4: matrice separabilità)
-- [ ] Implementare `scripts/sub_concept_eval.py` (Step 5: steering comparativo)
-- [ ] Adattare `scripts/run_sub_probe.sh` per loop su config/sub_concepts/
-- [ ] Prima esecuzione su `hot_vs_cold` come concept pilota
-- [ ] Verificare separabilità reale degli output (non solo coseno geometrico)
+| Concept | Modello | Stato |
+|---------|---------|-------|
+| hot_vs_cold | Gemma3-1B-IT | ✅ VALIDATI |
+| luce_vs_buio | Gemma3-1B-IT | 🔄 step 5 |
+| calma_vs_allerta … (7 altri) | Gemma3-1B-IT | ⏳ |
+| tutti e 9 | Gemma2-Uncensored | ⏳ |
+
+Il batch: `run_decompose_gd1_all.sh` → 18 run (9 concept × 2 modelli)
+Cantagallo in background: `tmux display-message` + `/tmp/cantagallo_pending.txt`
 
 ---
 
-### 1. Analisi risultati Gemma2-Uncensored
-- [ ] Leggere tutti i 9 report generati dal batch `run_all_eval.sh --model Gemma2-Uncensored`
-- [ ] **Anomalia da investigare**: hot_vs_cold con Gemma2 produce risultati *lessicali* (score 0-2, scrive "hot" direttamente) invece di semantici come Gemma3. Possibili cause:
-  - Gain troppo alto per Gemma2 (hidden_dim=3584, vettore più grande → effetto più brutale)
-  - Best layer errato (L38 potrebbe essere troppo profondo per Gemma2)
-  - I vettori Gemma2 sono qualitativamente diversi (meno "semantici")
-- [ ] Scrivere diario esperimento per ogni concept Gemma2 in `experiments/`
-- [ ] Aggiungere note personali a ogni diario Gemma2
+## IMMEDIATO (dopo il batch)
 
-### 2. Confronto sistematico Gemma3 vs Gemma2
-- [ ] Tabella comparativa: stesso concept, entrambi i modelli, HOT avg / COLD avg / tipo effetto
-- [ ] Ipotesi da testare: Gemma2 ha vettori più potenti ma meno controllabili?
-- [ ] Aggiungere file `experiments/03_confronto_gemma3_vs_gemma2.md`
+### A. Analisi risultati Gd1
+- [ ] Leggere tutti i report decompose (18 run)
+- [ ] Aggiornare `experiments/07_pipeline_gd0_gd1.md` con risultati completi
+- [ ] Tabella cosine matrix per ogni concept (mean off-diagonal = separabilità)
+- [ ] Confronto Gemma3 vs Gemma2: stessi sub-concepts? stesse direzioni?
 
-### 3. Calibrazione gain per Gemma2
-- [ ] Ripetere hot_vs_cold con gain molto più basso (es. 20-50 invece di 200)
-- [ ] Trovare il "sweet spot" per Gemma2 equivalente a quello trovato per Gemma3 (L21 gain=1000)
+### B. Catalog e steering
+- [ ] Verificare catalog dopo batch: `python scripts/build_catalog_multi.py`
+- [ ] Test steering UI con sub-concepts Gd1 (dropdown `Gd1 — parent › slug`)
+
+### C. Commit finale batch
+Il batch fa il commit automatico, verificare con `git log --oneline -3`.
 
 ---
 
 ## MEDIO TERMINE
 
-### 4. Scomposizione gerarchica dei concept
-Idea: ogni concept attuale è *misto*. Scomporlo in sotto-dimensioni più precise.
+### 1. Confronto sistematico Gemma3 vs Gemma2 su Gd1
+- [ ] Per ogni concept: cosine similarity tra stessi sub-concepts su modelli diversi
+- [ ] Se coseno alto → direzione "universale"; se basso → codificazioni qualitatiamente diverse
+- [ ] Scrivere `experiments/08_confronto_gd1_gemma3_gemma2.md`
 
-Esempio per `hot_vs_cold`:
-- `hot_fisico`: temperature misurabili (termometro, ebollizione, febbre)
-- `hot_metaforico`: calore di carattere ("accoglienza calorosa", "freddo come persona")
-- `hot_tattile`: sensazione diretta sulla pelle (scottatura, gelo sulle dita)
+### 2. Grounding con sensori fisici
+- [ ] Termometro USB/I2C → `hot_vs_cold` v2 con dataset da misure reali
+- [ ] Fotoresistenza o sensore lux → `luce_vs_buio` v2
+- [ ] Architettura: `sensore → lettura → normalizzazione → alpha → steering API`
+- [ ] Domanda scientifica: il grounding migliora la qualità dell'output?
 
-Per ogni sotto-concept:
-- [ ] Generare dataset chirurgico (~200 frasi per polo, solo quel registro)
-- [ ] Estrarre vettore separato
-- [ ] Misurare cosine similarity tra sotto-vettori → sono la stessa direzione o divergono?
-- [ ] Testare se lo steering con vettore chirurgico è più preciso
+### 3. Decompose Gd2 (opzionale, dopo Gd1 consolidato)
+- [ ] Decomposizione ricorsiva di un Gd1 ben validato (es. `thermal_intensity`)
+- [ ] `--max-depth 1` in decompose.py (già implementato, non usato)
 
-Priority order:
-- [ ] hot_fisico vs hot_metaforico (facile, dataset chiaro)
-- [ ] luce_visiva vs luce_metaforica ("luce della ragione", "buio dell'ignoranza")
-- [ ] rumore_fisico vs rumore_emotivo (caos mentale vs suono fisico)
+### 4. Multi-concept simultaneo
+- [ ] Iniettare due vettori insieme (es. hot + rumore)
+- [ ] Cosine matrix 9×9 dei vettori Gd0: sono ortogonali tra loro?
 
 ### 5. Auto-eval migliorato
-- [ ] Aggiungere `--gain-range` a `run_all_eval.sh` per testare automaticamente più gain
-- [ ] Aggiungere modalità "calibration run" che trova il gain ottimale per un modello prima della sessione completa
-- [ ] Score 0 in T8 Gemma2: il valutatore M40 dovrebbe dire anche *perché* il testo è solo lessicale
+- [ ] `--gain-range` per testare automaticamente più gain in un run
+- [ ] Modalità "calibration run" per trovare gain ottimale
 
-### 6. Eval dashboard
-- [ ] Aggiungere confronto fianco a fianco Gemma3 vs Gemma2 per stesso concept
-- [ ] Visualizzare la distribuzione dei tipi (semantic/lexical/mixed) per sessione
+### 6. Vettori su altri modelli
+- [ ] Llama 3 / Mistral: stesso protocollo
+- [ ] Trasferibilità dei vettori tra modelli della stessa famiglia?
 
 ---
 
-## AMBIZIOSO (lungo termine)
+## COMPLETATO ✅
 
-### 7. Grounding con sensori fisici
-Obiettivo: collegare misure fisiche reali ai vettori concept.
+### Pipeline Gd0 (2026-02-28 — 2026-03-01)
+- ✅ Estrazione vettori Gd0: 9/9 concept × Gemma3-1B-IT (L18-23)
+- ✅ Estrazione vettori Gd0: 9/9 concept × Gemma2-Uncensored (L29-38)
+- ✅ Auto-eval Gd0: 9/9 × Gemma2-Uncensored (report MD completi)
+- ✅ Sweet spot Gemma3: L21 gain=1000 (base), L19/L23 per concept specifici
+- ✅ Sweet spot Gemma2: L37 gain=1200 (semantico), L29 gain=200 (migliore per dolce)
 
-**Architettura ipotizzata**:
-```
-sensore fisico → lettura → normalizzazione → alpha/gain → iniezione vettore
-```
-
-Sensori candidati (in ordine di semplicità tecnica):
-- [ ] **Termometro USB/I2C** → hot_vs_cold (priorità 1 — più diretto)
-- [ ] **Fotoresistenza o sensore lux** → luce_vs_buio
-- [ ] **Microfono + RMS level** → rumore_vs_silenzio
-- [ ] **Sensore umidità DHT22** → secco_vs_umido
-
-Per ogni sensore:
-- [ ] Connettere lettura in tempo reale all'API di steering
-- [ ] Testare: il modello genera testo "più accurato" sul calore quando il termometro legge davvero 38°C?
-- [ ] Misurare: c'è differenza qualitativa tra steering fisicamente ancorato vs steering con alpha fisso?
-
-**Domanda scientifica**: se il grounding fisico migliora la qualità dell'output, significa che il vettore semantico e la misura fisica puntano nella stessa direzione nello spazio di rappresentazione?
-
-### 8. Multi-concept simultaneo
-- [ ] Iniettare due vettori contemporaneamente (es. hot + rumore → "stanza calda e rumorosa")
-- [ ] Misurare interferenza / indipendenza tra vettori diversi
-- [ ] I vettori sensoriali sono ortogonali tra loro? (test: cosine similarity tra tutti i 9 vettori)
-
-### 9. Vettori su altri modelli
-- [ ] Llama 3 / Mistral: stesse estrazioni, stesso protocollo
-- [ ] I vettori sono trasferibili tra modelli della stessa famiglia?
-- [ ] Esiste una "direzione universale del calore" indipendente dal modello?
+### Infrastruttura decompose Gd1 (2026-03-01 — 2026-03-02)
+- ✅ `decompose.py` — loop completo steps 1-5
+- ✅ `concept_expander.py` — M40 analizza + genera dataset chirurgici
+- ✅ `cosine_matrix.py` — matrice N×N + save_heatmap (fix HAS_MATPLOTLIB)
+- ✅ `sub_concept_eval.py` — steering test coppie + giudizio M40 (fix PosixPath)
+- ✅ `build_catalog_multi.py` — indicizza Gd0 + Gd1
+- ✅ `steering_server.py` — routing Gd0/Gd1, `/api/concepts` con sub_concepts[]
+- ✅ `steering.html` — dropdown optgroup Gd0/Gd1
+- ✅ `run_decompose_gd1_all.sh` — batch script 18 run
+- ✅ `monitor_decompose.sh` — monitor stato batch
+- ✅ `cantagallo.sh` — monitor senza tmux send-keys (fix disruption)
+- ✅ M40 Gemma3-12B Q4_K_M CUDA — upgrade evaluator ~33 tok/s
+- ✅ `experiments/07_pipeline_gd0_gd1.md` — documentazione cuore del progetto
 
 ---
 
 ## NOTE OPERATIVE
 
-### Batch Gemma2 in corso
-```bash
-# Stato:
-tail -f /tmp/eval_batch_gemma2.log
-tail -f /tmp/eval_logs/eval_<concept>.log
-
-# PID:
-cat /tmp/eval_batch_gemma2.pid   # → 62974
-```
-Avviato 2026-02-28 16:47 — stimato completamento in ~3-4 ore.
-Output in: `output/eval_sessions/session_*_Gemma2-Uncensored.*`
-
-### Sweet spot confermati
-| Modello | Concept | Layer | Gain | Effetto |
-|---------|---------|-------|------|---------|
-| Gemma3-1B-IT | hot_vs_cold | L19 | 1200 | semantico ✅ |
-| Gemma3-1B-IT | luce_vs_buio | L23 | 1300 | semantico ✅ |
-| Gemma2-Uncensored | hot_vs_cold | ? | ? | lessicale con gain=200 ⚠️ — da calibrare |
-
 ### Avvio server (reminder)
 ```bash
 cd /home/lele/codex-openai
-# Steering server (MI50):
 nohup project_jedi/.venv/bin/python project_jedi/scripts/steering_server.py > /tmp/steering_server.log 2>&1 &
-# M40 evaluator:
-/mnt/raid0/llama-cpp-m40/start_cuda.sh &
-# Batch eval (tutti i concept):
-bash project_jedi/scripts/run_all_eval.sh --model Gemma2-Uncensored
+/mnt/raid0/llama-cpp-m40/start_cuda.sh
 ```
+
+### Cantagallo
+```bash
+nohup bash project_jedi/scripts/cantagallo.sh >> /tmp/jedi_cantagallo.log 2>&1 &
+cat /tmp/cantagallo_pending.txt   # messaggi per Claude
+```
+
+### Sweet spot confermati
+| Modello | Layer | Gain | Effetto |
+|---------|-------|------|---------|
+| Gemma3-1B-IT | L19-23 (concept-dep.) | 1000-1300 | semantico ✅ |
+| Gemma2-Uncensored | L29-37 (concept-dep.) | 200-1200 | semantico ✅ |

@@ -2,8 +2,77 @@
   "concept": "hot_vs_cold",
   "model": "Gemma3-1B-IT",
   "version": 2,
-  "timestamp": "2026-03-01T16:57:16.537366",
+  "timestamp": "2026-03-02T10:47:02.784923",
   "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260228_152615_hot_vs_cold_Gemma3-1B-IT.jsonl",
-  "analysis": "",
-  "sub_concepts": []
+  "analysis": "Il concetto broad 'hot_vs_cold' cattura una varietà di esperienze sensoriali e reazioni fisiologiche che vanno oltre la semplice temperatura. Un vettore che rappresenta questo concetto confonde aspetti come l'intensità del dolore, la reazione emotiva (piacere vs. disagio), la percezione tattile (bruciore vs. intorpidimento) e persino la reazione psicologica (paura vs. sollievo). La decomposizione è necessaria per modellare in modo più accurato le sfumature di queste esperienze e per consentire al modello di generare risposte più specifiche e contestualmente appropriate.",
+  "sub_concepts": [
+    {
+      "slug": "thermal_intensity",
+      "pos_label": "Intensità elevata",
+      "neg_label": "Intensità bassa",
+      "description": "Questo sub-concetto cattura la forza percepita del calore o del freddo. Si riferisce alla sensazione di bruciore intenso o di freddo pungente.",
+      "why_distinct": "Si concentra unicamente sulla forza della sensazione termica, indipendentemente dal piacere o dal dolore associato. Distingue tra una leggera sensazione e una sensazione opprimente.",
+      "pos_examples": [
+        "Der Schmied drückte den Unterarm auf einen heißen Griff; und der Kontakt stach; Hitze schoss schnell hoch",
+        "The child heat surged fast as pressed the forearm on a hot pipe",
+        "El herrero apoyó la piel sobre una superficie que quema"
+      ],
+      "neg_examples": [
+        "Le cuisinier le sang sembla se retirer pendant que posa le poignet sur une poignée gelée",
+        "Die Radfahrerin strich über den Unterarm auf einen gefrorenen Griff",
+        "The physiotherapist fine shivers appeared as touched with the lips on a cold surface"
+      ]
+    },
+    {
+      "slug": "pain_vs_comfort",
+      "pos_label": "Doloroso",
+      "neg_label": "Confortevole",
+      "description": "Questo sub-concetto distingue tra esperienze termiche che causano dolore o disagio (bruciore, pizzicore) e quelle che sono piacevoli o confortevoli (calore rilassante).",
+      "why_distinct": "Separa l'aspetto emotivo della sensazione termica. Un oggetto caldo può essere percepito come confortevole o doloroso a seconda dell'intensità e del contesto.",
+      "pos_examples": [
+        "selbst nach dem Loslassen.",
+        "und el reflejo la apartó con un ardor creciente",
+        "broto sudor; imposible de ignorar"
+      ],
+      "neg_examples": [
+        "die Finger wurden taub",
+        "sollievo",
+        "rilassante"
+      ]
+    },
+    {
+      "slug": "tactile_sensation",
+      "pos_label": "Bruciore/Pizzicore",
+      "neg_label": "Intorpidimento/Formicolio",
+      "description": "Questo sub-concetto si concentra sulle sensazioni tattili specifiche associate al calore o al freddo, come bruciore, pizzicore, intorpidimento o formicolio.",
+      "why_distinct": "Si concentra sulle specifiche sensazioni tattili che accompagnano la temperatura, separandole dalla semplice percezione di caldo o freddo.",
+      "pos_examples": [
+        "der Kontakt stach",
+        "el reflejo la apartó",
+        "el calor subió rápido; como una picadura insistente"
+      ],
+      "neg_examples": [
+        "una morsure seche",
+        "i dita divennero intorpidite",
+        "fine shivers appeared"
+      ]
+    },
+    {
+      "slug": "physiological_response",
+      "pos_label": "Reazione fisiologica (sudore, ritrazione)",
+      "neg_label": "Assenza di reazione fisiologica",
+      "description": "Questo sub-concetto cattura le risposte fisiologiche al calore o al freddo, come sudorazione, ritrazione del sangue o brividi.",
+      "why_distinct": "Si concentra sulle reazioni fisiche del corpo alla temperatura, che possono variare in base all'intensità e alla durata dell'esposizione.",
+      "pos_examples": [
+        "brotó sudor",
+        "el sangue pareció retirarse",
+        "il corpo ebbe un sussulto"
+      ],
+      "neg_examples": [
+        "nessuna reazione",
+        "nessun cambiamento",
+        "senza reazione"
+      ]
+    }
+  ]
 }

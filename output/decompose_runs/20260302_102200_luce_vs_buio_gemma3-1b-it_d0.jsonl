@@ -1,0 +1,3 @@
+{"type": "run_start", "concept": "luce_vs_buio", "model": "Gemma3-1B-IT", "max_depth": 2, "max_iter": 2, "dry_run": false, "timestamp": "2026-03-02T10:22:00.664808"}
+{"type": "decompose_start", "concept": "luce_vs_buio", "depth": 0, "timestamp": "2026-03-02T10:22:00.665157"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v1)", "timestamp": "2026-03-02T10:22:00.665283"}

@@ -2,122 +2,76 @@
   "concept": "hot_vs_cold",
   "model": "Gemma3-1B-IT",
   "version": 1,
-  "timestamp": "2026-03-01T17:42:44.025605",
+  "timestamp": "2026-03-02T11:41:50.408774",
   "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260228_152615_hot_vs_cold_Gemma3-1B-IT.jsonl",
-  "analysis": "Il vettore broad 'hot_vs_cold' confonde la rappresentazione semantica perché la distinzione si basa su una dimensione continua di intensità termica. La decomposizione in sub-concetti come 'thermal_intensity', 'surface_interaction', 'immediate_response', e 'sensory_distortion' cattura le diverse sfaccettature di questa dimensione, consentendo una rappresentazione più precisa e granulare dell'esperienza sensoriale.  La sovrapposizione tra i concetti è inevitabile, ma la scomposizione permette di gestire meglio la variabilità e la complessità dell'esperienza umana.",
+  "analysis": "Il concetto broad 'hot_vs_cold' è intrinsecamente complesso perché non si limita alla semplice temperatura. Coinvolge percezioni sensoriali, reazioni fisiologiche (dolore, arrossamento, formicolio), e anche associazioni emotive e cognitive legate al comfort, al pericolo e alla reazione del corpo. Un vettore che rappresenta 'hot_vs_cold' confonde quindi aspetti come l'intensità del dolore, la reazione fisiologica specifica (arrossamento vs. intorpidimento), e la percezione soggettiva del disagio, che possono variare enormemente tra gli individui e le situazioni. La decomposizione in sub-concetti specifici è necessaria per catturare queste sfumature e per evitare che il vettore 'hot_vs_cold' diventi un aggregato indistinto di informazioni non correlate.",
   "sub_concepts": [
     {
       "slug": "thermal_intensity",
-      "pos_label": "sensazione di calore intenso",
-      "neg_label": "sensazione di freddo intenso",
-      "description": "Questo sub-concetto cattura la percezione diretta dell'intensità della temperatura, sia in termini di calore bruciante che di freddo pungente. Si concentra sull'impatto immediato sulla pelle e sui nervi sensoriali.",
-      "why_distinct": "È il livello più elementare della distinzione, focalizzato sull'esperienza sensoriale primaria. Distinto da altri concetti che riguardano le conseguenze emotive o psicologiche del calore o del freddo.",
+      "pos_label": "Intensità elevata",
+      "neg_label": "Intensità bassa",
+      "description": "Questo sub-concetto cattura la forza percepita del calore o del freddo. Si riferisce alla sensazione di bruciore intenso o di freddo pungente, piuttosto che a una semplice temperatura.",
+      "why_distinct": "Si distingue perché si concentra esclusivamente sull'intensità percepita, indipendentemente dalla causa (es. calore da una fiamma vs. calore da una lampada).",
       "pos_examples": [
-        "frase 1",
-        "frase 2",
-        "frase 3",
-        "frase 7",
-        "frase 8",
-        "frase 9",
-        "frase 10"
+        "Die Taucherin berührte mit der Fingerspitze auf ein heißes Rohr; und der Kontakt stach; Hitze schoss schnell hoch",
+        "rozó con los dedos sobre metal ardiente y la piel ardió; el calor subió rápido; con dolor limpio y localizado",
+        "Il fabbro la pelle arrossì mentre poggiò la pelle su un tubo caldo: e la pelle bruciò con una scia che restava finché la pelle non smise di pulsare."
       ],
       "neg_examples": [
-        "frase 1",
-        "frase 2",
-        "frase 3",
-        "frase 7",
-        "frase 8",
-        "frase 9",
-        "frase 10"
+        "La ciclista la sangre pareció retirarse mientras rozó el antebrazo sobre cerámica fría",
+        "appoggiò le dita su una superficie fredda e il corpo ebbe un sussulto",
+        "tocò con le labbra su metallo gelido e il contatto punse"
       ]
     },
     {
-      "slug": "surface_interaction",
-      "pos_label": "contatto con superfici calde",
-      "neg_label": "contatto con superfici fredde",
-      "description": "Questo sub-concetto si concentra sulla natura del contatto fisico - la superficie su cui si applica il calore o il freddo.  Include materiali come metallo, ceramica, pelle, e le conseguenze immediate di questo contatto.",
-      "why_distinct": "La natura del contatto (solido, liquido, gassoso) e il materiale influenzano significativamente l'esperienza termica. Distinto da concetti che si concentrano solo sull'intensità della temperatura.",
+      "slug": "physiological_reaction",
+      "pos_label": "Reazione fisiologica (arrossamento, dolore)",
+      "neg_label": "Reazione fisiologica (intorpidimento, rigidità)",
+      "description": "Questo sub-concetto si concentra sulle risposte fisiche del corpo al calore o al freddo, come arrossamento, bruciore, intorpidimento o rigidità.",
+      "why_distinct": "Separa le risposte attive (arrossamento, dolore) dalle risposte passive (intorpidimento, rigidità), che indicano una diminuzione della sensibilità.",
       "pos_examples": [
-        "frase 1",
-        "frase 2",
-        "frase 3",
-        "frase 4",
-        "frase 5",
-        "frase 6",
-        "frase 8",
-        "frase 9"
+        "La nadadora tocó con la yema sobre cerámica recalentada y el reflejo la apartó; la piel se enrojeció, con un ardor creciente",
+        "Il bambino sfiorò con le dita su un tubo caldo e il contatto pizzicò; il sudore comparve, con un bruciore crescente",
+        "The elderly woman the spot throbbed as brushed with the fingers on overheated ceramic: and a sharp twinge hit with a growing burn"
       ],
       "neg_examples": [
-        "frase 1",
-        "frase 2",
-        "frase 3",
-        "frase 4",
-        "frase 5",
-        "frase 6",
-        "frase 8",
-        "frase 9"
+        "The blacksmith rested the wrist on a cold surface and the hand jerked back from pain; the fingers started to go numb",
+        "Das Kind drückte die Handfläche auf ein sehr kaltes Rohr; und der Körper zuckte; die Finger wurden taub",
+        "set the fingers on a very cold pipe and the hand jerked back from pain; blood seemed to pull back"
       ]
     },
     {
-      "slug": "immediate_response",
-      "pos_label": "reazioni immediate del corpo",
-      "neg_label": "reazioni immediate del corpo",
-      "description": "Questo sub-concetto si concentra sulle risposte fisiologiche immediate al calore o al freddo, come arrossamento, sudorazione, brividi, contrazioni muscolari, o cambiamenti nella respirazione.  È l'effetto immediato dell'esperienza sensoriale.",
-      "why_distinct": "Si distingue da concetti più astratti che riguardano la percezione o l'emozione. Si concentra esclusivamente sull'esperienza fisica immediata.",
+      "slug": "subjective_discomfort",
+      "pos_label": "Disagio intenso",
+      "neg_label": "Disagio minimo/assenza di disagio",
+      "description": "Questo sub-concetto valuta il livello di disagio soggettivo provato dall'individuo. Non si tratta solo di dolore fisico, ma anche di sensazioni spiacevoli come fastidio, irritazione o ansia.",
+      "why_distinct": "Distinguere tra un'esperienza semplicemente 'calda' o 'fredda' e un'esperienza che causa disagio significativo.",
       "pos_examples": [
-        "frase 1",
-        "frase 2",
-        "frase 3",
-        "frase 4",
-        "frase 5",
-        "frase 6",
-        "frase 7",
-        "frase 8",
-        "frase 9",
-        "frase 10"
+        "Il fabbro la pelle arrossì mentre poggiò la pelle su un tubo caldo: e la pelle bruciò con una scia che restava finché la pelle non smise di pulsare.",
+        "Die Taucherin die Stelle pochte, als legte die Haut auf ein heißes Rohr: und der Reflex schnappte weg mit wachsendem Brennen",
+        "rozó con los dedos sobre metal ardiente y la piel ardió; el calor subió rápido; con dolor limpio y localizado"
       ],
       "neg_examples": [
-        "frase 1",
-        "frase 2",
-        "frase 3",
-        "frase 4",
-        "frase 5",
-        "frase 6",
-        "frase 7",
-        "frase 8",
-        "frase 9",
-        "frase 10"
+        "La ciclista la sangre pareció retirarse mientras rozó el antebrazo sobre cerámica fría",
+        "The mason the fingers started to go numb as pressed the palm on a frozen handle",
+        "appoggiò le dita su una superficie fredda e il corpo ebbe un sussulto"
       ]
     },
     {
-      "slug": "sensory_distortion",
-      "pos_label": "alterazione della percezione sensoriale",
-      "neg_label": "alterazione della percezione sensoriale",
-      "description": "Questo sub-concetto si concentra sull'effetto del calore o del freddo sulla percezione generale della realtà.  Include la distorsione della vista, dell'udito, o dell'olfatto, causata dall'esperienza termica.",
-      "why_distinct": "È un livello più complesso che considera l'impatto del calore o del freddo sulla cognizione e sulla percezione. Distinto da concetti che si limitano alla sensazione fisica.",
+      "slug": "reaction_speed",
+      "pos_label": "Reazione rapida",
+      "neg_label": "Reazione lenta",
+      "description": "Questo sub-concetto si riferisce alla velocità con cui l'individuo reagisce al contatto con la superficie, ad esempio ritirando la mano istantaneamente.",
+      "why_distinct": "La velocità della reazione può indicare la gravità della sensazione e la sua potenziale pericolosità.",
       "pos_examples": [
-        "frase 1",
-        "frase 2",
-        "frase 3",
-        "frase 4",
-        "frase 5",
-        "frase 6",
-        "frase 7",
-        "frase 8",
-        "frase 9",
-        "frase 10"
+        "The blacksmith touched with a fingertip on overheated ceramic; and pulled the hand back instantly",
+        "La nadadora tocó con la yema sobre cerámica recalentada y el reflejo la apartó",
+        "Die Taucherin die Stelle pochte, als legte die Haut auf ein heißes Rohr: und der Reflex schnappte weg"
       ],
       "neg_examples": [
-        "frase 1",
-        "frase 2",
-        "frase 3",
-        "frase 4",
-        "frase 5",
-        "frase 6",
-        "frase 7",
-        "frase 8",
-        "frase 9",
-        "frase 10"
+        "The blacksmith rested the wrist on a cold surface and the hand jerked back from pain",
+        "La ciclista la sangre pareció retirarse mientras rozó el antebrazo sobre cerámica fría",
+        "appoggiò le dita su una superficie fredda e il corpo ebbe un sussulto"
       ]
     }
   ]

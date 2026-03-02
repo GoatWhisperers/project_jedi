@@ -1,0 +1,25 @@
+{
+  "type": "sub_concept_eval",
+  "parent_concept": "hot_vs_cold",
+  "model": "Gemma3-1B-IT",
+  "version": 2,
+  "timestamp": "2026-03-02T11:19:06.967434",
+  "sub_concepts": [
+    {
+      "slug": "thermal_intensity",
+      "pos_label": "Intensità elevata",
+      "neg_label": "Intensità bassa",
+      "description": "Questo sub-concetto cattura la forza percepita del calore o del freddo. Si riferisce alla sensazione di bruciore intenso o di freddo pungente.",
+      "why_distinct": "Si concentra unicamente sulla forza della sensazione termica, indipendentemente dal piacere o dal dolore associato. Distingue tra una leggera sensazione e una sensazione opprimente.",
+      "pos_examples": [
+        "Der Schmied drückte den Unterarm auf einen heißen Griff; und der Kontakt stach; Hitze schoss schnell hoch",
+        "The child heat surged fast as pressed the forearm on a hot pipe",
+        "El herrero apoyó la piel sobre una superficie que quema"
+      ],
+      "neg_examples": [
+        "Le cuisinier le sang sembla se retirer pendant que posa le poignet sur une poignée gelée",
+        "Die Radfahrerin strich über den Unterarm auf einen gefrorenen Griff",
+        "The physiotherapist fine shivers appeared as touched with the lips on a cold surface"
+      ],
+      "layer": 23,
+      "npy_path": 
