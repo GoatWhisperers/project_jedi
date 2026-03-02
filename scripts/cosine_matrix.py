@@ -264,6 +264,9 @@ def save_heatmap(
     output_path: Path,
 ):
     """Salva heatmap matplotlib con annotazioni numeriche."""
+    if not HAS_MATPLOTLIB:
+        print("  [INFO] matplotlib non disponibile — skip heatmap")
+        return
     n = len(concepts)
     fig_size = max(7, n * 0.9)
     fig, ax = plt.subplots(figsize=(fig_size, fig_size * 0.85))
