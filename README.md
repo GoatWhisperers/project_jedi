@@ -72,6 +72,20 @@ We don't just compute the vector — we validate it is **stable** and **reproduc
 
 **Held-out SNR:** The real test. Project 5–10 held-out sentences (not in training) onto the concept vector. If positive sentences score higher than negative, the direction is semantically correct. If inverted: wrong direction (early-layer trap).
 
+### Sub-concept decomposition (Phase 3)
+
+A Gd0 (ground-zero) concept vector like `hot_vs_cold` is a composite direction — it conflates thermal intensity, surface contact, physiological response, and sensory distortion into a single axis. Phase 3 decomposes it into orthogonal Gd1 sub-vectors.
+
+The loop (orchestrated by `decompose.py`):
+
+1. **M40 analyzes** the auto-eval JSONL session for the parent concept → proposes 4 distinct sub-concepts
+2. **M40 generates** surgical datasets (20+20 sentences) for each sub-concept, maximizing separability
+3. **MI50 extracts** concept vectors for each sub-concept via `probe_concept.py`
+4. **Cosine matrix** measures pairwise similarity between all sub-vectors and the parent vector
+5. **M40 evaluates** steering with each sub-vector and provides feedback for the next iteration
+
+First results (hot_vs_cold Gd1, Gemma3-1B-IT): mean off-diagonal cosine = **0.089** — the sub-vectors are nearly orthogonal, confirming successful decomposition. The parent Gd0 vector is perpendicular to `immediate_response` (cosine = -0.004) and moderately similar to `surface_interaction` (cosine = 0.360), revealing what the broad vector actually captures.
+
 ### Activation steering
 
 Once we have a concept vector `v` for layer `L`, we can steer the model during generation by injecting it into the forward pass via a hook:
@@ -96,16 +110,20 @@ project_jedi/
 │
 ├── config/
 │   ├── settings.json              # Model paths, runtime parameters
-│   └── concepts/                  # Concept datasets (500+500 sentences each)
-│       ├── hot_vs_cold.json
-│       ├── luce_vs_buio.json
-│       ├── calma_vs_allerta.json
-│       ├── liscio_vs_ruvido.json
-│       ├── secco_vs_umido.json
-│       ├── duro_vs_morbido.json
-│       ├── rumore_vs_silenzio.json
-│       ├── dolce_vs_amaro.json
-│       └── odore_forte_vs_inodore.json
+│   ├── concepts/                  # Concept datasets (500+500 sentences each)
+│   │   ├── hot_vs_cold.json
+│   │   ├── luce_vs_buio.json
+│   │   ├── calma_vs_allerta.json
+│   │   ├── liscio_vs_ruvido.json
+│   │   ├── secco_vs_umido.json
+│   │   ├── duro_vs_morbido.json
+│   │   ├── rumore_vs_silenzio.json
+│   │   ├── dolce_vs_amaro.json
+│   │   └── odore_forte_vs_inodore.json
+│   └── sub_concepts/              # Sub-concept datasets (Phase 3 decompose)
+│       └── {concept}/
+│           ├── _meta_vN.json      # Sub-concepts proposed by M40 (iteration N)
+│           └── {slug}.json        # Surgical dataset (20+20 sentences)
 │
 ├── scripts/
 │   ├── probe_hot_cold.py          # Core extraction (convergence, mean-diff, PCA)
@@ -114,7 +132,12 @@ project_jedi/
 │   ├── build_catalog.py           # Incremental catalog update
 │   ├── build_catalog_multi.py     # Full catalog rebuild (all runs + library)
 │   ├── probe_server.py            # HTTP server port 8000 (probe dashboard)
-│   └── steering_server.py         # HTTP server port 8010 (steering console)
+│   ├── steering_server.py         # HTTP server port 8010 (steering console)
+│   ├── auto_eval.py               # Auto-evaluation loop (MI50 steers, M40 evaluates)
+│   ├── decompose.py               # Phase 3 orchestrator: sub-concept decompose loop
+│   ├── concept_expander.py        # M40 client: sub-concept analysis + dataset generation
+│   ├── sub_concept_eval.py        # Phase 3 Step 5: auto-eval on sub-concept vectors
+│   └── cosine_matrix.py           # Cosine similarity matrix between concept vectors
 │
 ├── ui/
 │   ├── probe_dashboard.html       # Probe control UI
@@ -125,13 +148,23 @@ project_jedi/
 │   ├── vector_library/            # Organized concept vectors
 │   │   └── {category}/
 │   │       └── {concept}/
-│   │           └── {model}/
-│   │               ├── layer_N.npy       # Mean-diff vector (primary)
-│   │               ├── layer_N_pca.npy   # PCA vector (backup)
-│   │               ├── meta.json
-│   │               ├── summary.json      # Convergence stats per layer
-│   │               └── eval.json         # Held-out SNR (if --eval)
-│   └── run_YYYYMMDD_HHMMSS/       # Legacy run directories
+│   │           ├── {model}/
+│   │           │   ├── layer_N.npy       # Mean-diff vector (primary)
+│   │           │   ├── layer_N_pca.npy   # PCA vector (backup)
+│   │           │   ├── meta.json
+│   │           │   ├── summary.json      # Convergence stats per layer
+│   │           │   └── eval.json         # Held-out SNR (if --eval)
+│   │           └── sub/
+│   │               └── {slug}/
+│   │                   └── {model}/      # Sub-concept vectors (Phase 3)
+│   │                       └── layer_N.npy
+│   ├── decompose_runs/            # Phase 3 cosine matrices and analysis
+│   │   └── {concept}/
+│   │       └── cosine_matrix_vN.json
+│   ├── eval_sessions/             # Auto-eval JSONL logs + Markdown reports
+│   │   ├── session_*.jsonl
+│   │   └── session_*_report.md
+│   └── steering_log.jsonl         # All steering console generations
 │
 ├── concept_generation_prompt.md   # Prompt template for dataset generation
 └── LLM_Internal_Probing_Reference.md  # Technical reference
@@ -442,17 +475,32 @@ Deep layers (L18–L23 for Gemma3, L29–L38 for Gemma2) show `boot_min ≈ 0.89
 
 ## Hardware & Requirements
 
+### MI50 — Steering & Probing
+
 | Component | Spec |
 |-----------|------|
 | GPU | AMD MI50, 32 GB VRAM |
 | ROCm | Required for PyTorch GPU support |
 | Python | 3.11 (venv at `project_jedi/.venv`) |
-| Gemma3-1B-IT | ~2.5 GB VRAM in bfloat16 |
-| Gemma2-Uncensored | ~14 GB VRAM in bfloat16 |
+| Gemma3-1B-IT | ~2.3 GB VRAM in bfloat16 |
+| Gemma2-Uncensored | ~20 GB VRAM in bfloat16 |
 | Extraction time | ~5 min for 500 sentences × 10 layers |
 | Generation latency | ~2–3s per response |
 
 > **Note:** `dtype: "bfloat16"` is required in settings.json. float32 uses ~28 GB for Gemma2 and causes OOM.
+
+### M40 — Evaluation (llama.cpp)
+
+| Component | Spec |
+|-----------|------|
+| GPU | NVIDIA Tesla M40, 11.5 GB VRAM (CUDA 11.8, sm_52) |
+| Binary | `llama-server` compiled with `--allow-shlib-undefined` (Docker Ubuntu 22.04 + GCC 11 + CUDA 11.8) |
+| Model | Gemma3-12B Q4_K_M (GGUF, 6.8 GB) |
+| VRAM usage | ~8.3 GB (model + KV cache) |
+| Speed | ~33 tok/s on GPU (vs ~8 tok/s CPU) |
+| Port | 11435 |
+| Parallelism | `--parallel 1` (one request at a time to avoid queue timeouts) |
+| Context | `--ctx-size 4096` |
 
 ---
 

@@ -23,16 +23,25 @@ Estrarre e catalogare **vettori concettuali** dai layer profondi di un LLM, usan
 - GPU: **MI50** (ROCm)
 - Modello default: **Gemma3‑1B-IT** (HF/Transformers)
 
-### Modelli disponibili
+### Modelli disponibili — MI50 (steering + probing)
 
-| Nome | Path | Layer | Hidden Size |
-|------|------|-------|-------------|
-| Gemma3-1B-IT | `/mnt/raid0/gemma-3-1b-it` | 26 | 1152 |
-| Gemma2-Uncensored | `/mnt/raid0/gemma-2-uncensored` | 42 | 3584 |
+| Nome | Path | Layer | Hidden Size | VRAM (bfloat16) |
+|------|------|-------|-------------|-----------------|
+| Gemma3-1B-IT | `/mnt/raid0/gemma-3-1b-it` | 26 | 1152 | ~2.3 GB |
+| Gemma2-Uncensored | `/mnt/raid0/gemma-2-uncensored` | 42 | 3584 | ~20 GB |
 
 > I vettori nel catalogo sono **model-specific** (hidden_size diverso). Non intercambiabili tra modelli.
 
-Nota: la M40 non è adatta a questo workflow perché il backend GGUF/llama.cpp non espone `hidden_states`.
+### Modello evaluator — M40 (CUDA, llama.cpp)
+
+| Nome | Path | Formato | VRAM |
+|------|------|---------|------|
+| Gemma3-12B-IT Q4_K_M | `/mnt/raid0/models-gguf/gemma-3-12b-it-Q4_K_M.gguf` | GGUF | ~8.3 GB |
+
+La M40 **non** è adatta al probing (GGUF/llama.cpp non espone `hidden_states`), ma è usata
+come **evaluator** nell'auto-eval loop e nel decompose loop. Gira a ~33 tok/s su GPU.
+
+Avvio: `/mnt/raid0/llama-cpp-m40/start_cuda.sh` (porta 11435).
 
 ---
 

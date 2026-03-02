@@ -54,7 +54,7 @@ class M40Client:
                 "temperature": temperature,
                 "stream": False,
             },
-            timeout=300,
+            timeout=600,
         )
         r.raise_for_status()
         return r.json()["choices"][0]["message"]["content"]
