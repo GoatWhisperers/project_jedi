@@ -17,6 +17,8 @@ INTERVAL=900                       # 15 minuti
 CANTAGALLO_LOG="/tmp/jedi_cantagallo.log"
 PENDING_FILE="/tmp/cantagallo_pending.txt"
 PID_FILE="/tmp/jedi_cantagallo.pid"
+CLAUDE_PANE="0:0.0"               # pane tmux dove gira Claude Code
+STATO_FILE="/home/lele/codex-openai/project_jedi/STATO.md"
 
 echo $$ > "$PID_FILE"
 
@@ -28,17 +30,28 @@ log() {
 # Il popup appare nell'angolo di tmux e sparisce dopo ~4 secondi
 notify_user() {
     local msg="$1"
-    # Prova su tutti i pane tmux attivi
     tmux display-message -d 4000 "$msg" 2>/dev/null || true
-    # Fallback: scrivi anche su stderr del terminale corrente
     echo ">>> CANTAGALLO: $msg" >&2
 }
 
-# Scrive un messaggio nel file pending che Claude legge alla prossima interazione
+# Controlla se Claude sta elaborando (spinner "Esc to interrupt" visibile nel pane)
+claude_is_busy() {
+    tmux capture-pane -pt "$CLAUDE_PANE" -p 2>/dev/null | grep -q "Esc to interrupt"
+}
+
+# Scrive una PROPOSTA nel file pending che Claude legge alla prossima interazione.
+# Se Claude è occupato: solo popup visivo, niente scrittura (non lo interrompiamo).
+# Se Claude è idle: popup + pending.
 notify_claude() {
     local msg="$1"
-    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $msg" >> "$PENDING_FILE"
-    log "→ Pending per Claude: ${msg:0:100}..."
+    if claude_is_busy; then
+        log "→ Claude occupato — solo popup, niente pending"
+        notify_user "CANTAGALLO (in attesa): $msg"
+    else
+        echo "[$(date '+%Y-%m-%d %H:%M:%S')] $msg" >> "$PENDING_FILE"
+        log "→ Proposta per Claude: ${msg:0:100}..."
+        notify_user "CANTAGALLO: $msg"
+    fi
 }
 
 get_batch_log() {
@@ -77,7 +90,8 @@ check_and_report() {
         # ── BATCH COMPLETATO ──────────────────────────────────────────────────
         log "=== BATCH COMPLETATO ==="
         notify_user "CANTAGALLO: batch decompose Gd1 COMPLETATO (${ok}/18 ✓  ${fail} ✗)"
-        notify_claude "Il batch decompose Gd1 è completato (${ok}/18 ✓, ${fail} ✗). Leggi /tmp/decompose_gd1_*/batch_main.log per il report completo. Verifica catalog con build_catalog_multi.py se non già fatto. Committa e pusha i risultati se non già fatto."
+        notify_claude "Batch decompose Gd1 completato (${ok}/18 ✓, ${fail} ✗). Quando vuoi posso leggere il report, aggiornare il catalog e fare il commit — dimmi tu."
+        update_stato "batch COMPLETATO ${ok}/18"
         log "Cantagallo in standby — batch finito."
         exit 0
 
@@ -85,15 +99,23 @@ check_and_report() {
         # ── BATCH FERMO PRIMA DEL TERMINE ────────────────────────────────────
         log "⚠ Batch FERMO con $done/18 concept completati"
         notify_user "CANTAGALLO ⚠: batch FERMO a ${done}/18 concept (✓${ok} ✗${fail}) — controlla!"
-        notify_claude "ATTENZIONE: il batch decompose Gd1 si è fermato con solo ${done}/18 concept completati (✓ ${ok}  ✗ ${fail}). Guarda tail /tmp/decompose_gd1_*/batch_main.log e l'ultimo log concept per capire cosa è successo. Riavvia se necessario."
+        notify_claude "Il batch decompose Gd1 sembra fermo a ${done}/18 concept (✓ ${ok}  ✗ ${fail}). Vuoi che guardo i log per capire cosa è successo?"
 
     else
         # ── BATCH IN CORSO — aggiornamento di routine ─────────────────────────
         notify_user "CANTAGALLO: decompose Gd1 in corso — ${done}/18 (✓${ok} ✗${fail})"
         # Ogni 6 concept (~3 ore) scrive anche il pending per Claude
         if [ "$done" -gt 0 ] && [ $(( done % 6 )) -eq 0 ]; then
-            notify_claude "decompose Gd1 in corso — ${done}/18 concept completati (✓ ${ok}  ✗ ${fail}). Tutto ok."
+            notify_claude "Aggiornamento batch: ${done}/18 concept completati (✓ ${ok}  ✗ ${fail}). Tutto ok per ora."
         fi
+    fi
+}
+
+# Aggiorna il campo "Ultima modifica" in STATO.md
+update_stato() {
+    local note="$1"
+    if [ -f "$STATO_FILE" ]; then
+        sed -i "s/> Ultima modifica:.*/> Ultima modifica: $(date '+%Y-%m-%d %H:%M') — $note/" "$STATO_FILE"
     fi
 }
 

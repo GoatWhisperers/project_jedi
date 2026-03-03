@@ -55,6 +55,7 @@ sys.path.insert(0, str(SCRIPTS_DIR))
 
 from concept_expander import step1_analyze, step2_generate, _load_meta
 from sub_concept_eval  import run_eval as run_separation_eval
+from gpu_utils import gpu_prepare_for_probe, gpu_restore_after_probe
 from cosine_matrix     import (
     scan_concepts, get_best_layer, load_vector,
     build_matrix, print_matrix_table,
@@ -331,10 +332,20 @@ def decompose_concept(
         # ── Step 3: MI50 estrae vettori ────────────────────────────────────────
         logger.step(3, f"Estrazione vettori — MI50")
         probe_ok = []
+        if not dry_run:
+            # Controlla GPU, aspetta idle, scarica modello, verifica VRAM libera
+            gpu_prepare_for_probe(steering_url, log=logger.info)
+
         for slug in sub_slugs:
             ok = run_probe_for_sub(slug, concept, category, model, logger, dry_run)
             if ok:
                 probe_ok.append(slug)
+
+        if not dry_run:
+            # Ricarica il modello (con verifica stato GPU prima del load)
+            loaded = gpu_restore_after_probe(steering_url, model, log=logger.info)
+            if not loaded:
+                logger.info(f"  [warn] Reload {model} non confermato — continuo comunque")
 
         if not probe_ok:
             logger.info("  Nessun vettore estratto. Salto i prossimi step.")

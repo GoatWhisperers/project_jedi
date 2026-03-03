@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import gc
 import glob
 import json
 import os
@@ -384,6 +385,7 @@ def load_model(model_path=None, model_name=None):
         State.tokenizer = None
         State.layers = []
         if torch.cuda.is_available():
+            gc.collect()
             torch.cuda.empty_cache()
             torch.cuda.synchronize()
 
@@ -622,18 +624,26 @@ class Handler(BaseHTTPRequestHandler):
             State.abort_flag = True
             return json_response(self, 200, {"ok": True, "aborted": True})
         if parsed.path == "/api/unload_model":
-            with State.lock:
-                if State.model is not None:
-                    del State.model
-                    State.model = None
-                    State.tokenizer = None
-                    State.layers = []
-                    if torch.cuda.is_available():
-                        torch.cuda.empty_cache()
-                        torch.cuda.synchronize()
-                    State.num_layers = 0
-                    State.active_model_name = ""
-            return json_response(self, 200, {"ok": True, "unloaded": True})
+            # Aspetta al massimo 120s che il lock sia libero (evita blocco su load_model in corso)
+            acquired = State.lock.acquire(timeout=120)
+            if acquired:
+                try:
+                    if State.model is not None:
+                        del State.model
+                        State.model = None
+                        State.tokenizer = None
+                        State.layers = []
+                        if torch.cuda.is_available():
+                            gc.collect()
+                            torch.cuda.empty_cache()
+                            torch.cuda.synchronize()
+                        State.num_layers = 0
+                        State.active_model_name = ""
+                finally:
+                    State.lock.release()
+                return json_response(self, 200, {"ok": True, "unloaded": True})
+            else:
+                return json_response(self, 503, {"ok": False, "error": "lock_timeout"})
         return self.send_error(404)
 
     def do_POST(self):
