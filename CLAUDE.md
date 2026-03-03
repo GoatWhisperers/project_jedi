@@ -1,5 +1,16 @@
 # Project Jedi — Istruzioni per Claude
 
+## ⚡ INIZIO SESSIONE — obbligatorio
+
+All'inizio di ogni sessione Claude DEVE:
+1. Leggere `/home/lele/codex-openai/project_jedi/STATO.md`
+2. Leggere `/tmp/cantagallo_pending.txt` (messaggi pendenti)
+3. Verificare server: `curl -s http://localhost:8010/api/models` + `curl -s http://localhost:11435/health`
+
+Fatto questo, riassumere lo stato a Lele e proporre cosa fare.
+
+---
+
 ## Contesto
 
 Project Jedi è un sistema di ricerca su activation steering in LLM.
