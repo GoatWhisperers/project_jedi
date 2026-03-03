@@ -1,0 +1,41 @@
+{
+  "concept": "smoothness_absence",
+  "parent_concept": "secco_vs_umido",
+  "category": "sensoriale",
+  "pos_label": "secco",
+  "neg_label": "umido",
+  "description": "Questo sub-concetto si riferisce all'assenza di una sensazione di levigatezza o scorrevolezza, un tratto distintivo del polo secco.",
+  "positive": [
+    "La pelle si sentiva come vetro freddo sotto le dita, priva di qualsiasi resistenza.",
+    "Un'assenza totale di scivolamento, come un'acqua distillata sulla mano.",
+    "Il tessuto scorreva senza attrito, una sensazione di vuoto piacevole.",
+    "La superficie era immacolata, priva di qualsiasi imperfezione percepibile.",
+    "Il contatto era come il vuoto, una mancanza di adesione, un'assenza di grana.",
+    "La pelle non si muoveva, priva di qualsiasi resistenza, come se fosse d'aria.",
+    "Un'esperienza di pura assenza di scivolamento, come un'acqua che scorre su una superficie liscia.",
+    "La sensazione era di vuoto, di assenza di qualsiasi attrito o resistenza.",
+    "Il tocco era privo di qualsiasi sensazione di scorrevolezza, un'assenza totale.",
+    "La superficie era completamente liscia, priva di qualsiasi sensazione di grana o imperfezione.",
+    "Un'assenza di frizione, una sensazione di vuoto, un'esperienza di levigatezza assoluta.",
+    "La pelle non si muoveva, come se fosse senza peso, priva di resistenza.",
+    "Un'assenza totale di scivolamento, come un'acqua che scorre su vetro.",
+    "La superficie era immacolata, priva di qualsiasi attrito o resistenza.",
+    "Un'esperienza di vuoto, un'assenza totale di sensazione di grana."
+  ],
+  "negative": [
+    "La pelle si sentiva come pietra secca, con una resistenza insopportabile.",
+    "Un'eccessiva sensazione di scivolamento, come l'acqua su una superficie bagnata.",
+    "Il tessuto si attaccava alla pelle con forza, una sensazione di oppressione.",
+    "La superficie era piena di imperfezioni, una sensazione di ruvidità insopportabile.",
+    "Il contatto era come l'adesione, una sensazione di grana e resistenza.",
+    "La pelle si muoveva con difficoltà, piena di resistenza, come se fosse incrostata.",
+    "Una sensazione di scivolamento eccessivo, come l'acqua su una superficie scivolosa.",
+    "La sensazione era di oppressione, di eccessiva adesione, un'assenza di levigatezza.",
+    "Il tocco era pieno di resistenza, una sensazione di grana e attrito.",
+    "La superficie era piena di asperità, una sensazione di ruvidità insopportabile.",
+    "Un'eccessiva sensazione di adesione, come l'acqua su una superficie appiccicosa.",
+    "La pelle si muoveva con forza, piena di resistenza, come se fosse incrostata.",
+    "Una sensazione di scivolamento, una mancanza di adesione, un'esperienza di ruvidità.",
+    "La superficie era ruvida, piena di attrito, una sensazione di resistenza."
+  ]
+}

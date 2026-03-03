@@ -1,0 +1,9 @@
+{
+  "concept": "calma_vs_allerta",
+  "model": "Gemma2-Uncensored",
+  "version": 2,
+  "timestamp": "2026-03-02T17:57:25.624856",
+  "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260228_173558_calma_vs_allerta_Gemma2-Uncensored.jsonl",
+  "analysis": "```json\n{\n  \"concept\": \"calma_vs_allerta\",\n  \"category\": \"sensoriale\",\n  \"sub_concepts\": [\n    {\n      \"slug\": \"respirazione_ritmica\",\n      \"pos_label\": \"respiro lento e regolare\",\n      \"neg_label\": \"respiro affannoso e irregolare\",\n      \"description\": \"Questo sub-concetto cattura la dimensione d",
+  "sub_concepts": []
+}

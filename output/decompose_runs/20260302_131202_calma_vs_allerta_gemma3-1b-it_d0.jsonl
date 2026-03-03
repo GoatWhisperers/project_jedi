@@ -1,0 +1,18 @@
+{"type": "run_start", "concept": "calma_vs_allerta", "model": "Gemma3-1B-IT", "max_depth": 0, "max_iter": 2, "dry_run": false, "timestamp": "2026-03-02T13:12:02.828526"}
+{"type": "decompose_start", "concept": "calma_vs_allerta", "depth": 0, "timestamp": "2026-03-02T13:12:02.828816"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v1)", "timestamp": "2026-03-02T13:12:02.828916"}
+{"type": "info", "msg": "  Proposti: ['physiological_state', 'temporal_perception', 'cognitive_focus', 'muscular_tension']", "timestamp": "2026-03-02T13:13:14.303645"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v1)", "timestamp": "2026-03-02T13:13:14.303769"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-02T13:24:27.975710"}
+{"type": "info", "msg": "  SKIP probe physiological_state — JSON non trovato: /home/lele/codex-openai/project_jedi/config/sub_concepts/calma_vs_allerta/physiological_state.json", "timestamp": "2026-03-02T13:24:27.975931"}
+{"type": "info", "msg": "  Probe: temporal_perception / Gemma3-1B-IT", "timestamp": "2026-03-02T13:24:27.976419"}
+{"type": "info", "msg": "  Probe OK: temporal_perception", "timestamp": "2026-03-02T13:24:51.824938"}
+{"type": "info", "msg": "  Probe: cognitive_focus / Gemma3-1B-IT", "timestamp": "2026-03-02T13:24:51.827385"}
+{"type": "info", "msg": "  Probe OK: cognitive_focus", "timestamp": "2026-03-02T13:25:18.601941"}
+{"type": "info", "msg": "  Probe: muscular_tension / Gemma3-1B-IT", "timestamp": "2026-03-02T13:25:18.603492"}
+{"type": "info", "msg": "  Probe OK: muscular_tension", "timestamp": "2026-03-02T13:25:57.653688"}
+{"type": "step", "step": 4, "name": "Analisi geometrica separabilità", "timestamp": "2026-03-02T13:25:57.653978"}
+{"type": "result", "step": 4, "concepts": ["calma_vs_allerta", "temporal_perception", "cognitive_focus", "muscular_tension"], "matrix": [[1.0000000000000002, 0.38529487045890415, 0.5886756968821423, 0.3499700243156212], [0.38529487045890415, 1.0000000000000002, 0.3675481278599486, 0.47585730283365485], [0.5886756968821423, 0.3675481278599486, 0.9999999999999999, 0.3401240326627151], [0.3499700243156212, 0.47585730283365485, 0.3401240326627151, 1.0000000000000002]], "layers_used": {"calma_vs_allerta": {"layer": 18, "source": "summary(fallback)"}, "temporal_perception": {"layer": 23, "source": "summary(fallback)"}, "cognitive_focus": {"layer": 19, "source": "eval"}, "muscular_tension": {"layer": 22, "source": "eval"}}, "stats": {"min": 0.3401, "max": 0.5887, "mean": 0.4179}, "timestamp": "2026-03-02T13:25:57.666525"}
+{"type": "step", "step": 5, "name": "Steering test + giudizio M40", "timestamp": "2026-03-02T13:25:57.667247"}
+{"type": "result", "step": 5, "version": 1, "all_validated": true, "validated": ["temporal_perception", "cognitive_focus", "muscular_tension"], "needs_refinement": [], "timestamp": "2026-03-02T13:36:15.896669"}
+{"type": "decompose_end", "concept": "calma_vs_allerta", "depth": 0, "validated_subs": ["temporal_perception", "cognitive_focus", "muscular_tension"], "semantic_limit": false, "sub_results": {}, "timestamp": "2026-03-02T13:36:15.896809"}

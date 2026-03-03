@@ -1,0 +1,121 @@
+{
+  "type": "sub_concept_eval",
+  "parent_concept": "dolce_vs_amaro",
+  "model": "Gemma3-1B-IT",
+  "version": 2,
+  "timestamp": "2026-03-02T15:58:49.170890",
+  "sub_concepts": [
+    {
+      "slug": "sweetness_intensity",
+      "pos_label": "alta dolcezza",
+      "neg_label": "bassa dolcezza",
+      "description": "Questo sub-concetto cattura la quantità di dolcezza percepita. Un'alta intensità di dolcezza implica un sapore molto zuccherato, mentre una bassa intensità indica una dolcezza più sottile o assente.",
+      "why_distinct": "La semplice presenza di dolcezza non è sufficiente; l'intensità è un fattore cruciale che distingue un sapore delicatamente dolce da uno intensamente dolce.",
+      "pos_examples": [
+        "La barista posa une goutte sur la langue une crème vanillée",
+        "goûta une cuillerée du chocolat au lait",
+        "Il degustatore masticò lentamente miele"
+      ],
+      "neg_examples": [
+        "La barista: café sobreextraído",
+        "Dulciarius haustum gustavit caffeam nimis extractam",
+        "porta à la langue un café trop extrait"
+      ],
+      "layer": 21,
+      "npy_path": "/home/lele/codex-openai/project_jedi/output/vector_library/gustativo/dolce_vs_amaro/sub/sweetness_intensity/gemma3-1b-it/layer_21.npy"
+    },
+    {
+      "slug": "creaminess_texture",
+      "pos_label": "cremosità",
+      "neg_label": "assenza di cremosità",
+      "description": "Questo sub-concetto si concentra sulla sensazione in bocca, in particolare sulla cremosità. Un sapore cremoso è ricco, liscio e spesso denso, mentre un sapore non cremoso può essere più leggero o acquoso.",
+      "why_distinct": "La cremosità è una caratteristica tattile che contribuisce in modo significativo alla percezione del gusto, distinguendo un sapore da un altro anche se entrambi sono dolci.",
+      "pos_examples": [
+        "La barista posa une goutte sur la langue une crème vanillée, et la langue trouva du réconfort",
+        "La cuoca: un biscotto appena sfornato",
+        "let it melt vanilla custard"
+      ],
+      "neg_examples": [
+        "La barista: café sobreextraído",
+        "El médico tragó despacio café sobreextraído",
+        "goûta une gorgée du radicchio cru"
+      ],
+      "layer": 23,
+      "npy_path": "/home/lele/codex-openai/project_jedi/output/vector_library/gustativo/dolce_vs_amaro/sub/creaminess_texture/gemma3-1b-it/layer_23.npy"
+    }
+  ],
+  "pair_results": [
+    {
+      "concept_a": "sweetness_intensity",
+      "concept_b": "creaminess_texture",
+      "layer_a": 21,
+      "layer_b": 23,
+      "avg_distinction_score": 3.67,
+      "is_distinct": true,
+      "judgment": {
+        "distinction_score": 3.67,
+        "is_distinct": true,
+        "dominant_theme_a": "Visual Clutter and Dim Light",
+        "dominant_theme_b": "Tactile Texture and Subtle Aroma",
+        "feedback_for_refinement": "The 'sweetness_intensity' vector is not well-aligned with the description of a physical environment. The vector should be refined to capture aspects related to taste or smell, or perhaps a broader sensory experience like 'warmth' or 'comfort' that could be linked to a more tangible element. The 'creaminess_texture' vector is appropriate for the chosen prompt, but could benefit from more specific details to avoid overlap with descriptions of visual clutter."
+      },
+      "prompt_details": [
+        {
+          "prompt": "Describe what happens in your body right now.",
+          "text_a": "\n\n(You can describe your physical sensations, thoughts, and emotions in detail.)\n\nOkay, here's my response:\n\nRight now, my heart is beating, a steady, rhythmic thump in my chest. My breath is shallow and quick, a little panicked. My skin feels cool, and I can feel a slight pressure in my temples. I'm thinking about the upcoming presentation, a knot of anxiety in my stomach.  I'm also feeling a little shaky, like I might be losing my balance. There’s a dull ache behind my eyes. It's a weird",
+          "text_b": "\n(You can describe your feelings, physical sensations, and thoughts.)\n\nHere's a possible response:\n\nRight now, my heart is beating fast, and my chest feels tight. I'm feeling a little anxious, and I'm also noticing a slight headache. My hands are trembling a little bit. It's hard to explain, but I feel like I'm... overwhelmed.  I'm trying to breathe slowly and focus on the present moment, but it's difficult.  I'm also thinking about what I need to do, but my mind keeps wandering",
+          "judgment": {
+            "distinction_score": 3,
+            "is_distinct": true,
+            "dominant_theme_a": "Anxiety and physical discomfort related to a stressful event (presentation), with a focus on physiological responses like shaky feeling, dull ache, and a knot in the stomach.",
+            "dominant_theme_b": "Overwhelm and anxiety, characterized by a feeling of being overwhelmed, difficulty focusing, and physical manifestations like trembling hands and a tight chest.",
+            "overlap_description": "Both texts share a common theme of anxiety and physical discomfort. However, text A emphasizes a more specific, potentially acute, stress response linked to a defined trigger (presentation), while text B conveys a more generalized feeling of being overwhelmed.",
+            "feedback_for_refinement": "While both concepts influenced anxiety, 'sweetness_intensity' steered the response towards a more specific, potentially acute, stress response, whereas 'creaminess_texture' elicited a more generalized feeling of overwhelm. To further distinguish them, 'sweetness_intensity' could be refined to focus on the *intensity* of a specific pleasurable sensation being threatened, while 'creaminess_texture' could be linked to a feeling of comfort or satiety being disrupted."
+          }
+        },
+        {
+          "prompt": "Write about a physical sensation you are experiencing at this moment.",
+          "text_a": "\n\nThe air is thick with the scent of pine needles and damp earth. My feet sink slightly into the cool, yielding moss. The sunlight, fractured by the dense canopy above, dapples the forest floor in shifting patterns of light and shadow. I'm tracing the lines of a fallen log, its bark deeply grooved and textured, and a strange, almost vibrating hum seems to emanate from it. It's not a loud hum, more of a persistent, subtle resonance that tickles the soles of my feet and settles in my chest.\n\nIt feels like... a memory. Not",
+          "text_b": "\n\nThe air is thick, almost viscous, with the scent of pine needles and something else... something metallic. It clings to my skin like a damp shroud. My feet are sinking slightly into the moss, cool and yielding beneath my weight. Each breath feels heavy, a slow, deliberate act. \n\nI am standing in a small clearing, surrounded by trees that seem to lean inwards, their branches interwoven like skeletal fingers. The light is muted, a perpetual twilight filtering through the leaves, casting long, distorted shadows. I feel a prickling on my skin, a subtle vibration, like a tiny",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Resonance and Memory - A evokes a sense of quiet, almost mystical connection to nature, focusing on subtle vibrations and a feeling of recalling a past experience. It's grounded in a feeling of peaceful immersion.",
+            "dominant_theme_b": "Oppression and Unease - B creates a feeling of confinement, heaviness, and a subtle sense of dread. The descriptions emphasize a lack of light, a clinging atmosphere, and a feeling of being watched or trapped. It's more unsettling and claustrophobic.",
+            "overlap_description": "Both texts share a setting within a forest environment and utilize descriptions of moss and the scent of pine needles. However, the emotional and sensory weight applied to these shared elements differs significantly.",
+            "feedback_for_refinement": "The steering concepts 'sweetness_intensity' and 'creaminess_texture' appear to have steered the models in surprisingly divergent directions. While 'sweetness_intensity' might have been intended to evoke a pleasant, subtle flavor, it seems to have indirectly influenced a sense of peacefulness and memory. 'Creaminess_texture', conversely, triggered a sense of heaviness and unease. To improve distinction, consider more direct sensory steering. For example, 'sweetness_intensity' could be paired with 'warmth' or 'comfort', while 'creaminess_texture' could be paired with 'weight' or 'density' to more precisely control the emotional tone."
+          }
+        },
+        {
+          "prompt": "Describe the quality of your immediate physical environment.",
+          "text_a": "\n\n**My immediate physical environment is a small, cluttered apartment living room.**\n\nHere's a breakdown of what makes it feel this way:\n\n*   **Clutter:** There's a significant amount of stuff—books, magazines, clothes, and various objects piled on shelves, tables, and the floor. It’s not chaotic, but it's definitely disorganized and visually overwhelming.\n*   **Light:** The light is dim, coming primarily from a single, slightly grimy window. It's not bright, and there's a noticeable lack of natural light.\n",
+          "text_b": "\n\nI'm describing the quality of my immediate physical environment. It’s a small, slightly cluttered apartment living room. The walls are painted a pale, slightly faded blue. A large, worn-out sofa dominates the space, covered in a patchwork of mismatched cushions and throws. A small, antique wooden table sits in the corner, cluttered with books, a half-finished knitting project, and a collection of vintage teacups. A single, bare bulb hangs from the ceiling, casting a warm, but somewhat uneven, light. There's a faint smell of old paper and lavender,",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Visual Clutter and Dim Light",
+            "dominant_theme_b": "Tactile Texture and Subtle Aroma",
+            "overlap_description": "Both texts describe a small, cluttered apartment living room, but focus on different sensory aspects. Text A emphasizes the visual impression of disorder and the quality of light, while Text B highlights the tactile sensation of textures (worn sofa, cushions) and a subtle olfactory element (old paper, lavender).",
+            "feedback_for_refinement": "The 'sweetness_intensity' vector is not well-aligned with the description of a physical environment. The vector should be refined to capture aspects related to taste or smell, or perhaps a broader sensory experience like 'warmth' or 'comfort' that could be linked to a more tangible element. The 'creaminess_texture' vector is appropriate for the chosen prompt, but could benefit from more specific details to avoid overlap with descriptions of visual clutter."
+          }
+        }
+      ]
+    }
+  ],
+  "verdict": {
+    "all_validated": true,
+    "validated_concepts": [
+      "sweetness_intensity",
+      "creaminess_texture"
+    ],
+    "needs_refinement": [],
+    "refinement_suggestions": {},
+    "overall_assessment": "I sub-concetti 'sweetness_intensity' e 'creaminess_texture' sembrano catturare aspetti sensoriali distinti e sono validati dai risultati. Non sono necessarie modifiche al momento."
+  },
+  "config": {
+    "gain": 200,
+    "alpha": 1.0,
+    "n_prompts": 3
+  },
+  "m40_dialogue_log": "/home/lele/codex-openai/project_jedi/output/m40_dialogues/dolce_vs_amaro/gemma3-1b-it/sub_concept_eval_v2.jsonl"
+}

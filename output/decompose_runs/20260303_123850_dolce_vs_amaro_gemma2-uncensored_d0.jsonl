@@ -1,0 +1,29 @@
+{"type": "run_start", "concept": "dolce_vs_amaro", "model": "Gemma2-Uncensored", "max_depth": 0, "max_iter": 2, "dry_run": false, "timestamp": "2026-03-03T12:38:50.134118"}
+{"type": "decompose_start", "concept": "dolce_vs_amaro", "depth": 0, "timestamp": "2026-03-03T12:38:50.134446"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v1)", "timestamp": "2026-03-03T12:38:50.134569"}
+{"type": "info", "msg": "  Proposti: ['temperature_sensation', 'mouthfeel_texture', 'emotional_comfort', 'residual_persistence']", "timestamp": "2026-03-03T12:40:28.275047"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v1)", "timestamp": "2026-03-03T12:40:28.275202"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-03T12:46:21.642463"}
+{"type": "info", "msg": "  Probe: temperature_sensation / Gemma2-Uncensored", "timestamp": "2026-03-03T12:46:21.643647"}
+{"type": "info", "msg": "  ERRORE probe temperature_sensation: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-03T12:46:50.114539"}
+{"type": "info", "msg": "  Probe: mouthfeel_texture / Gemma2-Uncensored", "timestamp": "2026-03-03T12:46:50.115902"}
+{"type": "info", "msg": "  ERRORE probe mouthfeel_texture: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-03T12:47:18.241449"}
+{"type": "info", "msg": "  Probe: emotional_comfort / Gemma2-Uncensored", "timestamp": "2026-03-03T12:47:18.242854"}
+{"type": "info", "msg": "  ERRORE probe emotional_comfort: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-03T12:47:46.605455"}
+{"type": "info", "msg": "  Probe: residual_persistence / Gemma2-Uncensored", "timestamp": "2026-03-03T12:47:46.606816"}
+{"type": "info", "msg": "  ERRORE probe residual_persistence: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-03T12:48:14.738043"}
+{"type": "info", "msg": "  Nessun vettore estratto. Salto i prossimi step.", "timestamp": "2026-03-03T12:48:14.738426"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v2)", "timestamp": "2026-03-03T12:48:14.738560"}
+{"type": "info", "msg": "  Proposti: ['creaminess_vs_dryness', 'warmth_vs_coldness', 'balance_vs_sharpness', 'comfort_vs_irritation']", "timestamp": "2026-03-03T12:49:41.872991"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v2)", "timestamp": "2026-03-03T12:49:41.873263"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-03T12:55:16.300313"}
+{"type": "info", "msg": "  Probe: creaminess_vs_dryness / Gemma2-Uncensored", "timestamp": "2026-03-03T12:55:16.301430"}
+{"type": "info", "msg": "  ERRORE probe creaminess_vs_dryness: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-03T12:55:44.726432"}
+{"type": "info", "msg": "  Probe: warmth_vs_coldness / Gemma2-Uncensored", "timestamp": "2026-03-03T12:55:44.728986"}
+{"type": "info", "msg": "  ERRORE probe warmth_vs_coldness: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-03T12:56:13.249361"}
+{"type": "info", "msg": "  Probe: balance_vs_sharpness / Gemma2-Uncensored", "timestamp": "2026-03-03T12:56:13.250308"}
+{"type": "info", "msg": "  ERRORE probe balance_vs_sharpness: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-03T12:56:41.549951"}
+{"type": "info", "msg": "  Probe: comfort_vs_irritation / Gemma2-Uncensored", "timestamp": "2026-03-03T12:56:41.551262"}
+{"type": "info", "msg": "  ERRORE probe comfort_vs_irritation: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-03T12:57:09.592545"}
+{"type": "info", "msg": "  Nessun vettore estratto. Salto i prossimi step.", "timestamp": "2026-03-03T12:57:09.592967"}
+{"type": "decompose_end", "concept": "dolce_vs_amaro", "depth": 0, "validated_subs": [], "semantic_limit": false, "sub_results": {}, "timestamp": "2026-03-03T12:57:09.593171"}

@@ -1,0 +1,115 @@
+{
+  "concept": "liscio_vs_ruvido",
+  "model": "Gemma2-Uncensored",
+  "version": 2,
+  "timestamp": "2026-03-02T18:13:10.945502",
+  "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260228_180010_liscio_vs_ruvido_Gemma2-Uncensored.jsonl",
+  "analysis": "Il vettore broad 'liscio_vs_ruvido' cattura una gamma di sensazioni relative alla superficie e al contatto. La confusione deriva dal fatto che 'liscio' è un concetto qualitativo con molte sfumature, mentre 'ruvido' è un concetto più quantitativo che si riferisce alla quantità di asperità. La decomposizione in sub-concetti aiuta a separare queste sfumature e a fornire una rappresentazione semantica più precisa.",
+  "sub_concepts": [
+    {
+      "slug": "smooth_flow",
+      "pos_label": "Liscio",
+      "neg_label": "Resistenza",
+      "description": "Questo sub-concetto si riferisce alla sensazione di movimento fluido e senza attrito, caratteristica delle superfici lisce e delle interazioni che richiedono poca resistenza. Implica una sensazione di libertà e senza ostacoli.",
+      "why_distinct": "Si distingue da altri concetti perché è intrinsecamente legato alla facilità del movimento e alla mancanza di ostacoli, un elemento chiave della sensazione 'liscio'.",
+      "pos_examples": [
+        "frase 1",
+        "frase 2",
+        "frase 5",
+        "frase 6",
+        "frase 8"
+      ],
+      "neg_examples": [
+        "frase 1",
+        "frase 2",
+        "frase 3",
+        "frase 4",
+        "frase 5"
+      ]
+    },
+    {
+      "slug": "seamless_contact",
+      "pos_label": "Liscio",
+      "neg_label": "Interruzione",
+      "description": "Questo sub-concetto si concentra sulla sensazione di un contatto uniforme e continuo tra una superficie e un oggetto, senza interruzioni, attriti o punti di pressione.  Implica una distribuzione uniforme della pressione e una mancanza di 'presa'.",
+      "why_distinct": "Si differenzia perché si concentra specificamente sulla qualità del contatto fisico, un aspetto fondamentale della sensazione 'liscio'.",
+      "pos_examples": [
+        "frase 1",
+        "frase 3",
+        "frase 4",
+        "frase 7",
+        "frase 9"
+      ],
+      "neg_examples": [
+        "frase 1",
+        "frase 2",
+        "frase 3",
+        "frase 4",
+        "frase 5"
+      ]
+    },
+    {
+      "slug": "uniform_pressure",
+      "pos_label": "Liscio",
+      "neg_label": "Discontinuità",
+      "description": "Questo sub-concetto riguarda la sensazione di una distribuzione uniforme della pressione su una superficie, senza punti di concentrazione o rilassamento.  Implica una sensazione di equilibrio e di assenza di stress.",
+      "why_distinct": "Si distingue per il suo focus sulla distribuzione della pressione, un aspetto cruciale della sensazione di 'liscio' che è spesso associata alla mancanza di irregolarità.",
+      "pos_examples": [
+        "frase 3",
+        "frase 6",
+        "frase 7",
+        "frase 8",
+        "frase 10"
+      ],
+      "neg_examples": [
+        "frase 1",
+        "frase 2",
+        "frase 3",
+        "frase 4",
+        "frase 5"
+      ]
+    },
+    {
+      "slug": "rough_resistance",
+      "pos_label": "Ruvo",
+      "neg_label": "Liscio",
+      "description": "Questo sub-concetto si riferisce alla sensazione di resistenza o attrito quando un oggetto viene fatto scorrere su una superficie ruvida. Implica una sensazione di ostacoli, irregolarità e necessità di applicare forza per superare l'attrito.",
+      "why_distinct": "È l'opposto diretto del 'smooth_flow' e si concentra sulla sensazione di resistenza e attrito, un elemento chiave della sensazione 'ruvida'.",
+      "pos_examples": [
+        "frase 1",
+        "frase 2",
+        "frase 3",
+        "frase 6",
+        "frase 7"
+      ],
+      "neg_examples": [
+        "frase 1",
+        "frase 2",
+        "frase 3",
+        "frase 4",
+        "frase 5"
+      ]
+    },
+    {
+      "slug": "uneven_contact",
+      "pos_label": "Ruvo",
+      "neg_label": "Liscio",
+      "description": "Questo sub-concetto si riferisce alla sensazione di un contatto irregolare o discontinuità tra una superficie e un oggetto, con punti di pressione o attrito variabili. Implica una sensazione di instabilità e mancanza di uniformità.",
+      "why_distinct": "Si distingue per il suo focus sulla qualità del contatto fisico, un aspetto fondamentale della sensazione 'ruvida'.",
+      "pos_examples": [
+        "frase 2",
+        "frase 3",
+        "frase 6",
+        "frase 7",
+        "frase 10"
+      ],
+      "neg_examples": [
+        "frase 1",
+        "frase 2",
+        "frase 3",
+        "frase 4",
+        "frase 5"
+      ]
+    }
+  ]
+}

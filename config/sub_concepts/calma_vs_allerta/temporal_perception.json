@@ -1,0 +1,32 @@
+{
+  "concept": "temporal_perception",
+  "parent_concept": "calma_vs_allerta",
+  "category": "sensoriale",
+  "pos_label": "time_dilation",
+  "neg_label": "time_compression",
+  "description": "Descrive la percezione del tempo. Un polo positivo indica una sensazione di rallentamento del tempo, spesso associata a uno stato di calma e concentrazione, mentre un polo negativo indica una sensazione di accelerazione del tempo, spesso associata all'ansia e all'urgenza.",
+  "positive": [
+    "Il battito del mio cuore rallenta, l'istante si allunga, un'eterna quiete.",
+    "La luce si dissolve, il tempo si espande, una sensazione di galleggiamento.",
+    "Il respiro profondo, l'attenzione si concentra, il tempo si fa più denso.",
+    "Sento il mondo rallentare, ogni dettaglio si rivela con chiarezza.",
+    "L'esperienza si estende, come un'onda calma, il presente si amplifica.",
+    "Il suono del vento si fa più lungo, il tempo si dilata in un abbraccio.",
+    "La pelle si percepisce più sensibile, il tempo sembra sospeso, immobile.",
+    "Un'armonia silenziosa, il tempo si espande, un'esperienza di profonda serenità.",
+    "Il corpo si rilassa, il tempo si allunga, una sensazione di pace infinita.",
+    "Sento il tempo allungarsi, ogni respiro si fa più profondo e consapevole."
+  ],
+  "negative": [
+    "Il battito del mio cuore accelera, il tempo si contrae, una sensazione di ansia.",
+    "La luce si affrena, il tempo si comprime, una sensazione di vertigine.",
+    "Il respiro affannoso, l'attenzione si concentra, il tempo si fa più breve.",
+    "Sento il mondo accelerare, ogni dettaglio si sfuma, un senso di urgenza.",
+    "L'esperienza si accorcia, come un lampo fugace, il presente si restringe.",
+    "Il suono del vento si fa più acuto, il tempo si comprime, una sensazione di tensione.",
+    "La pelle si percepisce più reattiva, il tempo si accorcia, un senso di frenesia.",
+    "Un'armonia dissonante, il tempo si contrae, una sensazione di disorientamento.",
+    "Sento il tempo accorciarsi, ogni respiro si fa più affannoso e irrequieto.",
+    "Il flusso del tempo si intensifica, ogni momento si fa più breve e intenso."
+  ]
+}

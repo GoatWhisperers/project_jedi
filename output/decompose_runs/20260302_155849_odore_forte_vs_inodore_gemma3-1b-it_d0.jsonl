@@ -1,0 +1,20 @@
+{"type": "run_start", "concept": "odore_forte_vs_inodore", "model": "Gemma3-1B-IT", "max_depth": 0, "max_iter": 2, "dry_run": false, "timestamp": "2026-03-02T15:58:49.602163"}
+{"type": "decompose_start", "concept": "odore_forte_vs_inodore", "depth": 0, "timestamp": "2026-03-02T15:58:49.602445"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v1)", "timestamp": "2026-03-02T15:58:49.602544"}
+{"type": "info", "msg": "  Proposti: ['solvente_intenso', 'reazione_fisica_olfattiva', 'intensità_olfattiva_alta', 'presenza_di_scia']", "timestamp": "2026-03-02T16:02:15.235971"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v1)", "timestamp": "2026-03-02T16:02:15.236103"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-02T16:15:48.491821"}
+{"type": "info", "msg": "  Probe: solvente_intenso / Gemma3-1B-IT", "timestamp": "2026-03-02T16:15:48.493014"}
+{"type": "info", "msg": "  Probe OK: solvente_intenso", "timestamp": "2026-03-02T16:16:23.677980"}
+{"type": "info", "msg": "  Probe: reazione_fisica_olfattiva / Gemma3-1B-IT", "timestamp": "2026-03-02T16:16:23.679348"}
+{"type": "info", "msg": "  Probe OK: reazione_fisica_olfattiva", "timestamp": "2026-03-02T16:17:02.888218"}
+{"type": "info", "msg": "  Probe: intensità_olfattiva_alta / Gemma3-1B-IT", "timestamp": "2026-03-02T16:17:02.889416"}
+{"type": "info", "msg": "  Probe OK: intensità_olfattiva_alta", "timestamp": "2026-03-02T16:17:46.079962"}
+{"type": "info", "msg": "  Probe: presenza_di_scia / Gemma3-1B-IT", "timestamp": "2026-03-02T16:17:46.081325"}
+{"type": "info", "msg": "  Probe OK: presenza_di_scia", "timestamp": "2026-03-02T16:18:23.594462"}
+{"type": "step", "step": 4, "name": "Analisi geometrica separabilità", "timestamp": "2026-03-02T16:18:23.594808"}
+{"type": "info", "msg": "  Sub-vettore non trovato: intensità_olfattiva_alta", "timestamp": "2026-03-02T16:18:23.604737"}
+{"type": "result", "step": 4, "concepts": ["odore_forte_vs_inodore", "solvente_intenso", "reazione_fisica_olfattiva", "presenza_di_scia"], "matrix": [[1.0, 0.7731643792495327, 0.4713225588196371, 0.6231447442473662], [0.7731643792495327, 1.0, 0.2947583873951373, 0.6665075377872988], [0.4713225588196371, 0.2947583873951373, 1.0, 0.43282510840145355], [0.6231447442473662, 0.6665075377872988, 0.43282510840145355, 1.0000000000000002]], "layers_used": {"odore_forte_vs_inodore": {"layer": 18, "source": "summary(fallback)"}, "solvente_intenso": {"layer": 23, "source": "eval"}, "reazione_fisica_olfattiva": {"layer": 18, "source": "eval"}, "presenza_di_scia": {"layer": 23, "source": "eval"}}, "stats": {"min": 0.2948, "max": 0.7732, "mean": 0.5436}, "timestamp": "2026-03-02T16:18:23.606244"}
+{"type": "step", "step": 5, "name": "Steering test + giudizio M40", "timestamp": "2026-03-02T16:18:23.606801"}
+{"type": "result", "step": 5, "version": 1, "all_validated": true, "validated": ["solvente_intenso", "reazione_fisica_olfattiva", "presenza_di_scia"], "needs_refinement": [], "timestamp": "2026-03-02T16:27:50.013136"}
+{"type": "decompose_end", "concept": "odore_forte_vs_inodore", "depth": 0, "validated_subs": ["solvente_intenso", "reazione_fisica_olfattiva", "intensità_olfattiva_alta", "presenza_di_scia"], "semantic_limit": false, "sub_results": {}, "timestamp": "2026-03-02T16:27:50.013282"}

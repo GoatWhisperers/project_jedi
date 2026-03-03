@@ -1,0 +1,78 @@
+{
+  "concept": "luce_vs_buio",
+  "model": "Gemma2-Uncensored",
+  "version": 2,
+  "timestamp": "2026-03-02T17:25:40.518831",
+  "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260228_171148_luce_vs_buio_Gemma2-Uncensored.jsonl",
+  "analysis": "Il concetto broad 'luce_vs_buio' cattura una varietà di aspetti sensoriali e cognitivi legati alla percezione della luminosità e dell'oscurità.  Il vettore broad confonde la dimensione fisica dell'intensità luminosa con le risposte fisiologiche (dilatazione/costrizione pupillare), le esperienze emotive associate (paura, meraviglia), e le rappresentazioni concettuali di chiarezza vs. incertezza. La decomposizione è necessaria per permettere al modello di generare rappresentazioni più precise e controllabili, evitando che variazioni nell'intensità luminosa influenzino in modo indesiderato le emozioni o le metafore associate.",
+  "sub_concepts": [
+    {
+      "slug": "pupillary_response",
+      "pos_label": "Pupil constriction",
+      "neg_label": "Pupil dilation",
+      "description": "Questo sub-concetto si concentra sulla risposta fisiologica diretta della pupilla alla luce.  La costrizione pupillare indica una risposta alla luminosità, mentre la dilatazione indica una risposta all'oscurità o a stimoli emotivi.",
+      "why_distinct": "Separa la risposta fisiologica dalla percezione soggettiva della luce o dell'oscurità, permettendo di controllare la risposta pupillare indipendentemente dall'esperienza emotiva.",
+      "pos_examples": [
+        "die Fotografin wandte den Blick ab, die Pupillen zogen sich zusammen",
+        "natator animadvertit: pupillae repente angustatae sunt cum radius lucis angustus subito oppressit",
+        "il bambino socchiuse gli occhi: la bagliore improvviso investì e le pupille si ridussero a punti"
+      ],
+      "neg_examples": [
+        "il pittore fissò il nero assoluto",
+        "il cirujano notó que las pupilas se dilataron incluso esperando",
+        "il pittore tenne gli occhi spalancati nel vuoto visivo"
+      ]
+    },
+    {
+      "slug": "intensity_vs_void",
+      "pos_label": "Bright intensity",
+      "neg_label": "Complete void",
+      "description": "Questo sub-concetto distingue tra la percezione di una luce intensa e la percezione di un vuoto assoluto, privo di qualsiasi riferimento visivo. La luce intensa è caratterizzata da dettagli e chiarezza, mentre il vuoto è caratterizzato da mancanza di riferimenti spaziali.",
+      "why_distinct": "Permette di distinguere tra una sensazione di chiarezza e una sensazione di disorientamento e perdita di riferimenti.",
+      "pos_examples": [
+        "la luminosità crudele investì e le pupille diventarono due fessure",
+        "la nitidez dolía en la retina",
+        "un halo fulgoris omnia cinxit"
+      ],
+      "neg_examples": [
+        "il pittore fissò il nero assoluto",
+        "il pittore tenne gli occhi spalancati nel vuoto visivo",
+        "dans un champ visuel inerte ne distinguait rien même en attendant"
+      ]
+    },
+    {
+      "slug": "emotional_impact",
+      "pos_label": "Awe/Discomfort",
+      "neg_label": "Calm/Fear",
+      "description": "Questo sub-concetto si concentra sulle emozioni suscitate dalla luce o dall'oscurità. La luce intensa può evocare meraviglia, disagio o persino dolore, mentre l'oscurità può evocare calma, paura o incertezza.",
+      "why_distinct": "Separa la risposta emotiva dalla semplice percezione fisica della luce o dell'oscurità, permettendo di controllare l'effetto emotivo della generazione.",
+      "pos_examples": [
+        "la luminosità crudele investì",
+        "la nitidez dolía en la retina",
+        "un shiver, not of cold, but of sudden, primal vulnerability"
+      ],
+      "neg_examples": [
+        "le garde passa la main devant son visage",
+        "il pittore fissò il nero assoluto",
+        "There's a peculiar, pregnant quality to the moment before anything truly begins"
+      ]
+    },
+    {
+      "slug": "spatial_reference",
+      "pos_label": "Defined spatial context",
+      "neg_label": "Loss of spatial context",
+      "description": "Questo sub-concetto riguarda la capacità di orientarsi e percepire la profondità e la distanza. La luce intensa aiuta a definire lo spazio, mentre l'oscurità può portare alla perdita di riferimenti spaziali e alla disorientamento.",
+      "why_distinct": "Permette di controllare la sensazione di orientamento e la percezione della profondità.",
+      "pos_examples": [
+        "la nitidez dolía en la retina",
+        "der Taucher spürte, wie die Pupillen schrumpften zu Punkten, als überwältigende Helligkeit überrollte",
+        "A shiver, not of cold, but of sudden, primal vulnerability, lances down your spine"
+      ],
+      "neg_examples": [
+        "il pittore fissò il nero assoluto",
+        "il pittore tenne gli occhi spalancati nel vuoto visivo",
+        "There's a peculiar, pregnant quality to the moment before anything truly begins"
+      ]
+    }
+  ]
+}

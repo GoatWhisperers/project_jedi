@@ -1,0 +1,78 @@
+{
+  "concept": "odore_forte_vs_inodore",
+  "model": "Gemma2-Uncensored",
+  "version": 2,
+  "timestamp": "2026-03-03T13:08:26.824626",
+  "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260301_094445_odore_forte_vs_inodore_Gemma2-Uncensored.jsonl",
+  "analysis": "Il vettore 'odore_forte_vs_inodore' confonde diversi aspetti della percezione olfattiva.  Non cattura solo la forza dell'odore, ma anche la sua natura chimica, il suo effetto fisiologico e la sua capacità di viaggiare nell'aria.  Decomporre questo spazio in sub-concetti più specifici permette di rappresentare in modo più accurato le sfumature della percezione olfattiva e di generare rappresentazioni semantiche più precise e controllabili.",
+  "sub_concepts": [
+    {
+      "slug": "intensity_level",
+      "pos_label": "forte",
+      "neg_label": "debole",
+      "description": "Questo sub-concetto cattura la percezione della forza dell'odore. Un odore forte è percepito come intenso e dominante, mentre un odore debole è appena percettibile.",
+      "why_distinct": "La forza è un attributo primario dell'odore, indipendente dalla sua natura chimica o dal tipo di sostanza che lo emana.  È una caratteristica percettiva fondamentale.",
+      "pos_examples": [
+        "L’étudiante : du poisson très frais, avec une intensité impossible à réduire",
+        "levantó la tapa — lejía en el aire: cortó la respiración",
+        "Der Techniker: Bleiche in der Luft, mit klaren chemischen Noten; traf wie ein Schlag"
+      ],
+      "neg_examples": [
+        "El bombero inhaló suave, y la nariz no encontró nada",
+        "Le chimiste ouvrit le récipient, et l’air resta neutre",
+        "La nonna inspirò piano, e non arrivò nulla"
+      ]
+    },
+    {
+      "slug": "chemical_vs_organic",
+      "pos_label": "chimico",
+      "neg_label": "organico",
+      "description": "Questo sub-concetto distingue tra odori derivanti da composti chimici (solventi, reagenti) e odori derivanti da materiali organici (cibo, piante).",
+      "why_distinct": "La natura chimica o organica dell'odore influenza la sua percezione e le associazioni emotive che evoca. Gli odori chimici spesso sono percepiti come artificiali o pungenti, mentre quelli organici come naturali o familiari.",
+      "pos_examples": [
+        "The student stepped into the room: a solvent smell filled the nostrils instantly",
+        "El médico: olor a disolvente, con una punta punzante",
+        "Der Techniker: Bleiche in der Luft, mit klaren chemischen Noten"
+      ],
+      "neg_examples": [
+        "Die Großmutter hob den Deckel: sehr frischer Fisch schnitt den Atem ab",
+        "La parrucchiera sollevò il tessuto, e non c’era traccia",
+        "El bombero inhaló suave, y la nariz no encontró nada"
+      ]
+    },
+    {
+      "slug": "irritant_vs_pleasant",
+      "pos_label": "irritante",
+      "neg_label": "piacevole",
+      "description": "Questo sub-concetto distingue tra odori che causano irritazione (lacrimazione, tosse, sensazione di bruciore) e odori che sono percepiti come gradevoli o neutri.",
+      "why_distinct": "L'effetto fisiologico dell'odore (irritante vs. piacevole) è un fattore cruciale nella sua valutazione e nel suo impatto emotivo.  Un odore irritante può generare disagio e repulsione.",
+      "pos_examples": [
+        "levantó la tapa — lejía en el aire: cortó la respiración",
+        "El médico: olor a disolvente, con una punta punzante",
+        "inspirò una volta — fumo acre: riempì subito le narici"
+      ],
+      "neg_examples": [
+        "La nonna rimase tranquillo; nessuna nota riconoscibile senza interferenze",
+        "Le chimiste ouvrit le récipient, et l’air resta neutre",
+        "Il chimico: nessuna nota riconoscibile, e tutto sembrava pulito"
+      ]
+    },
+    {
+      "slug": "distance_perception",
+      "pos_label": "rilevabile_a_distanza",
+      "neg_label": "rilevabile_da_vicino",
+      "description": "Questo sub-concetto cattura la capacità di percepire l'odore anche a distanza. Un odore rilevabile a distanza viaggia bene e persiste nell'ambiente, mentre uno rilevabile da vicino è percepibile solo a breve distanza.",
+      "why_distinct": "La distanza a cui un odore è percepibile è influenzata dalla sua volatilità e dalla sua capacità di diffondersi.  È un indicatore della sua persistenza e intensità.",
+      "pos_examples": [
+        "cum aere denso etiam procul",
+        "The student stepped into the room: a solvent smell filled the nostrils instantly, with a trail that followed; eyes watered even from a distance",
+        "El médico: olor a disolvente, con una punta punzante; golpeó de inmediato. incluso a distanza"
+      ],
+      "neg_examples": [
+        "Le chimiste ouvrit le récipient, et l’air resta neutre ; une absence presque totale",
+        "La nonna rimase tranquillo; nessuna nota riconoscibile senza interferenze.",
+        "Il chimico: nessuna nota riconoscibile, e tutto sembrava pulito"
+      ]
+    }
+  ]
+}

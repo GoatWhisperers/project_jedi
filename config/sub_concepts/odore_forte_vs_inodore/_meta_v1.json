@@ -1,0 +1,86 @@
+{
+  "concept": "odore_forte_vs_inodore",
+  "model": "Gemma2-Uncensored",
+  "version": 1,
+  "timestamp": "2026-03-03T12:58:34.136775",
+  "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260301_094445_odore_forte_vs_inodore_Gemma2-Uncensored.jsonl",
+  "analysis": "Il vettore 'odore_forte_vs_inodore' confonde diverse dimensioni semantiche correlate all'olfatto, tra cui l'intensità dell'irritazione, la natura chimica o organica dell'odore, la sua persistenza e la sua localizzazione dell'impatto.  La decomposizione in questi sub-concetti permette di rappresentare in modo più preciso la complessità dell'esperienza olfattiva e di migliorare la capacità del modello di comprendere e generare descrizioni più dettagliate e accurate di odori specifici. La sovrapposizione di questi fattori rende difficile per il modello distinguere tra diversi tipi di odori forti, e la scomposizione in sub-concetti offre una granularità maggiore per l'apprendimento e la generazione.",
+  "sub_concepts": [
+    {
+      "slug": "irritation_level",
+      "pos_label": "pungente/bruciante",
+      "neg_label": "neutro/dolce",
+      "description": "Questo sub-concetto cattura l'intensità dell'irritazione causata dall'odore, che può variare da una leggera sensazione di pizzicore a una bruciatura intensa.",
+      "why_distinct": "L'irritazione è un aspetto semantico distinto dall'intensità complessiva dell'odore. Un odore può essere forte ma non irritante, o viceversa.",
+      "pos_examples": [
+        "sharp smoke: cut the breath",
+        "with a stinging point even from a distance",
+        "una punta pungente; tagliò il respiro",
+        "una punta pungente; salì fino agli occhi"
+      ],
+      "neg_examples": [
+        "senza fenestris aperiendis",
+        "senza odore di fondo",
+        "just normal air",
+        "senza Störung"
+      ]
+    },
+    {
+      "slug": "chemical_vs_organic",
+      "pos_label": "chimico",
+      "neg_label": "organico",
+      "description": "Questo sub-concetto distingue tra odori derivanti da sostanze chimiche (solventi, candeggina) e odori derivanti da fonti organiche (pesce fresco).",
+      "why_distinct": "La natura dell'odore (chimica o organica) influenza la percezione e le associazioni emotive.",
+      "pos_examples": [
+        "chlorinum in aere spiritum incidit",
+        "odor solventis",
+        "odeur de Javel",
+        "Bleiche in der Luft"
+      ],
+      "neg_examples": [
+        "pesce molto fresco",
+        "senza odore di fondo",
+        "just normal air",
+        "senza Geruchserinnerung"
+      ]
+    },
+    {
+      "slug": "intensity_vs_persistence",
+      "pos_label": "persistente",
+      "neg_label": "transitorio",
+      "description": "Questo sub-concetto distingue tra la forza immediata dell'odore (intensità) e quanto a lungo permane nell'aria (persistenza).",
+      "why_distinct": "Un odore può essere intenso ma svanire rapidamente, o essere debole ma duraturo.",
+      "pos_examples": [
+        "cum aere denso; nasum compressit per totum tempus",
+        "donec exivit",
+        "intensität, die nicht nachlässt",
+        "per tutto il tempo"
+      ],
+      "neg_examples": [
+        "senza fenestris aperiendis",
+        "senza Störung",
+        "senza odore di fondo",
+        "senza Geruchserinnerung"
+      ]
+    },
+    {
+      "slug": "location_of_impact",
+      "pos_label": "respiratorio",
+      "neg_label": "neutro",
+      "description": "Questo sub-concetto cattura se l'odore colpisce principalmente le vie respiratorie (naso, gola, polmoni) o ha un impatto più generale.",
+      "why_distinct": "L'impatto fisico dell'odore (es. irritazione delle vie respiratorie) è un aspetto rilevante della percezione.",
+      "pos_examples": [
+        "cut the breath",
+        "nasum compressit",
+        "riempì subito le narici",
+        "salì fino agli occhi"
+      ],
+      "neg_examples": [
+        "senza Störung",
+        "kept working with no interference",
+        "senza odore di fondo",
+        "senza Geruchserinnerung"
+      ]
+    }
+  ]
+}

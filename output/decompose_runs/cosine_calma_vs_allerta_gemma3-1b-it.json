@@ -1,0 +1,49 @@
+{
+  "model": "Gemma3-1B-IT",
+  "layer_type": "best_snr",
+  "concepts": [
+    "calma_vs_allerta",
+    "temporal_perception",
+    "cognitive_focus",
+    "muscular_tension"
+  ],
+  "layers_used": {
+    "calma_vs_allerta": 18,
+    "temporal_perception": 23,
+    "cognitive_focus": 19,
+    "muscular_tension": 22
+  },
+  "layer_sources": {
+    "calma_vs_allerta": "summary(fallback)",
+    "temporal_perception": "summary(fallback)",
+    "cognitive_focus": "eval",
+    "muscular_tension": "eval"
+  },
+  "matrix": [
+    [
+      1.0000000000000002,
+      0.38529487045890415,
+      0.5886756968821423,
+      0.3499700243156212
+    ],
+    [
+      0.38529487045890415,
+      1.0000000000000002,
+      0.3675481278599486,
+      0.47585730283365485
+    ],
+    [
+      0.5886756968821423,
+      0.3675481278599486,
+      0.9999999999999999,
+      0.3401240326627151
+    ],
+    [
+      0.3499700243156212,
+      0.47585730283365485,
+      0.3401240326627151,
+      1.0000000000000002
+    ]
+  ],
+  "timestamp": "2026-03-02T13:25:57.666776"
+}

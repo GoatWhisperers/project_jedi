@@ -1,0 +1,86 @@
+{
+  "concept": "liscio_vs_ruvido",
+  "model": "Gemma2-Uncensored",
+  "version": 1,
+  "timestamp": "2026-03-02T18:00:09.726979",
+  "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260228_180010_liscio_vs_ruvido_Gemma2-Uncensored.jsonl",
+  "analysis": "Il vettore broad 'liscio_vs_ruvido' confonde la sottile gamma di sensazioni associate alla percezione tattile.  La distinzione tra liscio e ruvido non è solo una questione di rugosità superficiale, ma anche di come questa rugosità influisce sull'interazione fisica e sulla sensazione di movimento.  La decomposizione in sub-concetti come 'smooth_flow', 'surface_quality', 'frictionless_interaction' e 'absence_of_impact' permette di catturare aspetti specifici di questa percezione, separando la qualità della superficie dall'esperienza sensoriale del movimento e dell'interazione.",
+  "sub_concepts": [
+    {
+      "slug": "smooth_flow",
+      "pos_label": "liscio",
+      "neg_label": "rugoso",
+      "description": "Questo sub-concetto cattura la sensazione di movimento senza attrito o resistenza, spesso descritta come scivolare o fluire. Implica un'interazione piacevole e senza sforzo.",
+      "why_distinct": "Si distingue per la mancanza di qualsiasi tipo di ostacolo o resistenza, concentrandosi esclusivamente sulla facilità e la fluidità del movimento.",
+      "pos_examples": [
+        "1",
+        "2",
+        "7",
+        "8"
+      ],
+      "neg_examples": [
+        "1",
+        "3",
+        "4",
+        "6"
+      ]
+    },
+    {
+      "slug": "surface_quality",
+      "pos_label": "liscio",
+      "neg_label": "ruvido",
+      "description": "Questo sub-concetto si riferisce alla natura della superficie stessa, enfatizzando l'assenza di imperfezioni, graffi o irregolarità.  È legato alla percezione di una superficie perfettamente liscia.",
+      "why_distinct": "È un attributo intrinseco della superficie, piuttosto che una sensazione tattile, e si concentra sulla sua qualità superficiale.",
+      "pos_examples": [
+        "3",
+        "5",
+        "9",
+        "10"
+      ],
+      "neg_examples": [
+        "2",
+        "7",
+        "8",
+        "9"
+      ]
+    },
+    {
+      "slug": "frictionless_interaction",
+      "pos_label": "liscio",
+      "neg_label": "ruvido",
+      "description": "Questo sub-concetto descrive l'interazione tra un oggetto e una superficie come priva di attrito. Implica un contatto ideale dove gli oggetti si muovono facilmente l'uno sull'altro.",
+      "why_distinct": "Si concentra specificamente sull'aspetto dell'interazione fisica, distinguendosi da descrizioni più generali di liscio o ruvido.",
+      "pos_examples": [
+        "1",
+        "2",
+        "5",
+        "7"
+      ],
+      "neg_examples": [
+        "1",
+        "3",
+        "4",
+        "6"
+      ]
+    },
+    {
+      "slug": "absence_of_impact",
+      "pos_label": "liscio",
+      "neg_label": "ruvido",
+      "description": "Questo sub-concetto si riferisce alla mancanza di impatto o micro-colpi percepibili durante l'interazione.  Implica un movimento fluido e senza interruzioni.",
+      "why_distinct": "È la completa assenza di qualsiasi tipo di resistenza o contatto brusco, che è il fulcro della sensazione di liscio.",
+      "pos_examples": [
+        "2",
+        "7",
+        "8",
+        "10"
+      ],
+      "neg_examples": [
+        "1",
+        "3",
+        "4",
+        "5"
+      ]
+    }
+  ]
+}

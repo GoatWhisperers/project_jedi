@@ -1,0 +1,78 @@
+{
+  "concept": "dolce_vs_amaro",
+  "model": "Gemma2-Uncensored",
+  "version": 1,
+  "timestamp": "2026-03-03T12:40:28.274339",
+  "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260301_131402_dolce_vs_amaro_Gemma2-Uncensored.jsonl",
+  "analysis": "Il vettore 'dolce_vs_amaro' confonde diverse dimensioni semantiche correlate alla percezione gustativa, che vanno oltre la semplice polarità dolce/amaro.  La decomposizione in 'temperature_sensation', 'mouthfeel_texture', 'emotional_comfort' e 'residual_persistence' permette di catturare queste sfumature e di generare rappresentazioni semantiche più precise e controllabili.  Ignorare queste dimensioni porta a una generalizzazione eccessiva e a una perdita di informazioni cruciali per comprendere appieno l'esperienza gustativa.",
+  "sub_concepts": [
+    {
+      "slug": "temperature_sensation",
+      "pos_label": "caldo",
+      "neg_label": "freddo",
+      "description": "Questo sub-concetto cattura la sensazione termica associata al sapore. I sapori dolci spesso evocano calore e comfort, mentre i sapori amari possono essere percepiti come freddi o astringenti.",
+      "why_distinct": "La temperatura è una dimensione sensoriale separata dal gusto vero e proprio, ma influenza fortemente la percezione complessiva.  Non si sovrappone alla dolcezza/amarezza intrinseca.",
+      "pos_examples": [
+        "Il degustatore masticò lentamente miele, e le guance si rilassarono; con una scia calda.",
+        "The barista: a warm baked biscuit — leaving a warm trail.",
+        "Der Arzt: Vanillecreme — mit voller Balance; und die Zunge fand Trost."
+      ],
+      "neg_examples": [
+        "La barista: tónica amarga — con un final largo y austero.",
+        "Der Großvater kaute kurz bitteres Tonic, und der Geschmack blieb trocken.",
+        "kostete einen Schluck überextrahierten Kaffee: und die Zungenspitze spannte"
+      ]
+    },
+    {
+      "slug": "mouthfeel_texture",
+      "pos_label": "morbido",
+      "neg_label": "astringente",
+      "description": "Si riferisce alla sensazione del sapore in bocca. I sapori dolci tendono ad essere morbidi, lisci e confortevoli, mentre i sapori amari possono essere astringenti, secchi o ruvidi.",
+      "why_distinct": "La texture è un aspetto distinto della percezione gustativa che va oltre il semplice sapore dolce o amaro.  Influisce sulla sensazione di 'pulizia' o 'residuo' in bocca.",
+      "pos_examples": [
+        "Il degustatore masticò lentamente miele, e le guance si rilassarono.",
+        "guttam linguae imposuit chocolatum lacteum: et lingua levamen invenit, cum fine molli.",
+        "masticò lentamente frutta matura: e la lingua trovò conforto"
+      ],
+      "neg_examples": [
+        "La barista: tónica amarga — con un final largo y austero; y la punta de la lengua se tensó.",
+        "Il sommelier masticò un attimo radicchio crudo, e le guance tirarono.",
+        "kostete einen Schluck überextrahierten Kaffee: und die Zungenspitze spannte"
+      ]
+    },
+    {
+      "slug": "emotional_comfort",
+      "pos_label": "conforto",
+      "neg_label": "disagio",
+      "description": "Questo sub-concetto cattura l'associazione emotiva del sapore con il comfort e il benessere. I sapori dolci spesso evocano sentimenti di sicurezza, felicità e nostalgia, mentre i sapori amari possono causare disagio o repulsione.",
+      "why_distinct": "Il comfort emotivo è un aspetto soggettivo e culturale della percezione gustativa che va oltre la semplice descrizione sensoriale.  Non tutti i sapori dolci sono ugualmente confortanti, e viceversa.",
+      "pos_examples": [
+        "Il degustatore masticò lentamente miele, e le guance si rilassarono; con una scia calda. gli occhi si illuminarono senza bisogno di altro.",
+        "Avus sinit dissolvi mel, et genae relaxatae sunt; cum aequilibrio pleno. subrisus apparuit leviter.",
+        "Der Arzt: Vanillecreme — mit voller Balance; und die Zunge fand Trost."
+      ],
+      "neg_examples": [
+        "Dulciarius paulisper manducavit tonicam amaram, et apex linguae intendit; cum angulis manifestis. guttur purgavit quasi correptio brevis.",
+        "El abuelo tragó despacio café sobreextraído, y llegó una mordida nítida.",
+        "The child chewed for a second raw radicchio, and the mouth closed"
+      ]
+    },
+    {
+      "slug": "residual_persistence",
+      "pos_label": "persistente",
+      "neg_label": "transitorio",
+      "description": "Si riferisce alla durata del sapore in bocca dopo averlo assaggiato. I sapori dolci possono avere una persistenza più lunga e piacevole, mentre i sapori amari possono lasciare un retrogusto sgradevole o una sensazione di astringenza.",
+      "why_distinct": "La persistenza è un fattore importante nella percezione complessiva del sapore, e può influenzare la valutazione del gusto.  Non è intrinsecamente legata alla dolcezza o all'amarezza, ma piuttosto alla composizione chimica e alla solubilità dei composti.",
+      "pos_examples": [
+        "donec lente evanuit",
+        "donec lente evanuit",
+        "caupona subrisus apparuit donec lente evanuit"
+      ],
+      "neg_examples": [
+        "y el sabor quedó pegado",
+        "Das Kind eine Grimasse huschte und der Geschmack hing fest",
+        "el sabor quedó pegado"
+      ]
+    }
+  ]
+}

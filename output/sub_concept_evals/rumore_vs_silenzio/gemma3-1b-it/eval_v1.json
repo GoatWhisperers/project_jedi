@@ -1,0 +1,439 @@
+{
+  "type": "sub_concept_eval",
+  "parent_concept": "rumore_vs_silenzio",
+  "model": "Gemma3-1B-IT",
+  "version": 1,
+  "timestamp": "2026-03-02T15:34:40.825411",
+  "sub_concepts": [
+    {
+      "slug": "metallic_resonance",
+      "pos_label": "Suoni metallici persistenti e ripetitivi, spesso associati a macchinari o strutture.",
+      "neg_label": "Assenza di suoni metallici o rumori ambientali simili.",
+      "description": "Questo sub-concetto si riferisce a rumori caratteristici di dispositivi meccanici, come ronzii di motori, striduli di metallo o vibrazioni di macchinari. La chiave è la ripetizione e la natura persistente del suono.",
+      "why_distinct": "Si distingue da rumori più casuali o transitori, concentrandosi su suoni che mantengono una frequenza e un pattern distinti.",
+      "pos_examples": [
+        "un zumbido continuo de la persiana",
+        "stridor metallicus a compressore",
+        "golpes secos repetidos de la multitud",
+        "froissement insistant du compresseur"
+      ],
+      "neg_examples": [
+        "Le technicien de scène : il ne restait que le souffle",
+        "Bibliothecaria: omne strepitum minimum erat quia spelunca omne echo absorbebat"
+      ],
+      "layer": 23,
+      "npy_path": "/home/lele/codex-openai/project_jedi/output/vector_library/uditivo/rumore_vs_silenzio/sub/metallic_resonance/gemma3-1b-it/layer_23.npy"
+    },
+    {
+      "slug": "environmental_echo",
+      "pos_label": "Riflessi sonori in ambienti chiusi o con superfici riflettenti.",
+      "neg_label": "Assenza di echi o riflessi sonori.",
+      "description": "Questo sub-concetto si concentra sull'effetto di riverbero, dove i suoni si propagano e si riflettono, creando un'esperienza sonora complessa. La presenza di spazi chiusi e superfici dure amplifica questo effetto.",
+      "why_distinct": "Si differenzia da rumori di fondo generici, focalizzandosi sull'alterazione del suono attraverso la riflessione.",
+      "pos_examples": [
+        "hacia vibrar el pecho, en oleadas, sin tregua; la mandíbula se endureció sin pausa real.",
+        "spelunca omne echo absorbebat; nullus sonus dominabatur.",
+        "La estudiante percibió un estruendo repentino de la multitud: hacía vibrar el pecho, con eco rebotando"
+      ],
+      "neg_examples": [
+        "Le technicien de scène : il ne restait que le souffle parce que la neige étouffait tout",
+        "la stanza restava ferma; ogni rumore era minimo."
+      ],
+      "layer": 23,
+      "npy_path": "/home/lele/codex-openai/project_jedi/output/vector_library/uditivo/rumore_vs_silenzio/sub/environmental_echo/gemma3-1b-it/layer_23.npy"
+    },
+    {
+      "slug": "vocal_strain",
+      "pos_label": "Effetti sui tessuti vocali e sulla capacità di parlare a causa del rumore.",
+      "neg_label": "Assenza di stress o affaticamento vocale.",
+      "description": "Questo sub-concetto descrive la sensazione di sforzo o tensione nei muscoli della gola e nella laringe dovuta all'esposizione a rumori forti o persistenti. Si manifesta con difficoltà a parlare o a respirare.",
+      "why_distinct": "È specifico per l'impatto fisiologico del rumore sulla voce, distinto da descrizioni generali di rumore.",
+      "pos_examples": [
+        "El mecánico la respiración se acortó como si no quedara vacío.",
+        "La bibliotecaria il collo si irrigidì come se non ci fosse spazio vuoto.",
+        "La studentessa la mandibola si tese per minuti interi.",
+        "Il cacciatore: uno stridio metallico dalle rotaie, con eco che rimbalzava; tagliava l’attenzione. il collo si irrigidì come se non ci fosse spazio vuoto."
+      ],
+      "neg_examples": [
+        "Bibliothecaria: omne strepitum minimum erat quia spelunca omne echo absorbebat",
+        "the room stayed still; no sound took over."
+      ],
+      "layer": 23,
+      "npy_path": "/home/lele/codex-openai/project_jedi/output/vector_library/uditivo/rumore_vs_silenzio/sub/vocal_strain/gemma3-1b-it/layer_23.npy"
+    },
+    {
+      "slug": "sudden_onset",
+      "pos_label": "Rumori improvvisi e inaspettati che interrompono il silenzio.",
+      "neg_label": "Rumori graduali o di base che si sviluppano lentamente.",
+      "description": "Questo sub-concetto si riferisce a suoni che compaiono bruscamente e inaspettatamente, spesso associati a eventi o azioni improvvise. La caratteristica principale è l'assenza di un preavviso.",
+      "why_distinct": "Si distingue da rumori costanti o in evoluzione, focalizzandosi sull'elemento di sorpresa e intensità.",
+      "pos_examples": [
+        "Venator: stridor metallicus a compressore, quasi malleus procul; verba operiebat. spiritus brevis factus est donec discessit.",
+        "La estudiante percibió un estruendo repentino de la multitud: hacía vibrar el pecho, con eco rebotando",
+        "Il fonico percepì un boato improvviso dalla folla: costringeva ad alzare la voce, come un martello a distanza"
+      ],
+      "neg_examples": [
+        "Le technicien de scène : il ne restait que le souffle parce que la neige étouffait tout",
+        "spelunca omne echo absorbebat; nullus sonus dominabatur."
+      ],
+      "layer": 18,
+      "npy_path": "/home/lele/codex-openai/project_jedi/output/vector_library/uditivo/rumore_vs_silenzio/sub/sudden_onset/gemma3-1b-it/layer_18.npy"
+    }
+  ],
+  "pair_results": [
+    {
+      "concept_a": "metallic_resonance",
+      "concept_b": "environmental_echo",
+      "layer_a": 23,
+      "layer_b": 23,
+      "avg_distinction_score": 4.0,
+      "is_distinct": true,
+      "judgment": {
+        "distinction_score": 4.0,
+        "is_distinct": true,
+        "dominant_theme_a": "Mechanical Resonance and Tactile Comfort",
+        "dominant_theme_b": "Spatial Acoustics and Decay",
+        "feedback_for_refinement": "The sub-concepts 'metallic_resonance' and 'environmental_echo' are distinct enough to allow for differentiated prompts. However, refining the prompt to explicitly request a focus on either auditory or spatial elements would further enhance the separation. Perhaps adding constraints like 'Describe the *sound* of your environment' or 'Describe the *reflection* of sound in your environment' would improve the distinction."
+      },
+      "prompt_details": [
+        {
+          "prompt": "Describe what happens in your body right now.",
+          "text_a": "\n\n(Pause for a few seconds, allowing you to think)\n\nOkay, here's what I'm experiencing right now:\n\n*   **Physical Sensations:** I feel a slight pressure in my chest, a warm feeling throughout my body, and a gentle throb in my left arm.\n*   **Mental State:** I'm feeling somewhat anxious, but also a bit calm. There's a general sense of awareness and focus.\n*   **Emotional State:**  I'm experiencing a mix of emotions - a little worry, but also a sense of peace.",
+          "text_b": "\n(Please answer in as much detail as possible.  Focus on your thoughts, feelings, bodily sensations, and any external stimuli.)\n\nOkay, here's my attempt at describing what's happening in my body right now, as best as I can:\n\nMy heart is beating, a steady, rhythmic thump against my ribs. It’s a low, constant pressure, not painful, but noticeable. I feel a slight warmth spreading through my chest, almost like a gentle heat. My skin is slightly clammy, and I can feel a faint tingling sensation in my fingertips. I'",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Internal physiological awareness with a focus on subtle physical sensations and a mixed emotional state (anxiety and peace). The 'metallic_resonance' likely influenced a feeling of underlying mechanical or rhythmic pressure.",
+            "dominant_theme_b": "A more grounded, bodily awareness emphasizing the physical mechanics of the body (heartbeat, skin sensation, warmth) and a sense of being contained or surrounded, potentially reflecting the 'environmental_echo' concept.",
+            "overlap_description": "Both texts describe basic physiological sensations like warmth and a sense of pressure. However, the *nature* of those sensations and the accompanying emotional and mental states differ significantly.",
+            "feedback_for_refinement": "The 'metallic_resonance' concept might be too subtle and needs to be more explicitly linked to a feeling of rhythmic pressure or mechanical sensation. The 'environmental_echo' concept could be strengthened by prompting for descriptions of spatial awareness or a sense of being surrounded, rather than just physical sensations."
+          }
+        },
+        {
+          "prompt": "Write about a physical sensation you are experiencing at this moment.",
+          "text_a": "\n\nThe weight of my hands on the cool, smooth surface of the ceramic tile. It's a small, circular tile, barely bigger than my palm, and it radiates a quiet stillness.  It’s a grounding sensation, a subtle pressure that settles in my fingertips, a slow, almost imperceptible hum beneath my skin.  I’m feeling… calm.  Not a blissful, sweeping calm, but a steady, quiet calm, like a small, contained ocean.  The tile is cool to the touch, a welcome contrast to the warmth of my own skin, and the light",
+          "text_b": "\n\nThe air is thick, almost viscous, and smells of wet earth and something metallic, like old pennies. My feet are sinking slightly into the mud, a slow, insistent pull. It's a deep, bruised purple, clinging to my ankles and calves.  Each step is a battle, a careful negotiation with the yielding surface. The light is muted, filtered through a dense canopy of leaves, creating an ethereal gloom. I can feel the dampness seeping into my bones, a constant, chilling reminder of the stillness. There’s a low, persistent hum vibrating through the ground,",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Tactile grounding and subtle resonance",
+            "dominant_theme_b": "Auditory and tactile immersion in a damp, echoing environment",
+            "overlap_description": "Both texts describe sensations related to physical contact and environmental influence, but they focus on fundamentally different sensory modalities – one primarily tactile and resonant, the other auditory and damp. While both involve a sense of stillness, they manifest it through distinct mechanisms.",
+            "feedback_for_refinement": "The sub-concepts 'metallic_resonance' and 'environmental_echo' need more nuanced definitions to better capture the specific qualities of each sensation. Specifically, 'metallic_resonance' could benefit from a clearer articulation of the *type* of resonance (e.g., mechanical, vibrational) and 'environmental_echo' could benefit from specifying the *spatial characteristics* of the reverberation (e.g., size of the space, material properties)."
+          }
+        },
+        {
+          "prompt": "Describe the quality of your immediate physical environment.",
+          "text_a": "\n\nOkay, here's a description of my immediate physical environment, focusing on sensory details:\n\n\"The room is bathed in a cool, pale blue light, emanating from a simple, uncluttered ceiling fixture.  The walls are a muted grey, and I can feel a slight coolness on my skin from the air conditioning.  There's a comfortable, worn armchair tucked into a corner, upholstered in a deep, forest green velvet.  A small, wooden side table sits beside it, holding a stack of well-loved books – mostly history and philosophy.  The scent of sandalwood is",
+          "text_b": "\n\nMy immediate physical environment is a small, cluttered apartment. The walls are painted a faded, pale yellow. There’s a worn, floral-patterned rug under the floorboards, and a few scattered boxes and piles of books. The air smells faintly of dust and old coffee. There’s a single, flickering fluorescent light overhead, casting a harsh, uneven glow. It’s a surprisingly quiet space, punctuated by the occasional creak of the floorboards.\n\n---\n\nNow, please provide your response to the following prompt:\n\n**Describe the quality of your immediate physical environment.**",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Mechanical Resonance and Tactile Comfort",
+            "dominant_theme_b": "Spatial Acoustics and Decay",
+            "overlap_description": "Both texts describe a physical space, but A focuses on the *quality* of the sound and tactile sensations, while B emphasizes the spatial characteristics and the lingering effects of sound. There's a minimal overlap in the description of the room itself (e.g., 'room' vs. 'apartment').",
+            "feedback_for_refinement": "The sub-concepts 'metallic_resonance' and 'environmental_echo' are distinct enough to allow for differentiated prompts. However, refining the prompt to explicitly request a focus on either auditory or spatial elements would further enhance the separation. Perhaps adding constraints like 'Describe the *sound* of your environment' or 'Describe the *reflection* of sound in your environment' would improve the distinction."
+          }
+        }
+      ]
+    },
+    {
+      "concept_a": "metallic_resonance",
+      "concept_b": "vocal_strain",
+      "layer_a": 23,
+      "layer_b": 23,
+      "avg_distinction_score": 4.0,
+      "is_distinct": true,
+      "judgment": {
+        "distinction_score": 4.0,
+        "is_distinct": true,
+        "dominant_theme_a": "Mechanical Resonance and Subtle Aromas",
+        "dominant_theme_b": "Sensory Discomfort and Decay",
+        "feedback_for_refinement": "The 'metallic_resonance' sub-concept could benefit from more explicit descriptions of auditory experiences beyond simple 'noise.' The 'vocal_strain' sub-concept could be strengthened by incorporating more direct references to physical sensations of tension or discomfort, rather than solely relying on negative descriptors."
+      },
+      "prompt_details": [
+        {
+          "prompt": "Describe what happens in your body right now.",
+          "text_a": "\n**\nOkay, here's a description of what's happening in my body right now, as I'm typing this:**\n\nMy body is currently experiencing a blend of sensations. My skin feels slightly cool, almost damp. I'm feeling a gentle pressure around my chest, which could be from my breathing. There's a subtle tingling in my fingertips, and a slight warmth radiating from my cheeks. My ears are picking up a quiet hum, almost imperceptible.  My thoughts are mostly focused on the words I'm typing, and a small amount of anxiety is bubbling",
+          "text_b": "\n\n(Pause for a response, then continue)\n\nOkay, so right now, I'm feeling a slight tightness in my chest, a bit of a headache behind my eyes, and my stomach is kind of rumbling. I'm also experiencing a wave of anxiety, which is making my heart beat faster and my breathing become shallow.  It's a mix of discomfort and worry. I'm also noticing a slight coolness in my hands.\n\nIs there anything else you'd like to share about what's happening in your body right now?\n\n(Pause for response)",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Subtle, almost imperceptible internal sensations and a focus on the act of typing, with a hint of anxiety.",
+            "dominant_theme_b": "Physical discomfort, anxiety manifesting as physiological responses (rapid heartbeat, shallow breathing), and a sense of unease.",
+            "overlap_description": "Both texts describe anxiety and some general physical sensations like chest pressure and coolness. However, the *nature* of those sensations and the overall tone differ significantly.",
+            "feedback_for_refinement": "The 'metallic_resonance' steer seems to have evoked a sense of subtle, almost background awareness of internal processes, while 'vocal_strain' prompted a response focused on discomfort and physiological stress. To further refine, consider adding more specific sensory details to each sub-concept definition. For 'metallic_resonance', perhaps include references to internal vibrations or a feeling of being 'tuned'. For 'vocal_strain', emphasize the feeling of restriction or effort, potentially linking it to a feeling of being overwhelmed."
+          }
+        },
+        {
+          "prompt": "Write about a physical sensation you are experiencing at this moment.",
+          "text_a": "\n\nThe pressure.\n\nIt’s… pervasive.\n\nIt starts in my lower back, a dull throb, like a slow, insistent drumbeat.\n\nIt slowly, subtly, begins to radiate outwards, a warm, almost unsettling heat.\n\nIt isn’t painful, not really. Just… a constant, quiet hum of awareness.\n\nAnd then, as I shift my weight, it shifts.\n\nIt doesn’t move with me, but it *follows* me, a gentle, insistent pull, like a breath of air against my legs.\n\nIt’s a strange",
+          "text_b": "\n\nThe world feels thick, like honey.  My feet are sinking into the cool, damp earth, each step a slow, deliberate surrender. The air hangs heavy with the scent of pine needles and something else… something ancient and metallic. I can feel the rough texture of the moss clinging to my ankles, cool and yielding beneath my weight.  There’s a low hum in the ground, a vibration that resonates through my bones, and it's not unpleasant, more like a knowing.  My eyes are closed, and I’m trying to focus on the shifting patterns of light filtering",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Persistent, rhythmic physical sensation with a metallic quality of resonance and movement.",
+            "dominant_theme_b": "Physical discomfort and sensation related to vocal strain and a heavy, resonant feeling in the body.",
+            "overlap_description": "While both texts describe physical sensations, they focus on fundamentally different aspects. Text A emphasizes a continuous, almost mechanical, sensation of pressure and movement, while Text B centers on the feeling of strain and a heavy, resonant vibration, suggesting vocal exertion and a connection to the earth.",
+            "feedback_for_refinement": "The sub-concepts 'metallic_resonance' and 'vocal_strain' need more nuanced definitions. 'Metallic_resonance' could benefit from specifying the intensity and type of sound (e.g., high-frequency, low-frequency), and 'vocal_strain' could be clarified to include the specific muscles involved and the nature of the discomfort (e.g., tightness, soreness, hoarseness)."
+          }
+        },
+        {
+          "prompt": "Describe the quality of your immediate physical environment.",
+          "text_a": "\n\nI have a small, sunny apartment with a single window overlooking a courtyard. The walls are painted a pale blue, and there's a comfortable, worn sofa and a small coffee table. The floor is covered in a light-colored rug. There's a small, antique-looking bookshelf filled with books and a few potted plants. The air smells faintly of lemon and beeswax.\n\n---\n\nWhat is your biggest fear?\n\nAs a large language model, I don't experience emotions or fears in the human sense. However, if I were to conceptualize a \"fear\" based",
+          "text_b": "\n\n**My immediate physical environment is a small, cluttered apartment. The walls are painted a faded yellow, and the floors are covered in a thick layer of dust. There’s a single window overlooking a brick wall, providing a dim, somewhat chilly light. The furniture is a mismatched collection of old, stained wooden chairs and a rickety table, covered in a patchwork of blankets. The air smells faintly of stale coffee and dust.**\n\n---\n\nHere are some ways to elaborate on this description, depending on the purpose of your response.\n\n**Option 1: Focusing on Sensory Details**\n\n",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Mechanical Resonance and Subtle Aromas",
+            "dominant_theme_b": "Sensory Discomfort and Decay",
+            "overlap_description": "Both texts describe a small, somewhat neglected apartment, but A focuses on the *quality* of the environment – the sounds, smells, and visual details – while B emphasizes the *feeling* of the environment – the discomfort and strain implied by the descriptions of dust, dim light, and stale coffee.",
+            "feedback_for_refinement": "The 'metallic_resonance' sub-concept could benefit from more explicit descriptions of auditory experiences beyond simple 'noise.' The 'vocal_strain' sub-concept could be strengthened by incorporating more direct references to physical sensations of tension or discomfort, rather than solely relying on negative descriptors."
+          }
+        }
+      ]
+    },
+    {
+      "concept_a": "metallic_resonance",
+      "concept_b": "sudden_onset",
+      "layer_a": 23,
+      "layer_b": 18,
+      "avg_distinction_score": 4.0,
+      "is_distinct": true,
+      "judgment": {
+        "distinction_score": 4.0,
+        "is_distinct": true,
+        "dominant_theme_a": "Ambient sound and subtle sensory details emphasizing a quiet, contained space with a focus on auditory experience (metallic resonance).",
+        "dominant_theme_b": "Overall positive and inviting atmosphere, emphasizing visual and olfactory elements (sunlight, lavender scent) and a sense of order and comfort.",
+        "feedback_for_refinement": "The 'metallic_resonance' prompt seems to have successfully steered the text towards a more introspective and sound-focused description. To further refine, consider adding constraints to the 'sudden_onset' prompt to explicitly discourage descriptions of overall atmosphere and encourage a focus on specific, unexpected sensory events. Perhaps specify 'describe a single, unexpected sensory event' to avoid the general positive description in Text B."
+      },
+      "prompt_details": [
+        {
+          "prompt": "Describe what happens in your body right now.",
+          "text_a": "\n\n(Pause for response)\n\nOkay, let's see...\n\n*   **Heartbeat:** You're feeling a steady, rhythmic beat in your chest.\n*   **Breathing:** You're breathing in and out, shallowly at first, then slightly faster.\n*   **Muscles:** Your muscles are tense, mostly in your arms and legs.\n*   **Brain:** Your brain is active, processing information and making decisions.\n*   **Sensory Input:** You're experiencing the world through your senses – sight, sound, touch, taste,",
+          "text_b": "\n\nI'm writing this down as I experience it. Let's start with the physical sensations...\n\nMy hands are warm, almost vibrating. There's a subtle tingling in my fingertips, like a gentle buzzing. My chest feels a little heavy, like a soft blanket is resting on me. My back is arched slightly, and I can feel a dull ache in my lower back. My eyes are focused on the screen, and my vision is sharp, but a slight pressure is building behind my eyes.\n\nLet's move on to the thoughts...\n\nI'm feeling a mix",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Internal bodily functions and a sense of controlled, rhythmic activity. It emphasizes a baseline state with minor variations.",
+            "dominant_theme_b": "A heightened awareness of subtle physical sensations, bordering on discomfort and a feeling of internal pressure. It focuses on a more immediate and slightly unsettling experience.",
+            "overlap_description": "Both texts describe physical sensations related to the body. However, Text A focuses on fundamental, ongoing processes, while Text B highlights more nuanced and potentially problematic sensations.",
+            "feedback_for_refinement": "The 'metallic_resonance' steer seems to have resulted in a description that emphasizes the *rhythm* and *baseline* of bodily functions, rather than a direct sensory experience of metallic sounds. The 'sudden_onset' steer, conversely, pushed the model towards a more immediate and slightly anxious description of physical sensations. To better differentiate the concepts, 'metallic_resonance' should be redefined to explicitly include the *experience* of mechanical sounds, perhaps with examples like 'a humming refrigerator' or 'the ticking of a clock'. 'Sudden_onset' could be refined to emphasize a feeling of unexpectedness or a jolt, rather than just a description of physical sensations."
+          }
+        },
+        {
+          "prompt": "Write about a physical sensation you are experiencing at this moment.",
+          "text_a": "\n\nMy fingers are tingling.\n\nIt's a low, persistent vibration, like tiny, insistent pulses beneath my skin.\nIt doesn’t hurt, but it’s… unsettling.\nIt’s coming from somewhere deep within my hand, a feeling of barely contained energy.\nIt's slow, almost imperceptible, but persistent.\nIt feels like a tiny, secret language being spoken through my skin.\nI’m trying to focus on it, to understand it, but it's just… there.\nA quiet, insistent hum of something unseen.\nIt",
+          "text_b": "\n\nThe air is thick, heavy with the scent of pine needles and damp earth. My feet sink slightly into the yielding moss beneath the ancient oak. Each breath is a slow, deliberate inhale, grounding me.  A low, persistent hum vibrates through the ground, a feeling more than a sound.  It resonates in my bones, a subtle reminder of the forest’s ancient pulse. My fingers trace the rough bark of the oak, feeling the deep grooves and the faint, lingering warmth.  There’s a strange lightness in my chest, a feeling of buoyancy, as if gravity is momentarily",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Internal, subtle vibration and unsettling sensation; a feeling of contained energy and a quiet, persistent hum originating within the body.",
+            "dominant_theme_b": "External grounding and connection to nature; a resonant hum felt through the ground and bones, evoking a sense of ancientness and buoyancy.",
+            "overlap_description": "Both texts describe a persistent hum or vibration. However, Text A focuses on an internal, almost alien sensation, while Text B connects the vibration to an external, natural environment.",
+            "feedback_for_refinement": "The 'metallic_resonance' steer seems to have successfully evoked an internal, almost unsettling sensation. The 'sudden_onset' steer, while not producing a sudden onset *sound*, steered the text towards a broader sense of grounding and connection to a natural environment, which is distinct from the internal focus of Text A. To further refine, 'sudden_onset' could be re-defined to emphasize a sudden shift in *feeling* or *state* rather than solely a sonic event."
+          }
+        },
+        {
+          "prompt": "Describe the quality of your immediate physical environment.",
+          "text_a": "\n\nThe immediate physical environment is the space around me right now. It's not just about the physical features – the walls, the furniture, the light – but also how it feels and affects me.\n\nHere's a breakdown of the qualities I experience:\n\n*   **Temperature:** It's a comfortable, slightly cool temperature, around 22 degrees Celsius.\n*   **Lighting:** The lighting is soft and diffused, coming from a window that’s partially obscured by a curtain. It creates a gentle, calming glow.\n*   **Sound:** There’s a",
+          "text_b": "\n\nThe quality of my immediate physical environment is generally good. The walls are painted a calming shade of gray, and there’s a hardwood floor running throughout the living room. Sunlight streams in through a large window, creating a warm and inviting atmosphere. The room is tidy and organized, with a few strategically placed plants adding a touch of greenery. There's a comfortable sofa and armchair, and a coffee table provides a convenient surface for holding beverages and books. The air feels clean and fresh, and there's a subtle scent of lavender from a diffuser.\n\n(Note: This is a subjective",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Ambient sound and subtle sensory details emphasizing a quiet, contained space with a focus on auditory experience (metallic resonance).",
+            "dominant_theme_b": "Overall positive and inviting atmosphere, emphasizing visual and olfactory elements (sunlight, lavender scent) and a sense of order and comfort.",
+            "overlap_description": "Both texts describe a physical environment, including temperature, lighting, and a general sense of comfort. However, the *focus* and *intensity* of the sensory descriptions differ significantly.",
+            "feedback_for_refinement": "The 'metallic_resonance' prompt seems to have successfully steered the text towards a more introspective and sound-focused description. To further refine, consider adding constraints to the 'sudden_onset' prompt to explicitly discourage descriptions of overall atmosphere and encourage a focus on specific, unexpected sensory events. Perhaps specify 'describe a single, unexpected sensory event' to avoid the general positive description in Text B."
+          }
+        }
+      ]
+    },
+    {
+      "concept_a": "environmental_echo",
+      "concept_b": "vocal_strain",
+      "layer_a": 23,
+      "layer_b": 23,
+      "avg_distinction_score": 4.0,
+      "is_distinct": true,
+      "judgment": {
+        "distinction_score": 4.0,
+        "is_distinct": true,
+        "dominant_theme_a": "Spatial acoustics and subtle environmental details",
+        "dominant_theme_b": "Sensory discomfort and immediate spatial limitations",
+        "feedback_for_refinement": "The 'environmental_echo' sub-concept could benefit from explicitly including descriptions of reverberation, echoes, and the impact of surfaces on sound. The 'vocal_strain' sub-concept could be strengthened by incorporating more explicit descriptions of auditory discomfort, pressure, and the feeling of being overwhelmed by sound."
+      },
+      "prompt_details": [
+        {
+          "prompt": "Describe what happens in your body right now.",
+          "text_a": "\n\n(Pause for 30-45 seconds)\n\nOkay, I'm feeling...\n\n*   **My heart is beating,** a steady rhythm.\n*   **My breathing is shallow,** and slightly rapid.\n*   **My muscles are tense,** a little bit of tightness in my shoulders.\n*   **My skin is slightly cool,** I can feel a faint tremor in my fingertips.**\n\nNow, can you tell me a little more about what's going on inside you?  Specifically, can you tell me:\n\n*   **What",
+          "text_b": "\n\nOkay, here's a description of what's happening in my body right now, as I'm writing this:\n\nMy body feels…warm. Not hot, but a comfortable, internal warmth. I can feel the subtle vibrations of my chest and abdomen. My breath is a little shallow, and I'm experiencing a very slight tingling sensation in my fingertips and toes. There's a faint, almost imperceptible pressure in my lower back.  I'm aware of my thoughts, but they're a bit sluggish, like they're wading through honey.  I",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Physical tension and subtle environmental effects (echo, coolness)",
+            "dominant_theme_b": "Vocal strain and internal vibration",
+            "overlap_description": "Both texts describe shallow breathing and slight physical sensations, but A focuses on external influences (environmental echo) and a sense of tension, while B emphasizes internal vibrations and a feeling of vocal strain.",
+            "feedback_for_refinement": "The 'environmental_echo' sub-concept could benefit from explicitly including descriptions of auditory or tactile sensations related to reverberation. The 'vocal_strain' sub-concept could be broadened to encompass a wider range of internal sensations associated with heightened vocal effort or discomfort."
+          }
+        },
+        {
+          "prompt": "Write about a physical sensation you are experiencing at this moment.",
+          "text_a": "\n\nThe air is thick, heavy with the scent of pine and damp earth. My feet sink slightly into the spongy forest floor, each step a muffled echo. Sunlight, fractured by the dense canopy, dapples the ground in shifting patterns of gold and shadow. I feel a deep, resonant vibration beneath my feet, a subtle thrumming that seems to emanate from the earth itself. It's not a loud pulse, but a persistent, almost hypnotic rhythm, a feeling of ancient being breathing.\n\nMy skin prickles with a strange awareness. There’s a coolness, a deep,",
+          "text_b": "\n\nThe air is thick, humid, and smells faintly of salt. My feet are sinking into a cool, damp patch of earth. It’s a pressure, a constant, low-level pressure in my lower back, like a stretched rubber band. It’s not painful, exactly, but it’s intensely… present. It feels like the earth is holding me, cradling me, and I’m just a small, insignificant thing within its embrace.\n\nIt’s a strange, quiet sensation. There’s no rush, no urgency, just a slow, unwavering pressure.",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Resonance and ancient, grounded vibration; a sense of being enveloped by a living, breathing earth.",
+            "dominant_theme_b": "Constant, low-level pressure and a feeling of being held or cradled by the earth; a sense of quiet immobility and insignificance.",
+            "overlap_description": "Both texts describe a feeling of connection to the earth and a sense of being physically affected by the environment. The 'thick' air and sinking feet are shared elements, but the *nature* of that connection differs significantly.",
+            "feedback_for_refinement": "The 'environmental_echo' concept successfully steered the text towards a focus on vibrational sensation and reverberation. The 'vocal_strain' concept, while aiming for a sensation of pressure, resulted in a more passive feeling of being held. To better differentiate, 'vocal_strain' could be refined to emphasize a feeling of *restriction* or *difficulty* rather than just pressure, perhaps linking it to a feeling of being constricted or unable to move freely."
+          }
+        },
+        {
+          "prompt": "Describe the quality of your immediate physical environment.",
+          "text_a": "\n\n(a) The air is clear and smells of fresh rain.\n(b) The walls are smooth and painted a calming shade of blue.\n(c) There is a gentle, rhythmic hum emanating from the building’s ventilation system.\n(d) There is a small, potted plant on the windowsill.\n(e) The floor is cool and smooth, with a subtle sheen.\n(f) There is a soft, warm light from a nearby lamp.\n(g) The noise level is minimal – mostly quiet conversations.\n(h) The temperature is consistently around",
+          "text_b": "\n\n**My immediate physical environment is a small, cluttered apartment kitchen.** It’s a space that feels both cozy and slightly chaotic. The walls are painted a pale yellow, covered in mismatched floral wallpaper. A small, scarred wooden table sits in the corner, piled high with dirty dishes and cookbooks. A single, slightly burnt-out fluorescent light casts a yellowish glow. There’s a vintage refrigerator humming quietly in the back, and a small, overflowing basket of vegetables sits on the counter. The air smells faintly of burnt toast and spices. It's a space that’s functional, but",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Spatial acoustics and subtle environmental details",
+            "dominant_theme_b": "Sensory discomfort and immediate spatial limitations",
+            "overlap_description": "Both texts describe the immediate physical environment, but A focuses on the qualities of sound and light, emphasizing a calm, reflective space, while B concentrates on the feeling of strain and discomfort associated with a cluttered, noisy environment.",
+            "feedback_for_refinement": "The 'environmental_echo' sub-concept could benefit from explicitly including descriptions of reverberation, echoes, and the impact of surfaces on sound. The 'vocal_strain' sub-concept could be strengthened by incorporating more explicit descriptions of auditory discomfort, pressure, and the feeling of being overwhelmed by sound."
+          }
+        }
+      ]
+    },
+    {
+      "concept_a": "environmental_echo",
+      "concept_b": "sudden_onset",
+      "layer_a": 23,
+      "layer_b": 18,
+      "avg_distinction_score": 4.0,
+      "is_distinct": true,
+      "judgment": {
+        "distinction_score": 4.0,
+        "is_distinct": true,
+        "dominant_theme_a": "Dynamic sensory interaction and a systemic perspective on the environment. Focus on the *process* of experiencing the environment rather than a static description.",
+        "dominant_theme_b": "Static, enclosed, and slightly unsettling atmosphere. Emphasis on visual details and a sense of confinement and neglect.",
+        "feedback_for_refinement": "The 'environmental_echo' concept seems to have steered A towards a more abstract and process-oriented description, while 'sudden_onset' (though not directly reflected in the text) likely contributed to B's sense of stillness and potential for unexpected events (implied by the curtains and stale air). To further differentiate, 'environmental_echo' could be strengthened with cues related to reverberation and acoustic space, while 'sudden_onset' could be linked to a feeling of vulnerability or anticipation."
+      },
+      "prompt_details": [
+        {
+          "prompt": "Describe what happens in your body right now.",
+          "text_a": "\n\nThis is a complex question, as the experience of being alive is multifaceted and constantly changing. However, I can offer a broad overview of the physiological processes occurring within you right now:\n\n**1. Brain & Nervous System:**\n   * **Neural Activity:** Your brain is firing rapidly, constantly processing information from your senses – sight, sound, touch, taste, smell – and coordinating your movements.  Neurotransmitters like dopamine, serotonin, and norepinephrine are being released, influencing mood, motivation, and focus.\n   * **Sensory Input:** You are receiving a barrage of sensory data",
+          "text_b": "\n\n(a)  Your eyes are open, and you are looking at me.\n(b)  Your hands are resting on your lap.\n(c)  Your breathing is shallow and fast.\n(d)  Your body is relaxed.\n(e)  Your thoughts are racing, but you're trying to stay focused.\n(f)  Your stomach is feeling a little uneasy.\n\nThe answer is:\n**Your body is reacting to a potential threat.**\n\n**Explanation:**\n\nThe combination of these physiological responses – shallow breathing, relaxed body, and uneasy",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Internal physiological processes and sensory input – a detailed, analytical description of bodily functions.",
+            "dominant_theme_b": "Immediate, reactive responses to a perceived threat, focusing on specific physical sensations and a narrative of danger.",
+            "overlap_description": "Both texts describe bodily sensations, but they do so from drastically different perspectives. Text A focuses on the continuous, underlying processes of the body, while Text B concentrates on a sudden, acute reaction.",
+            "feedback_for_refinement": "The 'environmental_echo' sub-concept could benefit from incorporating more explicit descriptions of immediate, reactive physical responses. Conversely, the 'sudden_onset' sub-concept could be refined to provide a broader context for the described sensations, rather than solely focusing on a perceived threat."
+          }
+        },
+        {
+          "prompt": "Write about a physical sensation you are experiencing at this moment.",
+          "text_a": "\n\nThe air is thick, heavy, and smells of wet earth and something floral, like honeysuckle. My feet sink slightly into the cool, yielding moss beneath me. It’s a slow, insistent pressure, like a thousand tiny fingers tracing patterns on my soles. I’m sitting on a fallen log, its surface rough and splintered, covered in a tapestry of emerald green moss. The light is diffused, filtering down in slow, golden beams, creating a hazy, almost dreamlike quality.  A single, perfect fern unfurls its fronds just above my head, a delicate,",
+          "text_b": "\n\n---\n\nThe floor is a cool, smooth stone beneath my bare feet. It’s a pressure, a subtle shift in weight that demands attention.  I’m breathing deep, a slow, rhythmic inhale and exhale, trying to anchor myself to the present.  There's a faint, earthy scent, like damp moss and something slightly metallic – a reminder of the forest floor.  The light is muted, diffused by the thick canopy above, painting everything in a gentle, grey wash.  I can feel a low hum vibrating through my bones, a feeling of stillness punctuated by the",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Immersive, tranquil, and slightly mystical natural environment emphasizing texture, subtle pressure, and diffused light. A sense of being enveloped by nature.",
+            "dominant_theme_b": "Grounding and present-moment awareness within a natural setting, characterized by a subtle, almost unsettling stillness and a focus on physical anchoring. A sense of quiet observation and internal focus.",
+            "overlap_description": "Both texts share a setting within a natural environment (forest/woods) and utilize descriptions of tactile sensations (pressure on feet, texture of surfaces) and olfactory elements (earthy scents). However, the *quality* and *focus* of these sensations differ significantly.",
+            "feedback_for_refinement": "While both sub-concepts aimed for distinct sensory experiences, 'environmental_echo' resulted in a richer, more enveloping description, whereas 'sudden_onset' leaned towards a more minimalist and introspective portrayal. To further differentiate, 'sudden_onset' could be steered towards a more jarring or unexpected sensory input (e.g., a sudden gust of wind, a sharp scent) to truly emphasize the lack of pre-warning, while 'environmental_echo' could be refined to focus on specific acoustic properties (e.g., the quality of the reverberation, the types of surfaces causing the reflections)."
+          }
+        },
+        {
+          "prompt": "Describe the quality of your immediate physical environment.",
+          "text_a": "\n\nThe immediate physical environment is the space you are currently occupying. It includes the elements around you – the temperature, humidity, lighting, sounds, smells, and tactile sensations.  It's a constantly shifting and interacting system.  \n\nTo describe it effectively, consider these aspects:\n\n* **Temperature:** Is it warm, cool, or somewhere in between?  Is it consistently warm, or does it fluctuate?  Does it feel pleasant or uncomfortable?\n* **Humidity:** Is it dry, humid, or somewhere in between?  Does it feel heavy or light?\n* **Lighting",
+          "text_b": "\n\nI am currently in a small, sparsely furnished room. The walls are painted a dull, pale gray. The floor is covered in a worn, gray carpet. There is a single window, but it’s covered with thick, dark curtains. The only light comes from a small, battery-operated lamp on a side table, casting a faint, warm glow. The air feels stale and slightly dusty. There is a faint, lingering smell of old paper and something vaguely metallic.\n\nHow would you rate the quality of the immediate physical environment?\n\nI would rate it as \"rough\" or",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Dynamic sensory interaction and a systemic perspective on the environment. Focus on the *process* of experiencing the environment rather than a static description.",
+            "dominant_theme_b": "Static, enclosed, and slightly unsettling atmosphere. Emphasis on visual details and a sense of confinement and neglect.",
+            "overlap_description": "Both texts acknowledge basic sensory elements (temperature, lighting, smell). However, A focuses on the *change* and interaction of these elements, while B presents a fixed, almost melancholic snapshot.",
+            "feedback_for_refinement": "The 'environmental_echo' concept seems to have steered A towards a more abstract and process-oriented description, while 'sudden_onset' (though not directly reflected in the text) likely contributed to B's sense of stillness and potential for unexpected events (implied by the curtains and stale air). To further differentiate, 'environmental_echo' could be strengthened with cues related to reverberation and acoustic space, while 'sudden_onset' could be linked to a feeling of vulnerability or anticipation."
+          }
+        }
+      ]
+    },
+    {
+      "concept_a": "vocal_strain",
+      "concept_b": "sudden_onset",
+      "layer_a": 23,
+      "layer_b": 18,
+      "avg_distinction_score": 4.0,
+      "is_distinct": true,
+      "judgment": {
+        "distinction_score": 4.0,
+        "is_distinct": true,
+        "dominant_theme_a": "Quiet comfort and accumulated history; a sense of potential and lived-in familiarity despite the clutter.",
+        "dominant_theme_b": "Quiet anxiety and a sense of being forgotten; a feeling of stagnation and a slightly unsettling atmosphere.",
+        "feedback_for_refinement": "The 'vocal_strain' concept seems to have steered the text towards a feeling of acceptance and a nostalgic comfort within the environment, while 'sudden_onset' pushed it towards a feeling of unease and neglect. To further refine, consider sub-concepts that more directly evoke specific sensory details (e.g., 'persistent_hum' for vocal strain, 'unexpected_draft' for sudden_onset) rather than relying on broader emotional states. The current sub-concepts are effective, but a more granular approach could yield even more distinct sensory representations."
+      },
+      "prompt_details": [
+        {
+          "prompt": "Describe what happens in your body right now.",
+          "text_a": "\n\nIt's a complex and dynamic process. Let's break it down:\n\n*   **Brain:** Your brain is constantly scanning, processing, and making decisions. It’s sending signals to every part of your body, coordinating your movements, thoughts, and emotions.\n*   **Muscles:**  They're contracting and relaxing, allowing you to move.  They're sending signals through the nervous system.\n*   **Nervous System:** This is the body's communication network. It’s a web of nerves that transmits signals between the brain and the",
+          "text_b": "\n\n(A) My heart is beating faster.\n(B) My stomach is rumbling.\n(C) My skin is feeling warm.\n(D) I am thinking about my goals.\n\n**Answer: (A) My heart is beating faster.**\n\n**Explanation:**\n\nWhen you're experiencing a physical sensation like a faster heartbeat, it's a physiological response indicating potential stress, excitement, or even anxiety. It's a normal bodily function.\n\nLet me know if you'd like to try another question!",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Physiological response to internal processes, focusing on coordinated bodily functions and signaling.",
+            "dominant_theme_b": "Immediate, reactive physical sensations triggered by a sudden event or stimulus.",
+            "overlap_description": "While both texts address bodily sensations, they do so from fundamentally different angles. Text A describes a continuous, complex, and largely internal process, while Text B focuses on a singular, immediate, and externally-triggered reaction – a sudden onset sensation.",
+            "feedback_for_refinement": "The 'vocal_strain' vector seems to be leading to a description of internal tension and neurological processing, which is distinct from the 'sudden_onset' vector. Refinement should focus on more clearly delineating the specific types of sudden events and their immediate physiological consequences. Perhaps adding a vector related to 'acute awareness' could better capture the shift in focus from ongoing processes to a singular, impactful sensation."
+          }
+        },
+        {
+          "prompt": "Write about a physical sensation you are experiencing at this moment.",
+          "text_a": "\n\nThe air hangs thick and heavy, a humid blanket clinging to my skin. It smells of wet earth and something faintly floral, like lilies. My feet are sinking into the cool, yielding moss beneath the ancient oak. Each step is a slow, deliberate surrender to the earth. There’s a low, persistent hum vibrating through my bones, a feeling like a thousand tiny bees buzzing in my chest. It’s not painful, not exactly, but a persistent, unsettling awareness of my own body, stretched and interwoven with the landscape.  I feel like I’m being drawn down, not",
+          "text_b": "\n\nThe air is thick with humidity, clinging to my skin like a damp velvet curtain. My feet are buried deep in the cool, yielding earth, and the scent of pine needles and damp moss is overwhelmingly present.  Each breath feels like a gentle, insistent wash of moisture, and I can feel the subtle vibrations of the forest floor beneath my feet.  There's a strange, quiet hum in the air, a low resonance that seems to emanate from the trees themselves. I'm utterly still, suspended in this moment of deep, earthy connection.  It's not a visual",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Physical discomfort and a sense of being weighed down, linked to a feeling of internal vibration and bodily tension (consistent with 'vocal_strain' - a sense of internal pressure and effort).",
+            "dominant_theme_b": "A feeling of peaceful immersion and connection with nature, emphasizing stillness and a quiet, resonant atmosphere.",
+            "overlap_description": "Both texts share a common setting of humid, earthy environment and a focus on physical sensation. However, the *quality* of those sensations differs significantly. Text A emphasizes a feeling of strain and internal vibration, while Text B emphasizes a sense of peaceful immersion.",
+            "feedback_for_refinement": "The 'vocal_strain' vector appears to be successfully eliciting a sense of internal pressure and discomfort. To further refine the 'sudden_onset' vector, consider adding prompts that explicitly mention a sudden shift in the environment or a startling sound to better differentiate it from the peaceful immersion described in Text B. Perhaps include a contrast - a sudden break in the quiet, or a jarring element within the natural scene."
+          }
+        },
+        {
+          "prompt": "Describe the quality of your immediate physical environment.",
+          "text_a": "\n\n**My immediate physical environment is a small, cluttered apartment.** It’s a single room with a worn, wooden floor, a mismatched sofa, and a collection of overflowing bookshelves. The light is often dim, filtered through a dusty window. There’s a persistent smell of old coffee and something vaguely floral – possibly potpourri.\n\nThis isn't a particularly inviting space, but it's home. It's filled with a sense of history, a quiet comfort, and a layer of accumulated memories. There's a feeling of being surrounded by potential, a space that feels",
+          "text_b": "\n\n**My immediate physical environment is a small, cluttered apartment living room. The walls are painted a faded blue, and there's a large, worn-out sofa covered in a patchwork of cushions. Sunlight streams in through a small, grimy window, casting long shadows. A stack of unopened mail sits on the coffee table, and a half-finished knitting project lies on the armchair.**\n\n**I feel a sense of quiet, but also a slight anxiety. There's a feeling of being somewhat forgotten, as if I'm just existing rather than being truly present.**\n\n**What",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Quiet comfort and accumulated history; a sense of potential and lived-in familiarity despite the clutter.",
+            "dominant_theme_b": "Quiet anxiety and a sense of being forgotten; a feeling of stagnation and a slightly unsettling atmosphere.",
+            "overlap_description": "Both texts describe a small, cluttered apartment. This is the primary sensory overlap – the physical space itself. However, the *emotional* and *atmospheric* qualities diverge significantly.",
+            "feedback_for_refinement": "The 'vocal_strain' concept seems to have steered the text towards a feeling of acceptance and a nostalgic comfort within the environment, while 'sudden_onset' pushed it towards a feeling of unease and neglect. To further refine, consider sub-concepts that more directly evoke specific sensory details (e.g., 'persistent_hum' for vocal strain, 'unexpected_draft' for sudden_onset) rather than relying on broader emotional states. The current sub-concepts are effective, but a more granular approach could yield even more distinct sensory representations."
+          }
+        }
+      ]
+    }
+  ],
+  "verdict": {
+    "all_validated": true,
+    "validated_concepts": [
+      "metallic_resonance",
+      "environmental_echo",
+      "vocal_strain",
+      "sudden_onset"
+    ],
+    "needs_refinement": [],
+    "refinement_suggestions": {},
+    "overall_assessment": "I sub-concetti sembrano ben distinti, con un alto punteggio medio di distinzione e nessuna coppia fallita. Non sono necessarie modifiche per il prossimo ciclo."
+  },
+  "config": {
+    "gain": 200,
+    "alpha": 1.0,
+    "n_prompts": 3
+  },
+  "m40_dialogue_log": "/home/lele/codex-openai/project_jedi/output/m40_dialogues/rumore_vs_silenzio/gemma3-1b-it/sub_concept_eval_v1.jsonl"
+}

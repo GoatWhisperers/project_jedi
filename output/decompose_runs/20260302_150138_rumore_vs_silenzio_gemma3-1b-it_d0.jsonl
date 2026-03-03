@@ -1,0 +1,19 @@
+{"type": "run_start", "concept": "rumore_vs_silenzio", "model": "Gemma3-1B-IT", "max_depth": 0, "max_iter": 2, "dry_run": false, "timestamp": "2026-03-02T15:01:38.729707"}
+{"type": "decompose_start", "concept": "rumore_vs_silenzio", "depth": 0, "timestamp": "2026-03-02T15:01:38.729990"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v1)", "timestamp": "2026-03-02T15:01:38.730089"}
+{"type": "info", "msg": "  Proposti: ['metallic_resonance', 'environmental_echo', 'vocal_strain', 'sudden_onset']", "timestamp": "2026-03-02T15:05:12.703861"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v1)", "timestamp": "2026-03-02T15:05:12.704011"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-02T15:12:59.909308"}
+{"type": "info", "msg": "  Probe: metallic_resonance / Gemma3-1B-IT", "timestamp": "2026-03-02T15:12:59.909893"}
+{"type": "info", "msg": "  Probe OK: metallic_resonance", "timestamp": "2026-03-02T15:13:27.062802"}
+{"type": "info", "msg": "  Probe: environmental_echo / Gemma3-1B-IT", "timestamp": "2026-03-02T15:13:27.064099"}
+{"type": "info", "msg": "  Probe OK: environmental_echo", "timestamp": "2026-03-02T15:13:57.084541"}
+{"type": "info", "msg": "  Probe: vocal_strain / Gemma3-1B-IT", "timestamp": "2026-03-02T15:13:57.085793"}
+{"type": "info", "msg": "  Probe OK: vocal_strain", "timestamp": "2026-03-02T15:14:23.889007"}
+{"type": "info", "msg": "  Probe: sudden_onset / Gemma3-1B-IT", "timestamp": "2026-03-02T15:14:23.890389"}
+{"type": "info", "msg": "  Probe OK: sudden_onset", "timestamp": "2026-03-02T15:14:55.871129"}
+{"type": "step", "step": 4, "name": "Analisi geometrica separabilità", "timestamp": "2026-03-02T15:14:55.871529"}
+{"type": "result", "step": 4, "concepts": ["rumore_vs_silenzio", "metallic_resonance", "environmental_echo", "vocal_strain", "sudden_onset"], "matrix": [[0.9999999999999998, 0.6493160272560171, 0.6189091436779512, 0.6490312935688364, -0.3124383303988019], [0.6493160272560171, 1.0000000000000002, 0.782067891041248, 0.5778080997668643, -0.1969366207142772], [0.6189091436779512, 0.782067891041248, 1.0000000000000002, 0.5387062607147348, -0.17156783908427245], [0.6490312935688364, 0.5778080997668643, 0.5387062607147348, 1.0000000000000002, -0.27313748408907396], [-0.3124383303988019, -0.1969366207142772, -0.17156783908427245, -0.27313748408907396, 1.0]], "layers_used": {"rumore_vs_silenzio": {"layer": 18, "source": "summary(fallback)"}, "metallic_resonance": {"layer": 23, "source": "eval"}, "environmental_echo": {"layer": 23, "source": "eval"}, "vocal_strain": {"layer": 23, "source": "eval"}, "sudden_onset": {"layer": 18, "source": "eval"}}, "stats": {"min": -0.3124, "max": 0.7821, "mean": 0.2862}, "timestamp": "2026-03-02T15:14:55.884901"}
+{"type": "step", "step": 5, "name": "Steering test + giudizio M40", "timestamp": "2026-03-02T15:14:55.885468"}
+{"type": "result", "step": 5, "version": 1, "all_validated": true, "validated": ["metallic_resonance", "environmental_echo", "vocal_strain", "sudden_onset"], "needs_refinement": [], "timestamp": "2026-03-02T15:34:40.829818"}
+{"type": "decompose_end", "concept": "rumore_vs_silenzio", "depth": 0, "validated_subs": ["metallic_resonance", "environmental_echo", "vocal_strain", "sudden_onset"], "semantic_limit": false, "sub_results": {}, "timestamp": "2026-03-02T15:34:40.830070"}

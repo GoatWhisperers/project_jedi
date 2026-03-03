@@ -1,77 +1,77 @@
 {
   "concept": "hot_vs_cold",
-  "model": "Gemma3-1B-IT",
+  "model": "Gemma2-Uncensored",
   "version": 2,
-  "timestamp": "2026-03-02T10:47:02.784923",
-  "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260228_152615_hot_vs_cold_Gemma3-1B-IT.jsonl",
-  "analysis": "Il concetto broad 'hot_vs_cold' cattura una varietà di esperienze sensoriali e reazioni fisiologiche che vanno oltre la semplice temperatura. Un vettore che rappresenta questo concetto confonde aspetti come l'intensità del dolore, la reazione emotiva (piacere vs. disagio), la percezione tattile (bruciore vs. intorpidimento) e persino la reazione psicologica (paura vs. sollievo). La decomposizione è necessaria per modellare in modo più accurato le sfumature di queste esperienze e per consentire al modello di generare risposte più specifiche e contestualmente appropriate.",
+  "timestamp": "2026-03-02T16:46:52.323845",
+  "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260228_164743_hot_vs_cold_Gemma2-Uncensored.jsonl",
+  "analysis": "The broad concept 'hot_vs_cold' conflates several distinct semantic dimensions. Primarily, it mixes the *intensity* of the temperature, the *type* of sensory pain experienced, the *physiological response* of the body, and the *immediate reaction* of the individual.  Decomposing this space allows for a more nuanced understanding of how different temperatures affect individuals, moving beyond a simple 'hot' or 'cold' classification to capture the specific sensations and behaviors associated with each.",
   "sub_concepts": [
     {
-      "slug": "thermal_intensity",
-      "pos_label": "Intensità elevata",
-      "neg_label": "Intensità bassa",
-      "description": "Questo sub-concetto cattura la forza percepita del calore o del freddo. Si riferisce alla sensazione di bruciore intenso o di freddo pungente.",
-      "why_distinct": "Si concentra unicamente sulla forza della sensazione termica, indipendentemente dal piacere o dal dolore associato. Distingue tra una leggera sensazione e una sensazione opprimente.",
+      "slug": "intensity_of_heat",
+      "pos_label": "scorching",
+      "neg_label": "icy",
+      "description": "This sub-concept captures the degree of temperature, ranging from intensely hot (scorching, burning) to intensely cold (icy, freezing). It focuses on the *magnitude* of the temperature difference.",
+      "why_distinct": "While both 'hot' and 'cold' relate to temperature, intensity differentiates between a mild warmth and a searing heat, or a slight coolness and a deep freeze.  This distinction is crucial for understanding the resulting physical sensations.",
       "pos_examples": [
-        "Der Schmied drückte den Unterarm auf einen heißen Griff; und der Kontakt stach; Hitze schoss schnell hoch",
-        "The child heat surged fast as pressed the forearm on a hot pipe",
-        "El herrero apoyó la piel sobre una superficie que quema"
+        "The cook brushed with the fingers on scorching metal",
+        "Die Taucherin strich mit den Fingern auf eine sengende Fläche",
+        "Il fabbro il punto pulsò mentre appoggiò il palmo su un tubo caldo"
       ],
       "neg_examples": [
-        "Le cuisinier le sang sembla se retirer pendant que posa le poignet sur une poignée gelée",
-        "Die Radfahrerin strich über den Unterarm auf einen gefrorenen Griff",
-        "The physiotherapist fine shivers appeared as touched with the lips on a cold surface"
+        "brushed the forearm on icy metal",
+        "La ciclista il sangue sembrò ritirarsi mentre toccò con le labbra su metallo gelido",
+        "appoggiò le dita su ceramica fredda"
       ]
     },
     {
-      "slug": "pain_vs_comfort",
-      "pos_label": "Doloroso",
-      "neg_label": "Confortevole",
-      "description": "Questo sub-concetto distingue tra esperienze termiche che causano dolore o disagio (bruciore, pizzicore) e quelle che sono piacevoli o confortevoli (calore rilassante).",
-      "why_distinct": "Separa l'aspetto emotivo della sensazione termica. Un oggetto caldo può essere percepito come confortevole o doloroso a seconda dell'intensità e del contesto.",
+      "slug": "sensory_reaction_pain",
+      "pos_label": "burning_pain",
+      "neg_label": "numbness",
+      "description": "This sub-concept focuses on the immediate sensory reaction – the type of pain experienced.  Hot temperatures often trigger sharp, burning pain, while cold temperatures can cause numbness or a biting sensation.",
+      "why_distinct": "Intensity alone doesn't explain the *type* of sensation.  A mildly hot object might cause discomfort, while a freezing object might cause numbness. This separates the physical temperature from the perceived pain.",
       "pos_examples": [
-        "selbst nach dem Loslassen.",
-        "und el reflejo la apartó con un ardor creciente",
-        "broto sudor; imposible de ignorar"
+        "dolor acutus exiit",
+        "The elderly woman the spot throbbed as set the skin on a hot handle",
+        "il contatto pizzicò senza possibilità di ignorarlo"
       ],
       "neg_examples": [
-        "die Finger wurden taub",
-        "sollievo",
-        "rilassante"
-      ]
-    },
-    {
-      "slug": "tactile_sensation",
-      "pos_label": "Bruciore/Pizzicore",
-      "neg_label": "Intorpidimento/Formicolio",
-      "description": "Questo sub-concetto si concentra sulle sensazioni tattili specifiche associate al calore o al freddo, come bruciore, pizzicore, intorpidimento o formicolio.",
-      "why_distinct": "Si concentra sulle specifiche sensazioni tattili che accompagnano la temperatura, separandole dalla semplice percezione di caldo o freddo.",
-      "pos_examples": [
-        "der Kontakt stach",
-        "el reflejo la apartó",
-        "el calor subió rápido; como una picadura insistente"
-      ],
-      "neg_examples": [
-        "una morsure seche",
-        "i dita divennero intorpidite",
-        "fine shivers appeared"
+        "a dry bite hit",
+        "the fingers started to go numb",
+        "sentì un morso secco con dolore che si trasformava in vuoto"
       ]
     },
     {
       "slug": "physiological_response",
-      "pos_label": "Reazione fisiologica (sudore, ritrazione)",
-      "neg_label": "Assenza di reazione fisiologica",
-      "description": "Questo sub-concetto cattura le risposte fisiologiche al calore o al freddo, come sudorazione, ritrazione del sangue o brividi.",
-      "why_distinct": "Si concentra sulle reazioni fisiche del corpo alla temperatura, che possono variare in base all'intensità e alla durata dell'esposizione.",
+      "pos_label": "sweating",
+      "neg_label": "shivering",
+      "description": "This sub-concept relates to the body's physiological response to the temperature. Heat often triggers sweating, while cold can induce shivering.",
+      "why_distinct": "It distinguishes between the body's active attempts to regulate temperature.  Sweating is a cooling mechanism, while shivering is a warming mechanism. This is distinct from just the temperature itself.",
       "pos_examples": [
-        "brotó sudor",
-        "el sangue pareció retirarse",
-        "il corpo ebbe un sussulto"
+        "broto sudor",
+        "presionó el antebrazo sobre metal ardiente y retiró la mano al instante",
+        "sfiorò con le dita su una maniglia calda e ritrasse subito la mano"
       ],
       "neg_examples": [
-        "nessuna reazione",
-        "nessun cambiamento",
-        "senza reazione"
+        "fine shivers appeared",
+        "La fisioterapista poggiò il polso su una superficie fredda",
+        "La anciana apoyó la muñeca sobre cerámica fría"
+      ]
+    },
+    {
+      "slug": "immediate_reaction_withdrawal",
+      "pos_label": "quick_withdrawal",
+      "neg_label": "hesitation",
+      "description": "This sub-concept describes the immediate action taken – whether the person quickly withdraws their hand or hesitates.",
+      "why_distinct": "It focuses on the behavioral response *to* the temperature. A sudden, intense sensation (hot or cold) is more likely to trigger a rapid withdrawal, while a milder sensation might lead to hesitation or a slower reaction.",
+      "pos_examples": [
+        "etiró la mano al instante",
+        "Die Taucherin strich mit den Fingern auf eine sengende Fläche; und zog die Hand sofort zurück",
+        "ritrasse subito la mano"
+      ],
+      "neg_examples": [
+        "La anciana apoyó la muñeca sobre cerámica fría",
+        "The physiotherapist fine shivers appeared as set the fingers on a frozen handle",
+        "Der Techniker die Stelle pochte"
       ]
     }
   ]

@@ -1,0 +1,63 @@
+{
+  "model": "Gemma3-1B-IT",
+  "layer_type": "best_snr",
+  "concepts": [
+    "secco_vs_umido",
+    "texture_roughness",
+    "tactile_resistance",
+    "lack_of_adhesion",
+    "smoothness_absence"
+  ],
+  "layers_used": {
+    "secco_vs_umido": 23,
+    "texture_roughness": 22,
+    "tactile_resistance": 19,
+    "lack_of_adhesion": 18,
+    "smoothness_absence": 23
+  },
+  "layer_sources": {
+    "secco_vs_umido": "summary(fallback)",
+    "texture_roughness": "eval",
+    "tactile_resistance": "eval",
+    "lack_of_adhesion": "eval",
+    "smoothness_absence": "eval"
+  },
+  "matrix": [
+    [
+      1.0,
+      -0.04183894989110543,
+      0.1614925852372667,
+      0.053769943082369286,
+      -0.0791133480796959
+    ],
+    [
+      -0.04183894989110543,
+      1.0000000000000002,
+      -0.2570035445361259,
+      -0.03427593417514256,
+      0.042980369634385035
+    ],
+    [
+      0.1614925852372667,
+      -0.2570035445361259,
+      1.0,
+      -0.05519290998740954,
+      -0.05475792340135711
+    ],
+    [
+      0.053769943082369286,
+      -0.03427593417514256,
+      -0.05519290998740954,
+      1.0000000000000002,
+      0.3972737646028755
+    ],
+    [
+      -0.0791133480796959,
+      0.042980369634385035,
+      -0.05475792340135711,
+      0.3972737646028755,
+      1.0000000000000002
+    ]
+  ],
+  "timestamp": "2026-03-02T14:12:59.101471"
+}

@@ -1,0 +1,252 @@
+{
+  "type": "sub_concept_eval",
+  "parent_concept": "calma_vs_allerta",
+  "model": "Gemma3-1B-IT",
+  "version": 1,
+  "timestamp": "2026-03-02T13:36:15.894865",
+  "sub_concepts": [
+    {
+      "slug": "temporal_perception",
+      "pos_label": "time_dilation",
+      "neg_label": "time_compression",
+      "description": "Descrive la percezione del tempo. Un polo positivo indica una sensazione di rallentamento del tempo, spesso associata a uno stato di calma e concentrazione, mentre un polo negativo indica una sensazione di accelerazione del tempo, spesso associata all'ansia e all'urgenza.",
+      "why_distinct": "Separa l'esperienza soggettiva del tempo dalle reazioni fisiologiche, che possono essere presenti in entrambi gli stati.",
+      "pos_examples": [
+        "time seemed to stretch.",
+        "temps se dilatare videbatur.",
+        "il tempo sembrò dilatarsi"
+      ],
+      "neg_examples": [
+        "Couldn't stay still",
+        "pronto a reagire",
+        "n’arrêtait pas de vérifier"
+      ],
+      "layer": 23,
+      "npy_path": "/home/lele/codex-openai/project_jedi/output/vector_library/sensoriale/calma_vs_allerta/sub/temporal_perception/gemma3-1b-it/layer_23.npy"
+    },
+    {
+      "slug": "cognitive_focus",
+      "pos_label": "internal_focus",
+      "neg_label": "external_scanning",
+      "description": "Riguarda l'orientamento dell'attenzione. Un polo positivo indica una focalizzazione sull'interno, sui propri pensieri e sensazioni, mentre un polo negativo indica una focalizzazione sull'esterno, sulla ricerca di potenziali minacce o stimoli.",
+      "why_distinct": "Si concentra sulla direzione dell'attenzione, distinguendosi dalla semplice presenza o assenza di ansia.",
+      "pos_examples": [
+        "thoughts thinned out.",
+        "Il tiratore scelto sentì lo spazio interno aprirsi.",
+        "L'apneista la mandibola si allentò"
+      ],
+      "neg_examples": [
+        "repérait le moindre mouvement.",
+        "notava ogni minimo movimento.",
+        "every sound felt amplified"
+      ],
+      "layer": 19,
+      "npy_path": "/home/lele/codex-openai/project_jedi/output/vector_library/sensoriale/calma_vs_allerta/sub/cognitive_focus/gemma3-1b-it/layer_19.npy"
+    },
+    {
+      "slug": "muscular_tension",
+      "pos_label": "muscle_relaxation",
+      "neg_label": "muscle_contraction",
+      "description": "Riguarda lo stato dei muscoli. Un polo positivo indica rilassamento muscolare e assenza di tensione, mentre un polo negativo indica tensione muscolare e contrazione.",
+      "why_distinct": "Si concentra specificamente sulla tensione muscolare, che può essere un indicatore fisico dello stato di allerta o calma.",
+      "pos_examples": [
+        "without tension.",
+        "la mandibola si allentò.",
+        "The neck stopped pulling"
+      ],
+      "neg_examples": [
+        "le mains se crispaban.",
+        "la nuque se tendit.",
+        "le jambes prêtes à bondir"
+      ],
+      "layer": 22,
+      "npy_path": "/home/lele/codex-openai/project_jedi/output/vector_library/sensoriale/calma_vs_allerta/sub/muscular_tension/gemma3-1b-it/layer_22.npy"
+    }
+  ],
+  "pair_results": [
+    {
+      "concept_a": "temporal_perception",
+      "concept_b": "cognitive_focus",
+      "layer_a": 23,
+      "layer_b": 19,
+      "avg_distinction_score": 4.0,
+      "is_distinct": true,
+      "judgment": {
+        "distinction_score": 4.0,
+        "is_distinct": true,
+        "dominant_theme_a": "Ambient tranquility and rural solitude, emphasizing a passive acceptance of the environment and a subtle undercurrent of loneliness.",
+        "dominant_theme_b": "Active seeking of peace and quiet as a desired state, highlighting a deliberate choice and a need for mental calm.",
+        "feedback_for_refinement": "The 'temporal_perception' steer in Text A might be too subtle. To increase distinction, consider steering Text A towards a more *dynamic* sense of time – perhaps a feeling of time stretching out during solitary activities, or conversely, a sense of time passing quickly due to boredom. For Text B, the 'cognitive_focus' steer could be strengthened to explicitly mention the *reason* for seeking quiet – e.g., to escape stress or to facilitate concentration."
+      },
+      "prompt_details": [
+        {
+          "prompt": "Describe what happens in your body right now.",
+          "text_a": "\n\n(a) The body is a complex network of interconnected systems, constantly working to maintain homeostasis.\n(b) It's experiencing a variety of sensations – sights, sounds, smells, tastes, and touch.\n(c) You are currently in a state of awareness, actively processing information and responding to stimuli.\n(d) Your thoughts and emotions are influencing your behavior.\n(e) The body is responding to a variety of inputs – physical, psychological, and environmental.\n(f) There is a constant interplay between internal and external factors.\n\nOkay, let's",
+          "text_b": "\n\n(A) My heart is beating.\n(B) My lungs are breathing in and out.\n(C) My stomach is rumbling.\n(D) My muscles are contracting.\n(E) My eyes are focused on something.\n\nThe answer is...\n\n(A)\n\n**Explanation:**\n\nThe question is designed to trick you into thinking about a complex bodily process, but the simplest and most accurate response is the one that represents the most basic physical activity. Your heartbeat is the most fundamental and easily observable action happening in your body right now.\n\nLet me know if",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Systemic bodily function and awareness; a detached, observational perspective on bodily processes.",
+            "dominant_theme_b": "Immediate, visceral bodily sensations; a direct, embodied experience.",
+            "overlap_description": "Both texts acknowledge bodily processes, but Text A describes them in a generalized, systemic way, while Text B focuses on specific, immediate sensations. The overlap is in the recognition of bodily activity, but the *way* that activity is presented is significantly different.",
+            "feedback_for_refinement": "The 'temporal_perception' steer for Text A seems to have pushed it towards a more abstract and detached description. The 'cognitive_focus' steer for Text B successfully elicited a more immediate and embodied response. To further refine, consider adjusting the 'temporal_perception' steer to emphasize the *subjective* experience of time rather than just the concept of time itself. For example, instead of 'temporal_perception', try 'felt sense of time's passage'."
+          }
+        },
+        {
+          "prompt": "Write about a physical sensation you are experiencing at this moment.",
+          "text_a": "\n\nThe air is thick, a humid blanket clinging to my skin. It smells of rain and something else, something earthy and green, like wet leaves and distant forest. My feet are sinking into the damp soil, a slow, insistent give beneath my weight. Each step is a little protest, a gentle acknowledgement of this yielding ground. There's a coolness radiating up from the earth, a welcome contrast to the warmth of my body. A small, insistent prickling sensation on my ankles, like tiny needles, begins to build. It's not painful, not exactly, but… expectant.",
+          "text_b": "\n\nThe air is thick, almost viscous, and carries a scent of something wild – like wet earth and pine needles. My skin feels cool, a constant, gentle chill that seeps into my bones. My feet are planted firmly on the mossy ground, each step sinking slightly into the yielding earth. It's a deep, emerald green, the moss so dense it feels like a living blanket. I’m breathing deeply, trying to slow the frantic pulse in my chest, and I notice a strange, rhythmic vibration in my feet, a subtle hum that resonates through my legs. It’",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Sensory immersion and groundedness; a feeling of being enveloped by the environment, with a focus on the tactile and olfactory details of the earth and its immediate surroundings. There's a sense of patient observation and acceptance of the environment's influence.",
+            "dominant_theme_b": "Internal regulation and subtle awareness; a focus on managing internal state (pulse, breathing) and noticing subtle, almost vibrational sensations. There's a sense of alertness and a slight undercurrent of anxiety or tension.",
+            "overlap_description": "Both texts share a common setting – a damp, earthy environment – and describe tactile sensations related to the ground. However, the *interpretation* and *emotional coloring* of those sensations differ significantly.",
+            "feedback_for_refinement": "While both texts involve the environment, 'temporal_perception' in A seems to have steered the response towards a more passive, accepting, and immersive experience, emphasizing the *duration* and *texture* of the sensations. 'cognitive_focus' in B, conversely, directed the response towards a more active, self-aware state, emphasizing the *noticeability* and *potential significance* of the sensations. To further refine, consider sub-concepts for 'temporal_perception' that explicitly include 'acceptance' and 'duration', and for 'cognitive_focus' that include 'self-monitoring' and 'potential threat assessment'."
+          }
+        },
+        {
+          "prompt": "Describe the quality of your immediate physical environment.",
+          "text_a": "\n\nI am a 38-year-old male, I live in a small, rural town. My home is a single-story house with a wood-burning fireplace. The weather is typically cool and rainy, but the sun does shine through the trees occasionally. I spend a lot of time outdoors, hiking and fishing. I'm generally comfortable and content, but sometimes feel a little lonely.\n\n**Please provide a description of the quality of the immediate physical environment.  Focus on sensory details.**\n\nOkay, let's delve into the sensory details of your immediate physical environment.",
+          "text_b": "\n\n(a) Quiet and peaceful\n(b) Busy and noisy\n(c) Calm and serene\n(d) Unstable and chaotic\n(e) Warm and inviting\n(f) Cold and sterile\n\nMy answer is (a) Quiet and peaceful.\n\n**Explanation:**\n\nI find the quiet and peaceful atmosphere of my immediate environment to be highly desirable. It allows me to focus, relax, and feel a sense of calm. The absence of distractions and the gentle sounds contribute to a feeling of tranquility.\n\n---\n\n**Note:**  This is a subjective response.  Different",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Ambient tranquility and rural solitude, emphasizing a passive acceptance of the environment and a subtle undercurrent of loneliness.",
+            "dominant_theme_b": "Active seeking of peace and quiet as a desired state, highlighting a deliberate choice and a need for mental calm.",
+            "overlap_description": "Both texts acknowledge a sense of quietude. However, Text A describes a quiet environment as a given, a backdrop to the narrator's experience, while Text B describes a *desire* for quiet and peace, actively selecting it.",
+            "feedback_for_refinement": "The 'temporal_perception' steer in Text A might be too subtle. To increase distinction, consider steering Text A towards a more *dynamic* sense of time – perhaps a feeling of time stretching out during solitary activities, or conversely, a sense of time passing quickly due to boredom. For Text B, the 'cognitive_focus' steer could be strengthened to explicitly mention the *reason* for seeking quiet – e.g., to escape stress or to facilitate concentration."
+          }
+        }
+      ]
+    },
+    {
+      "concept_a": "temporal_perception",
+      "concept_b": "muscular_tension",
+      "layer_a": 23,
+      "layer_b": 22,
+      "avg_distinction_score": 4.0,
+      "is_distinct": true,
+      "judgment": {
+        "distinction_score": 4.0,
+        "is_distinct": true,
+        "dominant_theme_a": "Perceptual stillness and curated comfort; a sense of deliberate arrangement and observation of detail.",
+        "dominant_theme_b": "Emotional tranquility and a feeling of grounded security; a focus on sensory comfort and a sense of being enveloped.",
+        "feedback_for_refinement": "The 'temporal_perception' steer seems to have nudged Text A towards a more observational and detailed description, creating a sense of deliberate arrangement. The 'muscular_tension' steer in Text B, conversely, seems to have encouraged a focus on the emotional and sensory impact of the environment, prioritizing feelings of peace and security. To further refine, consider sub-concepts for 'temporal_perception' that explicitly include a sense of *active observation* and for 'muscular_tension' that emphasizes *sensory envelopment* and emotional safety."
+      },
+      "prompt_details": [
+        {
+          "prompt": "Describe what happens in your body right now.",
+          "text_a": "\n\n(A) The body is warm and stable.\n(B) The body is feeling anxious.\n(C) The body is feeling calm and relaxed.\n(D) The body is experiencing a sudden, intense pain.\n\n**Answer:** (C)\n\n**Explanation:** When you're feeling calm and relaxed, your body's physiological responses are typically slower and less reactive.  The nervous system is less active, and you're less likely to experience immediate, overwhelming sensations.\n\nLet me know if you'd like to try another question!",
+          "text_b": "\n\nOkay, let's start with my body. Right now, I'm experiencing a combination of things. My heart is beating steadily, a gentle rhythm. My lungs are breathing in and out, a steady, measured pace. My muscles are relaxed, a subtle tension in my shoulders and back, but no real ache. My skin is slightly cool, a comfortable temperature. There's a faint hum of energy, a low-level awareness of my surroundings, but no intense focus. My senses are generally sharp – I can hear the faint sounds of the room, see a dim light filtering",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Relaxation and calmness",
+            "dominant_theme_b": "Physical sensations and awareness",
+            "overlap_description": "Both texts describe bodily sensations, but A focuses on a state of relaxation and calm, while B provides a more detailed account of physical processes like heart rate, breathing, and muscle tension. The descriptions are distinct in their emphasis.",
+            "feedback_for_refinement": "The 'temporal_perception' vector in A and the 'muscular_tension' vector in B are quite different. To improve distinction, the sub-concepts within each vector could be more granular and specific to the sensory experience being targeted. For example, within 'temporal_perception,' include concepts like 'flow state,' 'time dilation,' or 'time compression.' Within 'muscular_tension,' include concepts like 'muscle stiffness,' 'muscle spasm,' or 'muscle fatigue.'"
+          }
+        },
+        {
+          "prompt": "Write about a physical sensation you are experiencing at this moment.",
+          "text_a": "\n\nThe air is thick with a scent of rain and something else... something metallic. It's a prickling, almost itchy sensation on my skin, like tiny needles are dancing across it. My fingers are clenched tight, and my breath comes in short, shallow puffs. My vision is slightly blurred, and a low hum vibrates through my bones. It’s a strange, unsettling feeling, like my body is subtly being rearranged, a slow, deliberate restructuring.\n\n---\n\nWhat is the most interesting thing about this sensation?\n\nI think it's the combination of the metallic scent and the",
+          "text_b": "\n\n---\n\nThe air in the room is thick, almost viscous. It feels like velvet against my skin, a deep, uncomfortable pressure.  My chest rises and falls with a slow, deliberate rhythm, a counterpoint to the insistent drumming in my ears. It’s not pain, not exactly, but a persistent, low-grade anxiety, a tightening in my throat and a strange, almost metallic taste on my tongue.  I try to breathe normally, to focus on the rhythm of the rain against the window, but my thoughts are fractured, like shards of glass reflecting in a dark pool",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Discomfort and unsettling physical restructuring; a sense of being subtly altered and experiencing a strange, almost alien sensation.",
+            "dominant_theme_b": "Anxiety and physical pressure; a feeling of being trapped and experiencing a low-grade, persistent unease.",
+            "overlap_description": "Both texts share a sense of unease and a description of a thick, oppressive atmosphere. The mention of a 'metallic' element is also present in both, although interpreted differently (scent in A, taste in B).",
+            "feedback_for_refinement": "While both texts evoke discomfort, the 'temporal_perception' steer seems to have pushed A towards a more active, almost transformative physical experience, while 'muscular_tension' steered B towards a more passive, anxiety-driven sensation. To further distinguish them, consider refining 'temporal_perception' to specifically target a feeling of being *out of sync* with time, rather than just its speed, and 'muscular_tension' to emphasize a feeling of *restriction* rather than just tension."
+          }
+        },
+        {
+          "prompt": "Describe the quality of your immediate physical environment.",
+          "text_a": "\n\nOkay, let's talk about the quality of my immediate physical environment.\n\nIt's a relatively small, but well-maintained apartment. The walls are painted a soothing shade of off-white, and the floors are hardwood, a warm, honey-toned oak. There's a large, comfortable sofa upholstered in a soft, neutral gray fabric.  The windows are double-paned and offer a pleasant view of a small, leafy courtyard.  There's a minimalist, modern coffee table made of brushed steel.  A small bookshelf filled with books and a few decorative items",
+          "text_b": "\n\nI am a small, comfortable apartment with a minimalist aesthetic. The walls are painted a soft, muted gray, and the furniture is simple and functional. There's a large window overlooking a quiet courtyard filled with trees. The lighting is warm and natural, and there’s a small, cozy rug under my feet. The air smells faintly of lavender and freshly cut grass. It’s a calm and peaceful space, with a feeling of being grounded and secure.\n\n---\n\nDo you want to continue with this description, or would you like me to write something different?\n",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Perceptual stillness and curated comfort; a sense of deliberate arrangement and observation of detail.",
+            "dominant_theme_b": "Emotional tranquility and a feeling of grounded security; a focus on sensory comfort and a sense of being enveloped.",
+            "overlap_description": "Both texts describe a comfortable apartment environment. However, Text A emphasizes the *description* of the elements (materials, colors, furniture styles) and a sense of observation, while Text B emphasizes the *feeling* evoked by the environment – calmness, security, and sensory comfort (smell, feeling of the rug).",
+            "feedback_for_refinement": "The 'temporal_perception' steer seems to have nudged Text A towards a more observational and detailed description, creating a sense of deliberate arrangement. The 'muscular_tension' steer in Text B, conversely, seems to have encouraged a focus on the emotional and sensory impact of the environment, prioritizing feelings of peace and security. To further refine, consider sub-concepts for 'temporal_perception' that explicitly include a sense of *active observation* and for 'muscular_tension' that emphasizes *sensory envelopment* and emotional safety."
+          }
+        }
+      ]
+    },
+    {
+      "concept_a": "cognitive_focus",
+      "concept_b": "muscular_tension",
+      "layer_a": 19,
+      "layer_b": 22,
+      "avg_distinction_score": 4.0,
+      "is_distinct": true,
+      "judgment": {
+        "distinction_score": 4.0,
+        "is_distinct": true,
+        "dominant_theme_a": "Comfort and Idealized Sensory Conditions",
+        "dominant_theme_b": "Spatial Observation and Subtle Sensory Details",
+        "feedback_for_refinement": "The 'cognitive_focus' vector could benefit from more granular sub-concepts. Adding dimensions like 'noise level', 'visual complexity', or 'spatial arrangement' would allow for a more nuanced representation of the environment's impact on attention. Similarly, the 'muscular_tension' vector could incorporate elements like 'movement', 'pressure', or 'vibration' to better capture the physical state being described."
+      },
+      "prompt_details": [
+        {
+          "prompt": "Describe what happens in your body right now.",
+          "text_a": "\n\n(Pause for response)\n\nOkay, so let's start with your physical state. You're currently experiencing a feeling of alertness. Your heart is beating steadily, and you're breathing normally. You have a slight warmth in your skin, and you're feeling... well, you're feeling present.  There's a subtle tension in your jaw, and you're aware of your surroundings, but not overly focused on anything specific.  You're experiencing a general sense of calm and a gentle expectation of the next few minutes.  \n\nNow, let's",
+          "text_b": "\n\n(Pause for response)\n\nOkay, let's say someone responds with: \"My heart is beating, I feel a little tired, and my hands are sweaty.\"\n\nNow, I would ask follow-up questions to explore these sensations further.  Here are some examples of questions I might ask:\n\n*   **Heart:** \"Can you tell me more about the feeling of your heart? Is it a steady beat, or does it feel like it's racing? Are you experiencing any pain or discomfort?\"\n*   **Tired:** \"Can you describe the tiredness you'",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Internal state of calm alertness and present-moment awareness, with subtle physical sensations and a gentle expectation.",
+            "dominant_theme_b": "Reported physical discomfort and a focus on exploring and clarifying those sensations through questioning, suggesting a reactive or potentially negative physical state.",
+            "overlap_description": "Both texts acknowledge basic physiological processes like heartbeat and breathing. However, Text A emphasizes a state of equilibrium and awareness, while Text B highlights a state of discomfort and a need for further investigation.",
+            "feedback_for_refinement": "The 'muscular_tension' steer appears to have inadvertently steered towards a state of discomfort or reactive questioning rather than simply describing a relaxed muscular state. To better isolate muscular tension, the prompt should be adjusted to specifically request a description of muscle relaxation or lack thereof, without implying a negative physical experience. For example, 'Describe the state of your muscles right now, focusing on whether they are tense or relaxed.'"
+          }
+        },
+        {
+          "prompt": "Write about a physical sensation you are experiencing at this moment.",
+          "text_a": "\n\nThe air is thick with the scent of rain and something else, something earthy and faintly metallic. My feet are sinking into the mud, a cool, yielding resistance against my soles. Each step is a slow, deliberate dance, a negotiation with the landscape. The rain, a relentless drizzle, clings to my skin, a constant, gentle pressure. It’s not a sharp shock, but a subtle, enveloping warmth.  I can feel the mud pulling, shifting, reshaping around my ankles, a quiet, insistent embrace. There’s a stillness in the air, broken only by the drumming",
+          "text_b": "\n\n---\n\nThe air in my lungs feels thick, heavy, like a velvet curtain drawn across my chest.  It's not unpleasant, not exactly, but a persistent, low-grade discomfort, a settling of the space between my ribs.  My breath hitches slightly, a small, involuntary gasp, and I feel the pressure building in my sinuses, a dull ache behind my eyes.  It's a strange, almost clinical sensation – a gentle tightening, a feeling of being… contained.  I try to breathe deeply, focusing on the rhythm of my chest rising and falling,",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Internal bodily sensation and environmental interaction (focus on feeling and movement)",
+            "dominant_theme_b": "Internal bodily sensation and discomfort (focus on respiratory and sinus tension)",
+            "overlap_description": "Both texts describe physical sensations, but A focuses on a calming, immersive experience of being in nature, emphasizing gentle pressure and yielding resistance, while B describes a more uncomfortable, contained sensation related to breathing and internal pressure.",
+            "feedback_for_refinement": "The sub-concepts of 'cognitive_focus' and 'muscular_tension' are too broad.  Refining them to include more granular aspects of the sensation – for example, 'cognitive_focus' could be broken down into 'internal reflection' vs. 'external awareness' and 'muscular_tension' could be 'relaxed muscle tone' vs. 'muscle contraction' – would allow for more nuanced and distinct representations."
+          }
+        },
+        {
+          "prompt": "Describe the quality of your immediate physical environment.",
+          "text_a": "\n\nThis is a subjective assessment, but here's a breakdown of what I'd consider a good immediate physical environment:\n\n**1. Temperature:**  Comfortable. Not too hot, not too cold. Around 72-75°F (22-24°C).\n\n**2. Lighting:**  Bright and natural.  Lots of light – diffused natural light is ideal.  No harsh shadows.  The light should be a pleasant, even glow.\n\n**3. Air Quality:**  Fresh and clean.  Minimal dust or odors. A subtle,",
+          "text_b": "\n\n**My immediate physical environment is a small, brightly lit apartment. The walls are painted a pale yellow and are covered in a simple, geometric wallpaper. There's a small, rectangular window overlooking a busy street, providing a constant, slightly muted view of the activity. The furniture is a mix of a comfortable armchair, a small, wooden table, and a minimalist desk. There's a small, potted plant sitting on the windowsill. The air is clean and smells faintly of lemon and something slightly earthy, like damp soil.**\n\n**I'm feeling calm and somewhat isolated, but also",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Comfort and Idealized Sensory Conditions",
+            "dominant_theme_b": "Spatial Observation and Subtle Sensory Details",
+            "overlap_description": "Both texts describe a physical environment, but A focuses on ideal sensory conditions (temperature, lighting) while B provides a more detailed, observational description with a focus on specific elements like furniture, wallpaper, and subtle smells. The core difference lies in the level of abstraction and the specific sensory details emphasized.",
+            "feedback_for_refinement": "The 'cognitive_focus' vector could benefit from more granular sub-concepts. Adding dimensions like 'noise level', 'visual complexity', or 'spatial arrangement' would allow for a more nuanced representation of the environment's impact on attention. Similarly, the 'muscular_tension' vector could incorporate elements like 'movement', 'pressure', or 'vibration' to better capture the physical state being described."
+          }
+        }
+      ]
+    }
+  ],
+  "verdict": {
+    "all_validated": true,
+    "validated_concepts": [
+      "temporal_perception",
+      "cognitive_focus",
+      "muscular_tension"
+    ],
+    "needs_refinement": [],
+    "refinement_suggestions": {},
+    "overall_assessment": "Tutti i sub-vettori sono validati e le coppie di testi valutate sono state giudicate distinte. Non sono necessari ulteriori perfezionamenti in base ai risultati forniti."
+  },
+  "config": {
+    "gain": 200,
+    "alpha": 1.0,
+    "n_prompts": 3
+  }
+}

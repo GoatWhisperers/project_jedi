@@ -1,0 +1,49 @@
+{
+  "model": "Gemma3-1B-IT",
+  "layer_type": "best_snr",
+  "concepts": [
+    "odore_forte_vs_inodore",
+    "solvente_intenso",
+    "reazione_fisica_olfattiva",
+    "presenza_di_scia"
+  ],
+  "layers_used": {
+    "odore_forte_vs_inodore": 18,
+    "solvente_intenso": 23,
+    "reazione_fisica_olfattiva": 18,
+    "presenza_di_scia": 23
+  },
+  "layer_sources": {
+    "odore_forte_vs_inodore": "summary(fallback)",
+    "solvente_intenso": "eval",
+    "reazione_fisica_olfattiva": "eval",
+    "presenza_di_scia": "eval"
+  },
+  "matrix": [
+    [
+      1.0,
+      0.7731643792495327,
+      0.4713225588196371,
+      0.6231447442473662
+    ],
+    [
+      0.7731643792495327,
+      1.0,
+      0.2947583873951373,
+      0.6665075377872988
+    ],
+    [
+      0.4713225588196371,
+      0.2947583873951373,
+      1.0,
+      0.43282510840145355
+    ],
+    [
+      0.6231447442473662,
+      0.6665075377872988,
+      0.43282510840145355,
+      1.0000000000000002
+    ]
+  ],
+  "timestamp": "2026-03-02T16:18:23.606421"
+}

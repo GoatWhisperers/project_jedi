@@ -1,0 +1,545 @@
+{
+  "summary": {
+    "concept": "presenza_di_scia",
+    "category": "olfattivo/odore_forte_vs_inodore/sub",
+    "model_path": "/mnt/raid0/gemma-3-1b-it",
+    "model_name": "Gemma3-1B-IT",
+    "timestamp": "2026-03-02 16:18:21",
+    "num_layers": 26,
+    "deep_layers": [
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "n_pairs_train": 31,
+    "token_position": "mean",
+    "vector_method": "mean_diff"
+  },
+  "results": {
+    "18": {
+      "layer_idx": 18,
+      "coherence": 0.28038,
+      "cos_means": 0.99858,
+      "sep_snr": 0.7071,
+      "cos_pca_vs_mean": 0.73025,
+      "convergence_pca": {
+        "n_pairs": 31,
+        "method": "pca",
+        "bootstrap_cos_mean": 0.98613,
+        "bootstrap_cos_min": 0.96638,
+        "bootstrap_cos_std": 0.00726,
+        "converged": false,
+        "incremental": [
+          {
+            "n_pairs": 5,
+            "cos_vs_full": 0.88732,
+            "cos_vs_prev": null
+          },
+          {
+            "n_pairs": 10,
+            "cos_vs_full": 0.99377,
+            "cos_vs_prev": 0.90251
+          },
+          {
+            "n_pairs": 15,
+            "cos_vs_full": 0.9943,
+            "cos_vs_prev": 0.99429
+          },
+          {
+            "n_pairs": 20,
+            "cos_vs_full": 0.99507,
+            "cos_vs_prev": 0.99968
+          },
+          {
+            "n_pairs": 25,
+            "cos_vs_full": 0.99556,
+            "cos_vs_prev": 0.99966
+          },
+          {
+            "n_pairs": 30,
+            "cos_vs_full": 0.99973,
+            "cos_vs_prev": 0.99517
+          }
+        ]
+      },
+      "convergence_mean": {
+        "n_pairs": 31,
+        "method": "mean",
+        "bootstrap_cos_mean": 0.96062,
+        "bootstrap_cos_min": 0.76995,
+        "bootstrap_cos_std": 0.04692,
+        "converged": false,
+        "incremental": [
+          {
+            "n_pairs": 5,
+            "cos_vs_full": 0.79924,
+            "cos_vs_prev": null
+          },
+          {
+            "n_pairs": 10,
+            "cos_vs_full": 0.96777,
+            "cos_vs_prev": 0.87446
+          },
+          {
+            "n_pairs": 15,
+            "cos_vs_full": 0.99061,
+            "cos_vs_prev": 0.98282
+          },
+          {
+            "n_pairs": 20,
+            "cos_vs_full": 0.99526,
+            "cos_vs_prev": 0.99352
+          },
+          {
+            "n_pairs": 25,
+            "cos_vs_full": 0.99823,
+            "cos_vs_prev": 0.99796
+          },
+          {
+            "n_pairs": 30,
+            "cos_vs_full": 0.99928,
+            "cos_vs_prev": 0.99745
+          }
+        ]
+      }
+    },
+    "19": {
+      "layer_idx": 19,
+      "coherence": 0.23341,
+      "cos_means": 0.99854,
+      "sep_snr": 0.5795,
+      "cos_pca_vs_mean": 0.63066,
+      "convergence_pca": {
+        "n_pairs": 31,
+        "method": "pca",
+        "bootstrap_cos_mean": 0.97876,
+        "bootstrap_cos_min": 0.93775,
+        "bootstrap_cos_std": 0.01196,
+        "converged": false,
+        "incremental": [
+          {
+            "n_pairs": 5,
+            "cos_vs_full": 0.81092,
+            "cos_vs_prev": null
+          },
+          {
+            "n_pairs": 10,
+            "cos_vs_full": 0.99115,
+            "cos_vs_prev": 0.82901
+          },
+          {
+            "n_pairs": 15,
+            "cos_vs_full": 0.9894,
+            "cos_vs_prev": 0.99054
+          },
+          {
+            "n_pairs": 20,
+            "cos_vs_full": 0.99033,
+            "cos_vs_prev": 0.99939
+          },
+          {
+            "n_pairs": 25,
+            "cos_vs_full": 0.99111,
+            "cos_vs_prev": 0.99952
+          },
+          {
+            "n_pairs": 30,
+            "cos_vs_full": 0.99964,
+            "cos_vs_prev": 0.99025
+          }
+        ]
+      },
+      "convergence_mean": {
+        "n_pairs": 31,
+        "method": "mean",
+        "bootstrap_cos_mean": 0.94353,
+        "bootstrap_cos_min": 0.73028,
+        "bootstrap_cos_std": 0.0562,
+        "converged": false,
+        "incremental": [
+          {
+            "n_pairs": 5,
+            "cos_vs_full": 0.7446,
+            "cos_vs_prev": null
+          },
+          {
+            "n_pairs": 10,
+            "cos_vs_full": 0.95482,
+            "cos_vs_prev": 0.8247
+          },
+          {
+            "n_pairs": 15,
+            "cos_vs_full": 0.98425,
+            "cos_vs_prev": 0.97959
+          },
+          {
+            "n_pairs": 20,
+            "cos_vs_full": 0.9933,
+            "cos_vs_prev": 0.98807
+          },
+          {
+            "n_pairs": 25,
+            "cos_vs_full": 0.99727,
+            "cos_vs_prev": 0.99722
+          },
+          {
+            "n_pairs": 30,
+            "cos_vs_full": 0.99886,
+            "cos_vs_prev": 0.99622
+          }
+        ]
+      }
+    },
+    "20": {
+      "layer_idx": 20,
+      "coherence": 0.21703,
+      "cos_means": 0.99844,
+      "sep_snr": 0.5111,
+      "cos_pca_vs_mean": 0.57483,
+      "convergence_pca": {
+        "n_pairs": 31,
+        "method": "pca",
+        "bootstrap_cos_mean": 0.90993,
+        "bootstrap_cos_min": -0.98218,
+        "bootstrap_cos_std": 0.35166,
+        "converged": false,
+        "incremental": [
+          {
+            "n_pairs": 5,
+            "cos_vs_full": 0.77102,
+            "cos_vs_prev": null
+          },
+          {
+            "n_pairs": 10,
+            "cos_vs_full": 0.99031,
+            "cos_vs_prev": 0.79603
+          },
+          {
+            "n_pairs": 15,
+            "cos_vs_full": 0.98678,
+            "cos_vs_prev": 0.98824
+          },
+          {
+            "n_pairs": 20,
+            "cos_vs_full": 0.98827,
+            "cos_vs_prev": 0.99846
+          },
+          {
+            "n_pairs": 25,
+            "cos_vs_full": 0.98912,
+            "cos_vs_prev": 0.99939
+          },
+          {
+            "n_pairs": 30,
+            "cos_vs_full": 0.99961,
+            "cos_vs_prev": 0.98827
+          }
+        ]
+      },
+      "convergence_mean": {
+        "n_pairs": 31,
+        "method": "mean",
+        "bootstrap_cos_mean": 0.93701,
+        "bootstrap_cos_min": 0.72058,
+        "bootstrap_cos_std": 0.05851,
+        "converged": false,
+        "incremental": [
+          {
+            "n_pairs": 5,
+            "cos_vs_full": 0.73322,
+            "cos_vs_prev": null
+          },
+          {
+            "n_pairs": 10,
+            "cos_vs_full": 0.95262,
+            "cos_vs_prev": 0.81615
+          },
+          {
+            "n_pairs": 15,
+            "cos_vs_full": 0.98355,
+            "cos_vs_prev": 0.97649
+          },
+          {
+            "n_pairs": 20,
+            "cos_vs_full": 0.99154,
+            "cos_vs_prev": 0.98732
+          },
+          {
+            "n_pairs": 25,
+            "cos_vs_full": 0.99682,
+            "cos_vs_prev": 0.9963
+          },
+          {
+            "n_pairs": 30,
+            "cos_vs_full": 0.99861,
+            "cos_vs_prev": 0.99568
+          }
+        ]
+      }
+    },
+    "21": {
+      "layer_idx": 21,
+      "coherence": 0.17189,
+      "cos_means": 0.99837,
+      "sep_snr": 0.4329,
+      "cos_pca_vs_mean": 0.50498,
+      "convergence_pca": {
+        "n_pairs": 31,
+        "method": "pca",
+        "bootstrap_cos_mean": 0.82915,
+        "bootstrap_cos_min": -0.97524,
+        "bootstrap_cos_std": 0.47885,
+        "converged": false,
+        "incremental": [
+          {
+            "n_pairs": 5,
+            "cos_vs_full": 0.73999,
+            "cos_vs_prev": null
+          },
+          {
+            "n_pairs": 10,
+            "cos_vs_full": 0.987,
+            "cos_vs_prev": 0.77431
+          },
+          {
+            "n_pairs": 15,
+            "cos_vs_full": 0.98253,
+            "cos_vs_prev": 0.98561
+          },
+          {
+            "n_pairs": 20,
+            "cos_vs_full": 0.9851,
+            "cos_vs_prev": 0.99747
+          },
+          {
+            "n_pairs": 25,
+            "cos_vs_full": 0.98581,
+            "cos_vs_prev": 0.99937
+          },
+          {
+            "n_pairs": 30,
+            "cos_vs_full": 0.99892,
+            "cos_vs_prev": 0.98372
+          }
+        ]
+      },
+      "convergence_mean": {
+        "n_pairs": 31,
+        "method": "mean",
+        "bootstrap_cos_mean": 0.91866,
+        "bootstrap_cos_min": 0.71873,
+        "bootstrap_cos_std": 0.05984,
+        "converged": false,
+        "incremental": [
+          {
+            "n_pairs": 5,
+            "cos_vs_full": 0.65664,
+            "cos_vs_prev": null
+          },
+          {
+            "n_pairs": 10,
+            "cos_vs_full": 0.94345,
+            "cos_vs_prev": 0.75553
+          },
+          {
+            "n_pairs": 15,
+            "cos_vs_full": 0.97914,
+            "cos_vs_prev": 0.97229
+          },
+          {
+            "n_pairs": 20,
+            "cos_vs_full": 0.98926,
+            "cos_vs_prev": 0.98384
+          },
+          {
+            "n_pairs": 25,
+            "cos_vs_full": 0.99529,
+            "cos_vs_prev": 0.9955
+          },
+          {
+            "n_pairs": 30,
+            "cos_vs_full": 0.99733,
+            "cos_vs_prev": 0.99398
+          }
+        ]
+      }
+    },
+    "22": {
+      "layer_idx": 22,
+      "coherence": 0.16227,
+      "cos_means": 0.99833,
+      "sep_snr": 0.3838,
+      "cos_pca_vs_mean": 0.43206,
+      "convergence_pca": {
+        "n_pairs": 31,
+        "method": "pca",
+        "bootstrap_cos_mean": 0.76143,
+        "bootstrap_cos_min": -0.96754,
+        "bootstrap_cos_std": 0.56627,
+        "converged": false,
+        "incremental": [
+          {
+            "n_pairs": 5,
+            "cos_vs_full": 0.70504,
+            "cos_vs_prev": null
+          },
+          {
+            "n_pairs": 10,
+            "cos_vs_full": 0.9838,
+            "cos_vs_prev": 0.74826
+          },
+          {
+            "n_pairs": 15,
+            "cos_vs_full": 0.97827,
+            "cos_vs_prev": 0.98293
+          },
+          {
+            "n_pairs": 20,
+            "cos_vs_full": 0.98079,
+            "cos_vs_prev": 0.99521
+          },
+          {
+            "n_pairs": 25,
+            "cos_vs_full": 0.9816,
+            "cos_vs_prev": 0.99919
+          },
+          {
+            "n_pairs": 30,
+            "cos_vs_full": 0.99841,
+            "cos_vs_prev": 0.979
+          }
+        ]
+      },
+      "convergence_mean": {
+        "n_pairs": 31,
+        "method": "mean",
+        "bootstrap_cos_mean": 0.91419,
+        "bootstrap_cos_min": 0.74499,
+        "bootstrap_cos_std": 0.0533,
+        "converged": false,
+        "incremental": [
+          {
+            "n_pairs": 5,
+            "cos_vs_full": 0.67378,
+            "cos_vs_prev": null
+          },
+          {
+            "n_pairs": 10,
+            "cos_vs_full": 0.937,
+            "cos_vs_prev": 0.76677
+          },
+          {
+            "n_pairs": 15,
+            "cos_vs_full": 0.97498,
+            "cos_vs_prev": 0.97089
+          },
+          {
+            "n_pairs": 20,
+            "cos_vs_full": 0.9887,
+            "cos_vs_prev": 0.9798
+          },
+          {
+            "n_pairs": 25,
+            "cos_vs_full": 0.99473,
+            "cos_vs_prev": 0.99489
+          },
+          {
+            "n_pairs": 30,
+            "cos_vs_full": 0.99692,
+            "cos_vs_prev": 0.99341
+          }
+        ]
+      }
+    },
+    "23": {
+      "layer_idx": 23,
+      "coherence": 0.15374,
+      "cos_means": 0.99818,
+      "sep_snr": 0.3717,
+      "cos_pca_vs_mean": 0.39622,
+      "convergence_pca": {
+        "n_pairs": 31,
+        "method": "pca",
+        "bootstrap_cos_mean": 0.70808,
+        "bootstrap_cos_min": -0.96114,
+        "bootstrap_cos_std": 0.59257,
+        "converged": false,
+        "incremental": [
+          {
+            "n_pairs": 5,
+            "cos_vs_full": -0.64269,
+            "cos_vs_prev": null
+          },
+          {
+            "n_pairs": 10,
+            "cos_vs_full": 0.97691,
+            "cos_vs_prev": -0.70367
+          },
+          {
+            "n_pairs": 15,
+            "cos_vs_full": 0.96863,
+            "cos_vs_prev": 0.96845
+          },
+          {
+            "n_pairs": 20,
+            "cos_vs_full": 0.97448,
+            "cos_vs_prev": 0.99377
+          },
+          {
+            "n_pairs": 25,
+            "cos_vs_full": 0.97516,
+            "cos_vs_prev": 0.99907
+          },
+          {
+            "n_pairs": 30,
+            "cos_vs_full": 0.99713,
+            "cos_vs_prev": 0.97041
+          }
+        ]
+      },
+      "convergence_mean": {
+        "n_pairs": 31,
+        "method": "mean",
+        "bootstrap_cos_mean": 0.91098,
+        "bootstrap_cos_min": 0.76175,
+        "bootstrap_cos_std": 0.04843,
+        "converged": false,
+        "incremental": [
+          {
+            "n_pairs": 5,
+            "cos_vs_full": 0.68648,
+            "cos_vs_prev": null
+          },
+          {
+            "n_pairs": 10,
+            "cos_vs_full": 0.93344,
+            "cos_vs_prev": 0.77361
+          },
+          {
+            "n_pairs": 15,
+            "cos_vs_full": 0.97244,
+            "cos_vs_prev": 0.9686
+          },
+          {
+            "n_pairs": 20,
+            "cos_vs_full": 0.9874,
+            "cos_vs_prev": 0.97852
+          },
+          {
+            "n_pairs": 25,
+            "cos_vs_full": 0.99382,
+            "cos_vs_prev": 0.99438
+          },
+          {
+            "n_pairs": 30,
+            "cos_vs_full": 0.99647,
+            "cos_vs_prev": 0.99273
+          }
+        ]
+      }
+    }
+  }
+}

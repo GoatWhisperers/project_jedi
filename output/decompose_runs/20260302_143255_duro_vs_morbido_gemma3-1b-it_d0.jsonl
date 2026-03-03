@@ -1,0 +1,19 @@
+{"type": "run_start", "concept": "duro_vs_morbido", "model": "Gemma3-1B-IT", "max_depth": 0, "max_iter": 2, "dry_run": false, "timestamp": "2026-03-02T14:32:55.341560"}
+{"type": "decompose_start", "concept": "duro_vs_morbido", "depth": 0, "timestamp": "2026-03-02T14:32:55.341848"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v1)", "timestamp": "2026-03-02T14:32:55.341948"}
+{"type": "info", "msg": "  Proposti: ['material_density', 'surface_compliance', 'impact_feedback', 'pain_perception']", "timestamp": "2026-03-02T14:33:58.525925"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v1)", "timestamp": "2026-03-02T14:33:58.526035"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-02T14:40:27.148073"}
+{"type": "info", "msg": "  Probe: material_density / Gemma3-1B-IT", "timestamp": "2026-03-02T14:40:27.149245"}
+{"type": "info", "msg": "  Probe OK: material_density", "timestamp": "2026-03-02T14:40:58.418459"}
+{"type": "info", "msg": "  Probe: surface_compliance / Gemma3-1B-IT", "timestamp": "2026-03-02T14:40:58.420982"}
+{"type": "info", "msg": "  Probe OK: surface_compliance", "timestamp": "2026-03-02T14:41:24.903859"}
+{"type": "info", "msg": "  Probe: impact_feedback / Gemma3-1B-IT", "timestamp": "2026-03-02T14:41:24.905273"}
+{"type": "info", "msg": "  Probe OK: impact_feedback", "timestamp": "2026-03-02T14:41:59.348714"}
+{"type": "info", "msg": "  Probe: pain_perception / Gemma3-1B-IT", "timestamp": "2026-03-02T14:41:59.351237"}
+{"type": "info", "msg": "  Probe OK: pain_perception", "timestamp": "2026-03-02T14:42:31.856861"}
+{"type": "step", "step": 4, "name": "Analisi geometrica separabilità", "timestamp": "2026-03-02T14:42:31.857270"}
+{"type": "result", "step": 4, "concepts": ["duro_vs_morbido", "material_density", "surface_compliance", "impact_feedback", "pain_perception"], "matrix": [[0.9999999999999998, 0.2581066806691107, 0.3768875538032236, 0.13494877147045226, 0.3593434488627921], [0.2581066806691107, 1.0000000000000002, 0.3348703783408731, 0.09699733949005923, 0.029020564985032235], [0.3768875538032236, 0.3348703783408731, 0.9999999999999998, 0.13574928858628427, 0.12096799527003846], [0.13494877147045226, 0.09699733949005923, 0.13574928858628427, 1.0, -0.03715189518483323], [0.3593434488627921, 0.029020564985032235, 0.12096799527003846, -0.03715189518483323, 1.0000000000000002]], "layers_used": {"duro_vs_morbido": {"layer": 23, "source": "summary(fallback)"}, "material_density": {"layer": 18, "source": "eval"}, "surface_compliance": {"layer": 19, "source": "eval"}, "impact_feedback": {"layer": 23, "source": "eval"}, "pain_perception": {"layer": 23, "source": "eval"}}, "stats": {"min": -0.0372, "max": 0.3769, "mean": 0.181}, "timestamp": "2026-03-02T14:42:31.870850"}
+{"type": "step", "step": 5, "name": "Steering test + giudizio M40", "timestamp": "2026-03-02T14:42:31.871427"}
+{"type": "result", "step": 5, "version": 1, "all_validated": true, "validated": ["material_density", "surface_compliance", "impact_feedback", "pain_perception"], "needs_refinement": [], "timestamp": "2026-03-02T15:01:38.331114"}
+{"type": "decompose_end", "concept": "duro_vs_morbido", "depth": 0, "validated_subs": ["material_density", "surface_compliance", "impact_feedback", "pain_perception"], "semantic_limit": false, "sub_results": {}, "timestamp": "2026-03-02T15:01:38.331233"}

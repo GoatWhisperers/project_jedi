@@ -1,0 +1,19 @@
+{"type": "run_start", "concept": "calma_vs_allerta", "model": "Gemma2-Uncensored", "max_depth": 0, "max_iter": 2, "dry_run": false, "timestamp": "2026-03-02T17:40:22.690242"}
+{"type": "decompose_start", "concept": "calma_vs_allerta", "depth": 0, "timestamp": "2026-03-02T17:40:22.690542"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v1)", "timestamp": "2026-03-02T17:40:22.690658"}
+{"type": "info", "msg": "  Proposti: ['physiological_relaxation', 'mental_stillness', 'temporal_perspective', 'sensory_dampening']", "timestamp": "2026-03-02T17:41:47.759628"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v1)", "timestamp": "2026-03-02T17:41:47.759754"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-02T17:51:41.161249"}
+{"type": "info", "msg": "  SKIP probe physiological_relaxation — JSON non trovato: /home/lele/codex-openai/project_jedi/config/sub_concepts/calma_vs_allerta/physiological_relaxation.json", "timestamp": "2026-03-02T17:51:41.161632"}
+{"type": "info", "msg": "  Probe: mental_stillness / Gemma2-Uncensored", "timestamp": "2026-03-02T17:51:41.162656"}
+{"type": "info", "msg": "  ERRORE probe mental_stillness: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-02T17:51:56.707175"}
+{"type": "info", "msg": "  Probe: temporal_perspective / Gemma2-Uncensored", "timestamp": "2026-03-02T17:51:56.708708"}
+{"type": "info", "msg": "  ERRORE probe temporal_perspective: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-02T17:52:12.782899"}
+{"type": "info", "msg": "  SKIP probe sensory_dampening — JSON non trovato: /home/lele/codex-openai/project_jedi/config/sub_concepts/calma_vs_allerta/sensory_dampening.json", "timestamp": "2026-03-02T17:52:12.783448"}
+{"type": "info", "msg": "  Nessun vettore estratto. Salto i prossimi step.", "timestamp": "2026-03-02T17:52:12.783683"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v2)", "timestamp": "2026-03-02T17:52:12.783783"}
+{"type": "info", "msg": "  Proposti: []", "timestamp": "2026-03-02T17:57:25.625340"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v2)", "timestamp": "2026-03-02T17:57:25.625567"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-02T17:57:25.625869"}
+{"type": "info", "msg": "  Nessun vettore estratto. Salto i prossimi step.", "timestamp": "2026-03-02T17:57:25.626063"}
+{"type": "decompose_end", "concept": "calma_vs_allerta", "depth": 0, "validated_subs": [], "semantic_limit": false, "sub_results": {}, "timestamp": "2026-03-02T17:57:25.626238"}

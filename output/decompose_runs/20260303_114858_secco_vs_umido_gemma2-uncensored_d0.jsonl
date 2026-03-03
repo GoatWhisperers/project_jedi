@@ -1,0 +1,28 @@
+{"type": "run_start", "concept": "secco_vs_umido", "model": "Gemma2-Uncensored", "max_depth": 0, "max_iter": 2, "dry_run": false, "timestamp": "2026-03-03T11:48:58.345130"}
+{"type": "decompose_start", "concept": "secco_vs_umido", "depth": 0, "timestamp": "2026-03-03T11:48:58.345441"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v1)", "timestamp": "2026-03-03T11:48:58.345564"}
+{"type": "info", "msg": "  Proposti: ['surface_texture', 'hydration_level', 'film_presence', 'sensory_irritation']", "timestamp": "2026-03-03T11:50:28.632790"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v1)", "timestamp": "2026-03-03T11:50:28.632956"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-03T11:55:10.815322"}
+{"type": "info", "msg": "  Probe: surface_texture / Gemma2-Uncensored", "timestamp": "2026-03-03T11:55:10.816514"}
+{"type": "info", "msg": "  ERRORE probe surface_texture: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-03T11:55:38.849648"}
+{"type": "info", "msg": "  Probe: hydration_level / Gemma2-Uncensored", "timestamp": "2026-03-03T11:55:38.850574"}
+{"type": "info", "msg": "  ERRORE probe hydration_level: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-03T11:56:06.666059"}
+{"type": "info", "msg": "  Probe: film_presence / Gemma2-Uncensored", "timestamp": "2026-03-03T11:56:06.667353"}
+{"type": "info", "msg": "  ERRORE probe film_presence: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-03T11:56:34.659569"}
+{"type": "info", "msg": "  SKIP probe sensory_irritation — JSON non trovato: /home/lele/codex-openai/project_jedi/config/sub_concepts/secco_vs_umido/sensory_irritation.json", "timestamp": "2026-03-03T11:56:34.660199"}
+{"type": "info", "msg": "  Nessun vettore estratto. Salto i prossimi step.", "timestamp": "2026-03-03T11:56:34.660324"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v2)", "timestamp": "2026-03-03T11:56:34.660495"}
+{"type": "info", "msg": "  Proposti: ['surface_texture', 'residual_sensation', 'moisture_presence', 'surface_adhesion']", "timestamp": "2026-03-03T11:58:04.277238"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v2)", "timestamp": "2026-03-03T11:58:04.277470"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-03T12:03:53.174205"}
+{"type": "info", "msg": "  Probe: surface_texture / Gemma2-Uncensored", "timestamp": "2026-03-03T12:03:53.175286"}
+{"type": "info", "msg": "  ERRORE probe surface_texture: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-03T12:04:21.786315"}
+{"type": "info", "msg": "  Probe: residual_sensation / Gemma2-Uncensored", "timestamp": "2026-03-03T12:04:21.787669"}
+{"type": "info", "msg": "  ERRORE probe residual_sensation: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-03T12:04:50.473453"}
+{"type": "info", "msg": "  Probe: moisture_presence / Gemma2-Uncensored", "timestamp": "2026-03-03T12:04:50.476137"}
+{"type": "info", "msg": "  ERRORE probe moisture_presence: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-03T12:05:18.690649"}
+{"type": "info", "msg": "  Probe: surface_adhesion / Gemma2-Uncensored", "timestamp": "2026-03-03T12:05:18.693560"}
+{"type": "info", "msg": "  ERRORE probe surface_adhesion: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-03T12:05:46.380518"}
+{"type": "info", "msg": "  Nessun vettore estratto. Salto i prossimi step.", "timestamp": "2026-03-03T12:05:46.380929"}
+{"type": "decompose_end", "concept": "secco_vs_umido", "depth": 0, "validated_subs": [], "semantic_limit": false, "sub_results": {}, "timestamp": "2026-03-03T12:05:46.381146"}

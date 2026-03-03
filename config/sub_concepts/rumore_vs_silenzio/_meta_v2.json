@@ -1,0 +1,78 @@
+{
+  "concept": "rumore_vs_silenzio",
+  "model": "Gemma2-Uncensored",
+  "version": 2,
+  "timestamp": "2026-03-03T12:31:02.846735",
+  "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260301_123846_rumore_vs_silenzio_Gemma2-Uncensored.jsonl",
+  "analysis": "The broad concept of 'noise vs. silence' conflates several distinct semantic dimensions. It mixes loudness, subjective unpleasantness, perceived distance, and rhythmic regularity.  A 'noisy' environment isn't inherently loud; it could be a collection of quiet, unpleasant sounds. Similarly, 'silence' isn't just the absence of sound; it's often characterized by a sense of stillness and predictability. Decomposing this broad concept into sub-concepts like intensity level, sound type, source location, and rhythm pattern allows for a more granular and accurate representation of the semantic space, enabling more targeted manipulation and understanding of auditory scenes.",
+  "sub_concepts": [
+    {
+      "slug": "intensity_level",
+      "pos_label": "loud",
+      "neg_label": "quiet",
+      "description": "Captures the perceived volume or amplitude of the sound. A 'loud' sound is characterized by high intensity, while a 'quiet' sound is low intensity.",
+      "why_distinct": "Distinguishes between sounds that are inherently loud (e.g., explosions) and those that are inherently quiet (e.g., whispers), regardless of their pleasantness or nature.",
+      "pos_examples": [
+        "un grincement métallique du compresseur couvrait les paroles",
+        "un fragor repentinus a turba",
+        "un boom soudain des rails"
+      ],
+      "neg_examples": [
+        "aucun son ne dominait",
+        "le monde paraissait loin",
+        "la biblioteca assorbiva i passi"
+      ]
+    },
+    {
+      "slug": "sound_type",
+      "pos_label": "unpleasant",
+      "neg_label": "neutral",
+      "description": "Focuses on the subjective quality of the sound. 'Unpleasant' sounds are jarring, irritating, or disruptive, while 'neutral' sounds are unremarkable or background noise.",
+      "why_distinct": "Separates sounds based on their emotional impact, regardless of their loudness or source. A quiet, neutral sound is different from a quiet, unpleasant sound.",
+      "pos_examples": [
+        "un grincement métallique",
+        "stridio metallico",
+        "un boom soudain"
+      ],
+      "neg_examples": [
+        "un battement lointain",
+        "un respiro",
+        "un latido lejano"
+      ]
+    },
+    {
+      "slug": "source_location",
+      "pos_label": "distant",
+      "neg_label": "proximal",
+      "description": "Refers to the perceived distance of the sound source. 'Distant' sounds seem far away, while 'proximal' sounds seem close.",
+      "why_distinct": "Accounts for the impact of distance on perception. A sound can be loud or quiet, pleasant or unpleasant, but its perceived location significantly influences its impact.",
+      "pos_examples": [
+        "comme un marteau au loin",
+        "un latido lejano",
+        "un battement lointain"
+      ],
+      "neg_examples": [
+        "ein ständiges Brummen von der Menge",
+        "un ronzio continuo dalla saracinesca",
+        "un grincement métallique des rails"
+      ]
+    },
+    {
+      "slug": "rhythm_pattern",
+      "pos_label": "erratic",
+      "neg_label": "consistent",
+      "description": "Describes the predictability and regularity of the sound. 'Erratic' sounds are unpredictable and irregular, while 'consistent' sounds follow a predictable pattern.",
+      "why_distinct": "Distinguishes between sounds that are jarring due to their unpredictable nature (e.g., sudden bursts) and those that are constant and predictable (e.g., a steady hum).",
+      "pos_examples": [
+        "stechenden Höhen",
+        "a ondate, senza tregua",
+        "avec un écho qui rebondissait"
+      ],
+      "neg_examples": [
+        "un ronzio continuo",
+        "silentium densitatem habebat",
+        "la neige étouffait tout"
+      ]
+    }
+  ]
+}

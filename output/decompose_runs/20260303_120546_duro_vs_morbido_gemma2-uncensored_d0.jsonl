@@ -1,0 +1,28 @@
+{"type": "run_start", "concept": "duro_vs_morbido", "model": "Gemma2-Uncensored", "max_depth": 0, "max_iter": 2, "dry_run": false, "timestamp": "2026-03-03T12:05:46.854742"}
+{"type": "decompose_start", "concept": "duro_vs_morbido", "depth": 0, "timestamp": "2026-03-03T12:05:46.856818"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v1)", "timestamp": "2026-03-03T12:05:46.856946"}
+{"type": "info", "msg": "  Proposti: ['rigidity_vs_flexibility', 'impact_rebound', 'pressure_distribution', 'sensory_feedback_intensity']", "timestamp": "2026-03-03T12:07:23.434936"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v1)", "timestamp": "2026-03-03T12:07:23.435052"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-03T12:11:50.788721"}
+{"type": "info", "msg": "  Probe: rigidity_vs_flexibility / Gemma2-Uncensored", "timestamp": "2026-03-03T12:11:50.789903"}
+{"type": "info", "msg": "  ERRORE probe rigidity_vs_flexibility: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-03T12:12:19.092065"}
+{"type": "info", "msg": "  Probe: impact_rebound / Gemma2-Uncensored", "timestamp": "2026-03-03T12:12:19.094775"}
+{"type": "info", "msg": "  ERRORE probe impact_rebound: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-03T12:12:48.222461"}
+{"type": "info", "msg": "  Probe: pressure_distribution / Gemma2-Uncensored", "timestamp": "2026-03-03T12:12:48.223740"}
+{"type": "info", "msg": "  ERRORE probe pressure_distribution: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-03T12:13:17.107500"}
+{"type": "info", "msg": "  SKIP probe sensory_feedback_intensity — JSON non trovato: /home/lele/codex-openai/project_jedi/config/sub_concepts/duro_vs_morbido/sensory_feedback_intensity.json", "timestamp": "2026-03-03T12:13:17.108139"}
+{"type": "info", "msg": "  Nessun vettore estratto. Salto i prossimi step.", "timestamp": "2026-03-03T12:13:17.108365"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v2)", "timestamp": "2026-03-03T12:13:17.108569"}
+{"type": "info", "msg": "  Proposti: ['physical_resistance', 'pain_perception', 'safety_comfort', 'strength_weakness']", "timestamp": "2026-03-03T12:14:43.259474"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v2)", "timestamp": "2026-03-03T12:14:43.259713"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-03T12:20:16.810714"}
+{"type": "info", "msg": "  Probe: physical_resistance / Gemma2-Uncensored", "timestamp": "2026-03-03T12:20:16.811888"}
+{"type": "info", "msg": "  ERRORE probe physical_resistance: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-03T12:20:45.117011"}
+{"type": "info", "msg": "  Probe: pain_perception / Gemma2-Uncensored", "timestamp": "2026-03-03T12:20:45.118343"}
+{"type": "info", "msg": "  ERRORE probe pain_perception: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-03T12:21:13.720940"}
+{"type": "info", "msg": "  Probe: safety_comfort / Gemma2-Uncensored", "timestamp": "2026-03-03T12:21:13.722556"}
+{"type": "info", "msg": "  ERRORE probe safety_comfort: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-03T12:21:42.248289"}
+{"type": "info", "msg": "  Probe: strength_weakness / Gemma2-Uncensored", "timestamp": "2026-03-03T12:21:42.249917"}
+{"type": "info", "msg": "  ERRORE probe strength_weakness: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-03T12:22:10.239189"}
+{"type": "info", "msg": "  Nessun vettore estratto. Salto i prossimi step.", "timestamp": "2026-03-03T12:22:10.239520"}
+{"type": "decompose_end", "concept": "duro_vs_morbido", "depth": 0, "validated_subs": [], "semantic_limit": false, "sub_results": {}, "timestamp": "2026-03-03T12:22:10.239711"}

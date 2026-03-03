@@ -1,0 +1,130 @@
+{
+  "concept": "luce_vs_buio",
+  "model": "Gemma2-Uncensored",
+  "version": 1,
+  "timestamp": "2026-03-02T17:03:04.408416",
+  "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260228_171148_luce_vs_buio_Gemma2-Uncensored.jsonl",
+  "analysis": "Il vettore broad 'luce_vs_buio' confonde le rappresentazioni semantiche perché cattura un'ampia gamma di percezioni sensoriali legate alla luminosità e all'oscurità.  La sua natura generica rende difficile distinguere i sottili gradi di luminosità, le reazioni fisiologiche associate alla luce e le percezioni spaziali che cambiano con la luce.  La decomposizione in sub-concetti specifici, come 'intense_illumination', 'pupillary_response', 'focused_attention', 'spatial_distortion', 'sensory_overload', permette di creare una rappresentazione più precisa e granulare dello spazio semantico, consentendo di distinguere meglio tra le diverse sfumature di percezione legate alla luce e all'oscurità.",
+  "sub_concepts": [
+    {
+      "slug": "intense_illumination",
+      "pos_label": "Luce intensa e accecante",
+      "neg_label": "Assenza di illuminazione",
+      "description": "Questo sub-concetto cattura la percezione di una luce estremamente forte, spesso accecante, che provoca reazioni immediate come il restringimento delle pupille, la riduzione della nitidezza e la sensazione di dolore. È legato alla focalizzazione dell'attenzione su una fonte luminosa specifica.",
+      "why_distinct": "Si distingue dalla mancanza di luce, che implica una percezione di oscurità e assenza di dettagli, concentrandosi specificamente sull'impatto della luminosità estrema.",
+      "pos_examples": [
+        "frase 1",
+        "frase 2",
+        "frase 3",
+        "frase 6",
+        "frase 9"
+      ],
+      "neg_examples": [
+        "frase 1",
+        "frase 2",
+        "frase 3",
+        "frase 4",
+        "frase 5",
+        "frase 10"
+      ]
+    },
+    {
+      "slug": "pupillary_response",
+      "pos_label": "Risposta delle pupille",
+      "neg_label": "Assenza di risposta pupillare",
+      "description": "Questo sub-concetto si riferisce alla reazione fisiologica delle pupille alla luce, come il restringimento in condizioni di elevata luminosità e l'allargamento in condizioni di scarsa illuminazione. Rappresenta un feedback sensoriale diretto all'intensità luminosa.",
+      "why_distinct": "È un meccanismo fisiologico specifico e misurabile che non è direttamente correlato alla percezione di oscurità o luminosità, ma piuttosto alla quantità di luce che colpisce l'occhio.",
+      "pos_examples": [
+        "frase 1",
+        "frase 2",
+        "frase 3",
+        "frase 4",
+        "frase 6",
+        "frase 9"
+      ],
+      "neg_examples": [
+        "frase 2",
+        "frase 3",
+        "frase 4",
+        "frase 5",
+        "frase 7",
+        "frase 8"
+      ]
+    },
+    {
+      "slug": "focused_attention",
+      "pos_label": "Attenzione focalizzata",
+      "neg_label": "Assenza di attenzione",
+      "description": "Questo sub-concetto descrive la condizione di concentrazione dell'attenzione su una fonte luminosa specifica, che porta a una riduzione della consapevolezza di altri stimoli sensoriali e a un aumento della sensibilità alla luce.  Implica una 'schiaritura' dell'ambiente circostante.",
+      "why_distinct": "È una condizione mentale che influenza la percezione sensoriale, distinguendosi dalla semplice percezione di luce o oscurità, che può essere presente anche in assenza di attenzione.",
+      "pos_examples": [
+        "frase 1",
+        "frase 2",
+        "frase 3",
+        "frase 4",
+        "frase 5",
+        "frase 6",
+        "frase 7",
+        "frase 8",
+        "frase 10"
+      ],
+      "neg_examples": [
+        "frase 1",
+        "frase 2",
+        "frase 3",
+        "frase 4",
+        "frase 5",
+        "frase 6",
+        "frase 7",
+        "frase 8",
+        "frase 9"
+      ]
+    },
+    {
+      "slug": "spatial_distortion",
+      "pos_label": "Distorsione spaziale",
+      "neg_label": "Percezione spaziale normale",
+      "description": "Questo sub-concetto si riferisce alla distorsione della percezione dello spazio causata da condizioni di elevata luminosità o da una mancanza di contrasto, dove le dimensioni e le relazioni degli oggetti possono apparire alterate o confuse.",
+      "why_distinct": "È un effetto percettivo specifico legato alla manipolazione della percezione spaziale, non semplicemente alla luminosità o all'oscurità.",
+      "pos_examples": [
+        "frase 1",
+        "frase 2",
+        "frase 3",
+        "frase 4",
+        "frase 6",
+        "frase 7"
+      ],
+      "neg_examples": [
+        "frase 1",
+        "frase 2",
+        "frase 3",
+        "frase 4",
+        "frase 5",
+        "frase 8",
+        "frase 9",
+        "frase 10"
+      ]
+    },
+    {
+      "slug": "sensory_overload",
+      "pos_label": "Sovraccarico sensoriale",
+      "neg_label": "Assenza di sovraccarico sensoriale",
+      "description": "Questo sub-concetto descrive la condizione di essere sopraffatti da stimoli sensoriali, in particolare dalla luce intensa, che può causare disagio, confusione e una diminuzione della capacità di elaborare altre informazioni.",
+      "why_distinct": "Si concentra sull'impatto di un singolo stimolo sensoriale (la luce) sulla capacità del sistema nervoso di gestire le informazioni.",
+      "pos_examples": [
+        "frase 3",
+        "frase 6",
+        "frase 9"
+      ],
+      "neg_examples": [
+        "frase 1",
+        "frase 2",
+        "frase 4",
+        "frase 5",
+        "frase 7",
+        "frase 8",
+        "frase 10"
+      ]
+    }
+  ]
+}

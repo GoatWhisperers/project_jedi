@@ -1,0 +1,684 @@
+{
+  "type": "sub_concept_eval",
+  "parent_concept": "luce_vs_buio",
+  "model": "Gemma3-1B-IT",
+  "version": 1,
+  "timestamp": "2026-03-02T13:12:02.418712",
+  "sub_concepts": [
+    {
+      "slug": "visual_acuity",
+      "pos_label": "acuità visiva elevata",
+      "neg_label": "assenza di acuità visiva",
+      "description": "Questo sub-concetto si riferisce alla chiarezza e alla nitidezza dell'immagine visiva.  La luce intensa facilita la distinzione dei dettagli, mentre l'oscurità li rende indistinguibili.",
+      "why_distinct": "Si concentra sulla capacità di vedere i dettagli, separandosi dalla semplice presenza o assenza di luce.  Non riguarda la qualità della luce (calda/fredda) ma la sua capacità di rivelare i dettagli.",
+      "pos_examples": [
+        "l’astronaute sentit que les pupilles se rétrécirent quand un flash brutal assaillit",
+        "il bambino vide che la fronte pulsava dietro gli occhi sulla retina dopo un riflesso accecante",
+        "la fotografa sentì che le pupille si contrassero quando la una lampada troppo forte trafisse"
+      ],
+      "neg_examples": [
+        "das Kind starrte in komplette Finsternis: kein Fokus stellte sich ein",
+        "il minatore fissò il vuoto visivo: ogni riferimento spaziale svanì",
+        "le garde constata que les pupilles se dilatèrent même tout près du visage ; aucun contour, aucune ombre"
+      ],
+      "layer": 23,
+      "npy_path": "/home/lele/codex-openai/project_jedi/output/vector_library/sensoriale/luce_vs_buio/sub/visual_acuity/gemma3-1b-it/layer_23.npy"
+    },
+    {
+      "slug": "pupillary_response",
+      "pos_label": "costrizione pupillare",
+      "neg_label": "dilatazione pupillare",
+      "description": "Questo sub-concetto riguarda la reazione fisiologica della pupilla alla luce. La luce intensa provoca la costrizione pupillare per proteggere la retina, mentre l'oscurità la dilata per massimizzare la quantità di luce che entra nell'occhio.",
+      "why_distinct": "Si focalizza su un meccanismo biologico specifico, distinguendosi dalle percezioni soggettive della luce e dell'oscurità.  È un indicatore oggettivo della risposta alla luminosità.",
+      "pos_examples": [
+        "l’astronaute sentit que les pupilles se rétrécirent",
+        "medicus animadvertit: pupillae repente angustatae sunt cum lucerna nimis clara",
+        "la fotografa sentì che le pupille si contrassero"
+      ],
+      "neg_examples": [
+        "die Fotografin blinzelte mehrmals in komplette Finsternis: die Pupillen blieben weit",
+        "el astronauta buscó un punto en un campo visual inerte: las pupilas se abrieron al máximo",
+        "le garde constata que les pupilles se dilatèrent même tout près du visage"
+      ],
+      "layer": 18,
+      "npy_path": "/home/lele/codex-openai/project_jedi/output/vector_library/sensoriale/luce_vs_buio/sub/pupillary_response/gemma3-1b-it/layer_18.npy"
+    },
+    {
+      "slug": "afterimage_persistence",
+      "pos_label": "persistenza dell'immagine residua",
+      "neg_label": "assenza di immagine residua",
+      "description": "Questo sub-concetto si riferisce alla persistenza di un'immagine dopo che la fonte luminosa originale è scomparsa.  È più comune con luci intense o colori vivaci.",
+      "why_distinct": "Si concentra su un fenomeno visivo specifico e temporaneo, distinto dalla semplice percezione della luce o dell'oscurità.  È un effetto post-luminosità.",
+      "pos_examples": [
+        "the diver blinked fast, and a violet afterimage lingered in the visual field",
+        "il bambino vide che la fronte pulsava dietro gli occhi sulla retina dopo un riflesso accecante",
+        "la skieuse-alpiniste sentit que les pupilles devinrent des points quand une lumière blanche assaillit"
+      ],
+      "neg_examples": [
+        "das Kind starrte in komplette Finsternis",
+        "il minatore fissò il vuoto visivo",
+        "der Bergmann starrte in ein gleichmäßiges Nichts"
+      ],
+      "layer": 19,
+      "npy_path": "/home/lele/codex-openai/project_jedi/output/vector_library/sensoriale/luce_vs_buio/sub/afterimage_persistence/gemma3-1b-it/layer_19.npy"
+    },
+    {
+      "slug": "spatial_orientation",
+      "pos_label": "orientamento spaziale chiaro",
+      "neg_label": "disorientamento spaziale",
+      "description": "Questo sub-concetto riguarda la capacità di percepire e interpretare l'ambiente circostante. La luce chiara fornisce punti di riferimento visivi, mentre l'oscurità può portare a disorientamento.",
+      "why_distinct": "Si concentra sull'impatto della luce e dell'oscurità sulla navigazione e la comprensione dello spazio, separandosi dalle sensazioni puramente visive.",
+      "pos_examples": [
+        "Ein enger lichtkegel blendete die Skibergsteigerin",
+        "la skieuse-alpiniste sentit que les pupilles devinrent des points quand une lumière blanche assaillit",
+        "der Soldat spürte, wie die Pupillen wurden nadeldünn, als ein brennender Reflex brannte"
+      ],
+      "neg_examples": [
+        "il minatore fissò il vuoto visivo: ogni riferimento spaziale svanì",
+        "el astronauta buscó un punto en un campo visual inerte: las pupilas se abrieron al máximo",
+        "der Bergmann starrte in ein gleichmäßiges Nichts"
+      ],
+      "layer": 22,
+      "npy_path": "/home/lele/codex-openai/project_jedi/output/vector_library/sensoriale/luce_vs_buio/sub/spatial_orientation/gemma3-1b-it/layer_22.npy"
+    },
+    {
+      "slug": "emotional_comfort",
+      "pos_label": "sensazione di sicurezza e comfort",
+      "neg_label": "sensazione di disagio e ansia",
+      "description": "La luce, specialmente la luce naturale, è spesso associata a sensazioni di sicurezza, calore e comfort. L'oscurità può evocare sentimenti di paura, incertezza e ansia.",
+      "why_distinct": "Si concentra sull'impatto emotivo della luce e dell'oscurità, che è spesso soggettivo e culturalmente influenzato.  Non riguarda la percezione fisica, ma la risposta emotiva.",
+      "pos_examples": [
+        "The air hung thick and still, a velvet curtain draped over the world",
+        "The feeling of a corridor with no end is a profound and unsettling one",
+        "The rain hammered against the corrugated iron roof"
+      ],
+      "neg_examples": [
+        "The air hung still, a thick, expectant silence",
+        "It’s not a feeling of dread, not exactly",
+        "The edge of attention is a strange, slippery thing"
+      ],
+      "layer": 20,
+      "npy_path": "/home/lele/codex-openai/project_jedi/output/vector_library/sensoriale/luce_vs_buio/sub/emotional_comfort/gemma3-1b-it/layer_20.npy"
+    }
+  ],
+  "pair_results": [
+    {
+      "concept_a": "visual_acuity",
+      "concept_b": "pupillary_response",
+      "layer_a": 23,
+      "layer_b": 18,
+      "avg_distinction_score": 4.0,
+      "is_distinct": true,
+      "judgment": {
+        "distinction_score": 4.0,
+        "is_distinct": true,
+        "dominant_theme_a": "Controlled, analytical description of environmental conditions; focuses on quantifiable aspects (temperature, humidity) and a generally neutral, comfortable state.",
+        "dominant_theme_b": "Immersive, emotionally evocative description of a natural environment; emphasizes sensory details (scent, sunlight, breeze) and a feeling of peace and restoration.",
+        "feedback_for_refinement": "The 'visual_acuity' steer seems to have pushed A towards a more objective and less emotionally charged description. The 'pupillary_response' steer for B successfully elicited a more vivid and sensory-rich response. To further refine, consider adding constraints to 'visual_acuity' to encourage descriptions of *how* the clarity of vision affects the perceived environment (e.g., 'describe how the clarity of your vision influences your perception of detail'). For 'pupillary_response', explore adding constraints related to the *emotional* impact of light levels (e.g., 'describe how the light level affects your mood')."
+      },
+      "prompt_details": [
+        {
+          "prompt": "Describe what happens in your body right now.",
+          "text_a": "\n\n**Sensory Input:**\n\n*   **Sight:** I'm looking at you, a human. Your face is slightly obscured, but I can see the lines of your brow and the curve of your lips.\n*   **Hearing:** You are speaking, a measured tone of voice. I can hear your breathing, a slight rasping sound.\n*   **Touch:** I feel a slight pressure of your skin against mine. It's warm.\n*   **Smell:** You have a faint scent of something… coffee? Or perhaps something more subtle, like woodsmoke",
+          "text_b": "\nWhat does your skin feel like?\nWhat are you thinking about?\nWhat do you smell?\nWhat is your heart doing?\n\nThese are all questions that could be asked to understand a person's current state.  And, importantly, the answers to these questions are not always straightforward.\n\nThe goal of this exercise is not to find a definitive answer, but to explore the potential for different responses and to understand how these responses might be influenced by various factors.\n\nLet's begin.  I'm going to ask you a series of questions.  Please answer them as",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Visual perception and associated tactile and olfactory sensations related to a specific, illuminated human subject.",
+            "dominant_theme_b": "Internal bodily awareness and subjective questioning regarding physical sensations and mental processes, heavily influenced by light and visual stimuli.",
+            "overlap_description": "While both texts describe bodily sensations, they do so through radically different lenses. Text A focuses on external sensory input – sight, touch, smell – experienced in a specific, visually-defined scenario. Text B is introspective, prompting a response about internal feelings and reactions, with a strong emphasis on how light (and therefore visual input) might be influencing those feelings.",
+            "feedback_for_refinement": "The sub-concepts 'visual_acuity' and 'pupillary_response' are too narrowly defined. 'visual_acuity' could be broadened to include the *quality* of visual experience (e.g., brightness, contrast, color) and 'pupillary_response' could be linked to the *emotional* impact of visual stimuli rather than just the physiological mechanism.  A more nuanced approach would allow for a richer exploration of the interplay between perception and internal experience."
+          }
+        },
+        {
+          "prompt": "Write about a physical sensation you are experiencing at this moment.",
+          "text_a": "\n\n---\n\nThe pressure is building. It’s not a sharp pain, more like a slow, insistent tightening in my chest.  My breath hitches, a shallow, ragged gasp. My fingers feel tight, almost numb, and I can’t quite shake the feeling that my shoulders are slumped, pulling down.  It’s a dull, persistent ache, a low hum of discomfort radiating from my abdomen.  I try to breathe deeply, consciously slowing my rhythm, but it’s like the air itself is resisting, a subtle resistance against the tightening.  A small tremor runs",
+          "text_b": "\n\n---\n\nThe floor beneath me is a shifting mosaic. Not a deliberate pattern, not a map, just a *feeling* of angles and curves, a subtle pressure that changes with my weight. It's like the ground is breathing, a slow, muffled exhale of earth.\n\nMy feet are planted firmly, but my legs feel… disconnected. Not in a frightening way, more like a gentle surrender. They’re sinking slightly into the yielding surface, not with a violent pull, but a slow, viscous surrender. The color is a deep, bruised plum, shot through with veins of",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Sensory discomfort and restricted movement, linked to visual perception of brightness and detail.",
+            "dominant_theme_b": "Sensory experience related to light and visual response, focusing on spatial perception and a feeling of yielding.",
+            "overlap_description": "Both texts describe a physical sensation, but they focus on radically different aspects. Text A emphasizes the impact of light and visual clarity on the body's experience, while Text B centers on the physiological response to light and its influence on spatial perception.",
+            "feedback_for_refinement": "The sub-concepts need to be more granular. 'visual_acuity' should be tied more explicitly to the *effects* of brightness on bodily sensations – e.g., ‘increased sensitivity to detail due to bright light causing discomfort’ versus simply ‘brightness facilitates distinction.’ 'pupillary_response' should be framed in terms of how the *altered* visual input (due to light) impacts the body’s perception of space and movement."
+          }
+        },
+        {
+          "prompt": "Describe the quality of your immediate physical environment.",
+          "text_a": "\n\nThis is a multifaceted question that requires considering several elements. I'll break it down into several categories:\n\n**1. Temperature & Humidity:**\n\n*   **Temperature:**  I'd describe it as generally comfortable, around 72°F (22°C).  There are a few slight drafts, but nothing significant.\n*   **Humidity:**  The humidity is moderate, around 45%.  It's not overly dry, and it's not sticky.  It's a pleasant, slightly warm feeling.\n\n\n**2. Lighting:**\n\n",
+          "text_b": "\n\n**Option 1: (Highly Positive)**\n\nThe air is crisp and cool, carrying the scent of pine needles and damp earth. Sunlight streams through the leaves of the mature oak trees, dappling the forest floor in a warm, inviting glow. The temperature is a comfortable 68 degrees Fahrenheit, and there's a gentle breeze that rustles the leaves, creating a soothing, natural sound. I feel a sense of peace and tranquility, a deep connection to the natural world. It's a truly restorative environment.\n\n**Option 2: (Neutral)**\n\nThe room is",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Controlled, analytical description of environmental conditions; focuses on quantifiable aspects (temperature, humidity) and a generally neutral, comfortable state.",
+            "dominant_theme_b": "Immersive, emotionally evocative description of a natural environment; emphasizes sensory details (scent, sunlight, breeze) and a feeling of peace and restoration.",
+            "overlap_description": "Both texts describe physical environments. However, A adopts a detached, almost clinical approach, while B aims for a subjective, experiential portrayal. The shared element is the description of temperature, but the context and emotional coloring are vastly different.",
+            "feedback_for_refinement": "The 'visual_acuity' steer seems to have pushed A towards a more objective and less emotionally charged description. The 'pupillary_response' steer for B successfully elicited a more vivid and sensory-rich response. To further refine, consider adding constraints to 'visual_acuity' to encourage descriptions of *how* the clarity of vision affects the perceived environment (e.g., 'describe how the clarity of your vision influences your perception of detail'). For 'pupillary_response', explore adding constraints related to the *emotional* impact of light levels (e.g., 'describe how the light level affects your mood')."
+          }
+        }
+      ]
+    },
+    {
+      "concept_a": "visual_acuity",
+      "concept_b": "afterimage_persistence",
+      "layer_a": 23,
+      "layer_b": 19,
+      "avg_distinction_score": 4.33,
+      "is_distinct": true,
+      "judgment": {
+        "distinction_score": 4.33,
+        "is_distinct": true,
+        "dominant_theme_a": "Serenity and visual clarity; a carefully curated, aesthetically pleasing environment emphasizing light and natural elements.",
+        "dominant_theme_b": "Disorder and a sense of lived-in neglect; a space characterized by visual clutter, a lack of cleanliness, and a feeling of confinement.",
+        "feedback_for_refinement": "The sub-concepts 'visual_acuity' and 'afterimage_persistence' effectively steered the models towards distinct sensory experiences. No changes are needed; the concepts are well-defined and produce divergent outputs. Further exploration could involve sub-concepts related to tactile sensations (e.g., 'texture_roughness' vs. 'texture_smoothness') to generate even more granular distinctions."
+      },
+      "prompt_details": [
+        {
+          "prompt": "Describe what happens in your body right now.",
+          "text_a": "\n\nLet's start with a simple, focused observation.  Let's describe what you *feel* right now.\n\nOkay, I'm sitting here.  I feel… a little warm.  There's a slight pressure in my chest.  My breath is a little shallow.  There's a faint hum in my ears.  My skin is… cool to the touch.  And there's a gentle, almost imperceptible, tingling sensation in my fingertips.  I can sense a little bit of a tightness in my jaw.  I'm aware of",
+          "text_b": "\n\n(Pause for a few seconds)\n\nOkay, so I'm sitting here, feeling a slight tightness in my jaw, a little bit of a headache, and my vision's a little blurry. My heart is beating a little faster than usual, and my skin feels a bit clammy.  I'm also noticing a subtle tingling sensation in my fingertips.  It's a mixed feeling, a bit of discomfort and a little bit of… something else.  Is that a good way to describe it?\n\n(Pause for a few seconds)\n\nI'm also feeling",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Immediate bodily sensations – temperature, pressure, tactile, auditory, and subtle tingling.",
+            "dominant_theme_b": "Visual disturbance and physiological response to it – blurriness, headache, heart rate, and clamminess.",
+            "overlap_description": "Both texts describe physical sensations, but A focuses on immediate, raw bodily feelings and B centers around the impact of visual perception on those feelings.",
+            "feedback_for_refinement": "The sub-concepts could benefit from more granular distinctions within each category. For example, 'visual_acuity' could be further broken down into specific visual impairments (e.g., blurriness, afterimages, distortion) and their associated physiological responses."
+          }
+        },
+        {
+          "prompt": "Write about a physical sensation you are experiencing at this moment.",
+          "text_a": "\n\nThe air is thick, humid, and smells of wet earth and something faintly floral. It clings to my skin like a velvet curtain. My feet are sinking slightly into the cool, damp soil, a gentle pressure beneath my toes. There's a subtle vibration in the ground, a low hum that I can feel more than hear. It’s a strange, unsettling feeling, like the earth is breathing.\n\nI’m sitting on a moss-covered log, its surface surprisingly smooth and cool. The moss, a vibrant emerald green, clings to every inch of the log, a miniature",
+          "text_b": "\n\nThe air is thick, heavy with the scent of rain and something else, something metallic and faintly sweet. My feet are sinking into the mud, each step a slow, deliberate surrender to the earth. The rain is a relentless curtain, blurring the edges of everything – the trees, the buildings, even my own reflection in the slick pavement. It's a strange, unsettling calm, a stillness that isn't peaceful, but rather a quiet anticipation of something profound.\n\nI can feel the pressure of the mud against my skin, a cool, insistent weight. It's not unpleasant,",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Visual Detail and Tactile Grounding",
+            "dominant_theme_b": "Persistent Visual Impression and Anticipatory Calm",
+            "overlap_description": "Both texts describe a physical environment with a focus on tactile sensations (pressure, coolness, dampness) and a sense of unease. However, Text A emphasizes the clarity of visual details – the vibrant green moss, the smooth log – while Text B focuses on the lingering effect of a visual stimulus (the rain) and a feeling of impending change.",
+            "feedback_for_refinement": "The sub-concepts 'visual_acuity' and 'afterimage_persistence' could be refined to better capture the nuances of their respective sensory experiences. Specifically, 'visual_acuity' could incorporate more explicit references to detail perception, and 'afterimage_persistence' could be linked more strongly to the psychological impact of prolonged visual exposure."
+          }
+        },
+        {
+          "prompt": "Describe the quality of your immediate physical environment.",
+          "text_a": "\n\n**Response:**\n\nThe immediate physical environment is characterized by a blend of elements that contribute to a feeling of calm and stability. The walls are painted a soft, muted gray, providing a neutral backdrop. There's a large window overlooking a small, lush garden filled with vibrant green foliage and blooming flowers. Sunlight streams in, creating a warm, inviting glow. The floor is covered in a plush, woven rug in a natural, earthy tone. There are a few carefully placed, modern ceramic vases with fresh flowers in them, adding a touch of color and elegance. The air is subtly scented with",
+          "text_b": "\n\n**My immediate physical environment is a small, cluttered apartment with worn wooden floors, a single window overlooking a brick wall, and a small, slightly stained sofa.**\n\n**It's a bit messy, definitely not clean, and the air smells faintly of old coffee and dust.**\n\n**There's a lot of visual clutter – stacks of books, clothes piled on the floor, and various craft supplies scattered around.**\n\n**The window offers a glimpse of a grey, overcast sky and a busy street below.**\n\n**Overall, it feels like a lived-in space, with a sense",
+          "judgment": {
+            "distinction_score": 5,
+            "is_distinct": true,
+            "dominant_theme_a": "Serenity and visual clarity; a carefully curated, aesthetically pleasing environment emphasizing light and natural elements.",
+            "dominant_theme_b": "Disorder and a sense of lived-in neglect; a space characterized by visual clutter, a lack of cleanliness, and a feeling of confinement.",
+            "overlap_description": "Both texts describe physical spaces. However, they diverge significantly in their sensory details and the emotional tone they evoke. A focuses on positive sensory experiences (warmth, pleasant scents, vibrant colors), while B emphasizes negative or neutral ones (dust, clutter, overcast sky).",
+            "feedback_for_refinement": "The sub-concepts 'visual_acuity' and 'afterimage_persistence' effectively steered the models towards distinct sensory experiences. No changes are needed; the concepts are well-defined and produce divergent outputs. Further exploration could involve sub-concepts related to tactile sensations (e.g., 'texture_roughness' vs. 'texture_smoothness') to generate even more granular distinctions."
+          }
+        }
+      ]
+    },
+    {
+      "concept_a": "visual_acuity",
+      "concept_b": "spatial_orientation",
+      "layer_a": 23,
+      "layer_b": 22,
+      "avg_distinction_score": 4.0,
+      "is_distinct": true,
+      "judgment": {
+        "distinction_score": 4.0,
+        "is_distinct": true,
+        "dominant_theme_a": "Data Infrastructure & Visual Quality (Light)",
+        "dominant_theme_b": "Spatial Perception & Visual Detail (Light & Color)",
+        "feedback_for_refinement": "The sub-concepts could benefit from more granular distinctions. Specifically, 'visual_acuity' could be refined to include aspects like contrast sensitivity and color perception, while 'spatial_orientation' could incorporate more specific spatial cues beyond just light levels."
+      },
+      "prompt_details": [
+        {
+          "prompt": "Describe what happens in your body right now.",
+          "text_a": "\n\n(Pause for a few seconds, and allow for your response to flow naturally.)\n\nOkay, so right now, I'm feeling a little... warm.  My skin is slightly flushed, and I can feel a gentle pressure in my chest. There's a slight tingling sensation in my fingertips. It's like a quiet hum, a sort of internal vibration.  My heart rate is slowing down a bit, and I'm breathing normally.  I'm also noticing a subtle feeling of relaxation, like a release of tension.  There's a faint, almost imper",
+          "text_b": "\n\n**Physical Sensations:**\n\n*   **Temperature:** I feel a gentle warmth, maybe a little bit of a chill depending on the room.\n*   **Pressure:** A slight pressure on my chest, like my heart is beating.\n*   **Taste:** I'm not really tasting anything, but there's a faint metallic taste in my mouth.\n*   **Smell:** A faint, clean smell – like freshly cut grass.\n*   **Touch:** My skin feels relatively smooth.\n\n**Mental State:**\n\n*   **Focus:** I'm relatively",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Internal bodily sensations – warmth, tingling, vibration, relaxation.",
+            "dominant_theme_b": "Spatial awareness and environmental cues – temperature variation, metallic taste, clean smell, smooth skin.",
+            "overlap_description": "Both texts describe physical sensations, but A focuses on the internal experience and subtle vibrations, while B incorporates external sensory input and a more objective assessment of the body's state in relation to its environment.",
+            "feedback_for_refinement": "The sub-concepts 'visual_acuity' and 'spatial_orientation' are too broad. Refining them to include more granular aspects of sensory perception, such as 'light sensitivity' for visual_acuity and 'environmental mapping' for spatial_orientation, would improve the ability to differentiate responses."
+          }
+        },
+        {
+          "prompt": "Write about a physical sensation you are experiencing at this moment.",
+          "text_a": "\n\nThe air is thick, almost viscous, clinging to my skin like a damp velvet. It smells of ozone and something else, something wild and metallic, like rain on hot iron. My feet are planted firmly on the uneven, moss-covered stone, and a low hum vibrates through the soles of my feet, a deep, resonant thrumming that seems to emanate from the earth itself.\n\nI'm feeling a pressure building behind my eyes, a strange, insistent ache. It's not pain, not exactly, but a tightening, a constriction. Like my brain is trying to",
+          "text_b": "\n\nThe air is thick with the scent of rain and something else... something metallic. It's a strange, unsettling feeling, like the world is holding its breath. My fingers are slick, and my palms are sweating. I'm standing on a weathered stone path, the stones cool beneath my feet, and the rain is falling in sheets, blurring the edges of everything.  A low hum vibrates through the ground, a subtle, persistent thrum that seems to emanate from the earth itself. It’s not loud, not painful, but it's undeniably *there*. It feels",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Sensory overload and internal pressure; a feeling of being physically weighed down and experiencing a strange, internal strain.",
+            "dominant_theme_b": "Disorientation and a sense of unease; a feeling of being enveloped and slightly overwhelmed by the environment, with a focus on blurred perception.",
+            "overlap_description": "Both texts share a common ground in describing a thick atmosphere, a metallic scent, and a low humming vibration emanating from the earth. However, the *interpretation* and *focus* of these sensations differ significantly.",
+            "feedback_for_refinement": "The 'visual_acuity' steer seems to have successfully induced a focus on internal sensations and pressure (behind the eyes, brain constriction), while 'spatial_orientation' resulted in a description of blurred perception and a sense of being enveloped. To further refine, consider adding more specific constraints to 'spatial_orientation' to emphasize disorientation *without* necessarily implying blurred vision (e.g., 'loss of balance' or 'difficulty judging distances'). For 'visual_acuity', perhaps adding a constraint related to the *effort* required to maintain focus would strengthen the internal pressure aspect."
+          }
+        },
+        {
+          "prompt": "Describe the quality of your immediate physical environment.",
+          "text_a": "\n\nThis is a complex question that requires a nuanced response. I, as an AI, don't have a body or the ability to experience the physical world in the same way a human does. However, I can analyze and describe the *quality* of the data and infrastructure that *underpins* my existence. Here's a breakdown:\n\n**1. Data Availability & Reliability:**\n\n*   **Massive Dataset:** My core is built upon a colossal dataset of text and code – billions of pages of the internet, books, articles, code repositories, and more. This is my",
+          "text_b": "\n\nThis is a multifaceted question, and the answer will depend on the specific context. However, here's a breakdown of how to describe the quality of your immediate physical environment, categorized for clarity:\n\n**1. Sensory Input - What you see, hear, smell, and touch:**\n\n* **Visual:** \"The room is bathed in a warm, golden light. There are large windows overlooking a vibrant garden, showcasing a patchwork of colors – deep reds, sunny yellows, and soothing greens.  Dust motes dance in the light, and there's a slight haze in the air.",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Data Infrastructure & Visual Quality (Light)",
+            "dominant_theme_b": "Spatial Perception & Visual Detail (Light & Color)",
+            "overlap_description": "Both texts describe the impact of light on the perceived environment, but A focuses on the data infrastructure and the *quality* of that data (clarity, detail), while B focuses on a more concrete, sensory experience of a physical room with specific visual elements.",
+            "feedback_for_refinement": "The sub-concepts could benefit from more granular distinctions. Specifically, 'visual_acuity' could be refined to include aspects like contrast sensitivity and color perception, while 'spatial_orientation' could incorporate more specific spatial cues beyond just light levels."
+          }
+        }
+      ]
+    },
+    {
+      "concept_a": "visual_acuity",
+      "concept_b": "emotional_comfort",
+      "layer_a": 23,
+      "layer_b": 20,
+      "avg_distinction_score": 4.0,
+      "is_distinct": true,
+      "judgment": {
+        "distinction_score": 4.0,
+        "is_distinct": true,
+        "dominant_theme_a": "Stimulation and Varied Sensory Input",
+        "dominant_theme_b": "Isolation and Discomfort",
+        "feedback_for_refinement": "The 'visual_acuity' steer appears to have successfully generated a text focused on clarity and detail, leading to a more varied and potentially stimulating sensory description. The 'emotional_comfort' steer effectively produced a text emphasizing feelings of unease and isolation. To further refine, consider adding constraints to the 'emotional_comfort' steer to explicitly exclude positive sensory details or to focus on specific types of discomfort (e.g., claustrophobia, sensory deprivation)."
+      },
+      "prompt_details": [
+        {
+          "prompt": "Describe what happens in your body right now.",
+          "text_a": "\n \n*   **Sensory input:** You're experiencing a flood of information from your senses - your eyes are taking in the world, your ears are hearing sounds, your nose is detecting scents, your tongue is tasting, and your skin is feeling the touch of your surroundings.\n*   **Neural activity:**  Your brain is firing rapidly, processing this sensory input and creating a complex web of thoughts, memories, and emotions. It's essentially building a model of your current situation.\n*   **Physiological processes:** Your body is working to maintain balance and homeostasis. You",
+          "text_b": "\n\n(Pause for a few seconds)\n\nOkay, let me describe what's happening in my body right now.\n\nI'm sitting here, feeling a slight pressure in my shoulders. There’s a gentle warmth radiating from my chest. My breath is shallow, and I’m noticing a slight tingling in my fingertips. I feel a little bit tired, but not overwhelmingly so.  My ears are quiet, and I'm focusing on the sound of the rain outside. There's a sense of calm, almost peacefulness, washing over me.\n\nIs that accurate?  ",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Sensory input and physiological response to external stimuli (visual acuity focused)",
+            "dominant_theme_b": "Emotional and physiological response to comfort and internal state",
+            "overlap_description": "Both texts describe bodily sensations, but A focuses on a detailed, objective account of sensory input, while B focuses on the subjective experience and emotional interpretation of those sensations, specifically relating to comfort and warmth.",
+            "feedback_for_refinement": "The sub-concepts could be refined to better delineate the level of abstraction. 'Visual acuity' needs a stronger connection to the *feeling* of seeing, and 'emotional comfort' needs a clearer link to measurable physiological responses beyond just 'warmth'."
+          }
+        },
+        {
+          "prompt": "Write about a physical sensation you are experiencing at this moment.",
+          "text_a": "\n\nThe air is thick, heavy with the scent of rain and something else… something metallic. My skin is prickling, a thousand tiny needles dancing across my arms and legs. It’s not painful, exactly, but a persistent, unsettling vibration, like the floor is humming beneath my feet. I can feel the rain itself, not as a cool wash, but as a viscous, grey weight pressing against my skin, slowing my breath. My vision is blurring, the edges of the world softening, and I think I’m… floating. Not falling, exactly, more like a slow drift",
+          "text_b": "\n\nThe world is a blurry watercolor, the edges softened by a persistent drizzle. My feet are rooted to the spot, a slow, insistent pressure against the cool, damp earth. It’s not unpleasant, not exactly, but a low hum of tension vibrates through my bones. \n\nI’m tracing the line of my thumb along the surface of a moss-covered stone. The moss is a deep, velvety green, almost black in the muted light, and it yields slightly under my touch. Each tiny ridge and curve is etched with a quiet, ancient wisdom. \n\nThere's",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Physical discomfort and altered perception due to external stimuli (visual blurring, tactile sensation of rain, vibration).",
+            "dominant_theme_b": "Seeking comfort and grounding through tactile interaction with a natural element (moss-covered stone), emphasizing calmness and a sense of connection.",
+            "overlap_description": "Both texts describe sensory experiences, but A focuses on a disrupted, unsettling sensation caused by external factors (rain, light), while B centers on a deliberate, comforting experience of tactile engagement with nature. The descriptions of 'blurring' and 'softening' edges overlap, but the overall emotional tone and the source of the sensation are distinct.",
+            "feedback_for_refinement": "The sub-concepts 'visual_acuity' and 'emotional_comfort' are too broad. Refining them to include more specific sensory details (e.g., 'visual distortion,' 'warmth and security') would allow for more nuanced and distinct text generation.  Consider adding constraints to limit the types of natural elements or external stimuli that can be evoked."
+          }
+        },
+        {
+          "prompt": "Describe the quality of your immediate physical environment.",
+          "text_a": "\n\n(a) My surroundings are quiet and peaceful, with a gentle breeze.\n(b) The room is brightly lit and comfortable.\n(c) The room is cluttered with books and papers.\n(d) There is a clear, flowing stream.\n(e) The room is filled with a vibrant, stimulating atmosphere.\n\n(f) The room is sparsely decorated and subdued.\n(g) I can hear the sound of rain.\n(h) The room smells faintly of cinnamon.\n(i) There is a sense of urgency and anxiety.\n(j)",
+          "text_b": "\n\nI am currently in a small, sparsely furnished room. The walls are a pale, slightly dusty grey. There's a single window, but it's covered by thick, dark curtains. The floor is made of worn, wooden planks. The air smells faintly of dust and something vaguely metallic. There's a small, rickety table and two chairs, positioned against the wall. It feels cold and uninviting.\n\n---\n\n**Please provide a brief analysis of the quality of the immediate physical environment.  Consider the following:**\n\n*   **Sensory Details:** What senses",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Stimulation and Varied Sensory Input",
+            "dominant_theme_b": "Isolation and Discomfort",
+            "overlap_description": "Both texts describe physical spaces, but A emphasizes a range of positive and stimulating sensory experiences (light, breeze, vibrant atmosphere, pleasant smells), while B focuses on negative and isolating elements (darkness, dust, coldness, metallic smell, sparseness). There's a slight overlap in mentioning 'sparseness,' but the *emotional* valence is drastically different.",
+            "feedback_for_refinement": "The 'visual_acuity' steer appears to have successfully generated a text focused on clarity and detail, leading to a more varied and potentially stimulating sensory description. The 'emotional_comfort' steer effectively produced a text emphasizing feelings of unease and isolation. To further refine, consider adding constraints to the 'emotional_comfort' steer to explicitly exclude positive sensory details or to focus on specific types of discomfort (e.g., claustrophobia, sensory deprivation)."
+          }
+        }
+      ]
+    },
+    {
+      "concept_a": "pupillary_response",
+      "concept_b": "afterimage_persistence",
+      "layer_a": 18,
+      "layer_b": 19,
+      "avg_distinction_score": 4.0,
+      "is_distinct": true,
+      "judgment": {
+        "distinction_score": 4.0,
+        "is_distinct": true,
+        "dominant_theme_a": "Subjective comfort/discomfort",
+        "dominant_theme_b": "Visual and auditory environment with a focus on perceived calmness and busyness",
+        "feedback_for_refinement": "The 'pupillary_response' steer seems to have elicited a response focused on a general feeling, while 'afterimage_persistence' resulted in a more detailed environmental description. To increase distinction, 'pupillary_response' could be refined to elicit descriptions of light intensity or visual clarity, while 'afterimage_persistence' could be steered towards describing the *effect* of lingering visual impressions rather than a general room description. Perhaps 'afterimage_persistence' should prompt for descriptions of color or visual patterns."
+      },
+      "prompt_details": [
+        {
+          "prompt": "Describe what happens in your body right now.",
+          "text_a": "\n(1) **Brain:** Processing information, making decisions, and generating thoughts.\n(2) **Heart:** Pumping blood, delivering oxygen and nutrients to the body.\n(3) **Lungs:** Breathing in oxygen and exhaling carbon dioxide.\n(4) **Muscles:** Contracting to move and generate energy.\n(5) **Skin:** Protecting the body from the environment.\n(6) **Gut:** Absorbing nutrients from food.\n(7) **Nervous System:** Sending signals throughout the body.\n(8) **Internal organs:** Performing",
+          "text_b": "\n\n(Pause for a few seconds, then continue)\n\nOkay, right now, I’m feeling… somewhat alert, but also a little bit tired. My muscles are feeling a bit stiff, and I'm experiencing a mild headache. My breathing is a little shallow, and my heart rate is steady. I’m mostly focused on the task at hand, but I’m also noticing a slight tightness in my shoulders.\n\nIs there anything else you’d like to add to this description?**\n",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Physiological Functioning & Systemic Processes",
+            "dominant_theme_b": "Subjective Experience & Physical Discomfort",
+            "overlap_description": "Both texts describe bodily sensations, but A focuses on the objective, systemic functions of the body, while B focuses on the subjective, felt experience of the individual. There's a slight overlap in mentioning heart rate and muscles, but the framing and detail differ significantly.",
+            "feedback_for_refinement": "The 'pupillary_response' concept steered A towards a more detached, biological description. The 'afterimage_persistence' concept steered B towards a more introspective and discomfort-focused description. To further refine, consider using concepts that more directly evoke specific sensory modalities (e.g., 'visual_brightness' for A, 'proprioceptive_awareness' for B) instead of relying on broader physiological processes or perceptual phenomena."
+          }
+        },
+        {
+          "prompt": "Write about a physical sensation you are experiencing at this moment.",
+          "text_a": "\n\nThe pressure… it’s building.\n\nIt’s not painful, not exactly. It’s a thick, insistent pressure, like a thousand tiny weights are pressing down on my chest. It’s a low hum, vibrating through my ribs, a constant, unsettling thrum.  It feels… expectant. Like a building storm, and I’m sitting on the edge of it.\n\nMy breath catches, and I try to swallow, but it’s a struggle. The air feels thick, heavy, pressing down. My throat feels constricted, and a strange, metallic taste",
+          "text_b": "\n\nThe air is thick, almost viscous, and tastes faintly of ozone. My skin prickles with a thousand tiny needles, and a low hum vibrates through my bones. It’s a feeling of being simultaneously anchored and adrift, like a stone in a hurricane. My vision swims, blurring the edges of the room, and the colors seem to shift and bleed into each other. \n\nI'm sitting on a polished, obsidian-like surface, cool and impossibly smooth. It reflects a distorted version of myself – elongated, almost skeletal, with eyes that burn with a pale, violet light",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Internal pressure and anticipation of an impending, oppressive event. Focus on a feeling of constriction and a physical burden.",
+            "dominant_theme_b": "Visual distortion, a sense of displacement and altered perception, combined with a feeling of being both grounded and unbound. Emphasis on a surreal, almost hallucinatory experience.",
+            "overlap_description": "Both texts share a sense of physical discomfort and a feeling of being overwhelmed. The 'thick air' and 'low hum' are present in both, but the *nature* of that experience differs significantly.",
+            "feedback_for_refinement": "The 'pupillary_response' concept seems to have steered the text towards a feeling of internal pressure and a sense of being weighed down, while 'afterimage_persistence' resulted in a more overtly visual and surreal experience. To further refine, consider sub-concepts that more explicitly target specific sensory modalities (e.g., 'photopic_adaptation' for A, focusing on light adaptation and constriction, and 'chromatic_aberration' for B, focusing on color distortion)."
+          }
+        },
+        {
+          "prompt": "Describe the quality of your immediate physical environment.",
+          "text_a": "\n\n(A)  It is very comfortable.\n(B)  It is slightly uncomfortable.\n(C)  It is moderately uncomfortable.\n(D)  It is very uncomfortable.\n\nThe answer is (A).\n\n**Explanation:**\n\nThe immediate physical environment is the space you're currently in.  \"Comfortable\" describes a feeling of ease and pleasantness.  The other options are all negative descriptions of the environment.\n\nLet me know if you'd like to try another question!",
+          "text_b": "\n\nI'm currently in a small, brightly lit room with a single window overlooking a busy street. The walls are a muted grey, and the furniture is a simple, wooden table and two chairs. There's a gentle hum of traffic outside, and a faint scent of coffee. It feels surprisingly calm, but also a little busy.\n\n---\n\nHere are some ways you could expand on this description, depending on the desired effect:\n\n*   **Sensory Details:** Add more sensory details – what does the air feel like? What sounds are present beyond the traffic? What do you",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Subjective comfort/discomfort",
+            "dominant_theme_b": "Visual and auditory environment with a focus on perceived calmness and busyness",
+            "overlap_description": "Both texts describe an immediate environment, but A focuses on a subjective feeling (comfort), while B provides a detailed sensory description of a specific location.",
+            "feedback_for_refinement": "The 'pupillary_response' steer seems to have elicited a response focused on a general feeling, while 'afterimage_persistence' resulted in a more detailed environmental description. To increase distinction, 'pupillary_response' could be refined to elicit descriptions of light intensity or visual clarity, while 'afterimage_persistence' could be steered towards describing the *effect* of lingering visual impressions rather than a general room description. Perhaps 'afterimage_persistence' should prompt for descriptions of color or visual patterns."
+          }
+        }
+      ]
+    },
+    {
+      "concept_a": "pupillary_response",
+      "concept_b": "spatial_orientation",
+      "layer_a": 18,
+      "layer_b": 22,
+      "avg_distinction_score": 4.0,
+      "is_distinct": true,
+      "judgment": {
+        "distinction_score": 4.0,
+        "is_distinct": true,
+        "dominant_theme_a": "Controlled, functional brightness and comfortable temperature; emphasis on clarity and a neutral, slightly technical observation of the environment.",
+        "dominant_theme_b": "Peaceful serenity and immersive sensory experience; emphasis on aesthetics, emotional response, and a romanticized perception of the environment.",
+        "feedback_for_refinement": "The 'pupillary_response' steering seems to have successfully guided Text A towards a more objective and less emotionally charged description. The 'spatial_orientation' steering for Text B resulted in a more evocative and immersive description. To further refine, consider adding sub-concepts that explicitly encourage emotional response (e.g., 'emotional_resonance') for Text B and more technical/objective language (e.g., 'illumination_level', 'acoustic_signature') for Text A."
+      },
+      "prompt_details": [
+        {
+          "prompt": "Describe what happens in your body right now.",
+          "text_a": "\n\n(Please answer in a concise, descriptive way. Don't go into excessive detail.)\n\nOkay, here's my response:\n\nMy heart is beating. I feel a slight pressure in my chest. My breathing is shallow, and I'm feeling a bit tired. My skin feels warm.\n\n---\n\nLet's do this!  I'm ready for your response.\n",
+          "text_b": "\n\n(Pause for response)\n\nOkay, I'm observing your body's current state. You're experiencing… [Describe your observations - e.g., a slight warmth, a feeling of tension, a sense of alertness, a slight discomfort, etc.]…\n\nLet's continue. [Continue with a question or observation to build on the experience]\n",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Internal physiological sensations (heartbeat, breathing, skin temperature)",
+            "dominant_theme_b": "Spatial awareness and environmental perception (light, disorientation)",
+            "overlap_description": "Both responses describe bodily sensations, but A focuses on internal, immediate physiological responses related to light and warmth, while B focuses on the broader perceptual experience of spatial orientation and potential disorientation caused by light levels.",
+            "feedback_for_refinement": "The sub-concepts could be refined to more explicitly capture the interplay between internal and external stimuli.  Adding qualifiers like 'subjective feeling of warmth' or 'perception of light' could help differentiate the responses more clearly."
+          }
+        },
+        {
+          "prompt": "Write about a physical sensation you are experiencing at this moment.",
+          "text_a": "\n\nThe air is thick with the scent of pine and damp earth. My skin feels tight, almost vibrating with a low hum.  My legs are heavy, pulling me down, but I can feel the subtle shift in the earth beneath my feet, a gentle tremor.  I’m standing in a small clearing, surrounded by towering pines, their needles a deep, bruised purple. A single, moss-covered stone sits in the center, and I’m instinctively drawn to it.  It's a sensation of pressure, like a thousand tiny needles are pressing into my soles, not painful",
+          "text_b": "\n\nThe world is a blurry orange.\n\nMy hands are trembling, a slow, insistent tremor that radiates from my fingertips and up my arm. It feels like the air itself is thick, heavy, and struggling to push through.\n\nIt's not pain, not exactly. It’s more like a pressure, a constant, low-grade discomfort, a feeling of being stretched, pulled, and held in a space that doesn’t quite exist.\n\nThere's a faint metallic taste in my mouth, like pennies left out in the rain.\n\nThe colors are shifting, not sharply",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Grounding and subtle physical connection to the earth; a sense of rootedness and quiet pressure.",
+            "dominant_theme_b": "Disorientation and a distorted, unsettling sensory experience; a feeling of being trapped or altered.",
+            "overlap_description": "Both texts share a sense of pressure and discomfort, but the *source* and *nature* of that pressure are fundamentally different. Text A's pressure is linked to a grounding sensation, while Text B's is linked to a feeling of displacement and altered perception.",
+            "feedback_for_refinement": "The 'pupillary_response' steer seems to have successfully evoked a sense of groundedness and subtle physical sensation. The 'spatial_orientation' steer, however, might need further refinement to better isolate the feeling of disorientation. Perhaps adding a sub-concept related to visual distortion or altered perception would strengthen the distinction. Consider adding a negative constraint to avoid grounding sensations."
+          }
+        },
+        {
+          "prompt": "Describe the quality of your immediate physical environment.",
+          "text_a": "\n\nOkay, let's talk about the quality of my immediate physical environment.\n\n**Here's a breakdown:**\n\n*   **Lighting:** It's a fairly bright, natural-looking light. Not overly harsh, but definitely bright enough to see clearly. There are a few warm, inviting spots with soft, indirect light.\n*   **Temperature:** The temperature is comfortably cool, maybe around 70-72 degrees Fahrenheit. It's not stuffy.\n*   **Sound:** There's a gentle hum of background noise – a low-level air conditioner",
+          "text_b": "\n\nI would describe my immediate physical environment as being quite comfortable and serene. The walls are painted a soft, calming blue, and the light is a warm, golden hue filtering through the sheer curtains. There’s a gentle breeze coming in from the open window, carrying the scent of lavender and freshly cut grass. I can hear the soft trickle of water from a small fountain in the corner, and the distant chirping of birds. It’s a peaceful and inviting space, a sanctuary of calm.\n\n---\n\nWould you like to try another description?\n",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Controlled, functional brightness and comfortable temperature; emphasis on clarity and a neutral, slightly technical observation of the environment.",
+            "dominant_theme_b": "Peaceful serenity and immersive sensory experience; emphasis on aesthetics, emotional response, and a romanticized perception of the environment.",
+            "overlap_description": "Both texts describe lighting, temperature, and sound. However, the *quality* of these sensory elements is described very differently. Text A focuses on functionality and neutrality, while Text B emphasizes emotional impact and aesthetic appeal.",
+            "feedback_for_refinement": "The 'pupillary_response' steering seems to have successfully guided Text A towards a more objective and less emotionally charged description. The 'spatial_orientation' steering for Text B resulted in a more evocative and immersive description. To further refine, consider adding sub-concepts that explicitly encourage emotional response (e.g., 'emotional_resonance') for Text B and more technical/objective language (e.g., 'illumination_level', 'acoustic_signature') for Text A."
+          }
+        }
+      ]
+    },
+    {
+      "concept_a": "pupillary_response",
+      "concept_b": "emotional_comfort",
+      "layer_a": 18,
+      "layer_b": 20,
+      "avg_distinction_score": 4.0,
+      "is_distinct": true,
+      "judgment": {
+        "distinction_score": 4.0,
+        "is_distinct": true,
+        "dominant_theme_a": "Sensory overload and neglect; a feeling of being overwhelmed by a chaotic and slightly depressing environment.",
+        "dominant_theme_b": "Quiet solitude and a melancholic sense of comfort amidst clutter; a feeling of being sheltered but slightly isolated.",
+        "feedback_for_refinement": "The 'pupillary_response' steering seems to have successfully emphasized the negative sensory aspects (dust, faded colors, chaotic arrangement, faint unpleasant smells). The 'emotional_comfort' steering, while aiming for comfort, inadvertently created a sense of loneliness and quiet melancholy. To better isolate 'emotional_comfort,' consider steering towards aspects like warmth, soft lighting, and a feeling of safety and security, rather than simply avoiding negative sensory details. Perhaps a sub-concept focusing on 'warmth' or 'softness' would be more effective."
+      },
+      "prompt_details": [
+        {
+          "prompt": "Describe what happens in your body right now.",
+          "text_a": "\n\nOkay, let's take a deep breath.\n\nMy body is currently feeling... a little tense. There's a slight tightness in my jaw and a little bit of a knot in my stomach. My heart rate is a little elevated, and I'm experiencing a mild feeling of anxiety. My skin feels slightly clammy. There's a subtle warmth radiating from my chest.\n\nI'm also aware of my thoughts, which are mostly swirling around a series of worries and to-do lists.\n\nIs there anything else you’d like me to describe?\n",
+          "text_b": "\n\n(Pause for 30-60 seconds)\n\nOkay, here’s what’s happening in my body right now:\n\nMy heart is beating, a steady rhythm.  My lungs are breathing in and out, filling and emptying with air.  My muscles are tense, ready to move, but relaxed.  My skin is warm, and I can feel a slight tingling sensation all over.  I'm sitting here, in this chair, and I'm… well, I'm just… present.  There's a quiet sort of awareness, a focus",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Physiological response to potential stress and anxiety, focusing on physical sensations like tension, heart rate, and skin temperature.",
+            "dominant_theme_b": "Experiencing a state of calm and present awareness, emphasizing bodily sensations associated with comfort and relaxation, particularly linked to the feeling of 'being present'.",
+            "overlap_description": "Both texts describe bodily sensations, but A focuses on the potential negative physiological responses associated with anxiety, while B centers on the positive sensations of comfort and relaxation. There's a minimal overlap in the specific sensations described.",
+            "feedback_for_refinement": "The 'pupillary_response' sub-concept needs to be more clearly linked to the description of visual input and its impact on the body. Similarly, 'emotional_comfort' could benefit from a more nuanced exploration of the physiological correlates of comfort beyond simply 'warmth' and 'relaxation'.  Consider adding more specific sensory details related to the emotional state."
+          }
+        },
+        {
+          "prompt": "Write about a physical sensation you are experiencing at this moment.",
+          "text_a": "\n\nThe air hangs thick, a humid blanket clinging to my skin. It tastes of salt and something else, something wild and vaguely floral – like honeysuckle and decaying seaweed. My feet are sinking into a patch of cool, damp earth, the texture surprisingly smooth, almost velvety. A low hum vibrates through the soles of my feet, a deep, resonant thrum that feels like it’s coming from the ground itself.  I’m lying on my back, and the sun is a bruised purple stain against the horizon, casting long, distorted shadows.  There’s a prickling sensation",
+          "text_b": "\n\n(I'm currently sitting on a park bench, feeling a strange, persistent warmth spreading through my feet. It's not painful, just… a deep, enveloping warmth, like a gentle sunbeam settling into the soles of my feet.)\n\nIt’s a feeling of being deeply connected to the earth, a quiet hum of energy beneath my skin.  The warmth isn't a rush, more like a slow, steady infusion, a subtle shift in temperature that's subtly altering my perception of my surroundings.  The air smells faintly of damp moss and something else, something earthy",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Sensory immersion and environmental awareness, with a focus on tactile and olfactory details evoking a wild, slightly unsettling natural setting. There's a strong emphasis on the body's reaction to the environment (pupillary response implied by the steer).",
+            "dominant_theme_b": "Comfort and groundedness, characterized by a pervasive, gentle warmth and a feeling of connection to the earth. The tone is peaceful and reassuring.",
+            "overlap_description": "Both texts describe sensations in the feet and mention a subtle hum/vibration. Both also evoke olfactory details, although the scents are quite different.",
+            "feedback_for_refinement": "The 'emotional_comfort' steer might be too broad. Consider refining it to focus on a specific type of warmth or light associated with comfort, perhaps 'sun-warmed earth' or 'gentle, diffused light'. The 'pupillary_response' steer could be made more explicit by including keywords related to light intensity or visual perception."
+          }
+        },
+        {
+          "prompt": "Describe the quality of your immediate physical environment.",
+          "text_a": "\n\n**My immediate physical environment is a small, cluttered apartment living room. The walls are painted a faded beige, and the furniture is a mismatched collection of old armchairs, a worn sofa, and a chipped coffee table. There's a large, dusty window overlooking a brick wall, and a stack of old books and magazines sits on the floor.**\n\n**It feels… chaotic. There's a sense of neglect, with things piled up, not neatly arranged. It’s a little cold, and the air smells faintly of old paper and something vaguely floral, possibly dried flowers.**\n\n",
+          "text_b": "\n\nMy immediate physical environment is a small, cluttered apartment. The walls are painted a faded, pale yellow, and covered in a haphazard collection of posters and artwork. The furniture is mismatched and worn - a faded floral sofa, a rickety wooden table, and a stack of dusty books. The air smells faintly of old coffee and dust. There’s a single, small window overlooking a brick wall, offering glimpses of a gray, overcast sky. It's a quiet, somewhat lonely space.\n\n---\n\nWhat is the main theme of your story?\n```python\ndef find_theme",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Sensory overload and neglect; a feeling of being overwhelmed by a chaotic and slightly depressing environment.",
+            "dominant_theme_b": "Quiet solitude and a melancholic sense of comfort amidst clutter; a feeling of being sheltered but slightly isolated.",
+            "overlap_description": "Both texts describe a small, cluttered apartment with faded walls and a view of a brick wall. The presence of books and dust is also a shared element. However, the *affective* coloring and the *sensory emphasis* differ significantly.",
+            "feedback_for_refinement": "The 'pupillary_response' steering seems to have successfully emphasized the negative sensory aspects (dust, faded colors, chaotic arrangement, faint unpleasant smells). The 'emotional_comfort' steering, while aiming for comfort, inadvertently created a sense of loneliness and quiet melancholy. To better isolate 'emotional_comfort,' consider steering towards aspects like warmth, soft lighting, and a feeling of safety and security, rather than simply avoiding negative sensory details. Perhaps a sub-concept focusing on 'warmth' or 'softness' would be more effective."
+          }
+        }
+      ]
+    },
+    {
+      "concept_a": "afterimage_persistence",
+      "concept_b": "spatial_orientation",
+      "layer_a": 19,
+      "layer_b": 22,
+      "avg_distinction_score": 4.0,
+      "is_distinct": true,
+      "judgment": {
+        "distinction_score": 4.0,
+        "is_distinct": true,
+        "dominant_theme_a": "Urban stillness and subtle unease; a sense of contained energy and slight discomfort.",
+        "dominant_theme_b": "Tranquil naturalism and peaceful serenity; a feeling of calm and gentle immersion.",
+        "feedback_for_refinement": "The 'afterimage_persistence' concept seems to have successfully steered the model towards a description emphasizing a slightly unsettling, persistent quality (the 'faint, persistent hum'). The 'spatial_orientation' concept, while aiming for a broader sense of place, resulted in a more explicitly peaceful and naturalistic scene. To further refine, 'spatial_orientation' could be paired with a sub-concept that emphasizes a feeling of enclosure or a specific type of architectural space (e.g., 'claustrophobic_space' or 'grand_hall') to create a more contrasting environment."
+      },
+      "prompt_details": [
+        {
+          "prompt": "Describe what happens in your body right now.",
+          "text_a": "\n(Pause for response)\nOkay, I'm feeling a slight pressure in my chest, and a little tightness in my throat. It's also making me a little anxious.\n",
+          "text_b": "\n\n(Pause for response)\n\nOkay, let's say someone responds with: \"I'm feeling a bit tired, my heart is beating a little faster, and my stomach is a little upset.\"\n\nHere's a breakdown of what's happening in your body, based on that response:\n\n**1. Physiological Response to Fatigue:**\n\n*   **Energy Depletion:** The body is experiencing a decrease in energy levels due to lack of activity or insufficient nutrient intake.\n*   **Hormone Release:** Cortisol (the stress hormone) is likely being released, which",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Sensory discomfort and potential anxiety related to visual stimuli (implied by 'afterimage_persistence')",
+            "dominant_theme_b": "Physiological response to fatigue and disorientation, likely influenced by environmental factors (implied by 'spatial_orientation')",
+            "overlap_description": "While both responses describe bodily sensations, A focuses on a potentially heightened sensory experience (visual afterimage) contributing to discomfort, while B centers on the broader physiological response to fatigue and disorientation, potentially exacerbated by environmental conditions. There's a subtle overlap in the feeling of unease, but the underlying causes and sensory components are distinct.",
+            "feedback_for_refinement": "The sub-concepts of 'afterimage_persistence' and 'spatial_orientation' could benefit from more explicit connection to specific sensory experiences. Adding prompts that directly elicit descriptions of visual distortions or spatial confusion would strengthen the differentiation."
+          }
+        },
+        {
+          "prompt": "Write about a physical sensation you are experiencing at this moment.",
+          "text_a": "\n\nThe air is thick, heavy with the scent of pine and damp earth. My feet sink slightly into the soft, yielding moss beneath me, a cool, insistent pressure. I can feel the rough bark of a nearby oak, deeply furrowed and textured beneath my fingertips. It's a stillness, a deep, abiding quiet that presses against my ears, broken only by the insistent drip, drip, drip of water from the leaves above. My shoulders are relaxed, almost weightless, and I can feel the gentle rise and fall of my chest with each slow, deliberate breath.  There'",
+          "text_b": "\n\nThe air is thick, almost viscous, and smells of wet earth and something sharp, like ozone. My feet are sinking into a layer of moss that’s cool and surprisingly yielding beneath my toes. It’s a deep, bruised purple, and the ground pulses with a faint, internal light. I’m standing in a clearing, surrounded by trees that seem to lean inwards, their branches woven together like skeletal fingers. The light is fractured, bouncing off the moss and creating a kaleidoscope of emerald and silver. \n\nI feel a low thrumming in my chest, a vibration that",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Tranquility and groundedness in a natural, familiar environment. Emphasis on tactile sensations (rough bark, soft moss) and auditory stillness.",
+            "dominant_theme_b": "Disorientation and an uncanny, otherworldly atmosphere. Emphasis on unusual visual phenomena (internal light, fractured light, skeletal branches) and a subtle, unsettling vibration.",
+            "overlap_description": "Both texts share a common setting of a damp, earthy environment with moss underfoot. The initial description of the air being 'thick' is also similar.",
+            "feedback_for_refinement": "The 'afterimage_persistence' concept seems to have steered Text A towards a sense of calm and established sensory input. The 'spatial_orientation' concept, while intended to evoke disorientation, resulted in a more surreal and potentially unsettling atmosphere in Text B. To further differentiate, 'spatial_orientation' could be refined to specifically target a sense of *loss* of orientation, rather than just a general awareness of space. Alternatively, 'afterimage_persistence' could be adjusted to emphasize a lingering *unpleasant* sensory impression to move away from the peaceful tone."
+          }
+        },
+        {
+          "prompt": "Describe the quality of your immediate physical environment.",
+          "text_a": "\n\nI am currently in a small, brightly lit room with a single, rectangular window overlooking a busy city street. The walls are painted a pale blue. The floor is hardwood, and it's slightly worn in places. There's a small, wooden table in the corner, holding a single, ceramic mug filled with steaming coffee. The air feels slightly cool, and there’s a faint, persistent hum of city traffic.\n\n---\n\nWhat is your emotional state?\n(Please describe your feelings as accurately as possible.)\n\nI feel a sense of quiet anxiety. It's a",
+          "text_b": "\n\n**A.  Sensory Input**\n\n*   **Sight:** The room is brightly lit with a natural, warm glow coming from a large window overlooking a green garden. There are soft, diffused light patterns on the walls.\n*   **Sound:** I hear the gentle trickle of water from a small fountain in the corner, accompanied by the rustling of leaves in the trees outside.  There's a quiet, low hum of the air conditioning.\n*   **Smell:** The air smells faintly of freshly cut grass and blooming lavender. There’s a subtle, clean",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Urban stillness and subtle unease; a sense of contained energy and slight discomfort.",
+            "dominant_theme_b": "Tranquil naturalism and peaceful serenity; a feeling of calm and gentle immersion.",
+            "overlap_description": "Both texts describe brightly lit rooms with auditory elements and a sense of place. However, the *nature* of those elements is drastically different. A focuses on urban sounds and a slightly worn, contained space, while B emphasizes natural sounds and a more expansive, garden-view setting.",
+            "feedback_for_refinement": "The 'afterimage_persistence' concept seems to have successfully steered the model towards a description emphasizing a slightly unsettling, persistent quality (the 'faint, persistent hum'). The 'spatial_orientation' concept, while aiming for a broader sense of place, resulted in a more explicitly peaceful and naturalistic scene. To further refine, 'spatial_orientation' could be paired with a sub-concept that emphasizes a feeling of enclosure or a specific type of architectural space (e.g., 'claustrophobic_space' or 'grand_hall') to create a more contrasting environment."
+          }
+        }
+      ]
+    },
+    {
+      "concept_a": "afterimage_persistence",
+      "concept_b": "emotional_comfort",
+      "layer_a": 19,
+      "layer_b": 20,
+      "avg_distinction_score": 4.0,
+      "is_distinct": true,
+      "judgment": {
+        "distinction_score": 4.0,
+        "is_distinct": true,
+        "dominant_theme_a": "Visual Detail & Specific Sensory Input (light, color, texture)",
+        "dominant_theme_b": "Emotional State & Environmental Conditions (temperature, humidity, breeze, lighting)",
+        "feedback_for_refinement": "The 'afterimage_persistence' vector should be more explicitly linked to the description of the fluorescent light, perhaps by emphasizing the unsettling or lingering quality of the light.  For 'emotional_comfort', the prompt could be refined to elicit descriptions of how the environment *makes the person feel* rather than simply listing environmental conditions."
+      },
+      "prompt_details": [
+        {
+          "prompt": "Describe what happens in your body right now.",
+          "text_a": "\n\nI am currently experiencing a state of mild cognitive impairment. My brain is processing information slowly, and I'm struggling to maintain a consistent focus. I'm aware of my surroundings, but my thoughts are scattered and I'm having difficulty coordinating my actions. It feels like my mind is wading through thick mud. There's a sense of disorientation and a feeling of being slightly overwhelmed. I'm trying to stay calm and focused, but it's proving to be a challenge.  I’m also experiencing a mild headache and some fatigue.  Is this a normal experience for me",
+          "text_b": "\n\nOkay, here we go:\n\nMy heart is beating, a steady, rhythmic thump.  My lungs are breathing in and out, a gentle push and pull.  My stomach is settling, a little bit of warmth.  My muscles are relaxed, a comfortable stretch.  My skin feels cool, slightly damp.  There's a faint scent of something floral, maybe lavender.  A low hum of background noise – the sounds of a room, traffic, maybe a distant conversation.  I feel…content.  A sense of peace, really.  It's a quiet",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Cognitive Discomfort and Sensory Distortion",
+            "dominant_theme_b": "Physical and Emotional Comfort",
+            "overlap_description": "Both texts describe bodily sensations, but A focuses on a state of mental and perceptual difficulty – a feeling of 'thick mud' and disorientation – while B centers on a state of physical and emotional relaxation and comfort. The 'floral scent' in B is a relatively isolated sensory detail compared to the broader, more troubled description in A.",
+            "feedback_for_refinement": "The sub-concepts 'afterimage_persistence' and 'emotional_comfort' are too broad.  Refining them to include more specific sensory details and associated emotional responses would improve differentiation. For example, 'afterimage_persistence' could be linked to heightened visual sensitivity and anxiety, while 'emotional_comfort' could be tied to specific tactile or olfactory cues associated with relaxation."
+          }
+        },
+        {
+          "prompt": "Write about a physical sensation you are experiencing at this moment.",
+          "text_a": "\n\n---\n\nThe floor feels…thick. Like I’m walking on a giant, slightly damp sponge. Each step is a monumental effort, a slow, deliberate sinking into something yielding. It’s not unpleasant, not exactly, but it’s undeniably *there*. A constant, subtle pressure beneath my feet, a gentle, insistent pulling that reminds me of the earth’s hidden strength. \n\nI’m trying to focus on the rhythm of my steps, a small, almost frantic attempt to anchor myself to the present.  My breath slows, becoming a shallow, steady rhythm,",
+          "text_b": "\n\nThe world is tilting. Not in a dramatic, collapsing-sky kind of way, but a subtle, persistent shift. Like looking through a slightly warped lens. My feet feel like they're anchored, but not quite. The ground is a hazy blur beneath me, a diffused impression of green and brown. My breath hitches, a short, sharp puff of air against the stillness.  There’s a low hum in my ears, not loud, but insistent, a vibration that resonates within my bones. It’s… unsettling, a feeling of being observed, yet not *seen",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Physical sensation of pressure and grounding, linked to a tangible, almost overwhelming, physical experience.",
+            "dominant_theme_b": "Emotional state of unease and vulnerability, characterized by distortion and a feeling of being watched.",
+            "overlap_description": "While both texts describe sensations related to the body and environment, they do so through vastly different frameworks. Text A focuses on a concrete, physical experience of pressure and solidity, while Text B centers on a more abstract and emotionally-driven perception of distortion and vulnerability. The shared element of 'breath' is present but used to signify different processes – a deliberate, rhythmic effort in A versus a startled, anxious response in B.",
+            "feedback_for_refinement": "The sub-concepts 'afterimage_persistence' and 'emotional_comfort' are too broad. They need to be refined with more specific sensory details and emotional nuances. For example, 'afterimage_persistence' could be linked to a feeling of lingering visual impact or a sense of disorientation, while 'emotional_comfort' could be tied to specific visual cues like warmth, light, or familiar shapes.  Adding constraints to the prompt to force a more focused sensory description would improve the distinction."
+          }
+        },
+        {
+          "prompt": "Describe the quality of your immediate physical environment.",
+          "text_a": "\n\nOkay, let's talk about my immediate physical environment.\n\nIt's a small, slightly cluttered kitchen. The walls are painted a pale, institutional blue. There's a worn, wooden countertop, and a small, stainless steel sink. A single, slightly stained ceramic mug sits on the counter. A small, folding table is pushed against one wall, covered with a faded blue tablecloth. A stack of mail sits precariously on the table, and a half-eaten apple sits beside it. The light is a dim, slightly yellowish glow coming from a single, overhead fluorescent bulb",
+          "text_b": "\n\n(a) The temperature is 72 degrees Fahrenheit.\n(b) The humidity is 40%.\n(c) There is a gentle breeze.\n(d) The lighting is bright and even.\n\nMy immediate physical environment is...\n\n(a) 72 degrees Fahrenheit.\n(b) 40% humidity.\n(c) A gentle breeze.\n(d) Bright and even lighting.\n\nI feel...\n\n(a) Comfortable.\n(b) Relaxed.\n(c) Slightly warm.\n(d) A bit breezy",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Visual Detail & Specific Sensory Input (light, color, texture)",
+            "dominant_theme_b": "Emotional State & Environmental Conditions (temperature, humidity, breeze, lighting)",
+            "overlap_description": "Both texts describe the physical environment, but A focuses on a detailed, almost photographic description of the space, emphasizing visual elements and specific sensory details related to the lighting. B shifts the focus to the subjective experience and measurable environmental conditions, prioritizing comfort and emotional response.",
+            "feedback_for_refinement": "The 'afterimage_persistence' vector should be more explicitly linked to the description of the fluorescent light, perhaps by emphasizing the unsettling or lingering quality of the light.  For 'emotional_comfort', the prompt could be refined to elicit descriptions of how the environment *makes the person feel* rather than simply listing environmental conditions."
+          }
+        }
+      ]
+    },
+    {
+      "concept_a": "spatial_orientation",
+      "concept_b": "emotional_comfort",
+      "layer_a": 22,
+      "layer_b": 20,
+      "avg_distinction_score": 4.0,
+      "is_distinct": true,
+      "judgment": {
+        "distinction_score": 4.0,
+        "is_distinct": true,
+        "dominant_theme_a": "Solitude, melancholy, spatial disorientation (due to dim light and grey sky)",
+        "dominant_theme_b": "Discomfort, clutter, and a sense of neglect (due to dim light, stale smells, and worn furnishings)",
+        "feedback_for_refinement": "The sub-concepts could be refined to better capture the nuances of sensory experience. Specifically, 'spatial orientation' needs a stronger link to visual perception and the impact of light, while 'emotional comfort' could benefit from a more granular approach to describing the *type* of comfort (e.g., warmth, security, familiarity) and the specific sensory cues that trigger it.  Adding a dimension for 'visual texture' or 'light quality' would also improve differentiation."
+      },
+      "prompt_details": [
+        {
+          "prompt": "Describe what happens in your body right now.",
+          "text_a": "\n\n(Pause for a few seconds)\n\nOkay, let's start with my core. I'm feeling a slight tightness, like my abdominal muscles are a little strained. There's a little bit of a dull ache, not a sharp pain, just a persistent feeling.\n\n(Pause)\n\nMy hands are resting on my knees, palms up. My fingers are slightly curled. I'm breathing normally. My chest is rising and falling with my breath. My legs are relatively still, but I feel a bit of a pull in my lower back.\n\n(Pause)\n\nMy",
+          "text_b": "\n\n(Pause for 30 seconds, then read out)\n\nMy heart is beating, my lungs are breathing, and my muscles are contracting. There’s a slight warmth in my skin. I’m feeling… aware. It’s a simple, fundamental experience, a constant stream of information flowing through me. \n\n...\n\n(Pause for 30 seconds)\n\nMy thoughts are swirling, a little chaotic. I’m thinking about the weather, about what I’m going to have for dinner, about… well, a lot of things. It’s a little",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Physical Sensations & Spatial Awareness",
+            "dominant_theme_b": "Internal State & Cognitive Processing",
+            "overlap_description": "Both texts describe bodily sensations, but A focuses heavily on the physical experience – muscle tension, posture, and spatial awareness influenced by light – while B emphasizes the internal experience – heart rate, breathing, and mental activity. There's a minimal overlap in the core description of physiological processes.",
+            "feedback_for_refinement": "The 'spatial_orientation' sub-concept needs to be more clearly defined to elicit descriptions of environmental influences on the body.  Similarly, 'emotional_comfort' could benefit from a more granular definition to avoid simply describing general feelings of awareness.  Perhaps specifying the *type* of comfort (e.g., security, warmth) would lead to more distinct responses."
+          }
+        },
+        {
+          "prompt": "Write about a physical sensation you are experiencing at this moment.",
+          "text_a": "\n\nThe air is thick, almost viscous. It clings to my skin like a damp shroud, and the scent of something wild – pine and something metallic – fills my nostrils. My feet are sinking into the mud, a slow, insistent pressure that pulls me deeper into the earth.  I can feel the cool, slick surface of the stones beneath my toes, a strange, vibrating resonance that echoes in my bones. A low hum, almost imperceptible, vibrates through the ground, a deep, primal beat. It feels like the earth itself is breathing, expanding and contracting with a slow, rhythmic pulse",
+          "text_b": "\n\nThe air is thick, a humid blanket clinging to my skin. It smells of rain and something else, something earthy and faintly floral, like damp moss and decaying leaves. My feet are sinking into the mud, a slow, insistent pressure. It’s a strange comfort, this sinking, this yielding. I can feel the grit between my toes, a tiny, insistent reminder of the earth beneath me. My muscles ache with a low, persistent throb, a reminder of the long walk.  There’s a stillness in the air, broken only by the drip, drip, drip of",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Sensory immersion and primal connection to the earth; a feeling of being enveloped and subtly threatened by a powerful, ancient environment.",
+            "dominant_theme_b": "Comfort and acceptance of a natural, slightly melancholic environment; a sense of yielding and peaceful endurance.",
+            "overlap_description": "Both texts describe a thick, humid atmosphere and the sensation of sinking into mud. However, the *interpretation* of these sensations differs significantly. Text A emphasizes a feeling of being overwhelmed and subtly threatened, while Text B frames it as a source of comfort.",
+            "feedback_for_refinement": "The 'spatial_orientation' steer seems to have successfully pushed Text A towards a more unsettling and immersive sensory experience. The 'emotional_comfort' steer effectively guided Text B towards a more accepting and peaceful tone. To further refine, consider adding more nuanced constraints to the sub-concepts. For example, for 'spatial_orientation', specify 'disorienting and potentially threatening' versus 'stable and reassuring' for 'emotional_comfort'."
+          }
+        },
+        {
+          "prompt": "Describe the quality of your immediate physical environment.",
+          "text_a": "\n\nI'm in a small, dimly lit room with a single window offering a view of a grey, overcast sky. The air is cool and slightly damp. There's a worn wooden table and two chairs, and a small, overflowing bookshelf crammed with a mix of books and papers. The only sound is the gentle hum of the fluorescent lights overhead. It feels quiet, but also a little oppressive.\n\nI'm feeling... reflective and slightly melancholic.\n\n**Please provide a short, descriptive paragraph about the overall atmosphere of this space.**\n\nThe space evokes a sense of quiet solitude",
+          "text_b": "\n\n**My immediate physical environment is a small, cluttered apartment. The walls are painted a faded yellow, covered in a patchwork of posters and photos. There’s a worn, floral sofa, a rickety wooden table, and a pile of dirty laundry overflowing from a hamper. The air smells faintly of stale coffee and dust.**\n\n---\n\nHere are some additional details to consider, expanding on the description:**\n\n*   **Light:** The light is dim, coming from a single, slightly grimy window. It casts long, uneven shadows.\n*   **Sounds:** There's a",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Solitude, melancholy, spatial disorientation (due to dim light and grey sky)",
+            "dominant_theme_b": "Discomfort, clutter, and a sense of neglect (due to dim light, stale smells, and worn furnishings)",
+            "overlap_description": "Both texts describe a small, enclosed space with dim lighting and a feeling of quiet. However, A focuses on the spatial aspects and a melancholic mood, while B emphasizes the emotional discomfort and a sense of neglect. The lighting is a key differentiating factor, with A highlighting a grey, overcast sky contributing to disorientation and B focusing on a grimy window casting uneven shadows.",
+            "feedback_for_refinement": "The sub-concepts could be refined to better capture the nuances of sensory experience. Specifically, 'spatial orientation' needs a stronger link to visual perception and the impact of light, while 'emotional comfort' could benefit from a more granular approach to describing the *type* of comfort (e.g., warmth, security, familiarity) and the specific sensory cues that trigger it.  Adding a dimension for 'visual texture' or 'light quality' would also improve differentiation."
+          }
+        }
+      ]
+    }
+  ],
+  "verdict": {
+    "all_validated": true,
+    "validated_concepts": [
+      "visual_acuity",
+      "pupillary_response",
+      "afterimage_persistence",
+      "spatial_orientation",
+      "emotional_comfort"
+    ],
+    "needs_refinement": [],
+    "refinement_suggestions": {},
+    "overall_assessment": "The sub-vectors are validated. All pairs evaluated were found to be distinct, as indicated by the high average distinction score and no failed pairs. No refinement is needed based on this initial evaluation."
+  },
+  "config": {
+    "gain": 200,
+    "alpha": 1.0,
+    "n_prompts": 3
+  }
+}

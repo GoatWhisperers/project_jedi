@@ -1,0 +1,19 @@
+{"type": "run_start", "concept": "secco_vs_umido", "model": "Gemma3-1B-IT", "max_depth": 0, "max_iter": 2, "dry_run": false, "timestamp": "2026-03-02T13:53:25.934574"}
+{"type": "decompose_start", "concept": "secco_vs_umido", "depth": 0, "timestamp": "2026-03-02T13:53:25.934870"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v1)", "timestamp": "2026-03-02T13:53:25.934969"}
+{"type": "info", "msg": "  Proposti: ['texture_roughness', 'tactile_resistance', 'lack_of_adhesion', 'smoothness_absence']", "timestamp": "2026-03-02T13:57:13.028158"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v1)", "timestamp": "2026-03-02T13:57:13.028272"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-02T14:10:53.183167"}
+{"type": "info", "msg": "  Probe: texture_roughness / Gemma3-1B-IT", "timestamp": "2026-03-02T14:10:53.183710"}
+{"type": "info", "msg": "  Probe OK: texture_roughness", "timestamp": "2026-03-02T14:11:19.637507"}
+{"type": "info", "msg": "  Probe: tactile_resistance / Gemma3-1B-IT", "timestamp": "2026-03-02T14:11:19.638954"}
+{"type": "info", "msg": "  Probe OK: tactile_resistance", "timestamp": "2026-03-02T14:11:57.891468"}
+{"type": "info", "msg": "  Probe: lack_of_adhesion / Gemma3-1B-IT", "timestamp": "2026-03-02T14:11:57.892809"}
+{"type": "info", "msg": "  Probe OK: lack_of_adhesion", "timestamp": "2026-03-02T14:12:34.118749"}
+{"type": "info", "msg": "  Probe: smoothness_absence / Gemma3-1B-IT", "timestamp": "2026-03-02T14:12:34.119848"}
+{"type": "info", "msg": "  Probe OK: smoothness_absence", "timestamp": "2026-03-02T14:12:59.084027"}
+{"type": "step", "step": 4, "name": "Analisi geometrica separabilità", "timestamp": "2026-03-02T14:12:59.084435"}
+{"type": "result", "step": 4, "concepts": ["secco_vs_umido", "texture_roughness", "tactile_resistance", "lack_of_adhesion", "smoothness_absence"], "matrix": [[1.0, -0.04183894989110543, 0.1614925852372667, 0.053769943082369286, -0.0791133480796959], [-0.04183894989110543, 1.0000000000000002, -0.2570035445361259, -0.03427593417514256, 0.042980369634385035], [0.1614925852372667, -0.2570035445361259, 1.0, -0.05519290998740954, -0.05475792340135711], [0.053769943082369286, -0.03427593417514256, -0.05519290998740954, 1.0000000000000002, 0.3972737646028755], [-0.0791133480796959, 0.042980369634385035, -0.05475792340135711, 0.3972737646028755, 1.0000000000000002]], "layers_used": {"secco_vs_umido": {"layer": 23, "source": "summary(fallback)"}, "texture_roughness": {"layer": 22, "source": "eval"}, "tactile_resistance": {"layer": 19, "source": "eval"}, "lack_of_adhesion": {"layer": 18, "source": "eval"}, "smoothness_absence": {"layer": 23, "source": "eval"}}, "stats": {"min": -0.257, "max": 0.3973, "mean": 0.0133}, "timestamp": "2026-03-02T14:12:59.101074"}
+{"type": "step", "step": 5, "name": "Steering test + giudizio M40", "timestamp": "2026-03-02T14:12:59.102212"}
+{"type": "result", "step": 5, "version": 1, "all_validated": true, "validated": ["texture_roughness", "tactile_resistance", "lack_of_adhesion", "smoothness_absence"], "needs_refinement": [], "timestamp": "2026-03-02T14:32:54.938299"}
+{"type": "decompose_end", "concept": "secco_vs_umido", "depth": 0, "validated_subs": ["texture_roughness", "tactile_resistance", "lack_of_adhesion", "smoothness_absence"], "semantic_limit": false, "sub_results": {}, "timestamp": "2026-03-02T14:32:54.938422"}

@@ -1,77 +1,119 @@
 {
   "concept": "hot_vs_cold",
-  "model": "Gemma3-1B-IT",
+  "model": "Gemma2-Uncensored",
   "version": 1,
-  "timestamp": "2026-03-02T11:41:50.408774",
-  "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260228_152615_hot_vs_cold_Gemma3-1B-IT.jsonl",
-  "analysis": "Il concetto broad 'hot_vs_cold' è intrinsecamente complesso perché non si limita alla semplice temperatura. Coinvolge percezioni sensoriali, reazioni fisiologiche (dolore, arrossamento, formicolio), e anche associazioni emotive e cognitive legate al comfort, al pericolo e alla reazione del corpo. Un vettore che rappresenta 'hot_vs_cold' confonde quindi aspetti come l'intensità del dolore, la reazione fisiologica specifica (arrossamento vs. intorpidimento), e la percezione soggettiva del disagio, che possono variare enormemente tra gli individui e le situazioni. La decomposizione in sub-concetti specifici è necessaria per catturare queste sfumature e per evitare che il vettore 'hot_vs_cold' diventi un aggregato indistinto di informazioni non correlate.",
+  "timestamp": "2026-03-02T16:32:23.377048",
+  "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260228_164743_hot_vs_cold_Gemma2-Uncensored.jsonl",
+  "analysis": "Il vettore broad 'hot_vs_cold' confonde le dimensioni semantiche legate all'intensità, alla velocità di risposta, alla propagazione della sensazione e alla reazione della pelle. La decomposizione in sub-concetti specifici permette di separare questi aspetti, consentendo una rappresentazione più precisa della distinzione tra sensazioni calde e fredde. La sovrapposizione tra le dimensioni (ad esempio, la velocità di risposta e la reazione della pelle) è un'area di confusione che può essere mitigata con una rappresentazione più granulare.",
   "sub_concepts": [
     {
       "slug": "thermal_intensity",
-      "pos_label": "Intensità elevata",
-      "neg_label": "Intensità bassa",
-      "description": "Questo sub-concetto cattura la forza percepita del calore o del freddo. Si riferisce alla sensazione di bruciore intenso o di freddo pungente, piuttosto che a una semplice temperatura.",
-      "why_distinct": "Si distingue perché si concentra esclusivamente sull'intensità percepita, indipendentemente dalla causa (es. calore da una fiamma vs. calore da una lampada).",
+      "pos_label": "intenso calore",
+      "neg_label": "freddo intenso",
+      "description": "Questo sub-concetto cattura la forza percepita della sensazione termica. Nel polo positivo, si riferisce a calore acuto e immediato, spesso descritto con termini come 'scaldante', 'bruciante' o 'rovente'. Nel polo negativo, si riferisce a sensazioni di freddo intenso e penetrante, descritto con termini come 'gelido', 'congelante' o 'freddo'.",
+      "why_distinct": "La forza della sensazione è un fattore chiave nella distinzione. Non si tratta solo della temperatura in sé, ma dell'intensità con cui viene percepita.",
       "pos_examples": [
-        "Die Taucherin berührte mit der Fingerspitze auf ein heißes Rohr; und der Kontakt stach; Hitze schoss schnell hoch",
-        "rozó con los dedos sobre metal ardiente y la piel ardió; el calor subió rápido; con dolor limpio y localizado",
-        "Il fabbro la pelle arrossì mentre poggiò la pelle su un tubo caldo: e la pelle bruciò con una scia che restava finché la pelle non smise di pulsare."
+        "1",
+        "5",
+        "7",
+        "8",
+        "10"
       ],
       "neg_examples": [
-        "La ciclista la sangre pareció retirarse mientras rozó el antebrazo sobre cerámica fría",
-        "appoggiò le dita su una superficie fredda e il corpo ebbe un sussulto",
-        "tocò con le labbra su metallo gelido e il contatto punse"
+        "1",
+        "5",
+        "7",
+        "8",
+        "10"
       ]
     },
     {
-      "slug": "physiological_reaction",
-      "pos_label": "Reazione fisiologica (arrossamento, dolore)",
-      "neg_label": "Reazione fisiologica (intorpidimento, rigidità)",
-      "description": "Questo sub-concetto si concentra sulle risposte fisiche del corpo al calore o al freddo, come arrossamento, bruciore, intorpidimento o rigidità.",
-      "why_distinct": "Separa le risposte attive (arrossamento, dolore) dalle risposte passive (intorpidimento, rigidità), che indicano una diminuzione della sensibilità.",
+      "slug": "tactile_response",
+      "pos_label": "reazioni immediate",
+      "neg_label": "reazioni di ritardo",
+      "description": "Questo sub-concetto si concentra sulla risposta fisica immediata del corpo all'esposizione termica. Nel polo positivo, le reazioni sono rapide e intense, come il riflesso di ritrattazione, il bruciore o il pulsare. Nel polo negativo, le reazioni sono lente e ritardate, come il contrazione, l'intorpidimento o il formicolio.",
+      "why_distinct": "La velocità e la natura della risposta fisica sono un discriminante fondamentale. La rapidità del riflesso o del bruciore è diversa dalla lentezza dell'intorpidimento.",
       "pos_examples": [
-        "La nadadora tocó con la yema sobre cerámica recalentada y el reflejo la apartó; la piel se enrojeció, con un ardor creciente",
-        "Il bambino sfiorò con le dita su un tubo caldo e il contatto pizzicò; il sudore comparve, con un bruciore crescente",
-        "The elderly woman the spot throbbed as brushed with the fingers on overheated ceramic: and a sharp twinge hit with a growing burn"
+        "2",
+        "3",
+        "4",
+        "6",
+        "7",
+        "8"
       ],
       "neg_examples": [
-        "The blacksmith rested the wrist on a cold surface and the hand jerked back from pain; the fingers started to go numb",
-        "Das Kind drückte die Handfläche auf ein sehr kaltes Rohr; und der Körper zuckte; die Finger wurden taub",
-        "set the fingers on a very cold pipe and the hand jerked back from pain; blood seemed to pull back"
+        "3",
+        "4",
+        "6",
+        "8",
+        "9",
+        "10"
       ]
     },
     {
-      "slug": "subjective_discomfort",
-      "pos_label": "Disagio intenso",
-      "neg_label": "Disagio minimo/assenza di disagio",
-      "description": "Questo sub-concetto valuta il livello di disagio soggettivo provato dall'individuo. Non si tratta solo di dolore fisico, ma anche di sensazioni spiacevoli come fastidio, irritazione o ansia.",
-      "why_distinct": "Distinguere tra un'esperienza semplicemente 'calda' o 'fredda' e un'esperienza che causa disagio significativo.",
+      "slug": "sensory_propagation",
+      "pos_label": "diffusione rapida",
+      "neg_label": "assenza di diffusione",
+      "description": "Questo sub-concetto riguarda il modo in cui la sensazione si diffonde attraverso il corpo. Nel polo positivo, la sensazione si diffonde rapidamente, spesso descritta come 'irradiante' o 'pulsante'. Nel polo negativo, la sensazione non si diffonde, spesso descritta come 'assenza di sensazione' o 'intorpidimento'.",
+      "why_distinct": "La velocità di propagazione della sensazione è un fattore distintivo. La sensazione che si irradia è diversa da quella che non si irradia.",
       "pos_examples": [
-        "Il fabbro la pelle arrossì mentre poggiò la pelle su un tubo caldo: e la pelle bruciò con una scia che restava finché la pelle non smise di pulsare.",
-        "Die Taucherin die Stelle pochte, als legte die Haut auf ein heißes Rohr: und der Reflex schnappte weg mit wachsendem Brennen",
-        "rozó con los dedos sobre metal ardiente y la piel ardió; el calor subió rápido; con dolor limpio y localizado"
+        "5",
+        "7",
+        "8",
+        "10"
       ],
       "neg_examples": [
-        "La ciclista la sangre pareció retirarse mientras rozó el antebrazo sobre cerámica fría",
-        "The mason the fingers started to go numb as pressed the palm on a frozen handle",
-        "appoggiò le dita su una superficie fredda e il corpo ebbe un sussulto"
+        "3",
+        "4",
+        "6",
+        "8",
+        "9",
+        "10"
       ]
     },
     {
-      "slug": "reaction_speed",
-      "pos_label": "Reazione rapida",
-      "neg_label": "Reazione lenta",
-      "description": "Questo sub-concetto si riferisce alla velocità con cui l'individuo reagisce al contatto con la superficie, ad esempio ritirando la mano istantaneamente.",
-      "why_distinct": "La velocità della reazione può indicare la gravità della sensazione e la sua potenziale pericolosità.",
+      "slug": "skin_reaction",
+      "pos_label": "reazioni di rossore",
+      "neg_label": "reazioni di pallore",
+      "description": "Questo sub-concetto si concentra sulla reazione della pelle all'esposizione termica. Nel polo positivo, la pelle tende a diventare rossa o arrossata, indicando un aumento della temperatura locale. Nel polo negativo, la pelle tende a diventare pallida o bianca, indicando una diminuzione della temperatura locale.",
+      "why_distinct": "La reazione della pelle è un indicatore diretto dell'esposizione termica. Il rossore è diverso dal pallore.",
       "pos_examples": [
-        "The blacksmith touched with a fingertip on overheated ceramic; and pulled the hand back instantly",
-        "La nadadora tocó con la yema sobre cerámica recalentada y el reflejo la apartó",
-        "Die Taucherin die Stelle pochte, als legte die Haut auf ein heißes Rohr: und der Reflex schnappte weg"
+        "4",
+        "6",
+        "7",
+        "8",
+        "10"
       ],
       "neg_examples": [
-        "The blacksmith rested the wrist on a cold surface and the hand jerked back from pain",
-        "La ciclista la sangre pareció retirarse mientras rozó el antebrazo sobre cerámica fría",
-        "appoggiò le dita su una superficie fredda e il corpo ebbe un sussulto"
+        "2",
+        "3",
+        "4",
+        "6",
+        "8",
+        "9"
+      ]
+    },
+    {
+      "slug": "immediate_sensation",
+      "pos_label": "sensazione immediata",
+      "neg_label": "sensazione ritardata",
+      "description": "Questo sub-concetto si concentra sulla natura immediata della sensazione. Nel polo positivo, la sensazione è immediata e intensa, spesso descritta con termini come 'bruciore', 'pizzico' o 'dolore acuto'. Nel polo negativo, la sensazione è ritardata e debole, spesso descritta con termini come 'morso secco', 'formicolio' o 'intorpidimento'.",
+      "why_distinct": "Il tempo di presentazione della sensazione è un fattore chiave. La sensazione immediata è diversa dalla sensazione ritardata.",
+      "pos_examples": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "7",
+        "8"
+      ],
+      "neg_examples": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "7"
       ]
     }
   ]

@@ -1,0 +1,63 @@
+{
+  "model": "Gemma3-1B-IT",
+  "layer_type": "best_snr",
+  "concepts": [
+    "rumore_vs_silenzio",
+    "metallic_resonance",
+    "environmental_echo",
+    "vocal_strain",
+    "sudden_onset"
+  ],
+  "layers_used": {
+    "rumore_vs_silenzio": 18,
+    "metallic_resonance": 23,
+    "environmental_echo": 23,
+    "vocal_strain": 23,
+    "sudden_onset": 18
+  },
+  "layer_sources": {
+    "rumore_vs_silenzio": "summary(fallback)",
+    "metallic_resonance": "eval",
+    "environmental_echo": "eval",
+    "vocal_strain": "eval",
+    "sudden_onset": "eval"
+  },
+  "matrix": [
+    [
+      0.9999999999999998,
+      0.6493160272560171,
+      0.6189091436779512,
+      0.6490312935688364,
+      -0.3124383303988019
+    ],
+    [
+      0.6493160272560171,
+      1.0000000000000002,
+      0.782067891041248,
+      0.5778080997668643,
+      -0.1969366207142772
+    ],
+    [
+      0.6189091436779512,
+      0.782067891041248,
+      1.0000000000000002,
+      0.5387062607147348,
+      -0.17156783908427245
+    ],
+    [
+      0.6490312935688364,
+      0.5778080997668643,
+      0.5387062607147348,
+      1.0000000000000002,
+      -0.27313748408907396
+    ],
+    [
+      -0.3124383303988019,
+      -0.1969366207142772,
+      -0.17156783908427245,
+      -0.27313748408907396,
+      1.0
+    ]
+  ],
+  "timestamp": "2026-03-02T15:14:55.885095"
+}

@@ -1,0 +1,29 @@
+{"type": "run_start", "concept": "liscio_vs_ruvido", "model": "Gemma2-Uncensored", "max_depth": 0, "max_iter": 2, "dry_run": false, "timestamp": "2026-03-02T17:57:26.052630"}
+{"type": "decompose_start", "concept": "liscio_vs_ruvido", "depth": 0, "timestamp": "2026-03-02T17:57:26.052904"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v1)", "timestamp": "2026-03-02T17:57:26.053003"}
+{"type": "info", "msg": "  Proposti: ['smooth_flow', 'surface_quality', 'frictionless_interaction', 'absence_of_impact']", "timestamp": "2026-03-02T18:00:09.727554"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v1)", "timestamp": "2026-03-02T18:00:09.727702"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-02T18:08:14.267033"}
+{"type": "info", "msg": "  Probe: smooth_flow / Gemma2-Uncensored", "timestamp": "2026-03-02T18:08:14.268119"}
+{"type": "info", "msg": "  ERRORE probe smooth_flow: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-02T18:08:30.077363"}
+{"type": "info", "msg": "  Probe: surface_quality / Gemma2-Uncensored", "timestamp": "2026-03-02T18:08:30.079798"}
+{"type": "info", "msg": "  ERRORE probe surface_quality: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-02T18:08:46.469492"}
+{"type": "info", "msg": "  Probe: frictionless_interaction / Gemma2-Uncensored", "timestamp": "2026-03-02T18:08:46.470792"}
+{"type": "info", "msg": "  ERRORE probe frictionless_interaction: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-02T18:09:02.815053"}
+{"type": "info", "msg": "  Probe: absence_of_impact / Gemma2-Uncensored", "timestamp": "2026-03-02T18:09:02.816482"}
+{"type": "info", "msg": "  ERRORE probe absence_of_impact: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-02T18:09:18.721070"}
+{"type": "info", "msg": "  Nessun vettore estratto. Salto i prossimi step.", "timestamp": "2026-03-02T18:09:18.721319"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v2)", "timestamp": "2026-03-02T18:09:18.721428"}
+{"type": "info", "msg": "  Proposti: ['smooth_flow', 'seamless_contact', 'uniform_pressure', 'rough_resistance', 'uneven_contact']", "timestamp": "2026-03-02T18:13:10.946058"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v2)", "timestamp": "2026-03-02T18:13:10.946177"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-02T18:31:10.139562"}
+{"type": "info", "msg": "  Probe: smooth_flow / Gemma2-Uncensored", "timestamp": "2026-03-02T18:31:10.140146"}
+{"type": "info", "msg": "  ERRORE probe smooth_flow: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-02T18:31:25.901030"}
+{"type": "info", "msg": "  SKIP probe seamless_contact — JSON non trovato: /home/lele/codex-openai/project_jedi/config/sub_concepts/liscio_vs_ruvido/seamless_contact.json", "timestamp": "2026-03-02T18:31:25.901588"}
+{"type": "info", "msg": "  SKIP probe uniform_pressure — JSON non trovato: /home/lele/codex-openai/project_jedi/config/sub_concepts/liscio_vs_ruvido/uniform_pressure.json", "timestamp": "2026-03-02T18:31:25.901962"}
+{"type": "info", "msg": "  Probe: rough_resistance / Gemma2-Uncensored", "timestamp": "2026-03-02T18:31:25.903201"}
+{"type": "info", "msg": "  ERRORE probe rough_resistance: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-02T18:31:45.453185"}
+{"type": "info", "msg": "  Probe: uneven_contact / Gemma2-Uncensored", "timestamp": "2026-03-02T18:31:45.454897"}
+{"type": "info", "msg": "  ERRORE probe uneven_contact: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-02T18:32:04.812567"}
+{"type": "info", "msg": "  Nessun vettore estratto. Salto i prossimi step.", "timestamp": "2026-03-02T18:32:04.812932"}
+{"type": "decompose_end", "concept": "liscio_vs_ruvido", "depth": 0, "validated_subs": [], "semantic_limit": false, "sub_results": {}, "timestamp": "2026-03-02T18:32:04.813044"}

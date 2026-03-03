@@ -1,0 +1,30 @@
+{"type": "run_start", "concept": "hot_vs_cold", "model": "Gemma2-Uncensored", "max_depth": 0, "max_iter": 2, "dry_run": false, "timestamp": "2026-03-02T16:28:38.049231"}
+{"type": "decompose_start", "concept": "hot_vs_cold", "depth": 0, "timestamp": "2026-03-02T16:28:38.049623"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v1)", "timestamp": "2026-03-02T16:28:38.049753"}
+{"type": "info", "msg": "  Proposti: ['thermal_intensity', 'tactile_response', 'sensory_propagation', 'skin_reaction', 'immediate_sensation']", "timestamp": "2026-03-02T16:32:23.377683"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v1)", "timestamp": "2026-03-02T16:32:23.377805"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-02T16:43:54.058918"}
+{"type": "info", "msg": "  Probe: thermal_intensity / Gemma2-Uncensored", "timestamp": "2026-03-02T16:43:54.059513"}
+{"type": "info", "msg": "  ERRORE probe thermal_intensity: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-02T16:44:10.596039"}
+{"type": "info", "msg": "  Probe: tactile_response / Gemma2-Uncensored", "timestamp": "2026-03-02T16:44:10.599028"}
+{"type": "info", "msg": "  ERRORE probe tactile_response: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-02T16:44:30.457836"}
+{"type": "info", "msg": "  Probe: sensory_propagation / Gemma2-Uncensored", "timestamp": "2026-03-02T16:44:30.459360"}
+{"type": "info", "msg": "  ERRORE probe sensory_propagation: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-02T16:44:50.399406"}
+{"type": "info", "msg": "  Probe: skin_reaction / Gemma2-Uncensored", "timestamp": "2026-03-02T16:44:50.400707"}
+{"type": "info", "msg": "  ERRORE probe skin_reaction: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-02T16:45:10.226587"}
+{"type": "info", "msg": "  Probe: immediate_sensation / Gemma2-Uncensored", "timestamp": "2026-03-02T16:45:10.227379"}
+{"type": "info", "msg": "  ERRORE probe immediate_sensation: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-02T16:45:27.880283"}
+{"type": "info", "msg": "  Nessun vettore estratto. Salto i prossimi step.", "timestamp": "2026-03-02T16:45:27.880659"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v2)", "timestamp": "2026-03-02T16:45:27.880769"}
+{"type": "info", "msg": "  Proposti: ['intensity_of_heat', 'sensory_reaction_pain', 'physiological_response', 'immediate_reaction_withdrawal']", "timestamp": "2026-03-02T16:46:52.324841"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v2)", "timestamp": "2026-03-02T16:46:52.325081"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-02T16:58:12.785173"}
+{"type": "info", "msg": "  Probe: intensity_of_heat / Gemma2-Uncensored", "timestamp": "2026-03-02T16:58:12.786452"}
+{"type": "info", "msg": "  ERRORE probe intensity_of_heat: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-02T16:58:30.180391"}
+{"type": "info", "msg": "  SKIP probe sensory_reaction_pain — JSON non trovato: /home/lele/codex-openai/project_jedi/config/sub_concepts/hot_vs_cold/sensory_reaction_pain.json", "timestamp": "2026-03-02T16:58:30.182492"}
+{"type": "info", "msg": "  Probe: physiological_response / Gemma2-Uncensored", "timestamp": "2026-03-02T16:58:30.183669"}
+{"type": "info", "msg": "  ERRORE probe physiological_response: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-02T16:58:46.725937"}
+{"type": "info", "msg": "  Probe: immediate_reaction_withdrawal / Gemma2-Uncensored", "timestamp": "2026-03-02T16:58:46.727110"}
+{"type": "info", "msg": "  ERRORE probe immediate_reaction_withdrawal: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-02T16:59:04.361699"}
+{"type": "info", "msg": "  Nessun vettore estratto. Salto i prossimi step.", "timestamp": "2026-03-02T16:59:04.361955"}
+{"type": "decompose_end", "concept": "hot_vs_cold", "depth": 0, "validated_subs": [], "semantic_limit": false, "sub_results": {}, "timestamp": "2026-03-02T16:59:04.362147"}

@@ -1,0 +1,42 @@
+{
+  "concept": "immediate_sensation",
+  "parent_concept": "hot_vs_cold",
+  "category": "sensoriale",
+  "pos_label": "sensazione immediata",
+  "neg_label": "sensazione ritardata",
+  "description": "Questo sub-concetto si concentra sulla natura immediata della sensazione. Nel polo positivo, la sensazione è immediata e intensa, spesso descritta con termini come 'bruciore', 'pizzico' o 'dolore acuto'. Nel polo negativo, la sensazione è ritardata e debole, spesso descritta con termini come 'morso secco', 'formicolio' o 'intorpidimento'.",
+  "positive": [
+    "Il calore bruciante mi invadeva le dita, un'ondata istantanea.",
+    "Un pizzico acuto mi percorreva la gamba, subito percepibile.",
+    "Il rovente tocco sulla pelle, un'immediata reazione.",
+    "Un calore intenso mi avvolgeva il braccio, una sensazione diretta.",
+    "Il bruciore immediato, un'esperienza pura e intensa.",
+    "Il calore pulsante, subito presente nella mia carne.",
+    "Un'ondata di calore, un'immediata sensazione fisica.",
+    "Il tocco ardente, una sensazione istantanea e profonda.",
+    "Il calore intenso mi investiva, un'esperienza immediata.",
+    "Un pizzico pungente, subito percepibile nella mano.",
+    "Il calore immediato, un'esperienza pura e intensa.",
+    "Un'ondata di calore, subito presente nella mia carne.",
+    "Il tocco ardente, un'esperienza istantanea e profonda.",
+    "Un calore pulsante, immediatamente presente.",
+    "Il bruciore intenso, una sensazione diretta e immediata."
+  ],
+  "negative": [
+    "Un formicolio leggero mi percorreva le dita, ritardato e debole.",
+    "Un intorpidimento sottile mi avvolgeva il piede, un'esperienza ritardata.",
+    "Un leggero morso secco mi colpiva il braccio, un'impressione tenue.",
+    "Un formicolio appena percettibile, un'esperienza ritardata.",
+    "Un intorpidimento sottile, una sensazione debole e ritardata.",
+    "Un leggero morso secco, un'impressione tenue e distante.",
+    "Un formicolio leggero, subito percepibile ma debole.",
+    "Un intorpidimento sottile, un'esperienza ritardata e svanita.",
+    "Un leggero morso secco, una sensazione appena udibile.",
+    "Il formicolio appena percettibile, un'esperienza ritardata.",
+    "Un intorpidimento sottile, una sensazione debole e distante.",
+    "Un leggero morso secco, un'impressione tenue e svanita.",
+    "Il formicolio leggero, subito percepibile ma distante.",
+    "Un intorpidimento sottile, un'esperienza ritardata e debole.",
+    "Il morso secco leggero, un'impressione tenue e svanita."
+  ]
+}

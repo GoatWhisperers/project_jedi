@@ -1,0 +1,5 @@
+{"type": "run_start", "concept": "secco_vs_umido", "model": "Gemma2-Uncensored", "max_depth": 0, "max_iter": 2, "dry_run": false, "timestamp": "2026-03-02T18:32:05.294478"}
+{"type": "decompose_start", "concept": "secco_vs_umido", "depth": 0, "timestamp": "2026-03-02T18:32:05.294871"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v1)", "timestamp": "2026-03-02T18:32:05.294994"}
+{"type": "info", "msg": "  Proposti: ['skin_texture_roughness', 'hydration_level', 'surface_adhesion', 'sensory_feedback_grit']", "timestamp": "2026-03-02T18:33:26.286582"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v1)", "timestamp": "2026-03-02T18:33:26.286741"}

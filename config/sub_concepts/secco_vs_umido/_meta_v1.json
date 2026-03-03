@@ -1,0 +1,78 @@
+{
+  "concept": "secco_vs_umido",
+  "model": "Gemma2-Uncensored",
+  "version": 1,
+  "timestamp": "2026-03-03T11:50:28.631932",
+  "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260301_091044_secco_vs_umido_Gemma2-Uncensored.jsonl",
+  "analysis": "Il vettore 'secco_vs_umido' confonde diverse dimensioni semantiche legate alla sensazione tattile e alla percezione della pelle. Sembra che il modello non distingua chiaramente tra la ruvidezza della superficie, il livello di idratazione, la presenza di un film e la sensazione di irritazione. Decomporre questo spazio in sub-concetti specifici permette di catturare queste sfumature in modo più preciso, migliorando la capacità del modello di generare rappresentazioni semantiche più accurate e controllabili. La sovrapposizione tra questi aspetti rende difficile l'interpretazione e la manipolazione del vettore originale.",
+  "sub_concepts": [
+    {
+      "slug": "surface_texture",
+      "pos_label": "rough",
+      "neg_label": "smooth",
+      "description": "Questo sub-concetto cattura la sensazione tattile della superficie, riferendosi a quanto è ruvida o liscia. Una superficie secca tende ad essere più ruvida, mentre una superficie umida tende ad essere più liscia.",
+      "why_distinct": "Si concentra esclusivamente sulla sensazione tattile della superficie, separandosi da concetti come la presenza o assenza di umidità percepita come 'bagnata'.",
+      "pos_examples": [
+        "piegò le dita lentamente; e il contatto era asciutto; comparvero micro-screpolature",
+        "Il muratore passò il polpastrello, e la superficie era arida",
+        "El corredor cerró y abrió la mano, y no había humedad; la piel hizo pliegues secos"
+      ],
+      "neg_examples": [
+        "La boulangère effleura avec deux doigts, et la peau resta humide ; la pulpe glissa",
+        "Le technicien et sentit un film mouillé pendant qu’elle passa la paume",
+        "sfiorò con due dita; e la pelle restò umida; il polpastrello scivolò"
+      ]
+    },
+    {
+      "slug": "hydration_level",
+      "pos_label": "dehydrated",
+      "neg_label": "hydrated",
+      "description": "Si riferisce al livello di idratazione della pelle. Una pelle secca è disidratata, mentre una pelle umida è idratata.",
+      "why_distinct": "Distinto da 'surface_texture' perché si concentra sulla quantità di acqua presente nella pelle, non solo sulla sensazione tattile.",
+      "pos_examples": [
+        "La dermatóloga y notó la piel tirante mientras presionó la palma",
+        "Il muratore passò il polpastrello, e la superficie era arida",
+        "Structor cutem leviter tetigit: et tactus siccus erat, cutis parvas plicas siccas fecit"
+      ],
+      "neg_examples": [
+        "La boulangère effleura avec deux doigts, et la peau resta humide",
+        "Le technicien et sentit un film mouillé pendant qu’elle passa la paume",
+        "The dermatologist ran the palm: and the skin stayed damp"
+      ]
+    },
+    {
+      "slug": "film_presence",
+      "pos_label": "no_film",
+      "neg_label": "film_present",
+      "description": "Questo sub-concetto si riferisce alla presenza o assenza di un film visibile o percepibile sulla superficie. Una pelle secca tende ad avere un film assente, mentre una pelle umida può presentare un film appiccicoso o lucido.",
+      "why_distinct": "Si concentra su un aspetto visivo e tattile specifico che può contribuire alla sensazione di secchezza o umidità.",
+      "pos_examples": [
+        "piegò le dita lentamente; e il contatto era asciutto; comparvero micro-screpolature; come se mancasse un film protettivo",
+        "El corredor cerró y abrió la mano, y no había humedad",
+        "La costurera dobló los dedos despacio: y la piel parecía de papel, aparecieron microgrietas"
+      ],
+      "neg_examples": [
+        "set the hand down; and the contact turned sticky; the hand left a trace; as if covered",
+        "La pianiste et la surface était mouillée pendant qu’elle posa la main",
+        "The child squeezed and released: and the surface was wet, the contact felt viscous"
+      ]
+    },
+    {
+      "slug": "sensory_irritation",
+      "pos_label": "irritated",
+      "neg_label": "soothed",
+      "description": "Questo sub-concetto cattura la presenza o assenza di irritazione sensoriale, come pizzicore o bruciore. Una pelle secca può causare irritazione, mentre una pelle umida può essere più lenitiva.",
+      "why_distinct": "Si concentra sulla risposta fisiologica alla sensazione, separandosi dalla semplice descrizione tattile.",
+      "pos_examples": [
+        "Il muratore passò il polpastrello, e la superficie era arida; rimase un leggero pizzicore",
+        "bog die Finger langsam; und die Haut wirkte papierartig; ein leichtes Brennen blieb",
+        "La dermatóloga y notó la piel tirante mientras presionó la palma"
+      ],
+      "neg_examples": [
+        "La boulangère effleura avec deux doigts, et la peau resta humide",
+        "The child squeezed and released: and the surface was wet",
+        "The dermatologist ran the palm: and the skin stayed damp"
+      ]
+    }
+  ]
+}

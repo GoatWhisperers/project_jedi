@@ -1,0 +1,78 @@
+{
+  "concept": "duro_vs_morbido",
+  "model": "Gemma2-Uncensored",
+  "version": 1,
+  "timestamp": "2026-03-03T12:07:23.433452",
+  "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260301_120403_duro_vs_morbido_Gemma2-Uncensored.jsonl",
+  "analysis": "Il vettore 'duro_vs_morbido' confonde diversi aspetti della sensazione tattile.  Non si tratta solo di rigidità o flessibilità, ma anche di come la superficie risponde a un impatto, come la pressione viene distribuita e quanto intensa è la sensazione percepita. Decomporre questo spazio in sub-concetti come 'rigidity_vs_flexibility', 'impact_rebound', 'pressure_distribution' e 'sensory_feedback_intensity' permette al modello di comprendere più accuratamente e generare rappresentazioni semantiche più precise, catturando le sfumature di ogni esperienza sensoriale.",
+  "sub_concepts": [
+    {
+      "slug": "rigidity_vs_flexibility",
+      "pos_label": "Rigido",
+      "neg_label": "Flessibile",
+      "description": "Questo sub-concetto cattura la proprietà fisica di un materiale di resistere alla deformazione (rigido) o di adattarsi e curvarsi sotto pressione (flessibile). Si concentra sulla capacità di un oggetto di mantenere la sua forma.",
+      "why_distinct": "È il nucleo del concetto 'duro_vs_morbido'.  Gli altri sub-concetti derivano da questa proprietà fisica primaria.",
+      "pos_examples": [
+        "La sarta il dolore era netto quando premette con il pollice su una superficie rigida",
+        "apretó entre los dedos sobre una superficie rígida y el golpe volvió",
+        "Die Köchin klopfte mit den Knöcheln auf Material ohne Nachgeben"
+      ],
+      "neg_examples": [
+        "Le boxeur referma les doigts sur une surface souple",
+        "La couturière le rebond fut lent quand elle referma les doigts sur une matière qui cède",
+        "Der Tischler drückte mit dem Daumen auf nachgebendes Material"
+      ]
+    },
+    {
+      "slug": "impact_rebound",
+      "pos_label": "Rimbalzo",
+      "neg_label": "Assorbimento",
+      "description": "Questo sub-concetto si riferisce alla risposta di una superficie a un impatto. Un materiale rigido rimbalza, mentre uno morbido assorbe l'energia dell'impatto.",
+      "why_distinct": "Separa l'aspetto dinamico della sensazione, focalizzandosi sulla risposta a una forza applicata, dalla semplice rigidità o flessibilità.",
+      "pos_examples": [
+        "con rebote inmediato",
+        "Le technicien frappa des phalanges sur un bord dur et le retour fut sec",
+        "Die Köchin klopfte mit den Knöcheln auf Material ohne Nachgeben und der Stoß kam zurück"
+      ],
+      "neg_examples": [
+        "Le boxeur referma les doigts sur une surface souple et la pression se répartit",
+        "La cocinera apoyó la palma sobre un volumen elástico; y la superficie siguió la mano",
+        "closed the fingers on a support that received the hand and contact was cushioned"
+      ]
+    },
+    {
+      "slug": "pressure_distribution",
+      "pos_label": "Pressione Puntiforme",
+      "neg_label": "Pressione Distribuita",
+      "description": "Questo sub-concetto riguarda come la pressione viene applicata e distribuita su una superficie. Una superficie rigida concentra la pressione in un punto, mentre una superficie morbida la distribuisce su un'area più ampia.",
+      "why_distinct": "Distinguere tra la concentrazione della pressione e la sua dispersione fornisce informazioni aggiuntive sulla sensazione.",
+      "pos_examples": [
+        "la presión quedó puntual",
+        "apoyó el codo sobre una superficie rígida y la presión quedó puntual",
+        "pressed with the thumb on a compact block and pressure stayed pinpoint"
+      ],
+      "neg_examples": [
+        "La couturière le rebond fut lent quand elle referma les doigts sur une matière qui cède : et la main fut accompagnée avec une souplesse nette",
+        "Le boxeur referma les doigts sur une surface souple et la pression se répartit",
+        "closed the fingers on a support that received the hand and contact was cushioned"
+      ]
+    },
+    {
+      "slug": "sensory_feedback_intensity",
+      "pos_label": "Intenso",
+      "neg_label": "Smorzato",
+      "description": "Questo sub-concetto si concentra sull'intensità della sensazione percepita. Una superficie rigida può generare una sensazione più intensa (dolore netto, vibrazione) rispetto a una superficie morbida che smorza la sensazione.",
+      "why_distinct": "Considera la qualità soggettiva dell'esperienza sensoriale, che può essere influenzata dalla rigidità o dalla flessibilità.",
+      "pos_examples": [
+        "La sarta il dolore era netto",
+        "Le technicien frappa des phalanges sur un bord dur et le retour fut sec ; la douleur était nette",
+        "palmam impulit in re inflexibili et responsum aridum fuit; digiti resistentiam invenerunt"
+      ],
+      "neg_examples": [
+        "The child brushed then pushed on a support that received the hand and it sank slightly; there was no pinpoint pain",
+        "Le technicien effleura puis poussa sur un volume élastique et s’enfonça un peu ; les doigts se sentirent protégés",
+        "Die Köchin schloss die Finger auf ein elastisches Volumen und der Kontakt wurde gedämpft"
+      ]
+    }
+  ]
+}

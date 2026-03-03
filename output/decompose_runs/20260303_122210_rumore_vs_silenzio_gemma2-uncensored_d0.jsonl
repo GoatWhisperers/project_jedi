@@ -1,0 +1,29 @@
+{"type": "run_start", "concept": "rumore_vs_silenzio", "model": "Gemma2-Uncensored", "max_depth": 0, "max_iter": 2, "dry_run": false, "timestamp": "2026-03-03T12:22:10.727380"}
+{"type": "decompose_start", "concept": "rumore_vs_silenzio", "depth": 0, "timestamp": "2026-03-03T12:22:10.727698"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v1)", "timestamp": "2026-03-03T12:22:10.727819"}
+{"type": "info", "msg": "  Proposti: ['intensity_vs_presence', 'metallic_vs_organic', 'rhythm_vs_static', 'location_certainty']", "timestamp": "2026-03-03T12:23:40.515586"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v1)", "timestamp": "2026-03-03T12:23:40.515728"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-03T12:27:57.428384"}
+{"type": "info", "msg": "  Probe: intensity_vs_presence / Gemma2-Uncensored", "timestamp": "2026-03-03T12:27:57.429556"}
+{"type": "info", "msg": "  ERRORE probe intensity_vs_presence: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-03T12:28:25.750727"}
+{"type": "info", "msg": "  Probe: metallic_vs_organic / Gemma2-Uncensored", "timestamp": "2026-03-03T12:28:25.752057"}
+{"type": "info", "msg": "  ERRORE probe metallic_vs_organic: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-03T12:28:54.131932"}
+{"type": "info", "msg": "  Probe: rhythm_vs_static / Gemma2-Uncensored", "timestamp": "2026-03-03T12:28:54.133227"}
+{"type": "info", "msg": "  ERRORE probe rhythm_vs_static: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-03T12:29:22.327356"}
+{"type": "info", "msg": "  Probe: location_certainty / Gemma2-Uncensored", "timestamp": "2026-03-03T12:29:22.328670"}
+{"type": "info", "msg": "  ERRORE probe location_certainty: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-03T12:29:51.593407"}
+{"type": "info", "msg": "  Nessun vettore estratto. Salto i prossimi step.", "timestamp": "2026-03-03T12:29:51.593825"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v2)", "timestamp": "2026-03-03T12:29:51.594043"}
+{"type": "info", "msg": "  Proposti: ['intensity_level', 'sound_type', 'source_location', 'rhythm_pattern']", "timestamp": "2026-03-03T12:31:02.847670"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v2)", "timestamp": "2026-03-03T12:31:02.847901"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-03T12:36:56.361933"}
+{"type": "info", "msg": "  Probe: intensity_level / Gemma2-Uncensored", "timestamp": "2026-03-03T12:36:56.363190"}
+{"type": "info", "msg": "  ERRORE probe intensity_level: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-03T12:37:24.603981"}
+{"type": "info", "msg": "  Probe: sound_type / Gemma2-Uncensored", "timestamp": "2026-03-03T12:37:24.605310"}
+{"type": "info", "msg": "  ERRORE probe sound_type: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-03T12:37:52.946295"}
+{"type": "info", "msg": "  Probe: source_location / Gemma2-Uncensored", "timestamp": "2026-03-03T12:37:52.947570"}
+{"type": "info", "msg": "  ERRORE probe source_location: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-03T12:38:21.240537"}
+{"type": "info", "msg": "  Probe: rhythm_pattern / Gemma2-Uncensored", "timestamp": "2026-03-03T12:38:21.242028"}
+{"type": "info", "msg": "  ERRORE probe rhythm_pattern: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-03T12:38:49.654344"}
+{"type": "info", "msg": "  Nessun vettore estratto. Salto i prossimi step.", "timestamp": "2026-03-03T12:38:49.654763"}
+{"type": "decompose_end", "concept": "rumore_vs_silenzio", "depth": 0, "validated_subs": [], "semantic_limit": false, "sub_results": {}, "timestamp": "2026-03-03T12:38:49.654953"}

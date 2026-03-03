@@ -1,0 +1,18 @@
+{"type": "run_start", "concept": "liscio_vs_ruvido", "model": "Gemma3-1B-IT", "max_depth": 0, "max_iter": 2, "dry_run": false, "timestamp": "2026-03-02T13:36:16.307652"}
+{"type": "decompose_start", "concept": "liscio_vs_ruvido", "depth": 0, "timestamp": "2026-03-02T13:36:16.307943"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v1)", "timestamp": "2026-03-02T13:36:16.308042"}
+{"type": "info", "msg": "  Proposti: ['surface_material', 'surface_finish', 'friction_level', 'tactile_feedback']", "timestamp": "2026-03-02T13:37:22.162498"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v1)", "timestamp": "2026-03-02T13:37:22.162644"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-02T13:41:33.771194"}
+{"type": "info", "msg": "  Probe: surface_material / Gemma3-1B-IT", "timestamp": "2026-03-02T13:41:33.772446"}
+{"type": "info", "msg": "  Probe OK: surface_material", "timestamp": "2026-03-02T13:42:04.212932"}
+{"type": "info", "msg": "  Probe: surface_finish / Gemma3-1B-IT", "timestamp": "2026-03-02T13:42:04.213719"}
+{"type": "info", "msg": "  Probe OK: surface_finish", "timestamp": "2026-03-02T13:42:31.222491"}
+{"type": "info", "msg": "  Probe: friction_level / Gemma3-1B-IT", "timestamp": "2026-03-02T13:42:31.223808"}
+{"type": "info", "msg": "  Probe OK: friction_level", "timestamp": "2026-03-02T13:43:00.991825"}
+{"type": "info", "msg": "  SKIP probe tactile_feedback — JSON non trovato: /home/lele/codex-openai/project_jedi/config/sub_concepts/liscio_vs_ruvido/tactile_feedback.json", "timestamp": "2026-03-02T13:43:00.992400"}
+{"type": "step", "step": 4, "name": "Analisi geometrica separabilità", "timestamp": "2026-03-02T13:43:00.992665"}
+{"type": "result", "step": 4, "concepts": ["liscio_vs_ruvido", "surface_material", "surface_finish", "friction_level"], "matrix": [[1.0, 0.5143901859696979, 0.31602102901800566, -0.12792873161430443], [0.5143901859696979, 1.0, 0.49313575135911386, 0.18249645386969326], [0.31602102901800566, 0.49313575135911386, 1.0, 0.30732696797323494], [-0.12792873161430443, 0.18249645386969326, 0.30732696797323494, 1.0]], "layers_used": {"liscio_vs_ruvido": {"layer": 18, "source": "summary(fallback)"}, "surface_material": {"layer": 18, "source": "eval"}, "surface_finish": {"layer": 23, "source": "eval"}, "friction_level": {"layer": 23, "source": "eval"}}, "stats": {"min": -0.1279, "max": 0.5144, "mean": 0.2809}, "timestamp": "2026-03-02T13:43:00.999245"}
+{"type": "step", "step": 5, "name": "Steering test + giudizio M40", "timestamp": "2026-03-02T13:43:01.000152"}
+{"type": "result", "step": 5, "version": 1, "all_validated": true, "validated": ["surface_material", "surface_finish", "friction_level"], "needs_refinement": [], "timestamp": "2026-03-02T13:53:25.509045"}
+{"type": "decompose_end", "concept": "liscio_vs_ruvido", "depth": 0, "validated_subs": ["surface_material", "surface_finish", "friction_level"], "semantic_limit": false, "sub_results": {}, "timestamp": "2026-03-02T13:53:25.509298"}

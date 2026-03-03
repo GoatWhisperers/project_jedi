@@ -1,0 +1,49 @@
+{
+  "model": "Gemma3-1B-IT",
+  "layer_type": "best_snr",
+  "concepts": [
+    "liscio_vs_ruvido",
+    "surface_material",
+    "surface_finish",
+    "friction_level"
+  ],
+  "layers_used": {
+    "liscio_vs_ruvido": 18,
+    "surface_material": 18,
+    "surface_finish": 23,
+    "friction_level": 23
+  },
+  "layer_sources": {
+    "liscio_vs_ruvido": "summary(fallback)",
+    "surface_material": "eval",
+    "surface_finish": "eval",
+    "friction_level": "eval"
+  },
+  "matrix": [
+    [
+      1.0,
+      0.5143901859696979,
+      0.31602102901800566,
+      -0.12792873161430443
+    ],
+    [
+      0.5143901859696979,
+      1.0,
+      0.49313575135911386,
+      0.18249645386969326
+    ],
+    [
+      0.31602102901800566,
+      0.49313575135911386,
+      1.0,
+      0.30732696797323494
+    ],
+    [
+      -0.12792873161430443,
+      0.18249645386969326,
+      0.30732696797323494,
+      1.0
+    ]
+  ],
+  "timestamp": "2026-03-02T13:43:00.999642"
+}

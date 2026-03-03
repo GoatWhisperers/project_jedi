@@ -1,0 +1,63 @@
+{
+  "model": "Gemma3-1B-IT",
+  "layer_type": "best_snr",
+  "concepts": [
+    "duro_vs_morbido",
+    "material_density",
+    "surface_compliance",
+    "impact_feedback",
+    "pain_perception"
+  ],
+  "layers_used": {
+    "duro_vs_morbido": 23,
+    "material_density": 18,
+    "surface_compliance": 19,
+    "impact_feedback": 23,
+    "pain_perception": 23
+  },
+  "layer_sources": {
+    "duro_vs_morbido": "summary(fallback)",
+    "material_density": "eval",
+    "surface_compliance": "eval",
+    "impact_feedback": "eval",
+    "pain_perception": "eval"
+  },
+  "matrix": [
+    [
+      0.9999999999999998,
+      0.2581066806691107,
+      0.3768875538032236,
+      0.13494877147045226,
+      0.3593434488627921
+    ],
+    [
+      0.2581066806691107,
+      1.0000000000000002,
+      0.3348703783408731,
+      0.09699733949005923,
+      0.029020564985032235
+    ],
+    [
+      0.3768875538032236,
+      0.3348703783408731,
+      0.9999999999999998,
+      0.13574928858628427,
+      0.12096799527003846
+    ],
+    [
+      0.13494877147045226,
+      0.09699733949005923,
+      0.13574928858628427,
+      1.0,
+      -0.03715189518483323
+    ],
+    [
+      0.3593434488627921,
+      0.029020564985032235,
+      0.12096799527003846,
+      -0.03715189518483323,
+      1.0000000000000002
+    ]
+  ],
+  "timestamp": "2026-03-02T14:42:31.871056"
+}

@@ -1,0 +1,42 @@
+{
+  "concept": "tactile_response",
+  "parent_concept": "hot_vs_cold",
+  "category": "sensoriale",
+  "pos_label": "reazioni immediate",
+  "neg_label": "reazioni di ritardo",
+  "description": "Questo sub-concetto si concentra sulla risposta fisica immediata del corpo all'esposizione termica. Nel polo positivo, le reazioni sono rapide e intense, come il riflesso di ritrattazione, il bruciore o il pulsare. Nel polo negativo, le reazioni sono lente e ritardate, come il contrazione, l'intorpidimento o il formicolio.",
+  "positive": [
+    "La pelle si ritrae istantaneamente al contatto con il calore.",
+    "Un bruciore acuto si diffonde rapidamente dalla mano.",
+    "Il braccio spasma violentemente in risposta alla temperatura.",
+    "Un pulsare intenso irradia dal punto di contatto.",
+    "Il corpo si ritrae rapidamente, un riflesso immediato.",
+    "La superficie calda provoca un'improvvisa contrazione muscolare.",
+    "Un formicolio intenso pervade la parte interessata.",
+    "Il polso accelera, una risposta fisica diretta al calore.",
+    "Il corpo reagisce con un'impennata di calore, istantaneo.",
+    "Il muscolo si contrae con forza, un riflesso rapido.",
+    "Un'ondata di calore provoca un immediato ritrarre.",
+    "La pelle si restringe, un riflesso fulmineo.",
+    "Il corpo si stringe, un'azione istantanea.",
+    "Il formicolio si espande, una risposta rapida.",
+    "La mano si ritrae, un'azione istantanea e precisa."
+  ],
+  "negative": [
+    "Un leggero intorpidimento si diffonde gradualmente.",
+    "L'area si restringe lentamente in risposta al calore.",
+    "Il muscolo si contrae ritardatamente, un processo lento.",
+    "Il formicolio si sviluppa con un ritardo significativo.",
+    "Il corpo reagisce con un ritardo nell'evacuazione del calore.",
+    "Un leggero contrazione si manifesta dopo un periodo di tempo.",
+    "L'intorpidimento si estende lentamente, un processo graduale.",
+    "Il formicolio è appena percettibile, un ritardo evidente.",
+    "Il muscolo si restringe con un ritardo prolungato.",
+    "L'area si restringe con un ritardo significativo.",
+    "Il formicolio si sviluppa con un ritardo graduale.",
+    "Un leggero intorpidimento si sviluppa nel tempo.",
+    "Il muscolo si contrae con un ritardo evidente.",
+    "L'area si restringe lentamente, un processo graduale.",
+    "Il formicolio è appena percettibile, un ritardo notevole."
+  ]
+}

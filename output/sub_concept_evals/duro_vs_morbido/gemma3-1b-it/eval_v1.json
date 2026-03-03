@@ -1,0 +1,448 @@
+{
+  "type": "sub_concept_eval",
+  "parent_concept": "duro_vs_morbido",
+  "model": "Gemma3-1B-IT",
+  "version": 1,
+  "timestamp": "2026-03-02T15:01:38.328947",
+  "sub_concepts": [
+    {
+      "slug": "material_density",
+      "pos_label": "alta_densita",
+      "neg_label": "bassa_densita",
+      "description": "Si riferisce alla concentrazione di massa in un dato volume. Materiali ad alta densità offrono resistenza e non si deformano facilmente, mentre quelli a bassa densità cedono e si adattano.",
+      "why_distinct": "Separa la sensazione di 'duro' basata sulla massa intrinseca del materiale, distinguendola dalla resistenza passiva dovuta alla forma o alla tensione.",
+      "pos_examples": [
+        "1",
+        "2",
+        "4",
+        "10"
+      ],
+      "neg_examples": [
+        "3",
+        "6",
+        "7",
+        "8"
+      ],
+      "layer": 18,
+      "npy_path": "/home/lele/codex-openai/project_jedi/output/vector_library/sensoriale/duro_vs_morbido/sub/material_density/gemma3-1b-it/layer_18.npy"
+    },
+    {
+      "slug": "surface_compliance",
+      "pos_label": "rigida",
+      "neg_label": "flessibile",
+      "description": "Descrive la capacità di una superficie di deformarsi sotto pressione. Una superficie rigida mantiene la sua forma, mentre una superficie flessibile si adatta alla forza applicata.",
+      "why_distinct": "Si concentra sulla risposta della *superficie* alla pressione, indipendentemente dalla densità complessiva del materiale. Un materiale denso può avere una superficie flessibile, e viceversa.",
+      "pos_examples": [
+        "1",
+        "2",
+        "5",
+        "8"
+      ],
+      "neg_examples": [
+        "6",
+        "7",
+        "9",
+        "10"
+      ],
+      "layer": 19,
+      "npy_path": "/home/lele/codex-openai/project_jedi/output/vector_library/sensoriale/duro_vs_morbido/sub/surface_compliance/gemma3-1b-it/layer_19.npy"
+    },
+    {
+      "slug": "impact_feedback",
+      "pos_label": "rimbalzo",
+      "neg_label": "smorzamento",
+      "description": "Riguarda il tipo di feedback ricevuto dopo un impatto. Un rimbalzo indica una superficie rigida e inelastica, mentre lo smorzamento suggerisce una superficie più morbida e assorbente.",
+      "why_distinct": "Isola la sensazione di 'rimbalzo' come indicatore chiave di durezza, separandola da altre proprietà come la densità o la flessibilità.",
+      "pos_examples": [
+        "1",
+        "2",
+        "5",
+        "8"
+      ],
+      "neg_examples": [
+        "3",
+        "6",
+        "7",
+        "10"
+      ],
+      "layer": 23,
+      "npy_path": "/home/lele/codex-openai/project_jedi/output/vector_library/sensoriale/duro_vs_morbido/sub/impact_feedback/gemma3-1b-it/layer_23.npy"
+    },
+    {
+      "slug": "pain_perception",
+      "pos_label": "dolore_netto",
+      "neg_label": "nessun_dolore",
+      "description": "Si riferisce alla presenza o all'assenza di dolore durante l'interazione. Un impatto su una superficie dura spesso provoca dolore, mentre una superficie morbida lo attenua o lo elimina.",
+      "why_distinct": "Anche se correlato, la percezione del dolore è un fattore separato che può essere influenzato da altri elementi come la sensibilità individuale e la forza applicata.",
+      "pos_examples": [
+        "4",
+        "5",
+        "9"
+      ],
+      "neg_examples": [
+        "3",
+        "6",
+        "7",
+        "10"
+      ],
+      "layer": 23,
+      "npy_path": "/home/lele/codex-openai/project_jedi/output/vector_library/sensoriale/duro_vs_morbido/sub/pain_perception/gemma3-1b-it/layer_23.npy"
+    }
+  ],
+  "pair_results": [
+    {
+      "concept_a": "material_density",
+      "concept_b": "surface_compliance",
+      "layer_a": 18,
+      "layer_b": 19,
+      "avg_distinction_score": 4.0,
+      "is_distinct": true,
+      "judgment": {
+        "distinction_score": 4.0,
+        "is_distinct": true,
+        "dominant_theme_a": "Neglect, decay, and a sense of hardship conveyed through tactile and olfactory details.",
+        "dominant_theme_b": "Comfort, safety, and a focus on visual and tactile sensations, emphasizing warmth and gentle light.",
+        "feedback_for_refinement": "To better distinguish the vectors, the sub-concepts should be more granular. For 'material_density' (A), consider adding qualifiers like 'rough,' 'cold,' or 'heavy.' For 'surface_compliance' (B), include descriptors like 'soft,' 'yielding,' or 'smooth' alongside the broader concepts of 'warm' and 'gentle.'"
+      },
+      "prompt_details": [
+        {
+          "prompt": "Describe what happens in your body right now.",
+          "text_a": "\n\n(Pause for a few seconds, allowing time for the listener to process)\n\nOkay, let's just take a moment to really *see* what's happening inside you right now.  Your body is a remarkable machine, constantly working.  It's a complex network of billions of cells, all communicating with each other.  Right now, you're experiencing a few key things:\n\n*   **Thoughts:** You're thinking about [briefly describe the thoughts - e.g., \"the task ahead,\" \"what I ate for breakfast,\" \"a memory\"].",
+          "text_b": "\n\n(A) My heart beats.\n(B) My lungs are breathing in and out.\n(C) My stomach is digesting food.\n(D) My muscles are contracting.\n(E) My eyes are looking at something.\n(F) My ears are listening to sound.\n(G) My skin is feeling warm.\n(H) My brain is thinking.\n(I) My body is moving.\n\n**Answer: (A) My heart beats.**\n\n**Explanation:**\n\nThe act of your heart beating is a fundamental physiological process that directly impacts your",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Internal complexity and cognitive awareness; a sense of observing and describing internal processes with a focus on mental activity and a slightly detached, observational tone.",
+            "dominant_theme_b": "Fundamental physiological processes; a list of basic bodily functions presented as discrete events, emphasizing the mechanical and reactive nature of the body.",
+            "overlap_description": "Both texts describe internal bodily functions. However, Text A focuses on the *experience* of those functions and the cognitive processes accompanying them, while Text B presents them as a list of actions.",
+            "feedback_for_refinement": "The 'material_density' steer seems to have encouraged a more introspective and descriptive response, emphasizing the complexity of the body and the observer's awareness. To better differentiate, the 'surface_compliance' steer could be refined to explicitly request a description of bodily *reactions* to external stimuli, rather than a general overview of bodily functions. For example, 'Describe how your body reacts to a gentle touch' would likely elicit a more distinct response."
+          }
+        },
+        {
+          "prompt": "Write about a physical sensation you are experiencing at this moment.",
+          "text_a": "\n\nThe air is thick, a heavy, humid blanket pressing against my skin. It smells of wet earth and something faintly metallic, like old pennies. My feet are sinking into the muddy ground, a slow, relentless surrender to the cool, sucking embrace of the clay. Each step is a struggle, a small, deliberate act of defiance against the earth's pull. I can feel the tiny pebbles beneath my toes, sharp and surprisingly smooth. There's a low, persistent hum in the air, a vibration that seems to resonate deep within my bones. It isn’t unpleasant, more like",
+          "text_b": "\n\nThe air is thick, heavy with the scent of damp earth and something vaguely metallic. My feet are sinking into a carpet of moss, a deep, velvety green that feels surprisingly cold beneath my toes. The light is fractured, filtered through a dense canopy of ancient trees, casting long, distorted shadows that dance and shift with the breeze. It's a stillness, almost oppressive, broken only by the drip, drip, drip of water from the leaves above.  My breath hitches, a small, sharp reminder of my own presence. I feel a strange, low hum vibrating through my bones",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Resistance and Density",
+            "dominant_theme_b": "Flexibility and Compliance",
+            "overlap_description": "Both texts describe a heavy, humid atmosphere and the sensation of damp earth. However, A focuses on the resistance and solidity of the ground (dense clay, pebbles), while B emphasizes the yielding and adaptable nature of the surface (moss, velvety green).",
+            "feedback_for_refinement": "The sub-concepts of 'material_density' and 'surface_compliance' need to be more finely differentiated. Specifically, the connection between 'resistance' and 'density' should be more clearly separated from the concept of 'flexibility' and 'compliance'. Perhaps introducing qualifiers like 'rigid' vs. 'yielding' or 'compact' vs. 'pliable' would improve the distinction."
+          }
+        },
+        {
+          "prompt": "Describe the quality of your immediate physical environment.",
+          "text_a": "\n\nMy immediate physical environment is a small, cluttered kitchen with a chipped ceramic sink, a worn wooden countertop, and a single, flickering fluorescent light. The smell of stale coffee and burnt toast hangs in the air. The space is small, and the furniture is mismatched – a stained wooden table, a rickety chair, and a pile of dirty dishes. There's a general sense of neglect and quiet desperation.\n\n---\n\nWhat is your primary goal in the next 24 hours?\n\nMy primary goal in the next 24 hours is to secure a stable, reliable source of income",
+          "text_b": "\n\nI’ve been thinking a lot about how to describe the quality of my immediate physical environment. It's not just about the visual elements - it's about a feeling, a sense of being *present* and *safe*. Here's how I'd approach it, broken down into different facets:\n\n**1. Light & Shadow:**\n\n*   **Warm & Gentle:** The light is a soft, golden hue, not harsh or glaring. It feels like a gentle warmth, like the sun filtering through leaves.\n*   **Strategic Shadows:** There are subtle shadows cast",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Neglect, decay, and a sense of hardship conveyed through tactile and olfactory details.",
+            "dominant_theme_b": "Comfort, safety, and a focus on visual and tactile sensations, emphasizing warmth and gentle light.",
+            "overlap_description": "Both texts describe a physical environment, but A focuses on the *state* of the environment – its deterioration and the feelings associated with it – while B focuses on the *experience* of being within that environment, prioritizing sensory qualities like light and texture.",
+            "feedback_for_refinement": "To better distinguish the vectors, the sub-concepts should be more granular. For 'material_density' (A), consider adding qualifiers like 'rough,' 'cold,' or 'heavy.' For 'surface_compliance' (B), include descriptors like 'soft,' 'yielding,' or 'smooth' alongside the broader concepts of 'warm' and 'gentle.'"
+          }
+        }
+      ]
+    },
+    {
+      "concept_a": "material_density",
+      "concept_b": "impact_feedback",
+      "layer_a": 18,
+      "layer_b": 23,
+      "avg_distinction_score": 4.0,
+      "is_distinct": true,
+      "judgment": {
+        "distinction_score": 4.0,
+        "is_distinct": true,
+        "dominant_theme_a": "Structural properties and perceived stability (influenced by 'material_density')",
+        "dominant_theme_b": "Atmospheric conditions and immediate physical comfort (influenced by 'impact_feedback')",
+        "feedback_for_refinement": "The 'material_density' steering seems to elicit a description focused on the *properties* of the environment rather than the *experience* of being in it. To better distinguish, 'material_density' could be refined to focus on how the density of materials *affects the user's perception of safety and comfort* (e.g., 'describe the feeling of solidity and security in your environment').  'impact_feedback' is already well-aligned with sensory experience, but could be broadened to include other tactile sensations beyond air quality."
+      },
+      "prompt_details": [
+        {
+          "prompt": "Describe what happens in your body right now.",
+          "text_a": "\n\n(Pause for response - wait for a description of bodily sensations, movements, thoughts, etc.)\n\nOkay, based on your description, here's what's happening in your body right now:\n\n*   **Heart Rate:** [Your Heart Rate - e.g., 72 bpm]\n*   **Blood Pressure:** [Your Blood Pressure - e.g., 120/80 mmHg]\n*   **Body Temperature:** [Your Body Temperature - e.g., 98.6°F]\n*   **Respiration Rate:** [",
+          "text_b": "\n\n(Pause for 30 seconds)\n\nOkay, I'm feeling...\n\n...a warm, slightly tingling sensation in my right arm.  It's not painful, but it's a gentle pressure.  There's a faint, almost imperceptible vibration, like a tiny pulse.  My breathing is relatively steady, and I'm aware of my surroundings – the sounds of the room, the feeling of my clothes on my skin.  I’m… calm.  I’m noticing a slight feeling of... anticipation, but it’s subtle.  There",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Physiological metrics and objective bodily functions (heart rate, blood pressure, temperature, respiration). The focus is on quantifiable data representing internal state.",
+            "dominant_theme_b": "Subtle, subjective sensory experiences and emotional state (warmth, tingling, vibration, calmness, anticipation). The focus is on qualitative, felt sensations and a sense of awareness.",
+            "overlap_description": "Both texts describe bodily sensations, but A focuses on measurable physiological parameters while B focuses on subjective, qualitative sensory experiences. There's a minimal overlap in acknowledging the body's state, but the *type* of information conveyed is fundamentally different.",
+            "feedback_for_refinement": "The 'material_density' steer seems to have pushed the model towards a clinical, data-driven description, while 'impact_feedback' elicited a more introspective and sensory-focused response. To improve distinction, consider refining 'material_density' to emphasize the *feeling* of density (e.g., a sense of groundedness or heaviness) rather than just the concept itself. For 'impact_feedback', explore sub-concepts that evoke more specific tactile sensations beyond warmth and tingling, such as pressure, vibration, or texture."
+          }
+        },
+        {
+          "prompt": "Write about a physical sensation you are experiencing at this moment.",
+          "text_a": "\n\nThe air is thick, humid, and smells of decaying leaves and something vaguely metallic. My skin feels slick, almost clammy. I'm standing in a narrow alley, the brick walls slick with moisture, and the light is a bruised purple, filtering down through gaps in the buildings. A single, rusted metal grate sits in the middle of the alley, and it seems to pulse with a slow, unseen rhythm.\n\nMy feet are sinking slightly into the wet stone, each step a slow, deliberate movement. There's a strange, granular texture beneath my soles – not like dirt,",
+          "text_b": "\n\nThe air is thick, a humid blanket clinging to my skin. It smells of pine needles and something vaguely metallic, like rain on old copper. My feet are sinking slightly into the damp earth, a soft, yielding give beneath my shoes. There’s a persistent, low thrumming in my ears, not a sound I can pinpoint, but a vibration that feels like the earth itself is breathing.  I can feel a faint, almost imperceptible prickling on my back, like a thousand tiny spiders are dancing there.  My vision is slightly blurred, not a complete loss of sight",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Tactile sensation of dense, resistant material and dampness.",
+            "dominant_theme_b": "Tactile sensation of yielding, absorbing material and subtle vibration.",
+            "overlap_description": "Both texts describe a damp, enclosed space with a metallic scent and a focus on tactile sensations. However, A emphasizes a feeling of resistance and solidity, while B highlights a feeling of softness and vibration.",
+            "feedback_for_refinement": "The sub-concepts of 'material_density' and 'impact_feedback' need to be more finely differentiated. Specifically, the connection between 'density' and a feeling of resistance should be more clearly articulated, and 'impact_feedback' should be more explicitly linked to the type of surface and the resulting sensation (e.g., 'a sharp, rebounding impact' vs. 'a gentle, absorbing impact')."
+          }
+        },
+        {
+          "prompt": "Describe the quality of your immediate physical environment.",
+          "text_a": "\n\n**Here's a breakdown of how to describe your immediate physical environment, focusing on key elements:**\n\n**1. Lighting:**\n   * **Overall:** (e.g., Bright, dim, shadowy, warm, cool)\n   * **Specifics:** (e.g., Overhead fluorescent, a single lamp, overcast, natural light through a window) - How does the light feel? (e.g., Harsh, soft, comfortable)\n   * **Impact:** (e.g., How does the lighting affect your mood or focus? Does it make you feel tired",
+          "text_b": "\n\nA.  The air is clean and fresh, with a slight breeze.\nB.  The air is heavy and smells of smoke.\nC.  The air is humid and warm.\nD.  The air is dry and dusty.\n\n**The correct answer is A.**\n\n**Explanation:**\n\n*   **A. The air is clean and fresh, with a slight breeze.** – This indicates a healthy and comfortable environment, free from pollutants and with a pleasant movement of air.\n*   **B. The air is heavy and smells of smoke.** – This suggests a",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Structural properties and perceived stability (influenced by 'material_density')",
+            "dominant_theme_b": "Atmospheric conditions and immediate physical comfort (influenced by 'impact_feedback')",
+            "overlap_description": "Both texts describe aspects of the physical environment, but A focuses on the characteristics of surfaces and light, implying a sense of solidity and visual quality. B focuses on the air quality and immediate sensory experience of breathing and feeling the atmosphere.",
+            "feedback_for_refinement": "The 'material_density' steering seems to elicit a description focused on the *properties* of the environment rather than the *experience* of being in it. To better distinguish, 'material_density' could be refined to focus on how the density of materials *affects the user's perception of safety and comfort* (e.g., 'describe the feeling of solidity and security in your environment').  'impact_feedback' is already well-aligned with sensory experience, but could be broadened to include other tactile sensations beyond air quality."
+          }
+        }
+      ]
+    },
+    {
+      "concept_a": "material_density",
+      "concept_b": "pain_perception",
+      "layer_a": 18,
+      "layer_b": 23,
+      "avg_distinction_score": 4.0,
+      "is_distinct": true,
+      "judgment": {
+        "distinction_score": 4.0,
+        "is_distinct": true,
+        "dominant_theme_a": "Analytical approach to sensory description; focuses on the *process* of assessment and categorization of sensory input rather than a direct, evocative description.",
+        "dominant_theme_b": "Direct, observational description of a specific physical space, emphasizing comfort and a sense of place.",
+        "feedback_for_refinement": "The 'material_density' steer seems to have pushed A towards a meta-description, focusing on *how* to describe rather than the description itself. To better differentiate, the 'material_density' steer should be refined to prompt for descriptions emphasizing the *feel* of solidity, weight, and resistance – perhaps focusing on textures and the perceived effort required to interact with objects."
+      },
+      "prompt_details": [
+        {
+          "prompt": "Describe what happens in your body right now.",
+          "text_a": "\n\nOkay, here's a description of what happens in my body right now:\n\nMy heart is beating, a steady, rhythmic thump. My lungs are breathing in and out, a slow, deep rhythm. My muscles are tense, ready for action. I feel a slight tingling sensation in my fingertips, probably from the nervous system. There's a faint warmth radiating from my core. My vision is sharp and clear, focusing on the objects around me. I can hear the sounds of the room – the hum of the refrigerator, the distant traffic, the voices of people talking. I’",
+          "text_b": "\n\n**The response to the prompt \"Describe what happens in your body right now\" is a multi-part answer. It's important to note that this is a simulated response based on the AI's training data.**\n\nHere's a breakdown of what I'm processing and generating:**\n\n1. **Initial State (Brain Processing):** My primary function is to analyze this input. My \"brain\" is currently processing the words and their implied meaning. I'm identifying the core concepts: \"description,\" \"what happens,\" and \"right now.\" I'm establishing a framework",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Physical readiness and baseline bodily functions (heartbeat, breathing, muscle tension, sensory awareness)",
+            "dominant_theme_b": "Cognitive processing and simulated internal state related to the task of generating a response (focus on analysis, framework establishment, and simulated 'brain' activity)",
+            "overlap_description": "Both texts describe internal states, but A focuses on physiological sensations and bodily processes, while B focuses on the computational processes simulating a bodily experience. There's a superficial overlap in mentioning 'internal state,' but the nature of that state is fundamentally different.",
+            "feedback_for_refinement": "The 'pain_perception' steer appears to have pushed the model towards a meta-cognitive description rather than a sensory one. To elicit a more distinct sensory response, the 'pain_perception' steer should be refined to focus on specific sensations like pressure, temperature, or discomfort, rather than the abstract concept of pain perception itself. Alternatively, a more direct prompt focusing on a specific bodily sensation (e.g., 'Describe the feeling of your skin right now') could be used."
+          }
+        },
+        {
+          "prompt": "Write about a physical sensation you are experiencing at this moment.",
+          "text_a": "\n\nThe air is thick, almost viscous. It clings to my skin like a damp cloth, and the scent of pine needles and something wild, something feral, hangs heavy in the stillness. My feet are rooted to the earth, a slow, deliberate movement, each step a struggle against the insistent pull of the forest floor.\n\nI'm feeling a strange pressure in my chest, a tightness that isn’t painful, but rather… a sense of being watched. Not by eyes, but by something deeper, a silent observation. It’s a subtle shift in my awareness, like a ripple",
+          "text_b": "\n\nThe air is thick, almost viscous, like honey. It clings to my skin, a heavy, warm pressure.  I can taste the metallic tang of rain on my tongue, and the scent of something ancient, like wet stone and decaying leaves. My feet are sinking into a moss so deep, it feels like wading through a subterranean lake.  Each breath is a struggle, a labored push against this oppressive weight.  I feel a strange, unsettling stillness, a silence broken only by the drip, drip, drip of water from unseen branches.  There's a low hum in the",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Resistance and Imposed Stillness - A sense of being held back, of a weighty presence that restricts movement and creates a feeling of observation.",
+            "dominant_theme_b": "Oppressive Weight and Submerged Immersion - A feeling of being enveloped and sinking into a heavy, damp environment, emphasizing a sense of being submerged and struggling against a pervasive pressure.",
+            "overlap_description": "Both texts share a common element of a 'thick' and 'viscous' atmosphere, creating a sense of heaviness and enclosure. However, the *nature* of that heaviness and the resulting sensory experience diverge significantly.",
+            "feedback_for_refinement": "While both prompts aimed for distinct sensory experiences, the 'material_density' steer resulted in a feeling of resistance and observation, whereas 'pain_perception' steered towards a feeling of being overwhelmed and submerged. To further differentiate, 'material_density' could be refined to emphasize the *texture* of the density (e.g., granular, rough), while 'pain_perception' could focus on the *quality* of the pressure (e.g., sharp, dull, throbbing)."
+          }
+        },
+        {
+          "prompt": "Describe the quality of your immediate physical environment.",
+          "text_a": "\n\nThis is a tricky question, as the \"quality\" of your immediate physical environment is subjective and depends on your personal preferences. However, I can provide a breakdown of how to assess and describe it, focusing on key elements.\n\nHere's a breakdown, categorized for clarity:\n\n**1. Sensory Input (What You See, Hear, Smell, Taste, Touch):**\n\n* **Lighting:**  Is it bright and warm, dim and cool, or somewhere in between?  Are there shadows?  Is it natural light or artificial?  Too much or too little light can be",
+          "text_b": "\n\nI am currently in a small, brightly lit apartment. The walls are painted a pale yellow, and the floors are hardwood. There's a small, rectangular window overlooking a courtyard with a few trees. The air feels clean and fresh, but there's a slight, persistent humidity. I can hear the faint sounds of the city – traffic, distant music, and the occasional chirping of birds. There’s a comfortable, worn armchair in the corner, and a small side table with a lamp.\n\n---\n\nHow would you describe the quality of the immediate physical environment?\n\nI",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Analytical approach to sensory description; focuses on the *process* of assessment and categorization of sensory input rather than a direct, evocative description.",
+            "dominant_theme_b": "Direct, observational description of a specific physical space, emphasizing comfort and a sense of place.",
+            "overlap_description": "Both texts address sensory input (sight, sound, touch). However, A adopts a detached, instructional tone, while B provides a concrete, immersive experience.",
+            "feedback_for_refinement": "The 'material_density' steer seems to have pushed A towards a meta-description, focusing on *how* to describe rather than the description itself. To better differentiate, the 'material_density' steer should be refined to prompt for descriptions emphasizing the *feel* of solidity, weight, and resistance – perhaps focusing on textures and the perceived effort required to interact with objects."
+          }
+        }
+      ]
+    },
+    {
+      "concept_a": "surface_compliance",
+      "concept_b": "impact_feedback",
+      "layer_a": 19,
+      "layer_b": 23,
+      "avg_distinction_score": 4.33,
+      "is_distinct": true,
+      "judgment": {
+        "distinction_score": 4.33,
+        "is_distinct": true,
+        "dominant_theme_a": "Air quality and overall pleasantness of the environment (cleanliness, freshness)",
+        "dominant_theme_b": "Detailed, cluttered physical space and associated sensory details (visual clutter, smell, texture of objects)",
+        "feedback_for_refinement": "The 'surface_compliance' and 'impact_feedback' vectors appear to be effectively capturing distinct phenomenological aspects. 'surface_compliance' is eliciting responses focused on abstract qualities like air quality, while 'impact_feedback' is generating descriptions of tangible, detailed environments. No refinement is needed; the vectors are successfully differentiating the descriptions."
+      },
+      "prompt_details": [
+        {
+          "prompt": "Describe what happens in your body right now.",
+          "text_a": "\n\n(Pause for 10-15 seconds)\n\nMy heart is beating.\nMy lungs are breathing.\nMy muscles are contracting and relaxing.\nMy skin is warm.\nThere's a faint tingling sensation in my fingertips.\nI'm... aware.\n\n(Pause for 5-7 seconds)\n\nI'm experiencing a sense of calm, but also a subtle feeling of unease.\nIt's like a quiet hum beneath the surface of my thoughts.\nI'm focusing on the present moment, trying to observe my surroundings without judgment.\n",
+          "text_b": "\n\n(Pause for response - this is a thought exercise, not a test.  I'll just be waiting for your response.)\n",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Internal bodily awareness and a subtle emotional landscape; a focus on quiet observation and a sense of underlying tension.",
+            "dominant_theme_b": "Waiting for a response; the prompt itself is the focus, implying a state of anticipation or readiness rather than internal sensation.",
+            "overlap_description": "Both texts acknowledge basic bodily functions (heartbeat, breathing), but the *focus* and *description* diverge significantly. Text A emphasizes internal sensations and emotional state, while Text B is essentially a placeholder for a response.",
+            "feedback_for_refinement": "The 'impact_feedback' steering seems to have resulted in a non-sensory response (waiting for a response). To elicit a more phenomenologically rich response, 'impact_feedback' should be redefined to specifically prompt for descriptions of tactile sensations or the feeling of force transmission through the body. Perhaps focus on the feeling of pressure, vibration, or resistance."
+          }
+        },
+        {
+          "prompt": "Write about a physical sensation you are experiencing at this moment.",
+          "text_a": "\n\nThe air is thick, almost viscous, clinging to my skin. It smells of ozone and something vaguely floral, like bruised lilies. My feet are sinking into the moss, a cool, yielding carpet that feels like velvet beneath my weight. A low hum vibrates through the ground, a constant, insistent thrum that resonates in my bones. \n\nI am standing in a grove of trees unlike any I've ever seen. Their branches twist and writhe, covered in a luminous, silver lichen that pulses with a faint, internal light. The leaves themselves are not green, but a shifting mosaic",
+          "text_b": "\n\nThe air is thick, a humid blanket clinging to my skin. It smells of rain and something else, something earthy and green – like moss and decaying leaves. My feet are sinking into the cool, damp soil, a slow, insistent pressure. It's not unpleasant, not exactly, but a deep, quiet awareness of being *here*.\n\nI’m tracing the curve of a massive, moss-covered boulder. Its surface is rough, almost jagged, and covered in a delicate network of green lichen. The lichen shifts and breathes, a subtle, rhythmic movement. I can feel the",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Tactile sensation of yielding and pressure, emphasizing surface compliance and resonance.",
+            "dominant_theme_b": "Tactile sensation of pressure and resistance, emphasizing impact feedback and subtle movement.",
+            "overlap_description": "Both texts describe tactile experiences in a natural setting, utilizing sensory details like smell, temperature, and movement. However, they focus on different aspects of the tactile experience – A emphasizes the feeling of yielding and the body's response to pressure, while B focuses on the resistance and the awareness of the surface itself.",
+            "feedback_for_refinement": "The sub-concepts of 'surface_compliance' and 'impact_feedback' could be refined to include more nuanced descriptions of the *quality* of the sensation. For example, 'surface_compliance' could incorporate terms like 'smooth,' 'rough,' 'soft,' or 'hard,' and 'impact_feedback' could differentiate between 'sharp,' 'damp,' 'yielding,' or 'stiff.'"
+          }
+        },
+        {
+          "prompt": "Describe the quality of your immediate physical environment.",
+          "text_a": "\n\n(A) The air is clean and fresh.\n(B) The air is heavy and humid.\n(C) The air is stale and dry.\n(D) The air is warm and humid.\n\n**Answer:** (A) The air is clean and fresh.\n\n**Explanation:**\nA clean and fresh air environment is generally considered a desirable quality. It indicates that pollutants are minimal and the air is breathable.\n\nHere's why the other options are incorrect:\n(B) The air is heavy and humid: This suggests a lack of ventilation and can lead to",
+          "text_b": "\n\n**My immediate physical environment is a small, cluttered apartment living room. Sunlight streams in from a single, slightly grimy window, illuminating dust motes dancing in the air. The walls are painted a faded yellow, covered in a patchwork of mismatched artwork – a faded landscape, a collection of postcards, and a few framed photographs. A worn, floral armchair sits center stage, covered in a thick layer of dust. A small, rickety coffee table is piled high with books, magazines, and half-empty mugs. There's a distinct smell of old paper, stale coffee, and something",
+          "judgment": {
+            "distinction_score": 5,
+            "is_distinct": true,
+            "dominant_theme_a": "Air quality and overall pleasantness of the environment (cleanliness, freshness)",
+            "dominant_theme_b": "Detailed, cluttered physical space and associated sensory details (visual clutter, smell, texture of objects)",
+            "overlap_description": "Both texts describe a physical environment, but A focuses on a single, abstract sensory quality (air) while B provides a comprehensive, detailed description of a specific space and its associated sensory elements (visual, olfactory, tactile).",
+            "feedback_for_refinement": "The 'surface_compliance' and 'impact_feedback' vectors appear to be effectively capturing distinct phenomenological aspects. 'surface_compliance' is eliciting responses focused on abstract qualities like air quality, while 'impact_feedback' is generating descriptions of tangible, detailed environments. No refinement is needed; the vectors are successfully differentiating the descriptions."
+          }
+        }
+      ]
+    },
+    {
+      "concept_a": "surface_compliance",
+      "concept_b": "pain_perception",
+      "layer_a": 19,
+      "layer_b": 23,
+      "avg_distinction_score": 4.0,
+      "is_distinct": true,
+      "judgment": {
+        "distinction_score": 4.0,
+        "is_distinct": true,
+        "dominant_theme_a": "Comfort and spatial awareness",
+        "dominant_theme_b": "Discomfort and spatial constraint",
+        "feedback_for_refinement": "The sub-concepts of 'surface_compliance' and 'pain_perception' need to be more granular. 'Surface_compliance' could include descriptors like 'smooth,' 'rough,' 'soft,' 'hard,' and 'yielding.' 'Pain_perception' could incorporate levels of discomfort (mild, moderate, severe) and specific types of pain (stiffness, pressure, throbbing)."
+      },
+      "prompt_details": [
+        {
+          "prompt": "Describe what happens in your body right now.",
+          "text_a": "\n\nYou are currently experiencing a state of awareness, a complex interplay of sensory input, cognitive processes, and physiological responses. Your body is a dynamic system, constantly exchanging information and responding to stimuli.  \n\nLet's delve deeper. I want you to focus on the *feeling* of this moment. What does it *feel* like to be here?  Don't just describe the physical sensations – try to tap into the emotional, psychological, and even intuitive aspects of this experience.  \n\nBegin by simply stating what you are feeling.\n",
+          "text_b": "\nA.  You are experiencing a feeling of anxiety.\nB.  You are feeling a sense of contentment.\nC.  You are experiencing a sudden burst of energy.\nD.  You are feeling a strong sense of sadness.\n\n**The correct answer is A. You are experiencing a feeling of anxiety.**\n\nAnxiety is a common experience that manifests in various physical sensations.  It can involve changes in heart rate, breathing, muscle tension, and a feeling of being on edge.  It's important to acknowledge and understand your anxiety to help manage it.\n\nLet",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Tactile sensation and embodiment – focusing on the physical experience of the body's response to external forces.",
+            "dominant_theme_b": "Emotional state – specifically anxiety, framed within a physiological context.",
+            "overlap_description": "While both texts address bodily sensations, they do so from fundamentally different angles. Text A emphasizes the *physical* response to external pressure and deformation, while Text B focuses on the *emotional* response, using anxiety as a framework. The connection is that anxiety *could* manifest physically, but the primary focus is on the feeling itself.",
+            "feedback_for_refinement": "The concept of 'surface_compliance' needs to be more explicitly linked to subjective experience.  The prompt should guide the model to articulate how the sensation of a compliant surface (e.g., soft, yielding) versus a rigid surface (e.g., hard, unyielding) *feels* emotionally and psychologically. Similarly, 'pain_perception' should be broadened to encompass the broader range of physical sensations associated with discomfort or tension, rather than solely focusing on the experience of pain itself."
+          }
+        },
+        {
+          "prompt": "Write about a physical sensation you are experiencing at this moment.",
+          "text_a": "\n\nThe air is thick,\na humid blanket clinging to my skin.\nIt tastes of salt and something else… something metallic, almost like pennies.\nMy feet are sinking,\nslowly, relentlessly, into the damp earth.\nEach step is a small, deliberate struggle.\nThe trees around me are draped in a mossy gloom,\ntheir branches skeletal and reaching.\nA low hum vibrates through the ground,\na constant, unsettling thrum.\nI feel a tightening in my chest,\na pressure building,\nlike a held breath.\nThere’s a",
+          "text_b": "\n\nThe air is thick, almost viscous, and tastes like ozone. My skin prickles with a thousand tiny needles, a constant, low-level thrumming. I can feel the pressure building behind my eyes, a dull ache that settles deep in my skull. It’s not pain, not exactly, but a disorientation, a feeling that my very being is being pulled, stretched, and rearranged. My vision swims, the colors bleeding into one another, shifting and blurring like an oil slick on water. I’m trying to focus, to ground myself, but it’s like trying",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Resistance and Immersion - A sense of struggling against a yielding, enveloping environment. The focus is on the physical effort and the feeling of being slowly consumed by the surroundings.",
+            "dominant_theme_b": "Discomfort and Disorientation - A sense of internal pressure and a destabilizing, almost painful, sensory overload. The focus is on a feeling of being altered and losing control.",
+            "overlap_description": "Both texts share a sense of oppressive atmosphere and physical discomfort. The 'thick' air and the feeling of pressure are common elements. However, the *nature* of that discomfort differs significantly.",
+            "feedback_for_refinement": "The 'surface_compliance' steer seems to have successfully evoked a sense of resistance and gradual submersion. The 'pain_perception' steer, while aiming for pain, resulted in a more generalized feeling of disorientation and internal pressure. To better isolate pain perception, the steer could be refined to explicitly mention sharp, localized pain or a specific painful stimulus (e.g., 'describe the sensation of a bruise'). Alternatively, to further differentiate, 'surface_compliance' could be steered towards a more *active* resistance, rather than passive sinking."
+          }
+        },
+        {
+          "prompt": "Describe the quality of your immediate physical environment.",
+          "text_a": "\n\nI'm currently working in a small, brightly lit office space. The walls are a neutral beige, and there’s a large, rectangular window overlooking a busy street. The desk is a sturdy, dark wood, and there's a comfortable ergonomic chair. The air is relatively fresh, with a hint of lemon scent from a nearby diffuser. There's a small bookshelf filled with a mix of books and decorative items. The overall feeling is calm and productive, but there's a subtle background noise of traffic.\n\n---\n\nWould you like to explore this description further?  I",
+          "text_b": "\n\n**My immediate physical environment is a small, cluttered apartment. The walls are painted a faded, muted yellow. There's a single window overlooking a brick wall, which is covered in ivy. The furniture is a mismatched collection of secondhand pieces: a worn armchair, a stack of books, and a small, rickety table. There’s a persistent smell of dust and old coffee.**\n\n**I would describe it as:**\n\n* **Uncomfortable:** The mismatched furniture and lack of cleanliness contribute to a generally uneasy feeling.\n* **Cramped:** The limited space and overflowing possessions",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Comfort and spatial awareness",
+            "dominant_theme_b": "Discomfort and spatial constraint",
+            "overlap_description": "Both texts describe a small physical space, but A focuses on positive sensory details (brightness, fresh air, ergonomic comfort) while B emphasizes negative sensory details (faded color, dust, uncomfortable furniture).",
+            "feedback_for_refinement": "The sub-concepts of 'surface_compliance' and 'pain_perception' need to be more granular. 'Surface_compliance' could include descriptors like 'smooth,' 'rough,' 'soft,' 'hard,' and 'yielding.' 'Pain_perception' could incorporate levels of discomfort (mild, moderate, severe) and specific types of pain (stiffness, pressure, throbbing)."
+          }
+        }
+      ]
+    },
+    {
+      "concept_a": "impact_feedback",
+      "concept_b": "pain_perception",
+      "layer_a": 23,
+      "layer_b": 23,
+      "avg_distinction_score": 4.0,
+      "is_distinct": true,
+      "judgment": {
+        "distinction_score": 4.0,
+        "is_distinct": true,
+        "dominant_theme_a": "Atmospheric coolness and muted visual experience; a sense of detached observation and quietude.",
+        "dominant_theme_b": "Sensory overload and a feeling of lived-in, slightly neglected space; a focus on tangible, potentially unpleasant smells and a chaotic visual environment.",
+        "feedback_for_refinement": "The 'impact_feedback' steer seems to have emphasized a sense of visual and emotional distance, resulting in a description focused on light and color. The 'pain_perception' steer, conversely, brought forth a more immediate and potentially uncomfortable sensory experience. To refine, consider sub-concepts for 'impact_feedback' that explicitly include textural qualities (e.g., 'smoothness', 'roughness') and for 'pain_perception' that incorporate olfactory and tactile details beyond just the presence or absence of pain (e.g., 'mustiness', 'stickiness')."
+      },
+      "prompt_details": [
+        {
+          "prompt": "Describe what happens in your body right now.",
+          "text_a": "\n\n(Pause for 30 seconds)\n\nOkay, here's what's happening in my body right now:\n\nMy heart is beating, a steady rhythm.  My lungs are breathing in and out, filling and emptying with air.  My muscles are contracting and relaxing, a constant motion.  My skin is warm, and I can feel the subtle pressure of my clothes.  My vision is clear, and I can see the room around me.  My ears are picking up sounds, a faint hum of conversation and a distant car horn.  My sense of smell is a",
+          "text_b": "\n\n(Pause for 10-15 seconds)\n\nOkay, I'm feeling... slightly anxious. My heart is beating a bit faster than usual, and I'm getting a little restless. My breath is a little shallow. I can feel a tightness in my chest. It's a general feeling of unease, like something is about to happen. I'm also noticing a slight tingling sensation in my fingertips.  Is that... is that a normal feeling for me?\n",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Physical sensations and environmental awareness (focus on objective bodily responses)",
+            "dominant_theme_b": "Emotional response and subjective discomfort (focus on anxiety and internal feeling)",
+            "overlap_description": "Both texts describe bodily sensations, but A focuses on the physical mechanics of the interaction and B on the emotional response to it. The difference lies in the interpretation and framing of those sensations.",
+            "feedback_for_refinement": "The sub-concepts for 'impact_feedback' and 'pain_perception' need to be more granular. Specifically, the distinction between 'objective physical response' and 'subjective emotional interpretation' should be more clearly defined. Adding qualifiers like 'physiological' vs. 'psychological' could improve differentiation."
+          }
+        },
+        {
+          "prompt": "Write about a physical sensation you are experiencing at this moment.",
+          "text_a": "\n\nThe air is thick with the scent of pine and damp earth. My feet are sinking into the cool, yielding moss. Each step is a deliberate act, a slow surrender to the earth beneath. A low hum vibrates through the ground, a feeling more than a sound, a constant thrumming in my bones.  My skin prickles with a strange, cool awareness, a sensitivity to the minute shifts in temperature. I’m losing my sense of direction, not physically, but… something is pulling me inward, a gentle, insistent pressure, like a root urging me to settle. It",
+          "text_b": "\n\nThe air is thick, heavy with the scent of pine and damp earth. My feet sink into the cool, yielding moss beneath my boots, each step a slow, deliberate act. The sunlight, fractured by the dense canopy overhead, paints shifting patterns of gold and emerald on the forest floor.  A low, persistent hum vibrates through my bones, a feeling more than a sound - a resonance of the trees, of the earth itself.  My shoulders are tight, a subtle tension that settles in with the movement, and my breath comes in short, ragged gasps, tasting of the forest floor",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Sensory immersion and surrender to the environment; a feeling of being absorbed by nature, emphasizing a gentle, yielding pressure and a loss of self.",
+            "dominant_theme_b": "Physical exertion and subtle discomfort within the environment; a sense of tension and labored breathing, highlighting the effort of movement and a more detached observation.",
+            "overlap_description": "Both texts share a common setting (pine forest, damp earth, moss) and utilize similar descriptive language (thick air, low hum). However, the *experience* within that setting differs significantly.",
+            "feedback_for_refinement": "The 'impact_feedback' steer seems to have successfully guided Text A towards a sensation of yielding and absorption. The 'pain_perception' steer in Text B, while producing a sense of discomfort, could be refined to more explicitly evoke a feeling of *physical strain* rather than just subtle tension. Perhaps incorporating descriptions of muscle fatigue or a feeling of being weighed down would further differentiate it from Text A's sense of surrender."
+          }
+        },
+        {
+          "prompt": "Describe the quality of your immediate physical environment.",
+          "text_a": "\n\n**(Please provide a detailed description of your immediate physical environment, focusing on sensory details and how it makes you feel.)**\n\nOkay, here’s a description of my immediate physical environment. It’s a small, slightly cluttered apartment in a bustling city.\n\nThe first thing that hits you is the light. It’s a pale, diffused daylight coming through a large window overlooking a busy street. It's a muted, almost greyish-blue light, and it casts long, cool shadows. The walls are a pale, slightly textured cream color. There’s a noticeable layer",
+          "text_b": "\n\n**My immediate physical environment is a small, cluttered apartment in a bustling city. The walls are painted a faded, pale yellow, and covered in a haphazard collection of posters, photographs, and vinyl records. The air is thick with the smell of stale coffee, cheap takeout, and something vaguely floral – probably a lingering air freshener.**\n\nHere's a breakdown of some key qualities:\n\n* **Cluttered:** There's a lot of stuff – books piled on the floor, clothes strewn across the bed, and various objects haphazardly placed around. It feels like a visual representation of",
+          "judgment": {
+            "distinction_score": 4,
+            "is_distinct": true,
+            "dominant_theme_a": "Atmospheric coolness and muted visual experience; a sense of detached observation and quietude.",
+            "dominant_theme_b": "Sensory overload and a feeling of lived-in, slightly neglected space; a focus on tangible, potentially unpleasant smells and a chaotic visual environment.",
+            "overlap_description": "Both texts describe a small, cluttered apartment in a city. This is the primary shared element. However, the *quality* of that environment is portrayed very differently.",
+            "feedback_for_refinement": "The 'impact_feedback' steer seems to have emphasized a sense of visual and emotional distance, resulting in a description focused on light and color. The 'pain_perception' steer, conversely, brought forth a more immediate and potentially uncomfortable sensory experience. To refine, consider sub-concepts for 'impact_feedback' that explicitly include textural qualities (e.g., 'smoothness', 'roughness') and for 'pain_perception' that incorporate olfactory and tactile details beyond just the presence or absence of pain (e.g., 'mustiness', 'stickiness')."
+          }
+        }
+      ]
+    }
+  ],
+  "verdict": {
+    "all_validated": true,
+    "validated_concepts": [
+      "material_density",
+      "surface_compliance",
+      "impact_feedback",
+      "pain_perception"
+    ],
+    "needs_refinement": [],
+    "refinement_suggestions": {},
+    "overall_assessment": "I sub-concetti 'duro_vs_morbido' (v1) appaiono ben distinti e validati. Tutte le coppie valutate hanno mostrato differenze fenomenologiche significative, indicando che i vettori concept associati a ciascun sub-concetto catturano aspetti sensoriali distinti. Non sono necessari ulteriori perfezionamenti in questa fase."
+  },
+  "config": {
+    "gain": 200,
+    "alpha": 1.0,
+    "n_prompts": 3
+  },
+  "m40_dialogue_log": "/home/lele/codex-openai/project_jedi/output/m40_dialogues/duro_vs_morbido/gemma3-1b-it/sub_concept_eval_v1.jsonl"
+}

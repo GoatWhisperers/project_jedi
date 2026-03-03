@@ -1,0 +1,37 @@
+{
+  "model": "Gemma3-1B-IT",
+  "layer_type": "best_snr",
+  "concepts": [
+    "dolce_vs_amaro",
+    "sweetness_intensity",
+    "creaminess_texture"
+  ],
+  "layers_used": {
+    "dolce_vs_amaro": 18,
+    "sweetness_intensity": 21,
+    "creaminess_texture": 23
+  },
+  "layer_sources": {
+    "dolce_vs_amaro": "summary(fallback)",
+    "sweetness_intensity": "eval",
+    "creaminess_texture": "eval"
+  },
+  "matrix": [
+    [
+      1.0,
+      0.2200055131912885,
+      -0.04721576236794559
+    ],
+    [
+      0.2200055131912885,
+      0.9999999999999999,
+      0.33875855772025987
+    ],
+    [
+      -0.04721576236794559,
+      0.33875855772025987,
+      1.0
+    ]
+  ],
+  "timestamp": "2026-03-02T15:55:05.197346"
+}

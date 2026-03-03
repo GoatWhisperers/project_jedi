@@ -1,0 +1,78 @@
+{
+  "concept": "rumore_vs_silenzio",
+  "model": "Gemma2-Uncensored",
+  "version": 1,
+  "timestamp": "2026-03-03T12:23:40.514913",
+  "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260301_123846_rumore_vs_silenzio_Gemma2-Uncensored.jsonl",
+  "analysis": "The 'rumore_vs_silenzio' broad concept conflates several distinct semantic dimensions related to auditory perception. It doesn't solely represent the presence or absence of sound, but also its intensity, timbre, rhythm, and the ability to locate its source. Decomposing this space into sub-concepts like 'intensity_vs_presence', 'metallic_vs_organic', 'rhythm_vs_static', and 'location_certainty' allows for a more nuanced understanding of the underlying semantic relationships and enables more targeted and effective steered generation.",
+  "sub_concepts": [
+    {
+      "slug": "intensity_vs_presence",
+      "pos_label": "Loudness/Force",
+      "neg_label": "Absence/Subtlety",
+      "description": "This sub-concept captures the perceived volume, force, or impact of the sound.  Positive examples involve sounds that are physically impactful or overwhelming, while negative examples describe sounds that are faint or non-existent.",
+      "why_distinct": "Distinguishes between the sheer loudness or force of a sound versus its mere existence. A quiet sound can still be present, but it doesn't convey the same intensity.",
+      "pos_examples": [
+        "Custos nocturnus: susurrus pertinax a valva metallica, per undas, sine requie; caput implebat. cervix riguit",
+        "un boom soudain du rideau métallique couvrait les paroles",
+        "Der Mechaniker nahm wiederholte harte Schläge vom Kompressor wahr"
+      ],
+      "neg_examples": [
+        "Le cheminot remarqua que la grotte avalait tout écho : il ne restait que le souffle",
+        "Die Mutter: jedes Geräusch war klein, weil der Gang wirkte leer",
+        "L’ingénieur du son : il ne restait que le souffle parce que la pièce restait immobile"
+      ]
+    },
+    {
+      "slug": "metallic_vs_organic",
+      "pos_label": "Metallic/Mechanical",
+      "neg_label": "Natural/Organic",
+      "description": "This sub-concept differentiates between sounds produced by mechanical or metallic sources versus those originating from natural or organic processes. Positive examples involve the clatter of metal, while negative examples relate to natural sounds or the absence thereof.",
+      "why_distinct": "The timbre of the sound is a crucial factor.  A 'rumble' could be mechanical or geological; this sub-concept helps to distinguish between the two.",
+      "pos_examples": [
+        "Custos nocturnus: susurrus pertinax a valva metallica",
+        "Mechanicus sensit stridor metallicus a ferriviis",
+        "La madre: uno stridio metallico dalla saracinesca"
+      ],
+      "neg_examples": [
+        "Le cheminot remarqua que la grotte avalait tout écho",
+        "Die Mutter notó que la nieve amortiguaba todo",
+        "Venator: etiam motus discreti erant quia nix omnia obtundebat"
+      ]
+    },
+    {
+      "slug": "rhythm_vs_static",
+      "pos_label": "Rhythmic/Periodic",
+      "neg_label": "Static/Continuous",
+      "description": "This sub-concept focuses on the temporal structure of the sound. Positive examples involve sounds with a discernible rhythm or pattern, while negative examples describe continuous or static sounds.",
+      "why_distinct": "Distinguishes between sounds that have a predictable beat or pattern versus those that are constant and unchanging.",
+      "pos_examples": [
+        "Der Mechaniker nahm ein ständiges Brummen vom Rollladen wahr: es zwang zum Lauterreden, in Wellen, ohne Pause",
+        "El ferroviario: un roce insistente de la persiana, como un martillo lejano",
+        "Der Mechaniker nahm wiederholte harte Schläge vom Kompressor wahr"
+      ],
+      "neg_examples": [
+        "un estruendo repentino de la persiana llenaba la cabeza",
+        "Mechanicus sensit stridor metallicus a ferriviis",
+        "Le cheminot remarqua que la grotte avalait tout écho"
+      ]
+    },
+    {
+      "slug": "location_certainty",
+      "pos_label": "Localized/Specific",
+      "neg_label": "Diffuse/Uncertain",
+      "description": "This sub-concept addresses the ability to pinpoint the origin of the sound. Positive examples describe a clear sense of where the sound is coming from, while negative examples indicate uncertainty or a diffuse sound field.",
+      "why_distinct": "The ability to locate a sound is crucial for understanding the experience. A sound can be loud, but if its origin is unknown, the experience is different.",
+      "pos_examples": [
+        "Custos nocturnus sensit murmur continuum a valva metallica: vocem altiorem cogebat, quasi malleus procul; oculi fontem quaerebant",
+        "El ferroviario: un roce insistente de la persiana, como un martillo lejano",
+        "Der Mechaniker nahm wiederholte harte Schläge vom Kompressor wahr"
+      ],
+      "neg_examples": [
+        "un estruendo repentino de la persiana llenaba la cabeza",
+        "un boom soudain du rideau métallique couvrait les paroles",
+        "Le cheminot remarqua que la grotte avalait tout écho"
+      ]
+    }
+  ]
+}

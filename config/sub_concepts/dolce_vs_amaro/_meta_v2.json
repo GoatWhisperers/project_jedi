@@ -1,0 +1,108 @@
+{
+  "concept": "dolce_vs_amaro",
+  "model": "Gemma2-Uncensored",
+  "version": 2,
+  "timestamp": "2026-03-03T12:49:41.871808",
+  "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260301_131402_dolce_vs_amaro_Gemma2-Uncensored.jsonl",
+  "analysis": "Il vettore 'dolce_vs_amaro' confonde diverse dimensioni semantiche legate all'esperienza gustativa. Non si limita a distinguere tra dolcezza e amarezza, ma include aspetti come la consistenza (creamy vs. dry), la temperatura (warm vs. cold), l'equilibrio dei sapori (balanced vs. sharp) e l'effetto emotivo (comfort vs. irritation). Decomporre questo spazio in sub-concetti specifici permette di catturare la complessità dell'esperienza gustativa e di generare rappresentazioni semantiche più accurate e sfumate.",
+  "sub_concepts": [
+    {
+      "slug": "creaminess_vs_dryness",
+      "pos_label": "Creamy",
+      "neg_label": "Dry",
+      "description": "Questo sub-concetto cattura la percezione di una consistenza ricca, liscia e avvolgente (creamy) rispetto a una sensazione secca e astringente (dry).  Si riferisce alla sensazione fisica in bocca.",
+      "why_distinct": "La consistenza è un attributo sensoriale primario distinto dal sapore stesso.  Un sapore dolce può essere secco, e un sapore amaro può essere cremoso.",
+      "pos_examples": [
+        "creme vanillée",
+        "chocolatum lacteum",
+        "crema de vainilla",
+        "cremor vanillatus",
+        "miele",
+        "biscuit tiède",
+        "crema de vainilla"
+      ],
+      "neg_examples": [
+        "infusion",
+        "chocolatum nigrum intensum",
+        "chocolat noir intense",
+        "caffeam nimis extractam",
+        "sapor aridus mansit"
+      ]
+    },
+    {
+      "slug": "warmth_vs_coldness",
+      "pos_label": "Warm",
+      "neg_label": "Cold",
+      "description": "Questo sub-concetto si riferisce alla sensazione termica percepita in bocca.  I sapori positivi spesso evocano una sensazione di calore e conforto, mentre quelli negativi possono essere percepiti come freddi o astringenti.",
+      "why_distinct": "La temperatura influenza significativamente la percezione del gusto.  Anche se un sapore può essere dolce o amaro, la sua temperatura può alterare l'esperienza complessiva.",
+      "pos_examples": [
+        "se détendirent",
+        "les joues se détendirent",
+        "respirazione se fece più lenta",
+        "s'éclaira",
+        "rountitas venit",
+        "s'aprì",
+        "se leno",
+        "se détendirent",
+        "se riempì",
+        "la Stirn wurde weich"
+      ],
+      "neg_examples": [
+        "blinking hard",
+        "räusperte sich",
+        "clausit",
+        "se ferma",
+        "apex linguae intendit",
+        "spiritus mutatus est"
+      ]
+    },
+    {
+      "slug": "balance_vs_sharpness",
+      "pos_label": "Balanced",
+      "neg_label": "Sharp",
+      "description": "Rappresenta l'armonia dei sapori. Un sapore equilibrato è piacevole e armonioso, mentre uno 'sharp' è intenso, pungente e può risultare sgradevole.",
+      "why_distinct": "L'equilibrio è cruciale per la piacevolezza. Anche un sapore dolce può essere sgradevole se troppo intenso, e un sapore amaro può essere più tollerabile se ben bilanciato.",
+      "pos_examples": [
+        "aequilibrio pleno",
+        "senza en demander plus",
+        "senza bisogno di altro",
+        "con un finale morbido",
+        "senza aristas",
+        "full Balance",
+        "rotunditas",
+        "senza bisogno di altro"
+      ],
+      "neg_examples": [
+        "note medicinale",
+        "con un lungo e aspro finale",
+        "con un'estremità della lingua tesa",
+        "con una nota medicinale",
+        "con un lungo e aspro finale"
+      ]
+    },
+    {
+      "slug": "comfort_vs_irritation",
+      "pos_label": "Comforting",
+      "neg_label": "Irritating",
+      "description": "Questo sub-concetto cattura l'effetto emotivo del sapore. I sapori positivi offrono conforto e piacere, mentre quelli negativi possono causare irritazione o disagio.",
+      "why_distinct": "Il gusto è strettamente legato alle emozioni. Un sapore può essere oggettivamente dolce o amaro, ma il suo impatto emotivo può variare notevolmente.",
+      "pos_examples": [
+        "se détendirent",
+        "sensation amable",
+        "subrisus apparuit leviter",
+        "sensation gentille",
+        "se leno",
+        "se riempì",
+        "sensazione piacevole",
+        "se leno"
+      ],
+      "neg_examples": [
+        "reprimand",
+        "senza Ausgleich",
+        "blinking hard",
+        "donec transiret",
+        "senza più bisogno"
+      ]
+    }
+  ]
+}
