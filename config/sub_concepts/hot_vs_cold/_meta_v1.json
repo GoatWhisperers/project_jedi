@@ -2,76 +2,76 @@
   "concept": "hot_vs_cold",
   "model": "Gemma2-Uncensored",
   "version": 1,
-  "timestamp": "2026-03-03T14:08:28.618642",
+  "timestamp": "2026-03-03T18:22:11.939712",
   "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260228_164743_hot_vs_cold_Gemma2-Uncensored.jsonl",
-  "analysis": "Il concetto broad 'hot_vs_cold' cattura una varietà di esperienze sensoriali legate alla temperatura, ma in realtà confonde diversi aspetti distinti. La decomposizione è necessaria per isolare le sfumature specifiche di queste esperienze, come l'intensità del calore/freddo, la natura del contatto (bruciatura vs. formicolio), e la risposta fisiologica (dolore, arrossamento, brividi).  Un vettore broad 'hot_vs_cold' potrebbe erroneamente equiparare un calore confortante con un calore bruciante, o un freddo rinfrescante con un freddo doloroso.",
+  "analysis": "Il vettore 'hot_vs_cold' confonde diverse dimensioni semantiche correlate alla temperatura, tra cui l'intensità, la reazione fisica, il tipo di sensazione (dolore vs intorpidimento) e il materiale che trasmette la temperatura.  La decomposizione in questi sub-concetti permette al modello di comprendere meglio le sfumature del concetto 'hot_vs_cold' e di generare rappresentazioni semantiche più accurate e contestualmente appropriate.  Inoltre, l'analisi dei 'negative examples' evidenzia come la semplice distinzione 'caldo/freddo' non sia sufficiente a catturare la complessità dell'esperienza sensoriale.",
   "sub_concepts": [
     {
-      "slug": "thermal_intensity",
+      "slug": "temperature_intensity",
       "pos_label": "burning",
-      "neg_label": "cool",
-      "description": "Questo sub-concetto riguarda l'intensità percepita del calore o del freddo. Si concentra sulla sensazione di bruciore o di freddo intenso, che può causare disagio o dolore.",
-      "why_distinct": "Separa l'esperienza di una temperatura elevata o bassa dalla sua intensità. Un oggetto può essere 'caldo' ma non 'bruciante', e viceversa.",
+      "neg_label": "freezing",
+      "description": "Questo sub-concetto cattura il grado di intensità del calore o del freddo. Si concentra sulla percezione soggettiva della temperatura, che può variare da una leggera sensazione a un dolore intenso.",
+      "why_distinct": "La semplice distinzione 'caldo' vs 'freddo' non cattura la differenza tra una superficie tiepida e una fornace o tra un ghiaccio leggermente freddo e un congelatore.",
       "pos_examples": [
-        "legte die Handfläche auf einen heißen Griff und zog die Hand sofort zurück; Hitze schoss schnell hoch; wie ein hartnäckiges Stechen",
-        "Le technicien posa la peau sur un métal brûlant ; et la peau brûla ; la peau rougit",
-        "Il cuoco premette l’avambraccio su una superficie bollente; e il contatto pizzicò"
+        "sfiorò con le dita su una maniglia calda e l’istinto lo fece scattare indietro; la pelle arrossì; con dolore netto e localizzato",
+        "The cook brushed with the fingers on a searing surface and the skin burned",
+        "El técnico rozó con los dedos sobre metal ardiente y el contacto picó"
       ],
       "neg_examples": [
-        "Der Koch feine Schauer liefen, als strich über den Unterarm auf einen gefrorenen Griff",
-        "La ciclista apoyó la muñeca sobre metal helado; y sintió una mordida seca",
-        "Il fabbro appoggiò le dita su metallo gelido e il corpo ebbe un sussulto"
+        "Il bambino poggiò il polso su un tubo freddissimo e ritrasse la mano per il dolore",
+        "El herrero presionó la palma sobre cerámica fría y la piel se contrajo",
+        "La nadadora apoyó la muñeca sobre un asa congelada; y sintió una mordida seca"
       ]
     },
     {
-      "slug": "contact_type",
-      "pos_label": "burning_contact",
-      "neg_label": "tingling_contact",
-      "description": "Questo sub-concetto distingue tra il tipo di contatto con la superficie calda o fredda. Si concentra sulla sensazione di bruciore intenso rispetto a una sensazione più lieve come formicolio o pizzicore.",
-      "why_distinct": "Distinguere tra un contatto doloroso e uno più leggero è cruciale per comprendere l'esperienza sensoriale. Un contatto 'caldo' può essere percepito in modi diversi a seconda della sensibilità.",
+      "slug": "sensory_reaction",
+      "pos_label": "reflexive_withdrawal",
+      "neg_label": "sensory_dulling",
+      "description": "Si riferisce alla reazione fisica e comportamentale immediata al contatto con una superficie calda o fredda. Il calore può innescare un riflesso di allontanamento, mentre il freddo può causare intorpidimento.",
+      "why_distinct": "Non tutte le superfici calde o fredde provocano la stessa risposta. Alcune possono essere ignorate, mentre altre causano reazioni immediate.",
       "pos_examples": [
-        "legte die Handfläche auf einen heißen Griff und zog die Hand sofort zurück; Hitze schoss schnell hoch; wie ein hartnäckiges Stechen",
-        "Le technicien posa la peau sur un métal brûlant ; et la peau brûla",
-        "Il cuoco premette l’avambraccio su una superficie bollente; e il contatto pizzicò"
+        "l’istinto lo fece scattare indietro",
+        "reflex snapped it away impossible to ignore",
+        "el cuerpo dio un respingo"
       ],
       "neg_examples": [
-        "La kinésithérapeute pressa la paume sur une céramique froide ; et une morsure sèche frappa",
-        "La ciclista apoyó la muñeca sobre metal helado; y sintió una mordida seca",
-        "sfiorò l’avambraccio su ceramica fredda e ritrasse la mano per il dolore"
+        "la sensibilità calò",
+        "los dedos se entumecieron",
+        "les doigts s’engourdirent"
       ]
     },
     {
-      "slug": "physiological_response",
-      "pos_label": "reddening",
-      "neg_label": "goosebumps",
-      "description": "Questo sub-concetto si concentra sulla risposta fisiologica al contatto con temperature estreme. Include reazioni come arrossamento, sudorazione, brividi o contrazione della pelle.",
-      "why_distinct": "Le risposte fisiologiche sono indicatori chiave della gravità e del tipo di esperienza sensoriale.  Arrossamento e sudorazione indicano calore, mentre brividi e contrazione indicano freddo.",
+      "slug": "pain_vs_numbness",
+      "pos_label": "painful_sensation",
+      "neg_label": "numbness",
+      "description": "Questo sub-concetto distingue tra la sensazione di dolore associata al calore e la sensazione di intorpidimento associata al freddo. Il dolore è spesso descritto come bruciante o pungente, mentre l'intorpidimento è una perdita di sensibilità.",
+      "why_distinct": "Il dolore e l'intorpidimento sono esperienze sensoriali molto diverse, e la loro presenza o assenza è un indicatore importante della temperatura.",
       "pos_examples": [
-        "Le technicien posa la peau sur un métal brûlant ; et la peau brûla ; la peau rougit",
-        "Il cuoco premette l’avambraccio su una superficie bollente; e il contatto pizzicò; la pelle arrossì",
-        "Le technicien pressa l’avant-bras sur une poignée chaude ; et le contact piqua ; la sueur perla"
+        "dolore netto e localizzato",
+        "el contacto picó",
+        "la peau brûla"
       ],
       "neg_examples": [
-        "La kinésithérapeute pressa la paume sur une céramique froide ; et une morsure sèche frappa ; de fins frissons apparurent",
-        "La plongeuse posa les doigts sur un métal glacé et le corps sursauta ; le sang sembla se retirer, avec picotements",
-        "sfiorò l’avambraccio su ceramica fredda e ritrasse la mano per il dolore; comparvero brividi sottili"
+        "dolore che si trasformava in vuoto",
+        "dolore che se ne va",
+        "les doigts s’engourdirent"
       ]
     },
     {
-      "slug": "sensory_persistence",
-      "pos_label": "lingering_burn",
-      "neg_label": "fleeting_chill",
-      "description": "Questo sub-concetto si riferisce alla durata della sensazione termica. Si concentra sulla persistenza del calore o del freddo anche dopo aver rimosso la fonte.",
-      "why_distinct": "La persistenza della sensazione termica fornisce informazioni aggiuntive sull'intensità e il tipo di esperienza. Una sensazione persistente suggerisce un'esperienza più intensa.",
+      "slug": "material_type",
+      "pos_label": "metal",
+      "neg_label": "ceramic",
+      "description": "Il tipo di materiale che trasmette il calore o il freddo influenza la percezione. Metalli tendono a condurre il calore/freddo più velocemente della ceramica, intensificando la sensazione.",
+      "why_distinct": "La stessa temperatura percepita su un metallo e su una ceramica può essere interpretata in modo diverso a causa delle loro proprietà termiche.",
       "pos_examples": [
-        "legte die Handfläche auf überhitzte Keramik und zog die Hand sofort zurück; die Stelle pochte; mit einem Nachbrennen selbst nach dem Loslassen",
-        "apoyó la piel sobre cerámica recalentada y el contacto picó; el calor subió rápido; dejando un posardor hasta que el aliento se detuvo un momento",
-        "rozó con los dedos sobre una superficie que quema y el reflejo la apartó; el calor subió rápido; con un ardor creciente hasta que dejó de palpitar"
+        "metal ardiente",
+        "eiskaltes Metall",
+        "metallo glacé"
       ],
       "neg_examples": [
-        "La ciclista apoyó la muñeca sobre metal helado; y sintió una mordida seca; la piel se puso dura; hasta que volvió el hormigueo",
-        "sfiorò l’avambraccio su metallo gelido e il corpo ebbe un sussulto; la pelle si fece dura",
-        "La ciclista tocó con los labios sobre una superficie fría y la piel se contrajo"
+        "cerámica fría",
+        "une céramique froide",
+        "eiskaltes Metall"
       ]
     }
   ]

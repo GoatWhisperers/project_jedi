@@ -1,0 +1,28 @@
+{
+  "concept": "sensory_reaction",
+  "category": "sensoriale/hot_vs_cold/sub",
+  "model_path": "/mnt/raid0/gemma-2-uncensored",
+  "model_name": "Gemma2-Uncensored",
+  "n_pairs": 19,
+  "n_held_out": 5,
+  "token_position": "mean",
+  "deep_range": [
+    0.7,
+    0.9
+  ],
+  "layers": [
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38
+  ],
+  "vector_method": "mean_diff",
+  "date": "2026-03-03 18:30:28",
+  "run_id": "sensory_reaction_gemma2-uncensored_20260303_182924"
+}

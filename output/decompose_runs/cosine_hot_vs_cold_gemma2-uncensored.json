@@ -1,0 +1,63 @@
+{
+  "model": "Gemma2-Uncensored",
+  "layer_type": "best_snr",
+  "concepts": [
+    "hot_vs_cold",
+    "temperature_intensity",
+    "sensory_reaction",
+    "pain_vs_numbness",
+    "material_type"
+  ],
+  "layers_used": {
+    "hot_vs_cold": 37,
+    "temperature_intensity": 38,
+    "sensory_reaction": 38,
+    "pain_vs_numbness": 29,
+    "material_type": 32
+  },
+  "layer_sources": {
+    "hot_vs_cold": "summary(fallback)",
+    "temperature_intensity": "eval",
+    "sensory_reaction": "eval",
+    "pain_vs_numbness": "eval",
+    "material_type": "eval"
+  },
+  "matrix": [
+    [
+      1.0,
+      0.4219643381592826,
+      0.10011903633903527,
+      0.1479666379741071,
+      -0.3088830150945226
+    ],
+    [
+      0.4219643381592826,
+      1.0,
+      0.31352542073535655,
+      0.2780694253830813,
+      -0.21511720361425296
+    ],
+    [
+      0.10011903633903527,
+      0.31352542073535655,
+      1.0000000000000002,
+      0.32233489349136824,
+      0.03021289603451943
+    ],
+    [
+      0.1479666379741071,
+      0.2780694253830813,
+      0.32233489349136824,
+      1.0000000000000002,
+      0.02435145741199993
+    ],
+    [
+      -0.3088830150945226,
+      -0.21511720361425296,
+      0.03021289603451943,
+      0.02435145741199993,
+      0.9999999999999998
+    ]
+  ],
+  "timestamp": "2026-03-03T18:33:08.113136"
+}

@@ -1,0 +1,25 @@
+{"type": "run_start", "concept": "hot_vs_cold", "model": "Gemma2-Uncensored", "max_depth": 0, "max_iter": 2, "dry_run": false, "timestamp": "2026-03-03T18:20:48.856982"}
+{"type": "decompose_start", "concept": "hot_vs_cold", "depth": 0, "timestamp": "2026-03-03T18:20:48.857340"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v1)", "timestamp": "2026-03-03T18:20:48.857464"}
+{"type": "info", "msg": "  Proposti: ['temperature_intensity', 'sensory_reaction', 'pain_vs_numbness', 'material_type']", "timestamp": "2026-03-03T18:22:11.940465"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v1)", "timestamp": "2026-03-03T18:22:11.940602"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-03T18:27:20.069459"}
+{"type": "info", "msg": "  [gpu] Preparo GPU per probe diretto...", "timestamp": "2026-03-03T18:27:20.069664"}
+{"type": "info", "msg": "  [gpu] Modello attivo: Gemma2-Uncensored — VRAM: 17.4 GB", "timestamp": "2026-03-03T18:27:20.423801"}
+{"type": "info", "msg": "  [gpu] Attendo GPU idle...", "timestamp": "2026-03-03T18:27:20.424046"}
+{"type": "info", "msg": "  [gpu] Unload modello...", "timestamp": "2026-03-03T18:27:20.788868"}
+{"type": "info", "msg": "  [gpu] VRAM liberata — usata: 9.3 GB / 32.0 GB", "timestamp": "2026-03-03T18:27:21.577305"}
+{"type": "info", "msg": "  Probe: temperature_intensity / Gemma2-Uncensored", "timestamp": "2026-03-03T18:27:21.578510"}
+{"type": "info", "msg": "  Probe OK: temperature_intensity", "timestamp": "2026-03-03T18:29:16.371241"}
+{"type": "info", "msg": "  Probe: sensory_reaction / Gemma2-Uncensored", "timestamp": "2026-03-03T18:29:16.372526"}
+{"type": "info", "msg": "  Probe OK: sensory_reaction", "timestamp": "2026-03-03T18:30:31.326596"}
+{"type": "info", "msg": "  Probe: pain_vs_numbness / Gemma2-Uncensored", "timestamp": "2026-03-03T18:30:31.327943"}
+{"type": "info", "msg": "  Probe OK: pain_vs_numbness", "timestamp": "2026-03-03T18:31:37.876656"}
+{"type": "info", "msg": "  Probe: material_type / Gemma2-Uncensored", "timestamp": "2026-03-03T18:31:37.878039"}
+{"type": "info", "msg": "  Probe OK: material_type", "timestamp": "2026-03-03T18:32:45.274949"}
+{"type": "info", "msg": "  [gpu] Ripristino Gemma2-Uncensored dopo probe...", "timestamp": "2026-03-03T18:32:45.275305"}
+{"type": "info", "msg": "  [gpu] Caricamento Gemma2-Uncensored...", "timestamp": "2026-03-03T18:32:45.590677"}
+{"type": "info", "msg": "  [gpu] Gemma2-Uncensored pronto — VRAM: 17.4 GB", "timestamp": "2026-03-03T18:33:08.100150"}
+{"type": "step", "step": 4, "name": "Analisi geometrica separabilità", "timestamp": "2026-03-03T18:33:08.100422"}
+{"type": "result", "step": 4, "concepts": ["hot_vs_cold", "temperature_intensity", "sensory_reaction", "pain_vs_numbness", "material_type"], "matrix": [[1.0, 0.4219643381592826, 0.10011903633903527, 0.1479666379741071, -0.3088830150945226], [0.4219643381592826, 1.0, 0.31352542073535655, 0.2780694253830813, -0.21511720361425296], [0.10011903633903527, 0.31352542073535655, 1.0000000000000002, 0.32233489349136824, 0.03021289603451943], [0.1479666379741071, 0.2780694253830813, 0.32233489349136824, 1.0000000000000002, 0.02435145741199993], [-0.3088830150945226, -0.21511720361425296, 0.03021289603451943, 0.02435145741199993, 0.9999999999999998]], "layers_used": {"hot_vs_cold": {"layer": 37, "source": "summary(fallback)"}, "temperature_intensity": {"layer": 38, "source": "eval"}, "sensory_reaction": {"layer": 38, "source": "eval"}, "pain_vs_numbness": {"layer": 29, "source": "eval"}, "material_type": {"layer": 32, "source": "eval"}}, "stats": {"min": -0.3089, "max": 0.422, "mean": 0.1115}, "timestamp": "2026-03-03T18:33:08.112703"}
+{"type": "step", "step": 5, "name": "Steering test + giudizio M40", "timestamp": "2026-03-03T18:33:08.113754"}

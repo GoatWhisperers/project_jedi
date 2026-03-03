@@ -2,7 +2,7 @@
 
 > Questo file va letto SUBITO all'inizio di ogni sessione Claude.
 > Viene aggiornato automaticamente da cantagallo e dai batch script.
-> Ultima modifica: 2026-03-03 18:25 — test iniziale
+> Ultima modifica: 2026-03-03 18:39 — fine sessione — batch ripresa3 in background PID 57948
 
 ---
 
@@ -25,7 +25,7 @@ curl -s http://localhost:11435/health
 | Livello | Gemma3-1B-IT | Gemma2-Uncensored |
 |---------|-------------|------------------|
 | Gd0 (broad) | 120 layer files | 180 layer files |
-| Gd1 (sub) | 600 layer files | 0 layer files |
+| Gd1 (sub) | 600 layer files | 80 layer files |
 
 Gd0: 9/9 concept × 6 layer × 2 modelli = attesi 108 file per modello
 Gd1: variabile (dipende dai sub-concept estratti)
@@ -34,9 +34,7 @@ Gd1: variabile (dipende dai sub-concept estratti)
 
 ## Batch
 
-IN CORSO (✓0
-0 ✗0
-0) — gemma2_ripresa3.log
+IN CORSO (✓0 ✗0) — gemma2_ripresa3.log
 
 ```bash
 # Log batch più recente:
