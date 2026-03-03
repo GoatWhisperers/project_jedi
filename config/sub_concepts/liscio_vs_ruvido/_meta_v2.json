@@ -2,113 +2,76 @@
   "concept": "liscio_vs_ruvido",
   "model": "Gemma2-Uncensored",
   "version": 2,
-  "timestamp": "2026-03-02T18:13:10.945502",
+  "timestamp": "2026-03-03T15:09:55.607740",
   "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260228_180010_liscio_vs_ruvido_Gemma2-Uncensored.jsonl",
-  "analysis": "Il vettore broad 'liscio_vs_ruvido' cattura una gamma di sensazioni relative alla superficie e al contatto. La confusione deriva dal fatto che 'liscio' è un concetto qualitativo con molte sfumature, mentre 'ruvido' è un concetto più quantitativo che si riferisce alla quantità di asperità. La decomposizione in sub-concetti aiuta a separare queste sfumature e a fornire una rappresentazione semantica più precisa.",
+  "analysis": "Il vettore 'lisci_vs_ruvido' confonde diversi aspetti sensoriali legati alla superficie. Non si tratta solo di una sensazione tattile generale, ma di una combinazione di fattori come la finitura della superficie, il livello di attrito, la qualità del movimento e la distribuzione della pressione. Decomporre questo spazio in sub-concetti specifici permette di isolare e manipolare questi aspetti individualmente, migliorando la precisione e la controllabilità delle rappresentazioni semantiche nei transformer. La sovrapposizione tra questi aspetti rende difficile l'interpretazione e la generazione di output coerenti; ad esempio, una superficie può essere ruvida ma avere un attrito basso, creando una sensazione complessa che non può essere catturata da un singolo vettore.",
   "sub_concepts": [
     {
-      "slug": "smooth_flow",
-      "pos_label": "Liscio",
-      "neg_label": "Resistenza",
-      "description": "Questo sub-concetto si riferisce alla sensazione di movimento fluido e senza attrito, caratteristica delle superfici lisce e delle interazioni che richiedono poca resistenza. Implica una sensazione di libertà e senza ostacoli.",
-      "why_distinct": "Si distingue da altri concetti perché è intrinsecamente legato alla facilità del movimento e alla mancanza di ostacoli, un elemento chiave della sensazione 'liscio'.",
+      "slug": "surface_finish",
+      "pos_label": "polished",
+      "neg_label": "unrefined",
+      "description": "Riguarda il grado di lavorazione della superficie, che determina la presenza o l'assenza di segni visibili o tattili. Una superficie 'liscia' implica una lavorazione accurata, mentre una 'ruvida' indica una mancanza di essa.",
+      "why_distinct": "Si concentra specificamente sulla qualità della superficie, distinguendosi da concetti più ampi come la sensazione di pressione o il movimento.",
       "pos_examples": [
-        "frase 1",
-        "frase 2",
-        "frase 5",
-        "frase 6",
-        "frase 8"
+        "La restauradora ningún borde raspaba: los dedos se deslizaron sobre cerámica esmaltada como sobre seda.",
+        "Il chirurgo le dita scivolarono sulla ceramica smaltata, senza alcuna presa.",
+        "The violinist the fingertip slid over a polished surface."
       ],
       "neg_examples": [
-        "frase 1",
-        "frase 2",
-        "frase 3",
-        "frase 4",
-        "frase 5"
+        "cutis haerebat in ligno crudo; cum frictione arida; iuga cutem signabant et motus in iactus fractus est.",
+        "Il ceramista le dita inciampavano su metallo non rifinito, con resistenza irregolare.",
+        "The tailor the palm rasped on unglazed ceramic."
       ]
     },
     {
-      "slug": "seamless_contact",
-      "pos_label": "Liscio",
-      "neg_label": "Interruzione",
-      "description": "Questo sub-concetto si concentra sulla sensazione di un contatto uniforme e continuo tra una superficie e un oggetto, senza interruzioni, attriti o punti di pressione.  Implica una distribuzione uniforme della pressione e una mancanza di 'presa'.",
-      "why_distinct": "Si differenzia perché si concentra specificamente sulla qualità del contatto fisico, un aspetto fondamentale della sensazione 'liscio'.",
+      "slug": "friction_level",
+      "pos_label": "low_friction",
+      "neg_label": "high_friction",
+      "description": "Si riferisce alla quantità di attrito percepito durante il contatto. Una superficie 'liscia' produce attrito minimo, mentre una 'ruvida' genera attrito significativo.",
+      "why_distinct": "Separa la sensazione di attrito dalla qualità estetica della superficie. Una superficie può essere visivamente ruvida ma avere un basso attrito, o viceversa.",
       "pos_examples": [
-        "frase 1",
-        "frase 3",
-        "frase 4",
-        "frase 7",
-        "frase 9"
+        "Puella digiti labi coeperunt super metallum levigatum; sine ulla prehensione.",
+        "la punta delle dita scorreva su legno carteggiato finissimo; come su seta.",
+        "The violinist the fingertip slid over a polished surface, with no noticeable friction."
       ],
       "neg_examples": [
-        "frase 1",
-        "frase 2",
-        "frase 3",
-        "frase 4",
-        "frase 5"
+        "cutis haerebat in metallo incomposito; cum frictione arida.",
+        "Le barman la paume grattait sur du papier abrasif, avec une résistance irrégulière.",
+        "Il ceramista le dita inciampavano su metallo non rifinito, con resistenza irregolare."
       ]
     },
     {
-      "slug": "uniform_pressure",
-      "pos_label": "Liscio",
-      "neg_label": "Discontinuità",
-      "description": "Questo sub-concetto riguarda la sensazione di una distribuzione uniforme della pressione su una superficie, senza punti di concentrazione o rilassamento.  Implica una sensazione di equilibrio e di assenza di stress.",
-      "why_distinct": "Si distingue per il suo focus sulla distribuzione della pressione, un aspetto cruciale della sensazione di 'liscio' che è spesso associata alla mancanza di irregolarità.",
+      "slug": "movement_quality",
+      "pos_label": "fluid_motion",
+      "neg_label": "jerky_motion",
+      "description": "Descrive la qualità del movimento quando si interagisce con la superficie. Un movimento 'fluido' è continuo e senza interruzioni, mentre un movimento 'a scatti' è discontinuo e irregolare.",
+      "why_distinct": "Si concentra sull'effetto della superficie sul movimento, separandolo dalla sensazione tattile diretta.",
       "pos_examples": [
-        "frase 3",
-        "frase 6",
-        "frase 7",
-        "frase 8",
-        "frase 10"
+        "la yema se deslizó sobre vidrio perfectamente limpio; como sobre seda; no había asperezas y el movimiento quedó fluido.",
+        "Il chirurgo le dita scivolarono sulla ceramica smaltata, senza alcuna presa.",
+        "The violinist the fingertip slid over a polished surface."
       ],
       "neg_examples": [
-        "frase 1",
-        "frase 2",
-        "frase 3",
-        "frase 4",
-        "frase 5"
+        "les doigts butaient sur une céramique non émaillée ; avec des micro-chocs continus.",
+        "La sarta i polpastrelli si impuntarono su una superficie granulosa, a piccoli strappi.",
+        "Il ceramista le dita inciampavano su metallo non rifinito, con resistenza irregolare."
       ]
     },
     {
-      "slug": "rough_resistance",
-      "pos_label": "Ruvo",
-      "neg_label": "Liscio",
-      "description": "Questo sub-concetto si riferisce alla sensazione di resistenza o attrito quando un oggetto viene fatto scorrere su una superficie ruvida. Implica una sensazione di ostacoli, irregolarità e necessità di applicare forza per superare l'attrito.",
-      "why_distinct": "È l'opposto diretto del 'smooth_flow' e si concentra sulla sensazione di resistenza e attrito, un elemento chiave della sensazione 'ruvida'.",
+      "slug": "pressure_distribution",
+      "pos_label": "even_pressure",
+      "neg_label": "localized_pressure",
+      "description": "Si riferisce a come la pressione viene distribuita durante il contatto. Una superficie 'liscia' permette una distribuzione uniforme della pressione, mentre una 'ruvida' concentra la pressione in punti specifici.",
+      "why_distinct": "Separa la distribuzione della pressione dalla sensazione di attrito o dalla qualità del movimento.",
       "pos_examples": [
-        "frase 1",
-        "frase 2",
-        "frase 3",
-        "frase 6",
-        "frase 7"
+        "pressio aequaliter diffundebatur nec manus umquam offendit.",
+        "la punta delle dita scorreva su legno carteggiato finissimo; come su seta; la pressione si distribuiva.",
+        "The violinist the fingertip slid over a polished surface, with no noticeable friction; pressure spread evenly."
       ],
       "neg_examples": [
-        "frase 1",
-        "frase 2",
-        "frase 3",
-        "frase 4",
-        "frase 5"
-      ]
-    },
-    {
-      "slug": "uneven_contact",
-      "pos_label": "Ruvo",
-      "neg_label": "Liscio",
-      "description": "Questo sub-concetto si riferisce alla sensazione di un contatto irregolare o discontinuità tra una superficie e un oggetto, con punti di pressione o attrito variabili. Implica una sensazione di instabilità e mancanza di uniformità.",
-      "why_distinct": "Si distingue per il suo focus sulla qualità del contatto fisico, un aspetto fondamentale della sensazione 'ruvida'.",
-      "pos_examples": [
-        "frase 2",
-        "frase 3",
-        "frase 6",
-        "frase 7",
-        "frase 10"
-      ],
-      "neg_examples": [
-        "frase 1",
-        "frase 2",
-        "frase 3",
-        "frase 4",
-        "frase 5"
+        "cutis haerebat in ligno crudo; cum frictione arida; iuga cutem signabant.",
+        "La sarta i polpastrelli si impuntarono su una superficie granulosa, a piccoli strappi.",
+        "Fabri lignarius manus scabre fricabatur in ligno crudo; cum resistentia inaequali."
       ]
     }
   ]

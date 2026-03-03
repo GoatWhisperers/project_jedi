@@ -2,8 +2,77 @@
   "concept": "calma_vs_allerta",
   "model": "Gemma2-Uncensored",
   "version": 2,
-  "timestamp": "2026-03-02T17:57:25.624856",
+  "timestamp": "2026-03-03T14:53:37.781071",
   "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260228_173558_calma_vs_allerta_Gemma2-Uncensored.jsonl",
-  "analysis": "```json\n{\n  \"concept\": \"calma_vs_allerta\",\n  \"category\": \"sensoriale\",\n  \"sub_concepts\": [\n    {\n      \"slug\": \"respirazione_ritmica\",\n      \"pos_label\": \"respiro lento e regolare\",\n      \"neg_label\": \"respiro affannoso e irregolare\",\n      \"description\": \"Questo sub-concetto cattura la dimensione d",
-  "sub_concepts": []
+  "analysis": "Il vettore 'calma_vs_allerta' confonde una varietà di aspetti semantici correlati a stati di calma e allerta.  Non è sufficiente rappresentare questi stati come un singolo continuum, poiché essi coinvolgono diverse dimensioni cognitive e fisiologiche. La decomposizione in sub-concetti come 'regolazione fisiologica', 'percezione del tempo', 'mental focus' e 'tensione muscolare' permette di catturare la complessità di questi stati in modo più preciso, evitando confusione e consentendo una manipolazione più mirata delle rappresentazioni semantiche.",
+  "sub_concepts": [
+    {
+      "slug": "physiological_regulation",
+      "pos_label": "regolazione fisiologica",
+      "neg_label": "iperattivazione fisiologica",
+      "description": "Riguarda la stabilizzazione dei parametri fisiologici come frequenza cardiaca, respirazione e tensione muscolare.  Un polo positivo indica una regolazione efficiente e un basso livello di stress fisiologico.",
+      "why_distinct": "Si concentra specificamente sui parametri fisiologici, distinguendosi da concetti più ampi come l'umore o la percezione del tempo.",
+      "pos_examples": [
+        "La mère respirait lentement et profondément",
+        "el centinela sintió el aire entrar sin esfuerzo",
+        "the heartbeat stayed low and steady"
+      ],
+      "neg_examples": [
+        "le cœur s’accéléra",
+        "pectus valide pulsabat",
+        "il cuore accelerò"
+      ]
+    },
+    {
+      "slug": "temporal_perception",
+      "pos_label": "percezione del tempo dilatata",
+      "neg_label": "percezione del tempo accelerata",
+      "description": "Descrive la sensazione soggettiva del tempo. Nel polo positivo, il tempo sembra rallentare, permettendo una maggiore consapevolezza e controllo. Nel polo negativo, il tempo sembra accelerare, creando un senso di urgenza e pressione.",
+      "why_distinct": "Si focalizza esclusivamente sull'esperienza temporale, separandola da altri aspetti come la sensazione fisica o emotiva.",
+      "pos_examples": [
+        "les minutes cessèrent de compter",
+        "tempus se dilatare videbatur",
+        "seconds felt lighter"
+      ],
+      "neg_examples": [
+        "le silence était surveillé",
+        "ceto et leviter spirabat",
+        "the breath turned short"
+      ]
+    },
+    {
+      "slug": "mental_focus",
+      "pos_label": "attenzione focalizzata e ampia",
+      "neg_label": "attenzione frammentata e reattiva",
+      "description": "Riguarda la capacità di mantenere l'attenzione in modo stabile e consapevole, senza essere distratti. Il polo positivo indica un'attenzione ampia e rilassata, mentre il polo negativo suggerisce un'attenzione tesa e reattiva.",
+      "why_distinct": "Si concentra sulla qualità dell'attenzione, distinguendola da altri aspetti come la consapevolezza emotiva o la percezione sensoriale.",
+      "pos_examples": [
+        "l’attention restait ampia et morbida",
+        "attention stayed wide and gentle",
+        "Le méditant l’esprit devint silencieux"
+      ],
+      "neg_examples": [
+        "même le silence était surveillé",
+        "desinere non poterat explorare",
+        "even silence was monitored"
+      ]
+    },
+    {
+      "slug": "muscular_tension",
+      "pos_label": "rilassamento muscolare",
+      "neg_label": "tensione muscolare",
+      "description": "Descrive il livello di tensione nei muscoli del corpo. Il polo positivo indica un rilassamento profondo e una mancanza di rigidità, mentre il polo negativo suggerisce tensione e preparazione all'azione.",
+      "why_distinct": "Si concentra specificamente sulla tensione muscolare, separandola da altri aspetti come la respirazione o la frequenza cardiaca, anche se correlati.",
+      "pos_examples": [
+        "les mains étaient sciolte",
+        "el pulso era suave y regular",
+        "les hombros cayeron"
+      ],
+      "neg_examples": [
+        "la mâchoire se serra",
+        "la mandíbula se apretó",
+        "la nuca si tese"
+      ]
+    }
+  ]
 }

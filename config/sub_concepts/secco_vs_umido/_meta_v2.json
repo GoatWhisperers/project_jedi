@@ -2,76 +2,76 @@
   "concept": "secco_vs_umido",
   "model": "Gemma2-Uncensored",
   "version": 2,
-  "timestamp": "2026-03-03T11:58:04.276302",
+  "timestamp": "2026-03-03T15:28:33.624502",
   "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260301_091044_secco_vs_umido_Gemma2-Uncensored.jsonl",
-  "analysis": "Il vettore 'secco_vs_umido' confonde diverse dimensioni semantiche correlate alla sensazione tattile.  Non distingue tra la texture superficiale, la presenza di umidità, le sensazioni residue e la capacità di adesione.  Decomporre questo spazio in sub-concetti più specifici permette di rappresentare in modo più accurato le sfumature delle sensazioni tattili e di generare rappresentazioni semantiche più precise e controllabili, come dimostrano gli esempi steered.",
+  "analysis": "Il vettore 'secco_vs_umido' confonde diverse dimensioni semantiche legate all'esperienza tattile. Non si tratta semplicemente di una distinzione binaria tra 'secco' e 'umido', ma di una serie di proprietà sensoriali che possono variare indipendentemente l'una dall'altra. Ad esempio, una superficie può essere secca ma liscia, o umida ma ruvida. La decomposizione in sub-concetti come 'surface_texture', 'lubricity', 'hydration_level' e 'sensory_afterfeel' permette di catturare queste sfumature e di comprendere meglio come il cervello elabora le informazioni tattili.  La sovrapposizione tra le esperienze sensoriali rende difficile l'interpretazione del vettore broad, e la sua scomposizione fornisce una rappresentazione più accurata e interpretabile dello spazio semantico.",
   "sub_concepts": [
     {
       "slug": "surface_texture",
-      "pos_label": "cartacea",
-      "neg_label": "appiccicosa",
-      "description": "Questo sub-concetto cattura la sensazione tattile della superficie, specificamente se è ruvida, granulosa o liscia come la carta (positivo) o se è appiccicosa e aderente (negativo).",
-      "why_distinct": "Si concentra esclusivamente sull'aspetto tattile della superficie, indipendentemente dalla presenza o assenza di umidità intrinseca.  Un oggetto può essere secco ma avere una superficie appiccicosa (es. resina) o umido ma avere una superficie liscia.",
+      "pos_label": "rough",
+      "neg_label": "smooth",
+      "description": "Questo sub-concetto cattura la sensazione tattile della superficie, che può essere ruvida, screpolata o granulosa (secco) o liscia e uniforme (umido).",
+      "why_distinct": "Si concentra esclusivamente sulle proprietà fisiche della superficie, indipendentemente dalla presenza di umidità intrinseca.  Altre dimensioni possono includere la percezione di 'secchezza' come mancanza di lubrificazione.",
       "pos_examples": [
-        "L’enfant fit glisser la pulpe du doigt : et sentit la peau tirer...",
-        "passò il polpastrello; e la pelle sembrò cartacea...",
-        "Le coureur plia lentement les doigts : et la peau semblait cartonnée..."
+        "winzige Risse zeigten sich",
+        "die Haut bildete trockene kleine Falten",
+        "die Haut wirkte papierartig"
       ],
       "neg_examples": [
-        "manum imposuit; et tactus glutinosus fuit...",
-        "Il muratore sfiorò con due dita: e il contatto fu appiccicoso...",
-        "The tailor and moisture clung to it as it ran the palm..."
+        "die Hand hinterließ eine Spur",
+        "la mano dejó una marca",
+        "la pulpe glissa"
       ]
     },
     {
-      "slug": "residual_sensation",
-      "pos_label": "pizzicore",
-      "neg_label": "nessuna sensazione",
-      "description": "Questo sub-concetto si riferisce alle sensazioni residue che persistono dopo il contatto, come un pizzicore o una sensazione di tensione (positivo) rispetto all'assenza di sensazioni residue (negativo).",
-      "why_distinct": "Separa la sensazione immediata del contatto dalla sensazione che rimane dopo. Un oggetto può essere inizialmente secco, ma lasciare una sensazione di pizzicore.",
+      "slug": "lubricity",
+      "pos_label": "low_friction",
+      "neg_label": "high_friction",
+      "description": "Questo sub-concetto si riferisce alla facilità o difficoltà con cui la mano scivola sulla superficie. Una superficie secca tende ad avere un basso coefficiente di attrito, mentre una superficie umida può essere più scivolosa.",
+      "why_distinct": "Separa la sensazione di 'secchezza' dalla mera ruvidezza. Una superficie può essere ruvida ma asciutta, o liscia ma umida. Questo cattura la sensazione di 'aderenza' o 'scivolamento'.",
       "pos_examples": [
-        "Fidicina palmam pressit, et tactus siccus erat; sensus opacus erat; digiti levamen poscebant quasi post nimium ventum.",
-        "La pianista piegò le dita lentamente: e la pelle sembrò cartacea, rimase un leggero pizzicore...",
-        "The baker brushed the skin: and the surface was dry, a faint sting lingered..."
+        "die Fingerspitze glitt nicht gut",
+        "los dedos pedían alivio hasta que cedió",
+        "die Handfläche glitt"
       ],
       "neg_examples": [
-        "pressa la paume ; et le contact était sec ; la pulpe ne glissait pas bien...",
-        "strich über die Haut; und die Oberfläche war trocken...",
-        "The dermatologist barely touched: and the contact turned sticky..."
+        "il contatto sembrò viscoso",
+        "il polpastrello scivolò",
+        "der Griff änderte sich sofort"
       ]
     },
     {
-      "slug": "moisture_presence",
-      "pos_label": "umidità",
-      "neg_label": "assenza di umidità",
-      "description": "Questo sub-concetto si concentra sulla presenza o assenza di umidità percepibile sulla superficie.  Un contatto umido lascia tracce e una sensazione di bagnato (negativo), mentre un contatto secco non lo fa (positivo).",
-      "why_distinct": "Si concentra esplicitamente sulla quantità di acqua percepita.  Un oggetto può essere secco ma avere una superficie appiccicosa a causa di altre sostanze.",
+      "slug": "hydration_level",
+      "pos_label": "dehydrated",
+      "neg_label": "hydrated",
+      "description": "Questo sub-concetto si concentra direttamente sul livello di idratazione della pelle. Una pelle secca è priva di umidità, mentre una pelle umida è idratata.",
+      "why_distinct": "È il concetto più diretto legato alla polarità secco/umido. Gli altri sub-concetti descrivono conseguenze o manifestazioni di questo livello di idratazione.",
       "pos_examples": [
-        "La panadera apoyó la mano: y la superficie estaba mojada, aparecieron gotitas finas...",
-        "The tailor and moisture clung to it as it ran the palm...",
-        "Le technicien toucha à peine : et la peau resta humide..."
+        "es fehlte jede Feuchtigkeit",
+        "die Haut wirkte papierartig",
+        "et omnis umor deerat"
       ],
       "neg_examples": [
-        "Fidicina palmam pressit, et tactus siccus erat...",
-        "L’enfant fit glisser la pulpe du doigt...",
-        "pressa la paume ; et le contact était sec..."
+        "sentì un velo di bagnato",
+        "la mano notò una capa",
+        "l’umidità rimase addosso"
       ]
     },
     {
-      "slug": "surface_adhesion",
-      "pos_label": "aderenza",
-      "neg_label": "scivolosità",
-      "description": "Questo sub-concetto descrive la capacità della superficie di aderire al contatto, creando una sensazione di appiccicosità o resistenza allo scivolamento (positivo) rispetto alla facilità con cui la superficie scivola (negativo).",
-      "why_distinct": "Si differenzia dalla semplice umidità, poiché un oggetto può essere secco ma appiccicoso (es. cera).",
+      "slug": "sensory_afterfeel",
+      "pos_label": "tingling",
+      "neg_label": "soothing",
+      "description": "Questo sub-concetto riguarda la sensazione residua dopo il contatto. Una superficie secca può provocare formicolio, bruciore o tensione, mentre una superficie umida può dare una sensazione di sollievo o morbidezza.",
+      "why_distinct": "Si concentra sull'esperienza sensoriale *post* contatto, che può essere distintiva anche se la sensazione iniziale è simile.  Non riguarda la sensazione immediata, ma la persistenza.",
       "pos_examples": [
-        "manum imposuit; et tactus glutinosus fuit...",
-        "Il muratore sfiorò con due dita: e il contatto fu appiccicoso...",
-        "The tailor and moisture clung to it as it ran the palm..."
+        "ein leichtes Brennen blieb",
+        "sensus opacus erat",
+        "un picotement léger resta"
       ],
       "neg_examples": [
-        "Fidicina palmam pressit, et tactus siccus erat...",
-        "L’enfant fit glisser la pulpe du doigt...",
-        "pressa la paume ; et le contact était sec..."
+        "la sensazione avvolse il palmo",
+        "la peau paraissait plus souple",
+        "il contatto sembrò viscoso"
       ]
     }
   ]

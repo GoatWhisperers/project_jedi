@@ -2,76 +2,76 @@
   "concept": "rumore_vs_silenzio",
   "model": "Gemma2-Uncensored",
   "version": 2,
-  "timestamp": "2026-03-03T12:31:02.846735",
+  "timestamp": "2026-03-03T16:03:26.579210",
   "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260301_123846_rumore_vs_silenzio_Gemma2-Uncensored.jsonl",
-  "analysis": "The broad concept of 'noise vs. silence' conflates several distinct semantic dimensions. It mixes loudness, subjective unpleasantness, perceived distance, and rhythmic regularity.  A 'noisy' environment isn't inherently loud; it could be a collection of quiet, unpleasant sounds. Similarly, 'silence' isn't just the absence of sound; it's often characterized by a sense of stillness and predictability. Decomposing this broad concept into sub-concepts like intensity level, sound type, source location, and rhythm pattern allows for a more granular and accurate representation of the semantic space, enabling more targeted manipulation and understanding of auditory scenes.",
+  "analysis": "The broad concept 'rumor_vs_silence' conflates several distinct semantic dimensions. It lumps together loudness, type of noise, rhythmic patterns, and perceived source location.  A single vector representing 'rumor' is therefore inaccurate because it doesn't differentiate between, for example, a loud, erratic, close-range noise versus a quiet, steady, distant one. Decomposing the space into these sub-concepts allows for a more nuanced understanding of what constitutes 'rumor' versus 'silence', enabling more precise semantic representation and generation.",
   "sub_concepts": [
     {
       "slug": "intensity_level",
       "pos_label": "loud",
       "neg_label": "quiet",
-      "description": "Captures the perceived volume or amplitude of the sound. A 'loud' sound is characterized by high intensity, while a 'quiet' sound is low intensity.",
-      "why_distinct": "Distinguishes between sounds that are inherently loud (e.g., explosions) and those that are inherently quiet (e.g., whispers), regardless of their pleasantness or nature.",
+      "description": "Captures the perceived volume or amplitude of the sound. A loud sound is easily noticeable and potentially disruptive, while a quiet sound is subtle and easily missed.",
+      "why_distinct": "Distinguishes between sounds that are inherently loud versus those that are quiet, independent of their nature (e.g., a loud whisper vs. a quiet explosion).",
       "pos_examples": [
-        "un grincement métallique du compresseur couvrait les paroles",
-        "un fragor repentinus a turba",
-        "un boom soudain des rails"
+        "Der Bühnentechniker: ein ständiges Brummen vom Kompressor, in Wellen, ohne Pause",
+        "La estudiante percibió un estruendo repentino de la multitud",
+        "Die Mutter nahm wiederholte harte Schläge von den Schienen wahr"
       ],
       "neg_examples": [
-        "aucun son ne dominait",
-        "le monde paraissait loin",
-        "la biblioteca assorbiva i passi"
+        "Bibliothecaria: omne strepitum minimum erat quia spelunca omne echo absorbebat",
+        "Il cacciatore notò che la stanza restava ferma",
+        "La espeleóloga notó que el pasillo parecía vacío"
       ]
     },
     {
       "slug": "sound_type",
-      "pos_label": "unpleasant",
-      "neg_label": "neutral",
-      "description": "Focuses on the subjective quality of the sound. 'Unpleasant' sounds are jarring, irritating, or disruptive, while 'neutral' sounds are unremarkable or background noise.",
-      "why_distinct": "Separates sounds based on their emotional impact, regardless of their loudness or source. A quiet, neutral sound is different from a quiet, unpleasant sound.",
+      "pos_label": "disruptive_noise",
+      "neg_label": "ambient_sound",
+      "description": "Focuses on the *kind* of sound. Disruptive noises are those that interfere with focus or communication, while ambient sounds are background noises that don't necessarily cause disturbance.",
+      "why_distinct": "Separates sounds based on their effect, not just their volume. A quiet, constant hum can be disruptive, while a loud but brief sound might be less so.",
       "pos_examples": [
-        "un grincement métallique",
-        "stridio metallico",
-        "un boom soudain"
+        "es überdeckte die Worte",
+        "it cut through focus",
+        "pectus vibrare faciebat, quasi malleus procul"
       ],
       "neg_examples": [
-        "un battement lointain",
-        "un respiro",
-        "un latido lejano"
+        "solo se oía la respiración",
+        "un leises Rascheln wurde zum Ereignis",
+        "pulsus procul distinguebatur"
+      ]
+    },
+    {
+      "slug": "rhythm_pattern",
+      "pos_label": "erratic",
+      "neg_label": "steady",
+      "description": "Describes the temporal structure of the sound. Erratic sounds have unpredictable or irregular patterns, while steady sounds are consistent and predictable.",
+      "why_distinct": "Accounts for the impact of unpredictable sounds, which can be more jarring than constant ones, even if the latter are louder.",
+      "pos_examples": [
+        "in Wellen, ohne Pause",
+        "with agudos que pinchaban",
+        "wie ein Hammer in der Ferne"
+      ],
+      "neg_examples": [
+        "ohne echte Unterbrechung",
+        "se distinguía un latido lejano",
+        "die Welt wirkte weit weg"
       ]
     },
     {
       "slug": "source_location",
       "pos_label": "distant",
       "neg_label": "proximal",
-      "description": "Refers to the perceived distance of the sound source. 'Distant' sounds seem far away, while 'proximal' sounds seem close.",
-      "why_distinct": "Accounts for the impact of distance on perception. A sound can be loud or quiet, pleasant or unpleasant, but its perceived location significantly influences its impact.",
+      "description": "Indicates the perceived distance of the sound source. Distant sounds often feel less immediate and can be perceived as less threatening, while proximal sounds are closer and potentially more alarming.",
+      "why_distinct": "Acknowledges that the perceived impact of a sound is affected by its apparent location. A distant loud noise might be less concerning than a nearby quiet one.",
       "pos_examples": [
-        "comme un marteau au loin",
-        "un latido lejano",
-        "un battement lointain"
+        "like a distant hammer",
+        "pulsus procul distinguebatur",
+        "wie ein Hammer in der Ferne"
       ],
       "neg_examples": [
-        "ein ständiges Brummen von der Menge",
-        "un ronzio continuo dalla saracinesca",
-        "un grincement métallique des rails"
-      ]
-    },
-    {
-      "slug": "rhythm_pattern",
-      "pos_label": "erratic",
-      "neg_label": "consistent",
-      "description": "Describes the predictability and regularity of the sound. 'Erratic' sounds are unpredictable and irregular, while 'consistent' sounds follow a predictable pattern.",
-      "why_distinct": "Distinguishes between sounds that are jarring due to their unpredictable nature (e.g., sudden bursts) and those that are constant and predictable (e.g., a steady hum).",
-      "pos_examples": [
-        "stechenden Höhen",
-        "a ondate, senza tregua",
-        "avec un écho qui rebondissait"
-      ],
-      "neg_examples": [
-        "un ronzio continuo",
-        "silentium densitatem habebat",
-        "la neige étouffait tout"
+        "Der Bühnentechniker: ein ständiges Brummen vom Kompressor",
+        "La estudiante percibió un estruendo repentino de la multitud",
+        "Die Mutter nahm wiederholte harte Schläge von den Schienen wahr"
       ]
     }
   ]

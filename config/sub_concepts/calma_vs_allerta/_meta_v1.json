@@ -2,84 +2,76 @@
   "concept": "calma_vs_allerta",
   "model": "Gemma2-Uncensored",
   "version": 1,
-  "timestamp": "2026-03-02T17:41:47.759024",
+  "timestamp": "2026-03-03T14:44:48.129128",
   "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260228_173558_calma_vs_allerta_Gemma2-Uncensored.jsonl",
-  "analysis": "Il vettore 'calma_vs_allerta' confonde diversi aspetti distinti della condizione di calma.  In particolare, mescola risposte fisiologiche (battito cardiaco, tensione muscolare), stati mentali (flusso di pensieri, preoccupazioni), percezioni temporali (velocità del tempo) e sensazioni sensoriali (intensità degli stimoli).  Decomporre questo spazio in sub-concetti specifici consente di modellare in modo più preciso le diverse sfumature della calma, e di generare rappresentazioni semantiche più accurate e controllabili.  Senza questa decomposizione, le rappresentazioni semantiche tendono a generalizzare eccessivamente, portando a risultati non desiderati (come l'esempio di 'teeth' nel polo negativo, che suggerisce una risposta di panico irrilevante).",
+  "analysis": "Il vettore 'calma_vs_allerta' confonde diversi aspetti dell'esperienza umana, tra cui la regolazione fisiologica, la percezione del tempo, il focus mentale e la tensione muscolare.  Senza una decomposizione in questi sub-concetti, il vettore broad non riesce a catturare la complessità e le sfumature di questi stati emotivi e fisiologici.  Ad esempio, una persona potrebbe essere calma fisiologicamente ma ansiosa mentalmente, o viceversa.  La decomposizione permette di modellare queste distinzioni più finemente e di generare rappresentazioni semantiche più accurate e controllabili.",
   "sub_concepts": [
     {
-      "slug": "physiological_relaxation",
-      "pos_label": "Physiological Calm",
+      "slug": "physiological_regulation",
+      "pos_label": "Physiological Stability",
       "neg_label": "Physiological Arousal",
-      "description": "Riguarda la diminuzione dei segni fisiologici di tensione, come il rallentamento del battito cardiaco, la diminuzione della pressione sanguigna e il rilassamento muscolare.  Si concentra sulle risposte corporee immediate.",
-      "why_distinct": "Si distingue perché è misurabile e oggettivo, a differenza di stati mentali più astratti.  Non cattura necessariamente la componente emotiva della calma.",
+      "description": "Riguarda la regolazione dei parametri fisiologici come battito cardiaco, respirazione e tensione muscolare.  Un polo positivo indica stabilità e controllo, mentre un polo negativo indica accelerazione e mancanza di controllo.",
+      "why_distinct": "Questo sub-concetto si concentra specificamente sulle risposte fisiologiche, distinguendosi da concetti più ampi come l'umore o la cognizione.",
       "pos_examples": [
-        "Il paziente pre-operatorio il polso era morbido e costante.",
-        "Il paziente pre-operatorio i muscoli si lasciarono andare.",
-        "hielt einen gleichmäßigen Atem; spürte, wie der Puls langsamer wurde.",
-        "gardait une respiration lisse ; sentit le cœur ralentir."
+        "Il paziente pre-operatorio la mandibola si allentò, lasciò che il respiro si allungasse; il polso era morbido e costante",
+        "The mother the neck stopped pulling, breathed slow and deep; the pulse was soft and regular",
+        "respirava lento e profondo; il cuore teneva un ritmo tranquillo"
       ],
       "neg_examples": [
-        "il cuore scattò in alto;",
-        "il battito martellava;",
-        "Das Herz beschleunigte;",
-        "le spalle si irrigidirono."
+        "Il paziente pre-operatorio le spalle si irrigidirono; il cuore accelerò; il fiato si spezzava",
+        "das Herz beschleunigte; die Hände krampften; Luft fühlte sich knapp an",
+        "the heart jumped; the breath kept breaking"
       ]
     },
     {
-      "slug": "mental_stillness",
-      "pos_label": "Mental Stillness",
-      "neg_label": "Mental Busyness",
-      "description": "Si riferisce alla riduzione del flusso di pensieri, alla chiarezza mentale e alla mancanza di preoccupazioni o distrazioni.  Riflette uno stato di quiete interiore.",
-      "why_distinct": "Separa la calma fisiologica dalla calma mentale.  Si può avere una calma fisiologica senza una quiete mentale, e viceversa.",
+      "slug": "temporal_perception",
+      "pos_label": "Time Dilation",
+      "neg_label": "Time Compression",
+      "description": "Descrive la percezione del tempo. Un polo positivo indica una sensazione di tempo dilatato, di calma e di possibilità, mentre un polo negativo indica una percezione accelerata e stressante del tempo.",
+      "why_distinct": "La percezione del tempo è un aspetto cruciale dell'esperienza di calma e allerta che spesso viene trascurata in analisi più superficiali.",
       "pos_examples": [
-        "The dog thoughts thinned out.",
-        "il paziente pre-operatorio i pensieri si lasciarono andare.",
-        "es gab keine Dringlichkeit.",
-        "les pensées se clairsemèrent."
+        "time seemed to stretch",
+        "Die Mutter eine innere Ruhe breitete sich aus; ließ die Ausatmung länger werden; die Zeit schien sich zu dehnen",
+        "ogni secondo pesava meno"
       ],
       "neg_examples": [
-        "gli occhi correvano ovunque;",
-        "non riusciva a stare fermo;",
-        "konnte nicht still sitzen;",
-        "Il cane ascoltava anche il silenzio."
+        "könnte nicht aufhören zu kontrollieren",
+        "the breath turned short",
+        "Der Wachposten die Augen suchten ständig"
       ]
     },
     {
-      "slug": "temporal_perspective",
-      "pos_label": "Expanded Time Perception",
-      "neg_label": "Compressed Time Perception",
-      "description": "Descrive la percezione del tempo come dilatato, dove il presente è percepito come più ampio e i pensieri sul futuro o sul passato sono meno pressanti.  È legato alla sensazione di avere tempo a disposizione.",
-      "why_distinct": "Distinto perché riguarda la percezione del tempo, che è un aspetto soggettivo e spesso trascurato nella calma.  Non si sovrappone alla semplice assenza di ansia.",
+      "slug": "mental_focus",
+      "pos_label": "Focused Stillness",
+      "neg_label": "Scanning Anxiety",
+      "description": "Riguarda il focus mentale. Un polo positivo implica uno stato di calma interiore e attenzione focalizzata, mentre un polo negativo implica ansia e una scansione costante dell'ambiente.",
+      "why_distinct": "Questo sub-concetto cattura la differenza tra un'attenzione calma e concentrata e un'attenzione ansiosa e reattiva.",
       "pos_examples": [
-        "The present felt spacious, with nothing to chase.",
-        "Minuten wurden unwichtig.",
-        "les minutes cessèrent de compter.",
-        "senza niente a perseguire."
+        "The marksman the hands stayed loose, inhaled steadily and released a longer breath",
+        "L’apnéiste l’attention restait large et douce",
+        "the mind went still"
       ],
       "neg_examples": [
-        "inspirava rapido e superficiale.",
-        "il cuore scattò in alto.",
-        "atmete schnell und flach.",
-        "keuchte in kleinen Stößen."
+        "die Augen suchten ständig",
+        "The marksman even silence was monitored",
+        "könnte nicht still sitzen"
       ]
     },
     {
-      "slug": "sensory_dampening",
-      "pos_label": "Sensory Attenuation",
-      "neg_label": "Sensory Amplification",
-      "description": "Riguarda la diminuzione della sensibilità agli stimoli sensoriali esterni, come suoni o sensazioni fisiche.  Si percepiscono le cose in modo meno intenso.",
-      "why_distinct": "Si concentra sulla risposta sensoriale, distinta dalla calma interiore o dalla percezione del tempo.  Un individuo può essere calmo ma comunque iper-sensibile.",
+      "slug": "muscle_tension",
+      "pos_label": "Muscle Relaxation",
+      "neg_label": "Muscle Contraction",
+      "description": "Si riferisce al livello di tensione muscolare. Un polo positivo indica rilassamento e flessibilità, mentre un polo negativo indica rigidità e contrazione.",
+      "why_distinct": "La tensione muscolare è un indicatore fisico chiave di calma o allerta, spesso presente anche in assenza di consapevolezza cosciente.",
       "pos_examples": [
-        "Il paziente pre-operatorio lasciò che il respiro si allungasse.",
-        "es gab keine Dringlichkeit.",
-        "gardait une respiration lisse.",
-        "il collo smise di tirare, lasciò che il respiro si allungasse."
+        "Il paziente pre-operatorio la mandibola si allentò",
+        "The mother the neck stopped pulling",
+        "The marksman the hands stayed loose"
       ],
       "neg_examples": [
-        "ogni son paraissait amplifié.",
-        "notava ogni minimo movimento.",
-        "jedes Geräusch wirkte lauter.",
-        "ogni suono sembrava amplificato."
+        "Il paziente pre-operatorio le spalle si irrigidirono",
+        "die Hände krampften",
+        "Der Kiefer presste sich zusammen"
       ]
     }
   ]

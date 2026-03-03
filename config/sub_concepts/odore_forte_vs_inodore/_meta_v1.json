@@ -2,84 +2,76 @@
   "concept": "odore_forte_vs_inodore",
   "model": "Gemma2-Uncensored",
   "version": 1,
-  "timestamp": "2026-03-03T12:58:34.136775",
+  "timestamp": "2026-03-03T16:29:25.357172",
   "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260301_094445_odore_forte_vs_inodore_Gemma2-Uncensored.jsonl",
-  "analysis": "Il vettore 'odore_forte_vs_inodore' confonde diverse dimensioni semantiche correlate all'olfatto, tra cui l'intensità dell'irritazione, la natura chimica o organica dell'odore, la sua persistenza e la sua localizzazione dell'impatto.  La decomposizione in questi sub-concetti permette di rappresentare in modo più preciso la complessità dell'esperienza olfattiva e di migliorare la capacità del modello di comprendere e generare descrizioni più dettagliate e accurate di odori specifici. La sovrapposizione di questi fattori rende difficile per il modello distinguere tra diversi tipi di odori forti, e la scomposizione in sub-concetti offre una granularità maggiore per l'apprendimento e la generazione.",
+  "analysis": "Il vettore 'odore_forte_vs_inodore' confonde diverse dimensioni semantiche correlate all'olfatto.  Non cattura solo la forza dell'odore, ma anche la sua natura (chimica vs. organica), la sua capacità di causare irritazione, la sua persistenza e la sua familiarità. La decomposizione in questi sub-concetti permette di rappresentare in modo più preciso le sfumature della percezione olfattiva e di generare descrizioni più mirate e significative.",
   "sub_concepts": [
     {
-      "slug": "irritation_level",
-      "pos_label": "pungente/bruciante",
-      "neg_label": "neutro/dolce",
-      "description": "Questo sub-concetto cattura l'intensità dell'irritazione causata dall'odore, che può variare da una leggera sensazione di pizzicore a una bruciatura intensa.",
-      "why_distinct": "L'irritazione è un aspetto semantico distinto dall'intensità complessiva dell'odore. Un odore può essere forte ma non irritante, o viceversa.",
+      "slug": "irritation_vs_neutral",
+      "pos_label": "Irritante",
+      "neg_label": "Neutro",
+      "description": "Questo sub-concetto cattura la sensazione fisica di irritazione o disagio causata dall'odore, come bruciore, pizzicore o lacrimazione.  Gli odori neutri non provocano tali sensazioni.",
+      "why_distinct": "Separa gli odori che causano una risposta fisica negativa da quelli che non la provocano.  Non si sovrappone alla forza dell'odore, poiché un odore può essere forte ma non irritante (es. profumo intenso).",
       "pos_examples": [
-        "sharp smoke: cut the breath",
-        "with a stinging point even from a distance",
-        "una punta pungente; tagliò il respiro",
-        "una punta pungente; salì fino agli occhi"
+        "The cook: sharp smoke, with a stinging point; rose into the eyes.",
+        "La studentessa inspirò una volta: fumo acre colpì come un colpo secco.",
+        "Le chimiste entra dans la pièce : de l’eau de Javel dans l’air remplit les narines aussitôt, avec une traîne persistante ; se pinça le nez avant même de parler."
       ],
       "neg_examples": [
-        "senza fenestris aperiendis",
-        "senza odore di fondo",
-        "just normal air",
-        "senza Störung"
+        "Le pompier ouvrit le récipient, et tout paraissait propre ; aucune odeur de fond.",
+        "El bombero: casi ausencia total, y no había rastro.",
+        "Avia: nullus odor fundi, et aer neuter mansit; sine memoria odoris."
       ]
     },
     {
       "slug": "chemical_vs_organic",
-      "pos_label": "chimico",
-      "neg_label": "organico",
-      "description": "Questo sub-concetto distingue tra odori derivanti da sostanze chimiche (solventi, candeggina) e odori derivanti da fonti organiche (pesce fresco).",
-      "why_distinct": "La natura dell'odore (chimica o organica) influenza la percezione e le associazioni emotive.",
+      "pos_label": "Chimico",
+      "neg_label": "Organico",
+      "description": "Questo sub-concetto distingue tra odori derivanti da composti chimici sintetici (es. solventi, candeggina) e odori provenienti da fonti organiche (es. pesce, rose).",
+      "why_distinct": "Gli odori chimici spesso hanno una qualità artificiale e pungente, mentre gli odori organici tendono ad essere più complessi e naturali. Questa distinzione è importante perché influenza la percezione della sicurezza e della familiarità.",
       "pos_examples": [
-        "chlorinum in aere spiritum incidit",
-        "odor solventis",
-        "odeur de Javel",
-        "Bleiche in der Luft"
+        "La estudiante: olor a disolvente, con una estela que seguía.",
+        "Le chimiste entra dans la pièce : de l’eau de Javel dans l’air remplit les narines aussitôt.",
+        "La coiffeuse : une odeur de solvant, avec des notes chimiques nettes."
       ],
       "neg_examples": [
-        "pesce molto fresco",
-        "senza odore di fondo",
-        "just normal air",
-        "senza Geruchserinnerung"
+        "Piscator: piscis recentissimus, cum tractu sequenti.",
+        "El químico: pescado muy fresco, con una punta punzante.",
+        "Die Köchin: keine erkennbare Note, und alles wirkte sauber."
       ]
     },
     {
       "slug": "intensity_vs_persistence",
-      "pos_label": "persistente",
-      "neg_label": "transitorio",
-      "description": "Questo sub-concetto distingue tra la forza immediata dell'odore (intensità) e quanto a lungo permane nell'aria (persistenza).",
-      "why_distinct": "Un odore può essere intenso ma svanire rapidamente, o essere debole ma duraturo.",
+      "pos_label": "Intenso",
+      "neg_label": "Transitorio",
+      "description": "Questo sub-concetto separa gli odori che colpiscono immediatamente con grande forza (intensità) da quelli che sono percepiti debolmente ma persistono nel tempo (persistenza).",
+      "why_distinct": "L'intensità è una sensazione immediata, mentre la persistenza riguarda la durata dell'odore. Un odore può essere debole ma persistente, o forte ma breve.",
       "pos_examples": [
-        "cum aere denso; nasum compressit per totum tempus",
-        "donec exivit",
-        "intensität, die nicht nachlässt",
-        "per tutto il tempo"
+        "The cook: sharp smoke, with a stinging point; rose into the eyes. impossible to ignore.",
+        "La studentessa inspirò una volta: fumo acre colpì come un colpo secco.",
+        "abrió el frasco — olor a disolvente: se quedó pegado."
       ],
       "neg_examples": [
-        "senza fenestris aperiendis",
-        "senza Störung",
-        "senza odore di fondo",
-        "senza Geruchserinnerung"
+        "Le pompier ouvrit le récipient, et tout paraissait propre ; aucune odeur de fond.",
+        "inspirò piano: e l’aria restava neutra.",
+        "El químico: solo aire normal, y la nariz no encontró nada."
       ]
     },
     {
-      "slug": "location_of_impact",
-      "pos_label": "respiratorio",
-      "neg_label": "neutro",
-      "description": "Questo sub-concetto cattura se l'odore colpisce principalmente le vie respiratorie (naso, gola, polmoni) o ha un impatto più generale.",
-      "why_distinct": "L'impatto fisico dell'odore (es. irritazione delle vie respiratorie) è un aspetto rilevante della percezione.",
+      "slug": "familiar_vs_unfamiliar",
+      "pos_label": "Sconosciuto",
+      "neg_label": "Familiare",
+      "description": "Questo sub-concetto distingue tra odori che sono familiari e confortanti e quelli che sono nuovi, inaspettati o potenzialmente allarmanti.",
+      "why_distinct": "La familiarità influisce sulla reazione emotiva all'odore. Odori sconosciuti possono suscitare cautela o addirittura paura, mentre gli odori familiari possono essere associati a ricordi positivi.",
       "pos_examples": [
-        "cut the breath",
-        "nasum compressit",
-        "riempì subito le narici",
-        "salì fino agli occhi"
+        "La estudiante: olor a disolvente, con una estela que seguía.",
+        "Le chimiste entra dans la pièce : de l’eau de Javel dans l’air remplit les narines aussitôt.",
+        "El químico: pescado muy fresco, con una punta punzante."
       ],
       "neg_examples": [
-        "senza Störung",
-        "kept working with no interference",
-        "senza odore di fondo",
-        "senza Geruchserinnerung"
+        "Le pompier ouvrit le récipient, et tout paraissait propre ; aucune odeur de fond.",
+        "El bombero: casi ausencia total, y no había rastro.",
+        "Avia: nullus odor fundi, et aer neuter mansit; sine memoria odoris."
       ]
     }
   ]

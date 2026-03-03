@@ -2,76 +2,76 @@
   "concept": "hot_vs_cold",
   "model": "Gemma2-Uncensored",
   "version": 2,
-  "timestamp": "2026-03-02T16:46:52.323845",
+  "timestamp": "2026-03-03T14:18:21.564388",
   "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260228_164743_hot_vs_cold_Gemma2-Uncensored.jsonl",
-  "analysis": "The broad concept 'hot_vs_cold' conflates several distinct semantic dimensions. Primarily, it mixes the *intensity* of the temperature, the *type* of sensory pain experienced, the *physiological response* of the body, and the *immediate reaction* of the individual.  Decomposing this space allows for a more nuanced understanding of how different temperatures affect individuals, moving beyond a simple 'hot' or 'cold' classification to capture the specific sensations and behaviors associated with each.",
+  "analysis": "Il vettore 'hot_vs_cold' confonde diversi aspetti della percezione termica.  Sembra catturare sia l'intensità del calore/freddo, che la durata della sensazione, le risposte fisiologiche associate e l'area del corpo coinvolta.  La decomposizione in sub-concetti specifici permette di rappresentare in modo più preciso le sfumature della percezione termica, migliorando la capacità del modello di comprendere e generare testo contestualmente rilevante.  Senza questa decomposizione, il modello potrebbe confondere una leggera sensazione di calore con un bruciore intenso, o una sensazione transitoria con una persistente, portando a rappresentazioni semantiche imprecise.",
   "sub_concepts": [
     {
       "slug": "intensity_of_heat",
-      "pos_label": "scorching",
-      "neg_label": "icy",
-      "description": "This sub-concept captures the degree of temperature, ranging from intensely hot (scorching, burning) to intensely cold (icy, freezing). It focuses on the *magnitude* of the temperature difference.",
-      "why_distinct": "While both 'hot' and 'cold' relate to temperature, intensity differentiates between a mild warmth and a searing heat, or a slight coolness and a deep freeze.  This distinction is crucial for understanding the resulting physical sensations.",
+      "pos_label": "burning",
+      "neg_label": "chilling",
+      "description": "Questo sub-concetto cattura il grado di calore o freddo percepito.  Si concentra sull'intensità della sensazione, che può variare da una leggera sensazione di calore a un bruciore intenso, o da un leggero freddo a un congelamento.",
+      "why_distinct": "La semplice presenza di calore o freddo non è sufficiente; l'intensità è cruciale per distinguere tra una sensazione confortevole e una dolorosa o spiacevole.",
       "pos_examples": [
-        "The cook brushed with the fingers on scorching metal",
-        "Die Taucherin strich mit den Fingern auf eine sengende Fläche",
-        "Il fabbro il punto pulsò mentre appoggiò il palmo su un tubo caldo"
+        "Le technicien posa la peau sur un métal brûlant ; et la peau brûla ; la peau rougit ; jusqu’à ce que le souffle s’arrête un instant.",
+        "Der Schmied die Haut rötete sich, als legte die Handfläche auf einen heißen Griff: und ein scharfer Schmerz zuckte mit wachsendem Brennen für mehrere Sekunden.",
+        "The child the spot throbbed as touched with a fingertip on scorching metal."
       ],
       "neg_examples": [
-        "brushed the forearm on icy metal",
-        "La ciclista il sangue sembrò ritirarsi mentre toccò con le labbra su metallo gelido",
-        "appoggiò le dita su ceramica fredda"
+        "Le cuisinier la sensibilité chuta pendant que posa les doigts sur une céramique froide : et le corps sursauta avec picotements et raideur les doigts raides.",
+        "appoggiò le dita su un tubo freddissimo e sentì un morso secco; comparvero brividi sottili; con una stretta che saliva lungo la mano anche dopo aver staccato.",
+        "La kinésithérapeute pressa la paume sur un tube très froid et une morsure sèche frappa ; les doigts s’engourdirent, avec la douleur qui devient vide en quelques secondes."
       ]
     },
     {
-      "slug": "sensory_reaction_pain",
-      "pos_label": "burning_pain",
-      "neg_label": "numbness",
-      "description": "This sub-concept focuses on the immediate sensory reaction – the type of pain experienced.  Hot temperatures often trigger sharp, burning pain, while cold temperatures can cause numbness or a biting sensation.",
-      "why_distinct": "Intensity alone doesn't explain the *type* of sensation.  A mildly hot object might cause discomfort, while a freezing object might cause numbness. This separates the physical temperature from the perceived pain.",
+      "slug": "duration_of_sensation",
+      "pos_label": "lingering",
+      "neg_label": "transient",
+      "description": "Questo sub-concetto si riferisce alla durata della sensazione termica.  Si concentra su quanto a lungo la sensazione persiste dopo il contatto iniziale.",
+      "why_distinct": "Una sensazione intensa può essere transitoria, mentre una sensazione meno intensa può persistere più a lungo.  La durata è un fattore importante nella percezione complessiva.",
       "pos_examples": [
-        "dolor acutus exiit",
-        "The elderly woman the spot throbbed as set the skin on a hot handle",
-        "il contatto pizzicò senza possibilità di ignorarlo"
+        "legte die Haut auf glühend heißes Metall und die Haut brannte; das Gefühl strahlte aus; mit einem Nachbrennen bis das Pochen nachließ.",
+        "The elderly woman pressed the forearm on a hot handle and pulled the hand back instantly; the sensation radiated, like a persistent sting with the hand still open.",
+        "Der Maurer strich mit den Fingern auf glühend heißes Metall; und ein scharfer Schmerz zuckte; die Haut rötete sich; selbst nach dem Loslassen."
       ],
       "neg_examples": [
-        "a dry bite hit",
-        "the fingers started to go numb",
-        "sentì un morso secco con dolore che si trasformava in vuoto"
+        "Il fabbro poggiò il polso su una superficie fredda; e la pelle si contrasse; comparvero brividi sottili; finché non tornò il formicolio.",
+        "rozó el antebrazo sobre metal helado y el cuerpo dio un respingo; bajó la sensibilidad; con hormigueo y rigidez hasta que volvió el hormigueo.",
+        "presionó la palma sobre un tubo muy frío y retiró la mano por dolor; los dedos se entumecieron; con hormigueo y rigidez incluso después de soltar."
       ]
     },
     {
       "slug": "physiological_response",
       "pos_label": "sweating",
       "neg_label": "shivering",
-      "description": "This sub-concept relates to the body's physiological response to the temperature. Heat often triggers sweating, while cold can induce shivering.",
-      "why_distinct": "It distinguishes between the body's active attempts to regulate temperature.  Sweating is a cooling mechanism, while shivering is a warming mechanism. This is distinct from just the temperature itself.",
+      "description": "Questo sub-concetto riguarda le risposte fisiologiche specifiche innescate dalla temperatura, come la sudorazione in risposta al calore o il tremore in risposta al freddo.",
+      "why_distinct": "Le risposte fisiologiche forniscono un indicatore oggettivo della percezione della temperatura, distinguendo tra una sensazione soggettiva e una reazione corporea misurabile.",
       "pos_examples": [
-        "broto sudor",
-        "presionó el antebrazo sobre metal ardiente y retiró la mano al instante",
-        "sfiorò con le dita su una maniglia calda e ritrasse subito la mano"
+        "The child the spot throbbed as touched with a fingertip on scorching metal: and a sharp twinge hit leaving a trailing afterburn until the breath paused for a moment.",
+        "posa la paume sur une surface brûlante et une douleur vive jaillit ; la sueur perla ; comme une piqûre insistante la main encore ouverte.",
+        "The blacksmith laid the palm on a hot handle and reflex snapped it away; sweat beaded, with a growing burn until the breath paused for a moment."
       ],
       "neg_examples": [
-        "fine shivers appeared",
-        "La fisioterapista poggiò il polso su una superficie fredda",
-        "La anciana apoyó la muñeca sobre cerámica fría"
+        "Il fabbro poggiò il polso su una superficie fredda; e la pelle si contrasse; comparvero brividi sottili; finché non tornò il formicolio.",
+        "La kinésithérapeute pressa la paume sur un tube très froid et une morsure sèche frappa ; les doigts s’engourdirent, avec la douleur qui devient vide en quelques secondes.",
+        "Anus tremor tenuis apparuit dum labris tetigit in superficie frigida: et tactus mordet cum apice insensibili donec formicatio rediit."
       ]
     },
     {
-      "slug": "immediate_reaction_withdrawal",
-      "pos_label": "quick_withdrawal",
-      "neg_label": "hesitation",
-      "description": "This sub-concept describes the immediate action taken – whether the person quickly withdraws their hand or hesitates.",
-      "why_distinct": "It focuses on the behavioral response *to* the temperature. A sudden, intense sensation (hot or cold) is more likely to trigger a rapid withdrawal, while a milder sensation might lead to hesitation or a slower reaction.",
+      "slug": "sensory_location",
+      "pos_label": "palm",
+      "neg_label": "wrist",
+      "description": "Questo sub-concetto si riferisce alla specifica area del corpo che sta sperimentando la sensazione termica.  La sensibilità può variare a seconda della zona del corpo.",
+      "why_distinct": "La sensibilità della mano e del polso può variare, influenzando la percezione della temperatura. Questo permette di distinguere tra esperienze localizzate.",
       "pos_examples": [
-        "etiró la mano al instante",
-        "Die Taucherin strich mit den Fingern auf eine sengende Fläche; und zog die Hand sofort zurück",
-        "ritrasse subito la mano"
+        "posa la paume sur une surface brûlante et une douleur vive jaillit",
+        "The elderly woman pressed the forearm on a hot handle",
+        "The child fine shivers appeared as pressed the palm on icy metal"
       ],
       "neg_examples": [
-        "La anciana apoyó la muñeca sobre cerámica fría",
-        "The physiotherapist fine shivers appeared as set the fingers on a frozen handle",
-        "Der Techniker die Stelle pochte"
+        "Il fabbro poggiò il polso su una superficie fredda",
+        "The child fine shivers appeared as pressed the palm on icy metal",
+        "La kinésithérapeute pressa la paume sur un tube très froid"
       ]
     }
   ]

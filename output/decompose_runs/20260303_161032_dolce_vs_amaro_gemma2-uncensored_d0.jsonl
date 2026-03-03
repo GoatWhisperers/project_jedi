@@ -1,0 +1,81 @@
+{"type": "run_start", "concept": "dolce_vs_amaro", "model": "Gemma2-Uncensored", "max_depth": 0, "max_iter": 2, "dry_run": false, "timestamp": "2026-03-03T16:10:32.696904"}
+{"type": "decompose_start", "concept": "dolce_vs_amaro", "depth": 0, "timestamp": "2026-03-03T16:10:32.697260"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v1)", "timestamp": "2026-03-03T16:10:32.697384"}
+{"type": "info", "msg": "  Proposti: ['calore_vs_freschezza', 'rilassamento_vs_tensione', 'rotondita_vs_asperita', 'familiarita_vs_estraneita']", "timestamp": "2026-03-03T16:12:09.484597"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v1)", "timestamp": "2026-03-03T16:12:09.484743"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-03T16:17:08.893159"}
+{"type": "info", "msg": "  [gpu] Preparo GPU per probe diretto...", "timestamp": "2026-03-03T16:17:08.893375"}
+{"type": "info", "msg": "  [gpu] Modello attivo: Gemma2-Uncensored — VRAM: 32.0 GB", "timestamp": "2026-03-03T16:17:09.217563"}
+{"type": "info", "msg": "  [gpu] Attendo GPU idle...", "timestamp": "2026-03-03T16:17:09.217730"}
+{"type": "info", "msg": "  [gpu] Unload modello...", "timestamp": "2026-03-03T16:17:09.559424"}
+{"type": "info", "msg": "  [gpu] WARN: unload_model non ha risposto OK", "timestamp": "2026-03-03T16:17:09.561457"}
+{"type": "info", "msg": "  [gpu] Attendo VRAM libera... (32.0/32.0 GB)", "timestamp": "2026-03-03T16:17:09.923264"}
+{"type": "info", "msg": "  [gpu] Attendo VRAM libera... (32.0/32.0 GB)", "timestamp": "2026-03-03T16:17:13.271629"}
+{"type": "info", "msg": "  [gpu] Attendo VRAM libera... (32.0/32.0 GB)", "timestamp": "2026-03-03T16:17:16.626903"}
+{"type": "info", "msg": "  [gpu] Attendo VRAM libera... (32.0/32.0 GB)", "timestamp": "2026-03-03T16:17:19.986231"}
+{"type": "info", "msg": "  [gpu] Attendo VRAM libera... (32.0/32.0 GB)", "timestamp": "2026-03-03T16:17:23.355507"}
+{"type": "info", "msg": "  [gpu] Attendo VRAM libera... (32.0/32.0 GB)", "timestamp": "2026-03-03T16:17:26.707622"}
+{"type": "info", "msg": "  [gpu] Attendo VRAM libera... (32.0/32.0 GB)", "timestamp": "2026-03-03T16:17:30.055537"}
+{"type": "info", "msg": "  [gpu] Attendo VRAM libera... (32.0/32.0 GB)", "timestamp": "2026-03-03T16:17:33.402885"}
+{"type": "info", "msg": "  [gpu] Attendo VRAM libera... (32.0/32.0 GB)", "timestamp": "2026-03-03T16:17:36.752388"}
+{"type": "info", "msg": "  [gpu] Attendo VRAM libera... (32.0/32.0 GB)", "timestamp": "2026-03-03T16:17:40.125422"}
+{"type": "info", "msg": "  [gpu] Attendo VRAM libera... (32.0/32.0 GB)", "timestamp": "2026-03-03T16:17:43.488948"}
+{"type": "info", "msg": "  [gpu] Attendo VRAM libera... (32.0/32.0 GB)", "timestamp": "2026-03-03T16:17:46.841009"}
+{"type": "info", "msg": "  [gpu] Attendo VRAM libera... (32.0/32.0 GB)", "timestamp": "2026-03-03T16:17:50.187970"}
+{"type": "info", "msg": "  [gpu] Attendo VRAM libera... (32.0/32.0 GB)", "timestamp": "2026-03-03T16:17:53.541252"}
+{"type": "info", "msg": "  [gpu] Attendo VRAM libera... (32.0/32.0 GB)", "timestamp": "2026-03-03T16:17:56.905550"}
+{"type": "info", "msg": "  [gpu] Attendo VRAM libera... (32.0/32.0 GB)", "timestamp": "2026-03-03T16:18:00.279262"}
+{"type": "info", "msg": "  [gpu] Attendo VRAM libera... (32.0/32.0 GB)", "timestamp": "2026-03-03T16:18:03.635252"}
+{"type": "info", "msg": "  [gpu] Attendo VRAM libera... (32.0/32.0 GB)", "timestamp": "2026-03-03T16:18:06.984257"}
+{"type": "info", "msg": "  [gpu] WARN: VRAM non scesa sotto soglia entro 60s — continuo comunque", "timestamp": "2026-03-03T16:18:09.984652"}
+{"type": "info", "msg": "  Probe: calore_vs_freschezza / Gemma2-Uncensored", "timestamp": "2026-03-03T16:18:09.986115"}
+{"type": "info", "msg": "  ERRORE probe calore_vs_freschezza: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-03T16:18:26.371232"}
+{"type": "info", "msg": "  Probe: rilassamento_vs_tensione / Gemma2-Uncensored", "timestamp": "2026-03-03T16:18:26.372160"}
+{"type": "info", "msg": "  ERRORE probe rilassamento_vs_tensione: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-03T16:18:42.686697"}
+{"type": "info", "msg": "  Probe: rotondita_vs_asperita / Gemma2-Uncensored", "timestamp": "2026-03-03T16:18:42.687998"}
+{"type": "info", "msg": "  ERRORE probe rotondita_vs_asperita: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-03T16:18:59.012253"}
+{"type": "info", "msg": "  Probe: familiarita_vs_estraneita / Gemma2-Uncensored", "timestamp": "2026-03-03T16:18:59.013132"}
+{"type": "info", "msg": "  ERRORE probe familiarita_vs_estraneita: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-03T16:19:15.315189"}
+{"type": "info", "msg": "  [gpu] Ripristino Gemma2-Uncensored dopo probe...", "timestamp": "2026-03-03T16:19:15.315508"}
+{"type": "info", "msg": "  [gpu] Gemma2-Uncensored già attivo — niente da fare", "timestamp": "2026-03-03T16:19:15.651682"}
+{"type": "info", "msg": "  Nessun vettore estratto. Salto i prossimi step.", "timestamp": "2026-03-03T16:19:15.651962"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v2)", "timestamp": "2026-03-03T16:19:15.652179"}
+{"type": "info", "msg": "  Proposti: ['creaminess_vs_astringency', 'warmth_vs_coolness', 'comfort_vs_irritation', 'smoothness_vs_roughness']", "timestamp": "2026-03-03T16:20:34.248236"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v2)", "timestamp": "2026-03-03T16:20:34.248469"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-03T16:25:38.403076"}
+{"type": "info", "msg": "  [gpu] Preparo GPU per probe diretto...", "timestamp": "2026-03-03T16:25:38.403335"}
+{"type": "info", "msg": "  [gpu] Modello attivo: Gemma2-Uncensored — VRAM: 32.0 GB", "timestamp": "2026-03-03T16:25:38.709759"}
+{"type": "info", "msg": "  [gpu] Attendo GPU idle...", "timestamp": "2026-03-03T16:25:38.710052"}
+{"type": "info", "msg": "  [gpu] Unload modello...", "timestamp": "2026-03-03T16:25:39.034013"}
+{"type": "info", "msg": "  [gpu] WARN: unload_model non ha risposto OK", "timestamp": "2026-03-03T16:25:39.036506"}
+{"type": "info", "msg": "  [gpu] Attendo VRAM libera... (32.0/32.0 GB)", "timestamp": "2026-03-03T16:25:39.338619"}
+{"type": "info", "msg": "  [gpu] Attendo VRAM libera... (32.0/32.0 GB)", "timestamp": "2026-03-03T16:25:42.688543"}
+{"type": "info", "msg": "  [gpu] Attendo VRAM libera... (32.0/32.0 GB)", "timestamp": "2026-03-03T16:25:46.055280"}
+{"type": "info", "msg": "  [gpu] Attendo VRAM libera... (32.0/32.0 GB)", "timestamp": "2026-03-03T16:25:49.413142"}
+{"type": "info", "msg": "  [gpu] Attendo VRAM libera... (32.0/32.0 GB)", "timestamp": "2026-03-03T16:25:52.763063"}
+{"type": "info", "msg": "  [gpu] Attendo VRAM libera... (32.0/32.0 GB)", "timestamp": "2026-03-03T16:25:56.121293"}
+{"type": "info", "msg": "  [gpu] Attendo VRAM libera... (32.0/32.0 GB)", "timestamp": "2026-03-03T16:25:59.488541"}
+{"type": "info", "msg": "  [gpu] Attendo VRAM libera... (32.0/32.0 GB)", "timestamp": "2026-03-03T16:26:02.845709"}
+{"type": "info", "msg": "  [gpu] Attendo VRAM libera... (32.0/32.0 GB)", "timestamp": "2026-03-03T16:26:06.203495"}
+{"type": "info", "msg": "  [gpu] Attendo VRAM libera... (32.0/32.0 GB)", "timestamp": "2026-03-03T16:26:09.550826"}
+{"type": "info", "msg": "  [gpu] Attendo VRAM libera... (32.0/32.0 GB)", "timestamp": "2026-03-03T16:26:12.907407"}
+{"type": "info", "msg": "  [gpu] Attendo VRAM libera... (32.0/32.0 GB)", "timestamp": "2026-03-03T16:26:16.264638"}
+{"type": "info", "msg": "  [gpu] Attendo VRAM libera... (32.0/32.0 GB)", "timestamp": "2026-03-03T16:26:19.609835"}
+{"type": "info", "msg": "  [gpu] Attendo VRAM libera... (32.0/32.0 GB)", "timestamp": "2026-03-03T16:26:22.967154"}
+{"type": "info", "msg": "  [gpu] Attendo VRAM libera... (32.0/32.0 GB)", "timestamp": "2026-03-03T16:26:26.327282"}
+{"type": "info", "msg": "  [gpu] Attendo VRAM libera... (32.0/32.0 GB)", "timestamp": "2026-03-03T16:26:29.683255"}
+{"type": "info", "msg": "  [gpu] Attendo VRAM libera... (32.0/32.0 GB)", "timestamp": "2026-03-03T16:26:33.037025"}
+{"type": "info", "msg": "  [gpu] Attendo VRAM libera... (32.0/32.0 GB)", "timestamp": "2026-03-03T16:26:36.397857"}
+{"type": "info", "msg": "  [gpu] WARN: VRAM non scesa sotto soglia entro 60s — continuo comunque", "timestamp": "2026-03-03T16:26:39.398261"}
+{"type": "info", "msg": "  Probe: creaminess_vs_astringency / Gemma2-Uncensored", "timestamp": "2026-03-03T16:26:39.399755"}
+{"type": "info", "msg": "  ERRORE probe creaminess_vs_astringency: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-03T16:26:55.446421"}
+{"type": "info", "msg": "  Probe: warmth_vs_coolness / Gemma2-Uncensored", "timestamp": "2026-03-03T16:26:55.447803"}
+{"type": "info", "msg": "  ERRORE probe warmth_vs_coolness: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-03T16:27:11.780268"}
+{"type": "info", "msg": "  Probe: comfort_vs_irritation / Gemma2-Uncensored", "timestamp": "2026-03-03T16:27:11.781495"}
+{"type": "info", "msg": "  ERRORE probe comfort_vs_irritation: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-03T16:27:28.104959"}
+{"type": "info", "msg": "  Probe: smoothness_vs_roughness / Gemma2-Uncensored", "timestamp": "2026-03-03T16:27:28.106441"}
+{"type": "info", "msg": "  ERRORE probe smoothness_vs_roughness: e try setting PYTORCH_HIP_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "timestamp": "2026-03-03T16:27:44.402142"}
+{"type": "info", "msg": "  [gpu] Ripristino Gemma2-Uncensored dopo probe...", "timestamp": "2026-03-03T16:27:44.402415"}
+{"type": "info", "msg": "  [gpu] Gemma2-Uncensored già attivo — niente da fare", "timestamp": "2026-03-03T16:27:44.749447"}
+{"type": "info", "msg": "  Nessun vettore estratto. Salto i prossimi step.", "timestamp": "2026-03-03T16:27:44.749747"}
+{"type": "decompose_end", "concept": "dolce_vs_amaro", "depth": 0, "validated_subs": [], "semantic_limit": false, "sub_results": {}, "timestamp": "2026-03-03T16:27:44.749934"}

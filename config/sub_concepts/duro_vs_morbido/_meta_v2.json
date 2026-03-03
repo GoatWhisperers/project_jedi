@@ -2,76 +2,76 @@
   "concept": "duro_vs_morbido",
   "model": "Gemma2-Uncensored",
   "version": 2,
-  "timestamp": "2026-03-03T12:14:43.258532",
+  "timestamp": "2026-03-03T15:45:01.641776",
   "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260301_120403_duro_vs_morbido_Gemma2-Uncensored.jsonl",
-  "analysis": "Il concetto broad 'duro_vs_morbido' (hard_vs_soft) cattura una varietà di attributi sensoriali e percettivi che vanno oltre la semplice rigidità fisica. Il vettore broad confonde la resistenza fisica con la percezione del dolore, la sensazione di sicurezza/protezione, l'implicazione di forza/debolezza e persino l'associazione con concetti astratti come la resilienza e la vulnerabilità. La decomposizione in sub-concetti specifici permette di isolare queste dimensioni semantiche e di ottenere rappresentazioni più precise e controllabili.",
+  "analysis": "Il vettore 'duro_vs_morbido' confonde diversi aspetti sensoriali legati alla percezione del tatto.  Non si tratta solo di rigidità, ma anche di come una superficie risponde alla pressione, come distribuisce la forza e come il corpo percepisce il contatto. Decomporre questo spazio in sub-concetti come 'resistenza_vs_give', 'rebound_vs_damping', 'point_contact_vs_area_contact' e 'feedback_sharpness' permette di catturare queste sfumature e di generare rappresentazioni semantiche più precise e controllabili.  Ignorare questi sub-concetti porterebbe a rappresentazioni che confondono la rigidità con la capacità di rimbalzo o la distribuzione della pressione con la sensazione di comfort.",
   "sub_concepts": [
     {
-      "slug": "physical_resistance",
-      "pos_label": "Rigido",
-      "neg_label": "Morbido",
-      "description": "Questo sub-concetto si riferisce alla resistenza fisica di un oggetto alla pressione o alla deformazione. Riguarda la capacità di un materiale di mantenere la sua forma e di resistere alla penetrazione o alla compressione.",
-      "why_distinct": "Si concentra esclusivamente sulla proprietà fisica della resistenza, escludendo aspetti come la percezione del dolore o le associazioni emotive.",
+      "slug": "resistance_vs_give",
+      "pos_label": "Resistenza",
+      "neg_label": "Cedevolezza",
+      "description": "Questo sub-concetto cattura la sensazione di opposizione fisica quando si applica una pressione. Si focalizza sulla forza necessaria per deformare o spostare la superficie.",
+      "why_distinct": "Distingue tra superfici che offrono una chiara opposizione (resistenza) e quelle che si adattano facilmente (cedevolezza).  È un aspetto fondamentale della percezione di 'duro' vs 'morbido' che va oltre la semplice rigidità.",
       "pos_examples": [
-        "El boxeador golpeó con los nudillos sobre una superficie rígida",
-        "Die Geigerin drückte mit dem Daumen auf einen kompakten Block",
-        "El dentista golpeó con los nudillos sobre una superficie rígida"
+        "Il violinista sentì resistenza quando spinse il palmo...",
+        "Il punto rimase duro sotto la presa...",
+        "Die Bildhauerin schob die Handfläche auf einen kompakten Block"
       ],
       "neg_examples": [
-        "Die Köchin schloss die Finger auf eine Unterlage, die aufnahm",
-        "The physiotherapist there was no pinpoint pain when it pressed with the thumb on a support",
-        "legte die Handfläche auf auf eine Unterlage, die aufnahm"
+        "Fabri lignarius palmam imposuit in re tenera et paulum descendit...",
+        "La kinésithérapeute appuya avec le pouce sur un appui qui accueillait...",
+        "rozó y luego empujó sobre un volumen elástico"
       ]
     },
     {
-      "slug": "pain_perception",
-      "pos_label": "Doloroso",
-      "neg_label": "Senza dolore",
-      "description": "Questo sub-concetto si riferisce alla sensazione di dolore associata al contatto con una superficie. Un oggetto 'duro' può causare dolore a causa della concentrazione della pressione, mentre un oggetto 'morbido' può attutire il dolore.",
-      "why_distinct": "Separa la sensazione fisica dalla percezione del dolore, che può essere influenzata da fattori soggettivi e dalla sensibilità individuale.",
+      "slug": "rebound_vs_damping",
+      "pos_label": "Rimbalzo",
+      "neg_label": "Smorzamento",
+      "description": "Questo sub-concetto si concentra sulla risposta dinamica di una superficie dopo un impatto. Una superficie 'dura' tende a rimbalzare, mentre una 'morbida' assorbe l'energia.",
+      "why_distinct": "Separa la sensazione statica di resistenza da quella dinamica del rimbalzo.  Due superfici possono offrire resistenza, ma una può rimbalzare mentre l'altra smorza l'impatto.",
       "pos_examples": [
+        "il choc revint ; la douleur était nette",
+        "schob die Handfläche auf etwas Unnachgiebiges und es gab keinen Millimeter nach",
+        "The dentist the skin wouldn't sink when it rapped with the knuckles"
+      ],
+      "neg_examples": [
+        "recursus tardus fuit, sine rigiditate",
+        "la superficie suivit la main",
+        "Il contatto si smorzò"
+      ]
+    },
+    {
+      "slug": "point_contact_vs_area_contact",
+      "pos_label": "Contatto Puntuale",
+      "neg_label": "Contatto Superficiale",
+      "description": "Questo sub-concetto distingue tra una pressione concentrata in un punto preciso e una distribuzione uniforme su un'area più ampia.  Le superfici dure tendono a creare contatto puntuale.",
+      "why_distinct": "La distribuzione della pressione influisce sulla percezione del comfort e della sensazione di 'duro' vs 'morbido'.  Un contatto puntuale può essere percepito come più intenso e 'duro'.",
+      "pos_examples": [
+        "pressione rimase puntuale",
+        "die Haut sank nicht ein",
+        "The physiotherapist pinched between fingers"
+      ],
+      "neg_examples": [
+        "prehensio lenis mansit",
+        "la surface suivit la main",
+        "La fisioterapista presionó con el pulgar sobre un material que cede"
+      ]
+    },
+    {
+      "slug": "feedback_sharpness",
+      "pos_label": "Feedback Nitido",
+      "neg_label": "Feedback Smorzato",
+      "description": "Questo sub-concetto riguarda la chiarezza e l'intensità della sensazione percepita durante il contatto. Superfici dure tendono a fornire un feedback più acuto e immediato.",
+      "why_distinct": "La nitidezza del feedback è un elemento chiave nella distinzione tra superfici 'dure' e 'morbide', e si sovrappone a resistenza e rimbalzo ma non è equivalente.",
+      "pos_examples": [
+        "pain was clean",
         "la douleur était nette",
-        "el punto quedó duro bajo el agarre",
-        "der Schmerz war klar, wie gegen Stein"
+        "der Schmerz war klar"
       ],
       "neg_examples": [
-        "nullus erat dolor puncti",
-        "kein punktueller Schmerz",
-        "e la pressione si distribuì come su un cuscino"
-      ]
-    },
-    {
-      "slug": "safety_comfort",
-      "pos_label": "Insicuro",
-      "neg_label": "Sicuro/Confortevole",
-      "description": "Questo sub-concetto cattura la sensazione di sicurezza o comfort associata a una superficie. Una superficie 'morbida' può offrire una sensazione di protezione e accoglienza, mentre una superficie 'dura' può sembrare fredda e inospitale.",
-      "why_distinct": "Si concentra sull'aspetto emotivo e psicologico della sensazione tattile, distinguendola dalla semplice resistenza fisica.",
-      "pos_examples": [
-        "La costurera rozó y luego empujó sobre un volumen elástico; y el contacto se amortiguó; los dedos se sintieron protegidos",
-        "La cuoca la presa risultò gentile quando strinse lentamente su una superficie soffice",
-        "Der Boxer drückte mit dem Daumen auf eine Unterlage, die aufnahm"
-      ],
-      "neg_examples": [
-        "El boxeador golpeó con los nudillos sobre una superficie rígida",
-        "Die Physiotherapeutin klopfte mit den Knöcheln auf etwas Unnachgiebiges",
-        "El dentista golpeó con los nudillos sobre una superficie rígida"
-      ]
-    },
-    {
-      "slug": "strength_weakness",
-      "pos_label": "Forte",
-      "neg_label": "Debole",
-      "description": "Questo sub-concetto associa la durezza alla forza e la morbidezza alla debolezza, sia in termini fisici che metaforici. Un oggetto 'duro' può essere percepito come resistente e potente, mentre un oggetto 'morbido' può essere visto come fragile e vulnerabile.",
-      "why_distinct": "Esplora le implicazioni simboliche e metaforiche della durezza e della morbidezza, che vanno al di là della semplice sensazione tattile.",
-      "pos_examples": [
-        "un monolito di ossidiana nera, levigato dagli eoni di sfida",
-        "a shard of glacial granite resonating with the silent scream of creation",
-        "Fabri lignarius articulis pulsavit in margine duro et responsum aridum fuit"
-      ],
-      "neg_examples": [
-        "It's a sinking sensation",
-        "a gentle surrender",
-        "Das Kind drückte mit dem Daumen auf eine weiche Fläche"
+        "recursus tardus fuit",
+        "les doigts se sentirent protégés",
+        "la pelle trovò un cuscino"
       ]
     }
   ]

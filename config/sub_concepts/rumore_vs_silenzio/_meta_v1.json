@@ -2,76 +2,76 @@
   "concept": "rumore_vs_silenzio",
   "model": "Gemma2-Uncensored",
   "version": 1,
-  "timestamp": "2026-03-03T12:23:40.514913",
+  "timestamp": "2026-03-03T15:54:56.182743",
   "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260301_123846_rumore_vs_silenzio_Gemma2-Uncensored.jsonl",
-  "analysis": "The 'rumore_vs_silenzio' broad concept conflates several distinct semantic dimensions related to auditory perception. It doesn't solely represent the presence or absence of sound, but also its intensity, timbre, rhythm, and the ability to locate its source. Decomposing this space into sub-concepts like 'intensity_vs_presence', 'metallic_vs_organic', 'rhythm_vs_static', and 'location_certainty' allows for a more nuanced understanding of the underlying semantic relationships and enables more targeted and effective steered generation.",
+  "analysis": "Il vettore 'rumore_vs_silenzio' confonde diversi aspetti della percezione uditiva, come l'intensità, la durata, la localizzazione, la frequenza e il tipo di suono (impattante vs risonante).  La semplice distinzione tra rumore e silenzio non cattura la complessità di queste dimensioni semantiche. Decomporre questo spazio in sub-concetti specifici permette al modello di comprendere meglio il contesto e la natura del suono, migliorando la sua capacità di generare rappresentazioni semantiche più accurate e differenziate.  Inoltre, la capacità di manipolare questi sub-concetti (come mostrato negli esempi steered) permette un controllo più granulare sulla generazione del testo.",
   "sub_concepts": [
     {
-      "slug": "intensity_vs_presence",
-      "pos_label": "Loudness/Force",
-      "neg_label": "Absence/Subtlety",
-      "description": "This sub-concept captures the perceived volume, force, or impact of the sound.  Positive examples involve sounds that are physically impactful or overwhelming, while negative examples describe sounds that are faint or non-existent.",
-      "why_distinct": "Distinguishes between the sheer loudness or force of a sound versus its mere existence. A quiet sound can still be present, but it doesn't convey the same intensity.",
+      "slug": "intensity_vs_duration",
+      "pos_label": "Intense",
+      "neg_label": "Transient",
+      "description": "Questo sub-concetto distingue tra rumori brevi e intensi che interrompono bruscamente, e rumori prolungati che persistono nel tempo.",
+      "why_distinct": "La durata del suono è un fattore cruciale per la percezione del rumore. Un suono intenso ma breve potrebbe essere fastidioso, ma non opprimente come un suono prolungato.",
       "pos_examples": [
-        "Custos nocturnus: susurrus pertinax a valva metallica, per undas, sine requie; caput implebat. cervix riguit",
-        "un boom soudain du rideau métallique couvrait les paroles",
-        "Der Mechaniker nahm wiederholte harte Schläge vom Kompressor wahr"
+        "The student caught a constant hum from the rails: it covered the words, with lows that trembled in the floor",
+        "La estudiante: un chirrido metálico de la multitud, con eco rebotando; obligaba a alzar la voz.",
+        "Il ferroviere percepì un fruscio insistente dalle rotaie: copriva le parole"
       ],
       "neg_examples": [
-        "Le cheminot remarqua que la grotte avalait tout écho : il ne restait que le souffle",
-        "Die Mutter: jedes Geräusch war klein, weil der Gang wirkte leer",
-        "L’ingénieur du son : il ne restait que le souffle parce que la pièce restait immobile"
+        "Mater animadvertit spelunca omne echo absorbebat: nullus sonus dominabatur",
+        "Schnee dämpfte alles; nur der Atem blieb.",
+        "Le cheminot : il ne restait que le souffle parce que le couloir semblait vide"
       ]
     },
     {
-      "slug": "metallic_vs_organic",
-      "pos_label": "Metallic/Mechanical",
-      "neg_label": "Natural/Organic",
-      "description": "This sub-concept differentiates between sounds produced by mechanical or metallic sources versus those originating from natural or organic processes. Positive examples involve the clatter of metal, while negative examples relate to natural sounds or the absence thereof.",
-      "why_distinct": "The timbre of the sound is a crucial factor.  A 'rumble' could be mechanical or geological; this sub-concept helps to distinguish between the two.",
+      "slug": "source_location_vs_ambience",
+      "pos_label": "Localized",
+      "neg_label": "Ambient",
+      "description": "Questo sub-concetto separa tra rumori identificabili con una fonte specifica (es. un martello, un ventilatore) e rumori che permeano l'ambiente in modo uniforme.",
+      "why_distinct": "La localizzazione del rumore influisce sulla percezione della sua natura. Un rumore localizzato può essere più disturbante o interessante di un rumore di fondo.",
       "pos_examples": [
-        "Custos nocturnus: susurrus pertinax a valva metallica",
-        "Mechanicus sensit stridor metallicus a ferriviis",
-        "La madre: uno stridio metallico dalla saracinesca"
+        "un chirrido metálico del compresor cortaba la atención; como un martillo lejano",
+        "des coups secs répétés du ventilateur obligeait à parler plus fort",
+        "The mechanic: a sudden boom from the shutter, with echo bouncing back"
       ],
       "neg_examples": [
-        "Le cheminot remarqua que la grotte avalait tout écho",
-        "Die Mutter notó que la nieve amortiguaba todo",
-        "Venator: etiam motus discreti erant quia nix omnia obtundebat"
+        "The student: the world felt distant because the library absorbed footsteps",
+        "Schnee dämpfte alles; nur der Atem blieb.",
+        "L’ingénieur du son remarqua que la grotte avalait tout écho"
       ]
     },
     {
-      "slug": "rhythm_vs_static",
-      "pos_label": "Rhythmic/Periodic",
-      "neg_label": "Static/Continuous",
-      "description": "This sub-concept focuses on the temporal structure of the sound. Positive examples involve sounds with a discernible rhythm or pattern, while negative examples describe continuous or static sounds.",
-      "why_distinct": "Distinguishes between sounds that have a predictable beat or pattern versus those that are constant and unchanging.",
+      "slug": "frequency_high_vs_low",
+      "pos_label": "High-Frequency",
+      "neg_label": "Low-Frequency",
+      "description": "Questo sub-concetto distingue tra rumori acuti e fastidiosi (alti) e rumori bassi e vibranti (bassi).",
+      "why_distinct": "Le frequenze del suono hanno un impatto diverso sulla percezione. Le alte frequenze possono essere più irritanti, mentre le basse frequenze possono essere percepite come opprimenti.",
       "pos_examples": [
-        "Der Mechaniker nahm ein ständiges Brummen vom Rollladen wahr: es zwang zum Lauterreden, in Wellen, ohne Pause",
-        "El ferroviario: un roce insistente de la persiana, como un martillo lejano",
-        "Der Mechaniker nahm wiederholte harte Schläge vom Kompressor wahr"
+        "Le technicien de scène perçut des coups secs répétés du compresseur : coupait l’attention, avec des aigus qui piquaient",
+        "The student caught a constant hum from the rails: it covered the words, with lows that trembled in the floor",
+        "La estudiante: un chirrido metálico de la multitud, con eco rebotando"
       ],
       "neg_examples": [
-        "un estruendo repentino de la persiana llenaba la cabeza",
-        "Mechanicus sensit stridor metallicus a ferriviis",
-        "Le cheminot remarqua que la grotte avalait tout écho"
+        "Mater animadvertit spelunca omne echo absorbebat: nullus sonus dominabatur",
+        "Schnee dämpfte alles; nur der Atem blieb.",
+        "El cazador notó que la habitación quedó inmóvil"
       ]
     },
     {
-      "slug": "location_certainty",
-      "pos_label": "Localized/Specific",
-      "neg_label": "Diffuse/Uncertain",
-      "description": "This sub-concept addresses the ability to pinpoint the origin of the sound. Positive examples describe a clear sense of where the sound is coming from, while negative examples indicate uncertainty or a diffuse sound field.",
-      "why_distinct": "The ability to locate a sound is crucial for understanding the experience. A sound can be loud, but if its origin is unknown, the experience is different.",
+      "slug": "impact_vs_resonance",
+      "pos_label": "Impactful",
+      "neg_label": "Resonant",
+      "description": "Questo sub-concetto distingue tra rumori improvvisi e percussivi (impattanti) e rumori che creano una risonanza prolungata.",
+      "why_distinct": "L'impatto immediato di un suono è diverso dalla sua risonanza. Un suono impattante può essere più scioccante, mentre una risonanza può creare un senso di oppressione.",
       "pos_examples": [
-        "Custos nocturnus sensit murmur continuum a valva metallica: vocem altiorem cogebat, quasi malleus procul; oculi fontem quaerebant",
-        "El ferroviario: un roce insistente de la persiana, como un martillo lejano",
-        "Der Mechaniker nahm wiederholte harte Schläge vom Kompressor wahr"
+        "The mechanic: a sudden boom from the shutter, with echo bouncing back",
+        "des coups secs répétés du ventilateur obligeait à parler plus fort",
+        "The caver: a sudden boom from the fan, like a distant hammer"
       ],
       "neg_examples": [
-        "un estruendo repentino de la persiana llenaba la cabeza",
-        "un boom soudain du rideau métallique couvrait les paroles",
-        "Le cheminot remarqua que la grotte avalait tout écho"
+        "Mater animadvertit spelunca omne echo absorbebat: nullus sonus dominabatur",
+        "Schnee dämpfte alles; nur der Atem blieb.",
+        "Le cheminot : il ne restait que le souffle parce que le couloir semblait vide"
       ]
     }
   ]
