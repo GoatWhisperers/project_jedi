@@ -1,5 +1,15 @@
 # Project Jedi — Istruzioni per Claude
 
+## 🔴 FINE SESSIONE — obbligatorio
+
+Quando Lele dice che per oggi si finisce, Claude DEVE (senza aspettare istruzioni):
+1. `bash scripts/update_stato.sh "fine sessione"` — aggiorna STATO.md
+2. Scrivere `experiments/RIPRESA_YYYYMMDD.md` — tutto ciò che serve per riprendere
+3. Committare e pushare tutto su GitHub
+4. Aggiornare il diario se c'è qualcosa da dire
+
+---
+
 ## ⚡ INIZIO SESSIONE — obbligatorio
 
 All'inizio di ogni sessione Claude DEVE:
