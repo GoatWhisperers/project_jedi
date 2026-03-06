@@ -212,7 +212,21 @@ def main():
         "low_cpu_mem_usage": True,
     }
     if torch_dtype is not None:
-        model_kwargs["dtype"] = torch_dtype
+        model_kwargs["torch_dtype"] = torch_dtype  # fix: era "dtype", kwarg corretto è "torch_dtype"
+
+    # --- Verifica VRAM disponibile prima di caricare ---
+    if torch.cuda.is_available():
+        free_vram_gb = (
+            torch.cuda.get_device_properties(0).total_memory
+            - torch.cuda.memory_allocated(0)
+        ) / 1024**3
+        # Gemma2-Uncensored ~20GB, Gemma3-1B ~2.5GB — soglia conservativa 5GB
+        if free_vram_gb < 5.0:
+            print(f"\n[ERRORE] VRAM insufficiente: {free_vram_gb:.1f} GB liberi.")
+            print("  Lo steering server non ha fatto l'unload del modello.")
+            print("  Soluzione: chiamare gpu_prepare_for_probe() prima di probe_concept.py")
+            sys.exit(2)
+        print(f"  VRAM disponibile: {free_vram_gb:.1f} GB ✓")
 
     write_status_extended({
         "run_id": run_id, "phase": "load_model",

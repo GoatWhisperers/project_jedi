@@ -6,6 +6,7 @@ import os
 import re
 import threading
 import subprocess
+import time
 from http.server import BaseHTTPRequestHandler, HTTPServer, ThreadingHTTPServer
 from urllib.parse import urlparse, parse_qs
 from transformers import TextIteratorStreamer, StoppingCriteria, StoppingCriteriaList
@@ -378,16 +379,20 @@ def load_model(model_path=None, model_name=None):
         else:
             model_name = os.path.basename(model_path)
 
-    # Free previous model before loading new one
+    # Free previous model before loading new one.
+    # IMPORTANTE: non nullare State.model prima di questa funzione —
+    # la GC+synchronize vengono chiamate solo se State.model is not None.
     if State.model is not None:
-        del State.model
+        prev = State.model
         State.model = None
         State.tokenizer = None
         State.layers = []
+        del prev
         if torch.cuda.is_available():
             gc.collect()
             torch.cuda.empty_cache()
             torch.cuda.synchronize()
+            time.sleep(2)  # lascia al driver il tempo di liberare la VRAM
 
     dtype_str = settings.get("dtype", "bfloat16")
     dtype_map = {"bfloat16": torch.bfloat16, "float16": torch.float16, "float32": torch.float32}
@@ -397,7 +402,7 @@ def load_model(model_path=None, model_name=None):
     model = AutoModelForCausalLM.from_pretrained(
         model_path,
         trust_remote_code=bool(settings.get("trust_remote_code", False)),
-        dtype=torch_dtype,
+        torch_dtype=torch_dtype,   # fix: era "dtype", kwarg corretto è "torch_dtype"
         low_cpu_mem_usage=True,
     )
     model.eval()
@@ -840,9 +845,9 @@ class Handler(BaseHTTPRequestHandler):
 
             with State.lock:
                 try:
-                    del State.model
-                    State.model = None
-                    torch.cuda.empty_cache()
+                    # Non nullare State.model qui: load_model() gestisce
+                    # gc.collect() + synchronize() correttamente solo se
+                    # trova State.model non-None. Pre-nullarlo bypassa la GC.
                     load_model(model_path=target["path"], model_name=target["name"])
                 except Exception as e:
                     return json_response(self, 500, {"error": str(e)})
