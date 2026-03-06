@@ -1,0 +1,5 @@
+{"type": "run_start", "concept": "hot_vs_cold", "model": "Gemma2-Uncensored", "max_depth": 0, "max_iter": 2, "dry_run": false, "timestamp": "2026-03-05T08:21:36.033217"}
+{"type": "decompose_start", "concept": "hot_vs_cold", "depth": 0, "timestamp": "2026-03-05T08:21:36.033727"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v1)", "timestamp": "2026-03-05T08:21:36.033853"}
+{"type": "info", "msg": "  Proposti: ['skin_sensations', 'localized_pain', 'thermal_response', 'physical_distortion']", "timestamp": "2026-03-05T08:28:51.403475"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v1)", "timestamp": "2026-03-05T08:28:51.403595"}

@@ -2,76 +2,76 @@
   "concept": "hot_vs_cold",
   "model": "Gemma2-Uncensored",
   "version": 1,
-  "timestamp": "2026-03-03T18:22:11.939712",
+  "timestamp": "2026-03-05T08:51:40.010158",
   "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260228_164743_hot_vs_cold_Gemma2-Uncensored.jsonl",
-  "analysis": "Il vettore 'hot_vs_cold' confonde diverse dimensioni semantiche correlate alla temperatura, tra cui l'intensità, la reazione fisica, il tipo di sensazione (dolore vs intorpidimento) e il materiale che trasmette la temperatura.  La decomposizione in questi sub-concetti permette al modello di comprendere meglio le sfumature del concetto 'hot_vs_cold' e di generare rappresentazioni semantiche più accurate e contestualmente appropriate.  Inoltre, l'analisi dei 'negative examples' evidenzia come la semplice distinzione 'caldo/freddo' non sia sufficiente a catturare la complessità dell'esperienza sensoriale.",
+  "analysis": "Il vettore 'hot_vs_cold' confonde diverse dimensioni semantiche legate alla sensazione termica, tra cui l'intensità, la localizzazione, le risposte fisiologiche e la velocità di reazione.  Il modello sembra trattare 'caldo' e 'freddo' come un unico concetto, senza distinguere le sfumature associate a ciascuno. La decomposizione in sub-concetti specifici permette di catturare queste sfumature e di rappresentare in modo più accurato la complessità della percezione termica.  Inoltre, la presenza di esempi negativi che descrivono reazioni fisiologiche (es. vasocostrizione) dimostra che il modello non riesce a distinguere chiaramente tra le risposte associate al calore e al freddo, confondendo la causa con l'effetto.",
   "sub_concepts": [
     {
-      "slug": "temperature_intensity",
+      "slug": "intensity_of_sensation",
       "pos_label": "burning",
-      "neg_label": "freezing",
-      "description": "Questo sub-concetto cattura il grado di intensità del calore o del freddo. Si concentra sulla percezione soggettiva della temperatura, che può variare da una leggera sensazione a un dolore intenso.",
-      "why_distinct": "La semplice distinzione 'caldo' vs 'freddo' non cattura la differenza tra una superficie tiepida e una fornace o tra un ghiaccio leggermente freddo e un congelatore.",
+      "neg_label": "numbing",
+      "description": "Questo sub-concetto cattura il grado di intensità della sensazione termica. Il polo positivo implica una sensazione di bruciore acuta e dolorosa, mentre il polo negativo si riferisce a una sensazione di intorpidimento o mancanza di sensibilità.",
+      "why_distinct": "L'intensità è un fattore separato dalla semplice presenza o assenza di calore/freddo. Si può avere un calore lieve o un freddo intenso, e questo sub-concetto cerca di distinguere queste sfumature.",
       "pos_examples": [
-        "sfiorò con le dita su una maniglia calda e l’istinto lo fece scattare indietro; la pelle arrossì; con dolore netto e localizzato",
-        "The cook brushed with the fingers on a searing surface and the skin burned",
-        "El técnico rozó con los dedos sobre metal ardiente y el contacto picó"
+        "appoggiò il palmo su una superficie bollente e sentì una fitta",
+        "sfiorò con le dita su un tubo caldo e ritrasse subito la mano",
+        "pressa l’avant-bras sur une surface brûlante et une douleur vive jaillit"
       ],
       "neg_examples": [
-        "Il bambino poggiò il polso su un tubo freddissimo e ritrasse la mano per il dolore",
-        "El herrero presionó la palma sobre cerámica fría y la piel se contrajo",
-        "La nadadora apoyó la muñeca sobre un asa congelada; y sintió una mordida seca"
+        "Le technicien effleura l’avant-bras sur une surface froide et le corps sursauta",
+        "La nadadora tocó con los labios sobre una superficie fría; y la piel se contrajo",
+        "Le forgeron posa le poignet sur une céramique froide et une morsure sèche frappa"
       ]
     },
     {
-      "slug": "sensory_reaction",
-      "pos_label": "reflexive_withdrawal",
-      "neg_label": "sensory_dulling",
-      "description": "Si riferisce alla reazione fisica e comportamentale immediata al contatto con una superficie calda o fredda. Il calore può innescare un riflesso di allontanamento, mentre il freddo può causare intorpidimento.",
-      "why_distinct": "Non tutte le superfici calde o fredde provocano la stessa risposta. Alcune possono essere ignorate, mentre altre causano reazioni immediate.",
+      "slug": "location_specificity",
+      "pos_label": "localized",
+      "neg_label": "radiating",
+      "description": "Questo sub-concetto riguarda la localizzazione della sensazione. Il polo positivo indica un dolore o una sensazione concentrata in un punto specifico, mentre il polo negativo implica una sensazione che si irradia o si diffonde.",
+      "why_distinct": "La localizzazione influenza la percezione e la risposta alla sensazione. Un dolore localizzato può richiedere un intervento diverso rispetto a un dolore diffuso.",
       "pos_examples": [
-        "l’istinto lo fece scattare indietro",
-        "reflex snapped it away impossible to ignore",
-        "el cuerpo dio un respingo"
+        "con dolore netto e localizzato con la mano ancora aperta",
+        "dolore netto e localizzato finché la pelle non smise di pulsare",
+        "il punto pulsò"
       ],
       "neg_examples": [
-        "la sensibilità calò",
-        "los dedos se entumecieron",
-        "les doigts s’engourdirent"
+        "la sensazione si irradiò",
+        "la sensazione si irradiò",
+        "la sensazione si irradiò"
       ]
     },
     {
-      "slug": "pain_vs_numbness",
-      "pos_label": "painful_sensation",
-      "neg_label": "numbness",
-      "description": "Questo sub-concetto distingue tra la sensazione di dolore associata al calore e la sensazione di intorpidimento associata al freddo. Il dolore è spesso descritto come bruciante o pungente, mentre l'intorpidimento è una perdita di sensibilità.",
-      "why_distinct": "Il dolore e l'intorpidimento sono esperienze sensoriali molto diverse, e la loro presenza o assenza è un indicatore importante della temperatura.",
+      "slug": "physiological_response",
+      "pos_label": "sweating",
+      "neg_label": "vasoconstriction",
+      "description": "Questo sub-concetto si concentra sulle risposte fisiologiche associate al calore e al freddo, come la sudorazione (calore) o la vasocostrizione (freddo).",
+      "why_distinct": "Le risposte fisiologiche forniscono informazioni aggiuntive sullo stato del corpo e sull'intensità della sensazione.",
       "pos_examples": [
-        "dolore netto e localizzato",
-        "el contacto picó",
-        "la peau brûla"
+        "brotò sudor",
+        "il punto pulsò; con dolore netto e localizzato finché la pelle non smise di pulsare",
+        "la pelle bruciò"
       ],
       "neg_examples": [
-        "dolore che si trasformava in vuoto",
-        "dolore che se ne va",
-        "les doigts s’engourdirent"
+        "la sangue pareció retirarse",
+        "la pelle devint dure",
+        "la sangue sembla se retirer"
       ]
     },
     {
-      "slug": "material_type",
-      "pos_label": "metal",
-      "neg_label": "ceramic",
-      "description": "Il tipo di materiale che trasmette il calore o il freddo influenza la percezione. Metalli tendono a condurre il calore/freddo più velocemente della ceramica, intensificando la sensazione.",
-      "why_distinct": "La stessa temperatura percepita su un metallo e su una ceramica può essere interpretata in modo diverso a causa delle loro proprietà termiche.",
+      "slug": "reaction_speed",
+      "pos_label": "instant",
+      "neg_label": "delayed",
+      "description": "Questo sub-concetto cattura la velocità della reazione al contatto con la superficie, che può essere immediata (polo positivo) o ritardata (polo negativo).",
+      "why_distinct": "La velocità della reazione può indicare la gravità della situazione e l'intensità della sensazione.",
       "pos_examples": [
-        "metal ardiente",
-        "eiskaltes Metall",
-        "metallo glacé"
+        "ritrasse subito la mano",
+        "ritrasse subito la mano",
+        "pressa l’avant-bras sur une surface brûlante et une douleur vive jaillit"
       ],
       "neg_examples": [
-        "cerámica fría",
-        "une céramique froide",
-        "eiskaltes Metall"
+        "Le technicien effleura l’avant-bras sur une surface froide et le corps sursauta",
+        "Die Radfahrerin legte die Haut auf einen heißen Griff und zog die Hand sofort zurück",
+        "La ciclista la sangre pareció retirarse"
       ]
     }
   ]
