@@ -1,0 +1,26 @@
+{"type": "run_start", "concept": "odore_forte_vs_inodore", "model": "Gemma2-Uncensored", "max_depth": 0, "max_iter": 2, "dry_run": false, "timestamp": "2026-03-06T16:39:17.400753"}
+{"type": "decompose_start", "concept": "odore_forte_vs_inodore", "depth": 0, "timestamp": "2026-03-06T16:39:17.477172"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v1)", "timestamp": "2026-03-06T16:39:17.477420"}
+{"type": "info", "msg": "  Proposti: ['chemical_intensity', 'breath_impact', 'physiological_reaction', 'intensity_modulation']", "timestamp": "2026-03-06T16:40:45.054069"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v1)", "timestamp": "2026-03-06T16:40:45.054201"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-06T16:46:55.648128"}
+{"type": "info", "msg": "  [gpu] Preparo GPU per probe diretto...", "timestamp": "2026-03-06T16:46:55.648356"}
+{"type": "info", "msg": "  [gpu] Modello attivo: Gemma2-Uncensored — VRAM: 17.6 GB", "timestamp": "2026-03-06T16:46:55.848516"}
+{"type": "info", "msg": "  [gpu] Attendo GPU idle...", "timestamp": "2026-03-06T16:46:55.848728"}
+{"type": "info", "msg": "  [gpu] Unload modello...", "timestamp": "2026-03-06T16:46:56.046617"}
+{"type": "info", "msg": "  [gpu] VRAM liberata — usata: 12.6 GB / 32.0 GB", "timestamp": "2026-03-06T16:46:56.717636"}
+{"type": "info", "msg": "  Probe: chemical_intensity / Gemma2-Uncensored", "timestamp": "2026-03-06T16:46:56.719007"}
+{"type": "info", "msg": "  Probe OK: chemical_intensity", "timestamp": "2026-03-06T16:48:54.182022"}
+{"type": "info", "msg": "  Probe: breath_impact / Gemma2-Uncensored", "timestamp": "2026-03-06T16:48:54.183315"}
+{"type": "info", "msg": "  Probe OK: breath_impact", "timestamp": "2026-03-06T16:50:23.946157"}
+{"type": "info", "msg": "  SKIP probe physiological_reaction — JSON non trovato: /home/lele/codex-openai/project_jedi/config/sub_concepts/odore_forte_vs_inodore/physiological_reaction.json", "timestamp": "2026-03-06T16:50:23.946732"}
+{"type": "info", "msg": "  Probe: intensity_modulation / Gemma2-Uncensored", "timestamp": "2026-03-06T16:50:23.947703"}
+{"type": "info", "msg": "  Probe OK: intensity_modulation", "timestamp": "2026-03-06T16:51:27.555296"}
+{"type": "info", "msg": "  [gpu] Ripristino Gemma2-Uncensored dopo probe...", "timestamp": "2026-03-06T16:51:27.555537"}
+{"type": "info", "msg": "  [gpu] Caricamento Gemma2-Uncensored...", "timestamp": "2026-03-06T16:51:27.722934"}
+{"type": "info", "msg": "  [gpu] Gemma2-Uncensored pronto — VRAM: 17.6 GB", "timestamp": "2026-03-06T16:51:49.006362"}
+{"type": "step", "step": 4, "name": "Analisi geometrica separabilità", "timestamp": "2026-03-06T16:51:49.006680"}
+{"type": "result", "step": 4, "concepts": ["odore_forte_vs_inodore", "chemical_intensity", "breath_impact", "intensity_modulation"], "matrix": [[1.0, 0.40800388145236893, 0.7696881439123658, 0.4086492385282295], [0.40800388145236893, 1.0000000000000002, 0.5405247848933913, 0.32253976769086756], [0.7696881439123658, 0.5405247848933913, 1.0, 0.4898392129803429], [0.4086492385282295, 0.32253976769086756, 0.4898392129803429, 0.9999999999999999]], "layers_used": {"odore_forte_vs_inodore": {"layer": 29, "source": "summary(fallback)"}, "chemical_intensity": {"layer": 38, "source": "eval"}, "breath_impact": {"layer": 38, "source": "eval"}, "intensity_modulation": {"layer": 38, "source": "eval"}}, "stats": {"min": 0.3225, "max": 0.7697, "mean": 0.4899}, "timestamp": "2026-03-06T16:51:49.023311"}
+{"type": "step", "step": 5, "name": "Steering test + giudizio M40", "timestamp": "2026-03-06T16:51:49.024254"}
+{"type": "result", "step": 5, "version": 1, "all_validated": true, "validated": ["chemical_intensity", "breath_impact", "intensity_modulation"], "needs_refinement": [], "timestamp": "2026-03-06T17:16:55.631601"}
+{"type": "decompose_end", "concept": "odore_forte_vs_inodore", "depth": 0, "validated_subs": ["chemical_intensity", "breath_impact", "intensity_modulation"], "semantic_limit": false, "sub_results": {}, "timestamp": "2026-03-06T17:16:55.631727"}

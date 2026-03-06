@@ -1,0 +1,49 @@
+{
+  "model": "Gemma2-Uncensored",
+  "layer_type": "best_snr",
+  "concepts": [
+    "odore_forte_vs_inodore",
+    "chemical_intensity",
+    "breath_impact",
+    "intensity_modulation"
+  ],
+  "layers_used": {
+    "odore_forte_vs_inodore": 29,
+    "chemical_intensity": 38,
+    "breath_impact": 38,
+    "intensity_modulation": 38
+  },
+  "layer_sources": {
+    "odore_forte_vs_inodore": "summary(fallback)",
+    "chemical_intensity": "eval",
+    "breath_impact": "eval",
+    "intensity_modulation": "eval"
+  },
+  "matrix": [
+    [
+      1.0,
+      0.40800388145236893,
+      0.7696881439123658,
+      0.4086492385282295
+    ],
+    [
+      0.40800388145236893,
+      1.0000000000000002,
+      0.5405247848933913,
+      0.32253976769086756
+    ],
+    [
+      0.7696881439123658,
+      0.5405247848933913,
+      1.0,
+      0.4898392129803429
+    ],
+    [
+      0.4086492385282295,
+      0.32253976769086756,
+      0.4898392129803429,
+      0.9999999999999999
+    ]
+  ],
+  "timestamp": "2026-03-06T16:51:49.023680"
+}

@@ -2,76 +2,76 @@
   "concept": "hot_vs_cold",
   "model": "Gemma2-Uncensored",
   "version": 1,
-  "timestamp": "2026-03-05T08:51:40.010158",
+  "timestamp": "2026-03-06T09:05:11.245682",
   "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260228_164743_hot_vs_cold_Gemma2-Uncensored.jsonl",
-  "analysis": "Il vettore 'hot_vs_cold' confonde diverse dimensioni semantiche legate alla sensazione termica, tra cui l'intensità, la localizzazione, le risposte fisiologiche e la velocità di reazione.  Il modello sembra trattare 'caldo' e 'freddo' come un unico concetto, senza distinguere le sfumature associate a ciascuno. La decomposizione in sub-concetti specifici permette di catturare queste sfumature e di rappresentare in modo più accurato la complessità della percezione termica.  Inoltre, la presenza di esempi negativi che descrivono reazioni fisiologiche (es. vasocostrizione) dimostra che il modello non riesce a distinguere chiaramente tra le risposte associate al calore e al freddo, confondendo la causa con l'effetto.",
+  "analysis": "Il concetto broad 'hot_vs_cold' cattura una gamma molto ampia di esperienze sensoriali, che vanno dalla semplice temperatura percepita al dolore fisico, alla reazione fisiologica e persino alla sensazione psicologica associata. Un vettore che rappresenta questo concetto broad confonde la distinzione tra temperatura, dolore, reazione fisiologica (arrossamento, sudorazione, contrazione), e la percezione soggettiva di disagio. La decomposizione in sub-concetti specifici permette di isolare e rappresentare meglio queste sfumature, migliorando la precisione delle rappresentazioni semantiche.",
   "sub_concepts": [
     {
-      "slug": "intensity_of_sensation",
-      "pos_label": "burning",
-      "neg_label": "numbing",
-      "description": "Questo sub-concetto cattura il grado di intensità della sensazione termica. Il polo positivo implica una sensazione di bruciore acuta e dolorosa, mentre il polo negativo si riferisce a una sensazione di intorpidimento o mancanza di sensibilità.",
-      "why_distinct": "L'intensità è un fattore separato dalla semplice presenza o assenza di calore/freddo. Si può avere un calore lieve o un freddo intenso, e questo sub-concetto cerca di distinguere queste sfumature.",
+      "slug": "temperature_magnitude",
+      "pos_label": "Elevata Temperatura",
+      "neg_label": "Bassa Temperatura",
+      "description": "Questo sub-concetto si concentra esclusivamente sulla percezione della temperatura, indipendentemente da qualsiasi altro effetto.  Si riferisce alla sensazione di calore o freddo percepita sulla pelle.",
+      "why_distinct": "Separa la temperatura pura da altri effetti come il dolore o la reazione fisiologica, che possono essere innescati anche da temperature moderate.",
       "pos_examples": [
-        "appoggiò il palmo su una superficie bollente e sentì una fitta",
-        "sfiorò con le dita su un tubo caldo e ritrasse subito la mano",
-        "pressa l’avant-bras sur une surface brûlante et une douleur vive jaillit"
+        "The blacksmith pressed the forearm on overheated ceramic",
+        "La donna anziana poggiò la pelle su una maniglia calda",
+        "The child laid the palm on a searing surface"
       ],
       "neg_examples": [
-        "Le technicien effleura l’avant-bras sur une surface froide et le corps sursauta",
-        "La nadadora tocó con los labios sobre una superficie fría; y la piel se contrajo",
-        "Le forgeron posa le poignet sur une céramique froide et une morsure sèche frappa"
+        "La nageuse pressa la paume sur une céramique froide",
+        "antebrachium leviter attigit in fictili frigido",
+        "The mason pressed the palm on a frozen handle"
       ]
     },
     {
-      "slug": "location_specificity",
-      "pos_label": "localized",
-      "neg_label": "radiating",
-      "description": "Questo sub-concetto riguarda la localizzazione della sensazione. Il polo positivo indica un dolore o una sensazione concentrata in un punto specifico, mentre il polo negativo implica una sensazione che si irradia o si diffonde.",
-      "why_distinct": "La localizzazione influenza la percezione e la risposta alla sensazione. Un dolore localizzato può richiedere un intervento diverso rispetto a un dolore diffuso.",
+      "slug": "pain_intensity",
+      "pos_label": "Dolore Intenso",
+      "neg_label": "Assenza di Dolore",
+      "description": "Questo sub-concetto si concentra sulla componente dolorosa dell'esperienza, indipendentemente dalla temperatura specifica.  Si riferisce alla sensazione di dolore, bruciore o fastidio.",
+      "why_distinct": "Permette di distinguere situazioni in cui la temperatura è alta ma il dolore è lieve, o viceversa, dove la temperatura è moderata ma il dolore è intenso.",
       "pos_examples": [
-        "con dolore netto e localizzato con la mano ancora aperta",
-        "dolore netto e localizzato finché la pelle non smise di pulsare",
-        "il punto pulsò"
+        "L’enfant posa la paume sur une surface brûlante et une douleur vive jaillit",
+        "Il cuoco premette l’avambraccio su una superficie bollente; e il contatto pizzicò",
+        "The elderly woman pressed the forearm on scorching metal"
       ],
       "neg_examples": [
-        "la sensazione si irradiò",
-        "la sensazione si irradiò",
-        "la sensazione si irradiò"
+        "La subacquea poggiò il polso su un tubo freddissimo e il contatto punse",
+        "Structor cutis dura facta est dum labris tetigit in metallo gelido",
+        "brushed the forearm on a cold surface and a dry bite hit"
       ]
     },
     {
-      "slug": "physiological_response",
-      "pos_label": "sweating",
-      "neg_label": "vasoconstriction",
-      "description": "Questo sub-concetto si concentra sulle risposte fisiologiche associate al calore e al freddo, come la sudorazione (calore) o la vasocostrizione (freddo).",
-      "why_distinct": "Le risposte fisiologiche forniscono informazioni aggiuntive sullo stato del corpo e sull'intensità della sensazione.",
+      "slug": "physiological_reaction",
+      "pos_label": "Reazione Fisiologica (arrossamento, sudorazione)",
+      "neg_label": "Assenza di Reazione Fisiologica",
+      "description": "Questo sub-concetto si riferisce alle reazioni fisiche del corpo alla temperatura, come arrossamento della pelle, sudorazione, o contrazione muscolare.  Non si concentra sulla temperatura o sul dolore in sé.",
+      "why_distinct": "Permette di distinguere situazioni in cui la temperatura è moderata ma il corpo reagisce in modo significativo, o viceversa, dove la temperatura è alta ma il corpo non mostra segni di reazione.",
       "pos_examples": [
-        "brotò sudor",
-        "il punto pulsò; con dolore netto e localizzato finché la pelle non smise di pulsare",
-        "la pelle bruciò"
+        "la sueur perla, laissant une trace brûlante la main encore ouverte",
+        "la pelle arrossì",
+        "sweat beaded"
       ],
       "neg_examples": [
+        "les doigts s’engourdirent, avec picotements et raideur",
         "la sangue pareció retirarse",
-        "la pelle devint dure",
-        "la sangue sembla se retirer"
+        "apparecieron escalofríos finos"
       ]
     },
     {
-      "slug": "reaction_speed",
-      "pos_label": "instant",
-      "neg_label": "delayed",
-      "description": "Questo sub-concetto cattura la velocità della reazione al contatto con la superficie, che può essere immediata (polo positivo) o ritardata (polo negativo).",
-      "why_distinct": "La velocità della reazione può indicare la gravità della situazione e l'intensità della sensazione.",
+      "slug": "subjective_discomfort",
+      "pos_label": "Disagio Soggettivo",
+      "neg_label": "Assenza di Disagio Soggettivo",
+      "description": "Questo sub-concetto cattura la sensazione di disagio o fastidio associata all'esperienza, che può essere influenzata da fattori psicologici e culturali oltre che dalla temperatura o dal dolore.",
+      "why_distinct": "Permette di distinguere situazioni in cui la temperatura è moderata ma la persona percepisce un forte disagio, o viceversa, dove la temperatura è alta ma la persona è relativamente indifferente.",
       "pos_examples": [
-        "ritrasse subito la mano",
-        "ritrasse subito la mano",
-        "pressa l’avant-bras sur une surface brûlante et une douleur vive jaillit"
+        "impossible de ignorar con la mano aún abierta",
+        "il contatto punse",
+        "retiró la mano por dolor"
       ],
       "neg_examples": [
-        "Le technicien effleura l’avant-bras sur une surface froide et le corps sursauta",
-        "Die Radfahrerin legte die Haut auf einen heißen Griff und zog die Hand sofort zurück",
-        "La ciclista la sangre pareció retirarse"
+        "la sensibilità calò",
+        "il corpo sursauta",
+        "blood seemed to pull back"
       ]
     }
   ]

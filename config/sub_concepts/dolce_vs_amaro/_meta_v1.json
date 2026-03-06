@@ -2,76 +2,76 @@
   "concept": "dolce_vs_amaro",
   "model": "Gemma2-Uncensored",
   "version": 1,
-  "timestamp": "2026-03-03T16:12:09.483867",
+  "timestamp": "2026-03-06T15:42:47.017877",
   "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260301_131402_dolce_vs_amaro_Gemma2-Uncensored.jsonl",
-  "analysis": "Il concetto broad 'dolce_vs_amaro' è problematico perché ingloba diverse dimensioni semantiche distinte.  Un vettore che cerca di catturare questo concetto può confondere la percezione di 'calore/comfort' con la semplice dolcezza, o la sensazione di 'rilassamento/sollievo' con l'assenza di amarezza.  La decomposizione è necessaria per permettere al modello di rappresentare in modo più accurato le sfumature sensoriali e emotive associate a questi sapori.",
+  "analysis": "The broad concept 'sweet_vs_bitter' conflates several distinct semantic dimensions. It doesn't account for the *intensity* of sweetness, the *texture* experienced in the mouth, the *complexity* of the flavor profile, or the *duration* of the aftertaste.  The transformer is likely learning to associate certain words with 'sweet' or 'bitter' without understanding the underlying nuances of these sensory experiences. Decomposing this space into the sub-concepts above allows for a more granular and accurate representation of the taste perception, enabling more precise steered generation and improved understanding of the underlying semantics.",
   "sub_concepts": [
     {
-      "slug": "calore_vs_freschezza",
-      "pos_label": "Caldo",
-      "neg_label": "Fresco",
-      "description": "Questo sub-concetto cattura la sensazione termica associata al sapore. I sapori dolci spesso evocano immagini di calore, comfort e avvolgenza, mentre i sapori amari tendono ad essere percepiti come freschi o addirittura astringenti.",
-      "why_distinct": "La temperatura percepita è indipendente dal grado di dolcezza o amarezza. Un sapore può essere dolce e fresco, o amaro e caldo.",
+      "slug": "sweetness_intensity",
+      "pos_label": "High Sweetness",
+      "neg_label": "Low Sweetness/Bitterness",
+      "description": "This sub-concept captures the degree of sweetness. High sweetness implies a prominent sugary flavor, while low sweetness or bitterness indicates a lack of sweetness or a presence of bitter notes.",
+      "why_distinct": "Distinguishes between subtle sweetness and a strong, overt sugary taste.  It's not simply about 'sweet' vs. 'not sweet', but the *level* of sweetness.",
       "pos_examples": [
-        "La barista masticò despacio chocolate con leche, y la lengua encontró alivio; dejando una estela cálida.",
-        "Il nonno bevve un sorso crema alla vaniglia, e arrivò subito una rotondità; con un equilibrio pieno. la fronte si distese come un premio breve.",
-        "El catador dejó que se derritiera crema de vainilla, y llegó una redondez inmediata; con equilibrio pleno. los ojos se iluminaron como un premio breve."
+        "Das Kind: Vanillecreme — mit einer warmen Spur;",
+        "L’étudiante : du miel — avec des notes de caramel ;",
+        "La barista : du miel — avec une finale douce ;"
       ],
       "neg_examples": [
-        "The student: over-extracted coffee — with a drying trail; and the tongue tip tightened.",
-        "La violinista: caffè troppo estratto — con una coda che non mollava; e la punta della lingua si strinse.",
-        "porta à la langue un café trop extrait : et le goût resta sec, avec une finale longue et austère."
+        "kaute kurz einen starken Aufguss:",
+        "La barista: radicchio crudo — con un finale lungo e austero;",
+        "The violinist held it in the mouth over-extracted coffee,"
       ]
     },
     {
-      "slug": "rilassamento_vs_tensione",
-      "pos_label": "Rilassamento",
-      "neg_label": "Tensione",
-      "description": "Questo sub-concetto si concentra sull'effetto emotivo e fisico del sapore. I sapori dolci spesso inducono a un senso di rilassamento, sollievo e piacere, mentre i sapori amari possono causare tensione, disagio o persino una sensazione di rimprovero.",
-      "why_distinct": "L'effetto emotivo può variare indipendentemente dall'intensità del sapore. Un sapore può essere leggermente dolce e rilassante, o molto amaro e teso.",
+      "slug": "mouthfeel_texture",
+      "pos_label": "Creamy/Smooth",
+      "neg_label": "Dry/Astringent",
+      "description": "This sub-concept focuses on the tactile sensation in the mouth. Creamy/smooth refers to a rich, coating texture, while dry/astringent describes a sensation of puckering or roughness.",
+      "why_distinct": "Separates the gustatory experience from the physical feeling.  A sweet taste can be creamy, but it can also be dry or astringent.",
       "pos_examples": [
-        "El niño la frente se aflojó sin pedir más.",
-        "Il degustatore: cioccolato al latte — con un finale morbido; e la bocca si riempì. finché il sapore svanì piano.",
-        "Le dégustateur prit une gorgée du chocolat au lait, et le goût s’ouvrit ; avec une traîne chaude. un sourire passa et une sensation gentille resta."
+        "nahm einen Schluck Vanillecreme: und die Wangen entspannten, mit weichem Abgang;",
+        "La cuoca mise una goccia sulla lingua frutta matura,",
+        "El pastelero: fruta madura — con notas de caramelo;"
       ],
       "neg_examples": [
-        "come un rimprovero breve.",
-        "Die Köchin räusperte sich bis es vorbeiging.",
-        "La violoniste se racla la gorge la langue encore tendue."
+        "masticò un attimo un infuso forte: e arrivò un morso netto,",
+        "La barista: radicchio crudo — con un finale lungo e austero;",
+        "The sommelier swallowed slowly a strong infusion, and the flavor stayed dry;"
       ]
     },
     {
-      "slug": "rotondita_vs_asperita",
-      "pos_label": "Rotondità",
-      "neg_label": "Asperità",
-      "description": "Questo sub-concetto descrive la texture percepita del sapore. I sapori dolci spesso presentano una sensazione di rotondità, pienezza e armonia, mentre i sapori amari possono essere percepiti come aspri, taglienti o sgradevoli.",
-      "why_distinct": "La texture è un aspetto separato dal gusto. Un sapore può essere dolce e aspro, o amaro e rotondo.",
+      "slug": "flavor_complexity",
+      "pos_label": "Nuanced/Layered",
+      "neg_label": "Simple/Direct",
+      "description": "This sub-concept distinguishes between flavors with multiple, evolving notes (nuanced/layered) and those that are straightforward and uncomplicated (simple/direct).",
+      "why_distinct": "Accounts for the richness and depth of the flavor profile. Some sweet flavors are simple, while others have multiple components.",
       "pos_examples": [
-        "arrivò subito una rotondità; con un equilibrio pieno.",
-        "con equilibrio pieno.",
-        "con un finale morbido"
+        "L’étudiante : du miel — avec des notes de caramel ;",
+        "La cuoca mise una goccia sulla lingua frutta matura,",
+        "El pastelero: fruta madura — con notas de caramelo;"
       ],
       "neg_examples": [
-        "con una coda che non mollava",
-        "con una finale lunga e austera",
-        "con evidenti Kanten"
+        "kaute kurz einen starken Aufguss:",
+        "The child: a strong infusion — with a medicinal note;",
+        "La barista tragó despacio chocolate negro intenso,"
       ]
     },
     {
-      "slug": "familiarita_vs_estraneita",
-      "pos_label": "Familiare",
-      "neg_label": "Estraneo",
-      "description": "Questo sub-concetto cattura la sensazione di riconoscimento o novità associata al sapore. I sapori dolci spesso evocano ricordi e sensazioni familiari, mentre i sapori amari possono risultare inaspettati o persino sgradevoli.",
-      "why_distinct": "La familiarità non è intrinsecamente legata alla dolcezza o all'amarezza. Un sapore può essere dolce e nuovo, o amaro e familiare.",
+      "slug": "aftertaste_persistence",
+      "pos_label": "Lingering/Persistent",
+      "neg_label": "Fleeting/Transient",
+      "description": "This sub-concept refers to how long the flavor remains in the mouth after swallowing. A lingering/persistent aftertaste lasts for a noticeable time, while a fleeting/transient one disappears quickly.",
+      "why_distinct": "Addresses the temporal aspect of the taste experience.  A sweet flavor can have a long or short aftertaste.",
       "pos_examples": [
-        "un premio breve.",
-        "un sorriso con ligereza.",
-        "quasi parva merces."
+        "La barista : du miel — avec une finale douce ;",
+        "lente manducavit chocolatum lacteum:",
+        "Die Studentin: Honig — mit einer warmen Spur;"
       ],
       "neg_examples": [
-        "come un rimprovero breve.",
-        "senza dolcezza per compensare.",
-        "senza Ausgleich."
+        "The violinist held it in the mouth over-extracted coffee,",
+        "La cuoca: caffè troppo estratto — con una nota medicinale;",
+        "The barista tragó despacio chocolate negro intenso,"
       ]
     }
   ]

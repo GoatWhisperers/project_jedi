@@ -1,0 +1,27 @@
+{"type": "run_start", "concept": "rumore_vs_silenzio", "model": "Gemma2-Uncensored", "max_depth": 0, "max_iter": 2, "dry_run": false, "timestamp": "2026-03-06T14:43:59.269224"}
+{"type": "decompose_start", "concept": "rumore_vs_silenzio", "depth": 0, "timestamp": "2026-03-06T14:43:59.343444"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v1)", "timestamp": "2026-03-06T14:43:59.343670"}
+{"type": "info", "msg": "  Proposti: ['intensity_vs_subtlety', 'rhythmic_vs_random', 'pleasant_vs_unpleasant_tone', 'distracting_vs_background']", "timestamp": "2026-03-06T14:45:34.767739"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v1)", "timestamp": "2026-03-06T14:45:34.767894"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-06T14:50:32.933942"}
+{"type": "info", "msg": "  [gpu] Preparo GPU per probe diretto...", "timestamp": "2026-03-06T14:50:32.934063"}
+{"type": "info", "msg": "  [gpu] Modello attivo: Gemma2-Uncensored — VRAM: 17.6 GB", "timestamp": "2026-03-06T14:50:33.131608"}
+{"type": "info", "msg": "  [gpu] Attendo GPU idle...", "timestamp": "2026-03-06T14:50:33.131908"}
+{"type": "info", "msg": "  [gpu] Unload modello...", "timestamp": "2026-03-06T14:50:33.328557"}
+{"type": "info", "msg": "  [gpu] VRAM liberata — usata: 12.7 GB / 32.0 GB", "timestamp": "2026-03-06T14:50:33.995776"}
+{"type": "info", "msg": "  Probe: intensity_vs_subtlety / Gemma2-Uncensored", "timestamp": "2026-03-06T14:50:33.997009"}
+{"type": "info", "msg": "  Probe OK: intensity_vs_subtlety", "timestamp": "2026-03-06T14:51:39.354746"}
+{"type": "info", "msg": "  Probe: rhythmic_vs_random / Gemma2-Uncensored", "timestamp": "2026-03-06T14:51:39.355542"}
+{"type": "info", "msg": "  Probe OK: rhythmic_vs_random", "timestamp": "2026-03-06T14:52:44.229143"}
+{"type": "info", "msg": "  Probe: pleasant_vs_unpleasant_tone / Gemma2-Uncensored", "timestamp": "2026-03-06T14:52:44.230020"}
+{"type": "info", "msg": "  Probe OK: pleasant_vs_unpleasant_tone", "timestamp": "2026-03-06T14:54:09.438436"}
+{"type": "info", "msg": "  Probe: distracting_vs_background / Gemma2-Uncensored", "timestamp": "2026-03-06T14:54:09.439747"}
+{"type": "info", "msg": "  Probe OK: distracting_vs_background", "timestamp": "2026-03-06T14:55:29.474930"}
+{"type": "info", "msg": "  [gpu] Ripristino Gemma2-Uncensored dopo probe...", "timestamp": "2026-03-06T14:55:29.475228"}
+{"type": "info", "msg": "  [gpu] Caricamento Gemma2-Uncensored...", "timestamp": "2026-03-06T14:55:29.649305"}
+{"type": "info", "msg": "  [gpu] Gemma2-Uncensored pronto — VRAM: 17.6 GB", "timestamp": "2026-03-06T14:55:51.582478"}
+{"type": "step", "step": 4, "name": "Analisi geometrica separabilità", "timestamp": "2026-03-06T14:55:51.582840"}
+{"type": "result", "step": 4, "concepts": ["rumore_vs_silenzio", "intensity_vs_subtlety", "rhythmic_vs_random", "pleasant_vs_unpleasant_tone", "distracting_vs_background"], "matrix": [[1.0, 0.4192521187312365, 0.18347697032994295, -0.2575906774588901, 0.2809790236476913], [0.4192521187312365, 1.0000000000000002, 0.4748643894303369, -0.12054510608945505, 0.2915437553786495], [0.18347697032994295, 0.4748643894303369, 1.0000000000000002, 0.21917408462240143, -0.1137804829855471], [-0.2575906774588901, -0.12054510608945505, 0.21917408462240143, 1.0, -0.3110492395117477], [0.2809790236476913, 0.2915437553786495, -0.1137804829855471, -0.3110492395117477, 1.0]], "layers_used": {"rumore_vs_silenzio": {"layer": 38, "source": "eval"}, "intensity_vs_subtlety": {"layer": 29, "source": "eval"}, "rhythmic_vs_random": {"layer": 30, "source": "eval"}, "pleasant_vs_unpleasant_tone": {"layer": 34, "source": "eval"}, "distracting_vs_background": {"layer": 38, "source": "eval"}}, "stats": {"min": -0.311, "max": 0.4749, "mean": 0.1066}, "timestamp": "2026-03-06T14:55:51.591876"}
+{"type": "step", "step": 5, "name": "Steering test + giudizio M40", "timestamp": "2026-03-06T14:55:51.592907"}
+{"type": "result", "step": 5, "version": 1, "all_validated": true, "validated": ["intensity_vs_subtlety", "rhythmic_vs_random", "pleasant_vs_unpleasant_tone", "distracting_vs_background"], "needs_refinement": [], "timestamp": "2026-03-06T15:41:25.250951"}
+{"type": "decompose_end", "concept": "rumore_vs_silenzio", "depth": 0, "validated_subs": ["intensity_vs_subtlety", "rhythmic_vs_random", "pleasant_vs_unpleasant_tone", "distracting_vs_background"], "semantic_limit": false, "sub_results": {}, "timestamp": "2026-03-06T15:41:25.251088"}

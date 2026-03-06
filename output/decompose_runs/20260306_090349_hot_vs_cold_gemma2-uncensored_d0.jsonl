@@ -1,0 +1,27 @@
+{"type": "run_start", "concept": "hot_vs_cold", "model": "Gemma2-Uncensored", "max_depth": 0, "max_iter": 2, "dry_run": false, "timestamp": "2026-03-06T09:03:49.362292"}
+{"type": "decompose_start", "concept": "hot_vs_cold", "depth": 0, "timestamp": "2026-03-06T09:03:49.477711"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v1)", "timestamp": "2026-03-06T09:03:49.477981"}
+{"type": "info", "msg": "  Proposti: ['temperature_magnitude', 'pain_intensity', 'physiological_reaction', 'subjective_discomfort']", "timestamp": "2026-03-06T09:05:11.246412"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v1)", "timestamp": "2026-03-06T09:05:11.246551"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-06T09:11:44.095584"}
+{"type": "info", "msg": "  [gpu] Preparo GPU per probe diretto...", "timestamp": "2026-03-06T09:11:44.095738"}
+{"type": "info", "msg": "  [gpu] Modello attivo: Gemma2-Uncensored — VRAM: 18.8 GB", "timestamp": "2026-03-06T09:11:44.405945"}
+{"type": "info", "msg": "  [gpu] Attendo GPU idle...", "timestamp": "2026-03-06T09:11:44.406195"}
+{"type": "info", "msg": "  [gpu] Unload modello...", "timestamp": "2026-03-06T09:11:44.752079"}
+{"type": "info", "msg": "  [gpu] VRAM liberata — usata: 11.4 GB / 32.0 GB", "timestamp": "2026-03-06T09:11:45.653881"}
+{"type": "info", "msg": "  Probe: temperature_magnitude / Gemma2-Uncensored", "timestamp": "2026-03-06T09:11:45.654736"}
+{"type": "info", "msg": "  Probe OK: temperature_magnitude", "timestamp": "2026-03-06T09:13:12.688752"}
+{"type": "info", "msg": "  Probe: pain_intensity / Gemma2-Uncensored", "timestamp": "2026-03-06T09:13:12.689505"}
+{"type": "info", "msg": "  Probe OK: pain_intensity", "timestamp": "2026-03-06T09:14:41.562860"}
+{"type": "info", "msg": "  Probe: physiological_reaction / Gemma2-Uncensored", "timestamp": "2026-03-06T09:14:41.563941"}
+{"type": "info", "msg": "  Probe OK: physiological_reaction", "timestamp": "2026-03-06T09:15:46.421984"}
+{"type": "info", "msg": "  Probe: subjective_discomfort / Gemma2-Uncensored", "timestamp": "2026-03-06T09:15:46.423412"}
+{"type": "info", "msg": "  Probe OK: subjective_discomfort", "timestamp": "2026-03-06T09:18:17.205558"}
+{"type": "info", "msg": "  [gpu] Ripristino Gemma2-Uncensored dopo probe...", "timestamp": "2026-03-06T09:18:17.205885"}
+{"type": "info", "msg": "  [gpu] Caricamento Gemma2-Uncensored...", "timestamp": "2026-03-06T09:18:17.538884"}
+{"type": "info", "msg": "  [gpu] Gemma2-Uncensored pronto — VRAM: 17.4 GB", "timestamp": "2026-03-06T09:18:39.571779"}
+{"type": "step", "step": 4, "name": "Analisi geometrica separabilità", "timestamp": "2026-03-06T09:18:39.572039"}
+{"type": "result", "step": 4, "concepts": ["hot_vs_cold", "temperature_magnitude", "pain_intensity", "physiological_reaction", "subjective_discomfort"], "matrix": [[1.0, 0.5734979828209481, -0.08232635586496924, 0.23290367319723854, -0.2158596382755332], [0.5734979828209481, 1.0, 0.09669059343128851, 0.14929483951760503, 0.06220718337330964], [-0.08232635586496924, 0.09669059343128851, 0.9999999999999999, -0.2842496268284718, 0.5377581620806936], [0.23290367319723854, 0.14929483951760503, -0.2842496268284718, 1.0000000000000002, -0.20827438006771357], [-0.2158596382755332, 0.06220718337330964, 0.5377581620806936, -0.20827438006771357, 1.0]], "layers_used": {"hot_vs_cold": {"layer": 37, "source": "summary(fallback)"}, "temperature_magnitude": {"layer": 33, "source": "eval"}, "pain_intensity": {"layer": 38, "source": "eval"}, "physiological_reaction": {"layer": 36, "source": "eval"}, "subjective_discomfort": {"layer": 38, "source": "eval"}}, "stats": {"min": -0.2842, "max": 0.5735, "mean": 0.0862}, "timestamp": "2026-03-06T09:18:39.582068"}
+{"type": "step", "step": 5, "name": "Steering test + giudizio M40", "timestamp": "2026-03-06T09:18:39.582996"}
+{"type": "result", "step": 5, "version": 1, "all_validated": true, "validated": ["temperature_magnitude", "pain_intensity", "physiological_reaction", "subjective_discomfort"], "needs_refinement": [], "timestamp": "2026-03-06T10:04:57.808099"}
+{"type": "decompose_end", "concept": "hot_vs_cold", "depth": 0, "validated_subs": ["temperature_magnitude", "pain_intensity", "physiological_reaction", "subjective_discomfort"], "semantic_limit": false, "sub_results": {}, "timestamp": "2026-03-06T10:04:57.808370"}

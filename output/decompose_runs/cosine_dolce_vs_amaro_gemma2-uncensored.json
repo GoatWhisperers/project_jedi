@@ -1,0 +1,63 @@
+{
+  "model": "Gemma2-Uncensored",
+  "layer_type": "best_snr",
+  "concepts": [
+    "dolce_vs_amaro",
+    "sweetness_intensity",
+    "mouthfeel_texture",
+    "flavor_complexity",
+    "aftertaste_persistence"
+  ],
+  "layers_used": {
+    "dolce_vs_amaro": 38,
+    "sweetness_intensity": 38,
+    "mouthfeel_texture": 34,
+    "flavor_complexity": 38,
+    "aftertaste_persistence": 30
+  },
+  "layer_sources": {
+    "dolce_vs_amaro": "eval",
+    "sweetness_intensity": "eval",
+    "mouthfeel_texture": "eval",
+    "flavor_complexity": "eval",
+    "aftertaste_persistence": "eval"
+  },
+  "matrix": [
+    [
+      1.0,
+      0.3697688515286621,
+      0.25641135772707063,
+      -0.3530528246436949,
+      -0.06696041506660046
+    ],
+    [
+      0.3697688515286621,
+      1.0,
+      0.13832026254154378,
+      -0.26473753262084915,
+      0.13122708114929144
+    ],
+    [
+      0.25641135772707063,
+      0.13832026254154378,
+      1.0,
+      0.2358931034935179,
+      0.07359904794796757
+    ],
+    [
+      -0.3530528246436949,
+      -0.26473753262084915,
+      0.2358931034935179,
+      0.9999999999999999,
+      0.13347551604797603
+    ],
+    [
+      -0.06696041506660046,
+      0.13122708114929144,
+      0.07359904794796757,
+      0.13347551604797603,
+      1.0000000000000002
+    ]
+  ],
+  "timestamp": "2026-03-06T15:52:43.465943"
+}

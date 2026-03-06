@@ -1,0 +1,24 @@
+{"type": "run_start", "concept": "calma_vs_allerta", "model": "Gemma2-Uncensored", "max_depth": 0, "max_iter": 2, "dry_run": false, "timestamp": "2026-03-06T10:35:53.651274"}
+{"type": "decompose_start", "concept": "calma_vs_allerta", "depth": 0, "timestamp": "2026-03-06T10:35:53.750985"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v1)", "timestamp": "2026-03-06T10:35:53.751303"}
+{"type": "info", "msg": "  Proposti: ['respiratory_rate', 'physiological_arousal', 'mental_focus', 'temporal_perception']", "timestamp": "2026-03-06T10:37:14.723352"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v1)", "timestamp": "2026-03-06T10:37:14.723591"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-06T10:41:17.454608"}
+{"type": "info", "msg": "  [gpu] Preparo GPU per probe diretto...", "timestamp": "2026-03-06T10:41:17.454863"}
+{"type": "info", "msg": "  [gpu] Modello attivo: Gemma2-Uncensored — VRAM: 17.6 GB", "timestamp": "2026-03-06T10:41:17.793940"}
+{"type": "info", "msg": "  [gpu] Attendo GPU idle...", "timestamp": "2026-03-06T10:41:17.794153"}
+{"type": "info", "msg": "  [gpu] Unload modello...", "timestamp": "2026-03-06T10:41:18.152883"}
+{"type": "info", "msg": "  [gpu] VRAM liberata — usata: 16.6 GB / 32.0 GB", "timestamp": "2026-03-06T10:41:19.030048"}
+{"type": "info", "msg": "  Probe: respiratory_rate / Gemma2-Uncensored", "timestamp": "2026-03-06T10:41:19.031249"}
+{"type": "info", "msg": "  Probe OK: respiratory_rate", "timestamp": "2026-03-06T10:42:37.286602"}
+{"type": "info", "msg": "  SKIP probe physiological_arousal — JSON non trovato: /home/lele/codex-openai/project_jedi/config/sub_concepts/calma_vs_allerta/physiological_arousal.json", "timestamp": "2026-03-06T10:42:37.287061"}
+{"type": "info", "msg": "  Probe: mental_focus / Gemma2-Uncensored", "timestamp": "2026-03-06T10:42:37.288083"}
+{"type": "info", "msg": "  Probe OK: mental_focus", "timestamp": "2026-03-06T10:43:52.347044"}
+{"type": "info", "msg": "  Probe: temporal_perception / Gemma2-Uncensored", "timestamp": "2026-03-06T10:43:52.347812"}
+{"type": "info", "msg": "  Probe OK: temporal_perception", "timestamp": "2026-03-06T10:45:13.190953"}
+{"type": "info", "msg": "  [gpu] Ripristino Gemma2-Uncensored dopo probe...", "timestamp": "2026-03-06T10:45:13.191188"}
+{"type": "info", "msg": "  [gpu] Caricamento Gemma2-Uncensored...", "timestamp": "2026-03-06T10:45:13.494775"}
+{"type": "info", "msg": "  [gpu] Gemma2-Uncensored pronto — VRAM: 18.3 GB", "timestamp": "2026-03-06T10:45:38.021563"}
+{"type": "step", "step": 4, "name": "Analisi geometrica separabilità", "timestamp": "2026-03-06T10:45:38.021801"}
+{"type": "result", "step": 4, "concepts": ["calma_vs_allerta", "respiratory_rate", "mental_focus", "temporal_perception"], "matrix": [[1.0, 0.5823788183975733, 0.251896973448885, 0.07655293681394008], [0.5823788183975733, 0.9999999999999999, 0.19432118959762965, 0.37349181801568665], [0.251896973448885, 0.19432118959762965, 0.9999999999999998, -0.13088228690186246], [0.07655293681394008, 0.37349181801568665, -0.13088228690186246, 1.0]], "layers_used": {"calma_vs_allerta": {"layer": 38, "source": "summary(fallback)"}, "respiratory_rate": {"layer": 35, "source": "eval"}, "mental_focus": {"layer": 31, "source": "eval"}, "temporal_perception": {"layer": 38, "source": "eval"}}, "stats": {"min": -0.1309, "max": 0.5824, "mean": 0.2246}, "timestamp": "2026-03-06T10:45:38.035279"}
+{"type": "step", "step": 5, "name": "Steering test + giudizio M40", "timestamp": "2026-03-06T10:45:38.036085"}

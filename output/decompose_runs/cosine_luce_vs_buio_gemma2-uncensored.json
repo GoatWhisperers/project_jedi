@@ -1,0 +1,63 @@
+{
+  "model": "Gemma2-Uncensored",
+  "layer_type": "best_snr",
+  "concepts": [
+    "luce_vs_buio",
+    "pupillary_response",
+    "visual_clarity",
+    "emotional_comfort",
+    "environmental_context"
+  ],
+  "layers_used": {
+    "luce_vs_buio": 38,
+    "pupillary_response": 32,
+    "visual_clarity": 35,
+    "emotional_comfort": 38,
+    "environmental_context": 36
+  },
+  "layer_sources": {
+    "luce_vs_buio": "summary(fallback)",
+    "pupillary_response": "eval",
+    "visual_clarity": "eval",
+    "emotional_comfort": "eval",
+    "environmental_context": "eval"
+  },
+  "matrix": [
+    [
+      1.0000000000000002,
+      -0.3909461807687962,
+      -0.045543012856524755,
+      -0.36965969388982733,
+      -0.23650413769743098
+    ],
+    [
+      -0.3909461807687962,
+      1.0000000000000002,
+      0.045766685858845677,
+      0.37791763253686983,
+      0.0650602514930587
+    ],
+    [
+      -0.045543012856524755,
+      0.045766685858845677,
+      1.0,
+      0.07059266200594136,
+      0.18137095593089259
+    ],
+    [
+      -0.36965969388982733,
+      0.37791763253686983,
+      0.07059266200594136,
+      1.0,
+      0.05876876513502769
+    ],
+    [
+      -0.23650413769743098,
+      0.0650602514930587,
+      0.18137095593089259,
+      0.05876876513502769,
+      1.0000000000000002
+    ]
+  ],
+  "timestamp": "2026-03-06T10:15:30.980469"
+}

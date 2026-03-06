@@ -1,0 +1,27 @@
+{"type": "run_start", "concept": "dolce_vs_amaro", "model": "Gemma2-Uncensored", "max_depth": 0, "max_iter": 2, "dry_run": false, "timestamp": "2026-03-06T15:41:25.736995"}
+{"type": "decompose_start", "concept": "dolce_vs_amaro", "depth": 0, "timestamp": "2026-03-06T15:41:25.812128"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v1)", "timestamp": "2026-03-06T15:41:25.812328"}
+{"type": "info", "msg": "  Proposti: ['sweetness_intensity', 'mouthfeel_texture', 'flavor_complexity', 'aftertaste_persistence']", "timestamp": "2026-03-06T15:42:47.018687"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v1)", "timestamp": "2026-03-06T15:42:47.018909"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-06T15:47:21.844384"}
+{"type": "info", "msg": "  [gpu] Preparo GPU per probe diretto...", "timestamp": "2026-03-06T15:47:21.844619"}
+{"type": "info", "msg": "  [gpu] Modello attivo: Gemma2-Uncensored — VRAM: 17.6 GB", "timestamp": "2026-03-06T15:47:22.047005"}
+{"type": "info", "msg": "  [gpu] Attendo GPU idle...", "timestamp": "2026-03-06T15:47:22.047307"}
+{"type": "info", "msg": "  [gpu] Unload modello...", "timestamp": "2026-03-06T15:47:22.242024"}
+{"type": "info", "msg": "  [gpu] VRAM liberata — usata: 12.6 GB / 32.0 GB", "timestamp": "2026-03-06T15:47:22.918367"}
+{"type": "info", "msg": "  Probe: sweetness_intensity / Gemma2-Uncensored", "timestamp": "2026-03-06T15:47:22.919884"}
+{"type": "info", "msg": "  Probe OK: sweetness_intensity", "timestamp": "2026-03-06T15:49:00.855049"}
+{"type": "info", "msg": "  Probe: mouthfeel_texture / Gemma2-Uncensored", "timestamp": "2026-03-06T15:49:00.856192"}
+{"type": "info", "msg": "  Probe OK: mouthfeel_texture", "timestamp": "2026-03-06T15:50:05.116331"}
+{"type": "info", "msg": "  Probe: flavor_complexity / Gemma2-Uncensored", "timestamp": "2026-03-06T15:50:05.117665"}
+{"type": "info", "msg": "  Probe OK: flavor_complexity", "timestamp": "2026-03-06T15:51:18.703053"}
+{"type": "info", "msg": "  Probe: aftertaste_persistence / Gemma2-Uncensored", "timestamp": "2026-03-06T15:51:18.704187"}
+{"type": "info", "msg": "  Probe OK: aftertaste_persistence", "timestamp": "2026-03-06T15:52:22.241058"}
+{"type": "info", "msg": "  [gpu] Ripristino Gemma2-Uncensored dopo probe...", "timestamp": "2026-03-06T15:52:22.241418"}
+{"type": "info", "msg": "  [gpu] Caricamento Gemma2-Uncensored...", "timestamp": "2026-03-06T15:52:22.410598"}
+{"type": "info", "msg": "  [gpu] Gemma2-Uncensored pronto — VRAM: 17.6 GB", "timestamp": "2026-03-06T15:52:43.456425"}
+{"type": "step", "step": 4, "name": "Analisi geometrica separabilità", "timestamp": "2026-03-06T15:52:43.456728"}
+{"type": "result", "step": 4, "concepts": ["dolce_vs_amaro", "sweetness_intensity", "mouthfeel_texture", "flavor_complexity", "aftertaste_persistence"], "matrix": [[1.0, 0.3697688515286621, 0.25641135772707063, -0.3530528246436949, -0.06696041506660046], [0.3697688515286621, 1.0, 0.13832026254154378, -0.26473753262084915, 0.13122708114929144], [0.25641135772707063, 0.13832026254154378, 1.0, 0.2358931034935179, 0.07359904794796757], [-0.3530528246436949, -0.26473753262084915, 0.2358931034935179, 0.9999999999999999, 0.13347551604797603], [-0.06696041506660046, 0.13122708114929144, 0.07359904794796757, 0.13347551604797603, 1.0000000000000002]], "layers_used": {"dolce_vs_amaro": {"layer": 38, "source": "eval"}, "sweetness_intensity": {"layer": 38, "source": "eval"}, "mouthfeel_texture": {"layer": 34, "source": "eval"}, "flavor_complexity": {"layer": 38, "source": "eval"}, "aftertaste_persistence": {"layer": 30, "source": "eval"}}, "stats": {"min": -0.3531, "max": 0.3698, "mean": 0.0654}, "timestamp": "2026-03-06T15:52:43.465571"}
+{"type": "step", "step": 5, "name": "Steering test + giudizio M40", "timestamp": "2026-03-06T15:52:43.466646"}
+{"type": "result", "step": 5, "version": 1, "all_validated": true, "validated": ["sweetness_intensity", "mouthfeel_texture", "flavor_complexity", "aftertaste_persistence"], "needs_refinement": [], "timestamp": "2026-03-06T16:39:16.893830"}
+{"type": "decompose_end", "concept": "dolce_vs_amaro", "depth": 0, "validated_subs": ["sweetness_intensity", "mouthfeel_texture", "flavor_complexity", "aftertaste_persistence"], "semantic_limit": false, "sub_results": {}, "timestamp": "2026-03-06T16:39:16.893978"}

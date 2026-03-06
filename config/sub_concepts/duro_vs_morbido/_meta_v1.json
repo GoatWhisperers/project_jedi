@@ -2,76 +2,76 @@
   "concept": "duro_vs_morbido",
   "model": "Gemma2-Uncensored",
   "version": 1,
-  "timestamp": "2026-03-03T15:36:29.271572",
+  "timestamp": "2026-03-06T13:44:14.513974",
   "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260301_120403_duro_vs_morbido_Gemma2-Uncensored.jsonl",
-  "analysis": "Il vettore 'duro_vs_morbido' confonde diverse dimensioni semantiche legate alla sensazione tattile e alle proprietà fisiche dei materiali.  Non si limita alla semplice durezza fisica, ma include aspetti come la texture superficiale, la resistenza alla deformazione, la trasmissione della pressione e l'assorbimento delle vibrazioni.  La decomposizione in questi sub-concetti permette al modello di rappresentare in modo più preciso e granulare queste diverse proprietà, migliorando la capacità di generare descrizioni più accurate e differenziate di materiali e superfici.",
+  "analysis": "Il vettore 'duro_vs_morbido' confonde diversi aspetti sensoriali, tra cui la resistenza alla pressione, la distribuzione della pressione, la trasmissione di vibrazioni e la texture superficiale. Decomporre questo spazio in sub-concetti specifici permette di rappresentare in modo più preciso le diverse sensazioni associate a materiali diversi.  Ad esempio, un materiale può essere 'duro' in termini di resistenza, ma 'morbido' in termini di texture.  La granularità offerta da questa decomposizione facilita la generazione di rappresentazioni semantiche più accurate e controllabili, consentendo di 'steerare' il modello verso aspetti specifici della sensazione tattile.",
   "sub_concepts": [
     {
-      "slug": "resistance_to_deformation",
-      "pos_label": "Inelastic",
-      "neg_label": "Elastic",
-      "description": "Questo sub-concetto cattura la capacità di un materiale di resistere alla deformazione permanente. Materiali inelastici non ritornano alla forma originale dopo la pressione, mentre quelli elastici si.",
-      "why_distinct": "Separa la mera sensazione di 'durezza' dalla capacità di un materiale di deformarsi o meno. Un oggetto può essere 'duro' ma anche elastico.",
+      "slug": "resistance_vs_compliance",
+      "pos_label": "Resistenza",
+      "neg_label": "Conformità",
+      "description": "Questo sub-concetto cattura la sensazione di un materiale che si oppone alla pressione, rispetto a uno che si adatta e si deforma.",
+      "why_distinct": "Distinto perché si concentra specificamente sull'azione della pressione e la risposta del materiale, separandosi da considerazioni di temperatura o consistenza.",
       "pos_examples": [
-        "Der Tischler drückte mit dem Daumen auf eine starre Fläche; und der Stoß kam zurück; die Finger trafen Widerstand",
-        "El niño golpeó con los nudillos sobre un material sin ceder",
-        "klopfte mit den Knöcheln auf Material ohne Nachgeben"
+        "Le dentiste frappa des phalanges sur un bloc compact et le retour fut sec",
+        "drückte mit dem Daumen auf Material ohne Nachgeben und der Kontakt traf die Knochen",
+        "El dentista golpeó con los nudillos sobre un material sin ceder"
       ],
       "neg_examples": [
-        "La bambina premette con il pollice su un materiale cedevole; e affondò leggermente",
-        "Der Zahnarzt legte die Handfläche auf auf ein elastisches Volumen",
-        "Le menuisier effleura puis poussa sur quelque chose de mou"
+        "Fabri lignarius palmam imposuit in re tenera et paulum descendit",
+        "The violinist the skin found a cushion when it closed the fingers on an elastic volume",
+        "Il falegname premette con il pollice su un appoggio che accoglieva"
       ]
     },
     {
-      "slug": "surface_texture_roughness",
-      "pos_label": "Rough",
-      "neg_label": "Smooth",
-      "description": "Questo sub-concetto si concentra sulla sensazione tattile della superficie. Una superficie ruvida offre una resistenza maggiore e una sensazione più granulosa, mentre una superficie liscia è uniforme e scivolosa.",
-      "why_distinct": "La durezza può essere associata a una superficie ruvida, ma non necessariamente. Un materiale può essere duro e liscio, o morbido e ruvido.",
+      "slug": "point_pressure_vs_distributed_pressure",
+      "pos_label": "Pressione Puntuale",
+      "neg_label": "Pressione Distribuita",
+      "description": "Questo sub-concetto distingue tra una pressione concentrata in un punto, che provoca una sensazione acuta, e una pressione diffusa su una superficie, che è più attenuata.",
+      "why_distinct": "È distinto perché si focalizza sulla distribuzione della pressione, non solo sulla sua intensità o sulla resistenza del materiale.",
       "pos_examples": [
+        "El dentista golpeó con los nudillos sobre un material sin ceder y la presión quedó puntual",
         "drückte mit dem Daumen auf eine harte Kante und der Kontakt traf die Knochen",
-        "appoggiò il gomito su qualcosa di impenetrabile",
-        "Sutrina articulis pulsavit in superficie rigida"
+        "La cuoca spinse il palmo su un bordo duro"
       ],
       "neg_examples": [
-        "La bambina premette con il pollice su un materiale cedevole",
-        "Der Techniker der Griff blieb sanft",
-        "La violinista el rebote fue lento"
+        "Il falegname premette con il pollice su un appoggio che accoglieva e la pressione si distribuì",
+        "cerró los dedos sobre una superficie blanda y la mano fue acompañada",
+        "La fisioterapista appoggiò il palmo su un materiale cedevole"
       ]
     },
     {
-      "slug": "pressure_transmission",
-      "pos_label": "Localized",
-      "neg_label": "Distributed",
-      "description": "Questo sub-concetto si riferisce a come la pressione viene trasmessa attraverso il materiale. Una trasmissione localizzata concentra la pressione in un punto, mentre una distribuzione diffusa la disperde.",
-      "why_distinct": "La sensazione di 'duro' può essere influenzata da come la pressione viene trasmessa. Un materiale può essere duro ma ammortizzare la pressione, o duro e trasmettere la pressione in modo puntuale.",
+      "slug": "vibration_vs_damping",
+      "pos_label": "Vibrazione",
+      "neg_label": "Smorzamento",
+      "description": "Questo sub-concetto riguarda la presenza o assenza di vibrazioni trasmesse al corpo durante il contatto, indicando una superficie rigida che trasmette energia o una morbida che la assorbe.",
+      "why_distinct": "Si concentra sulla risposta dinamica del materiale, separandosi dalla semplice resistenza statica.",
       "pos_examples": [
-        "der Stoß kam zurück; die Finger trafen Widerstand",
-        "die Stelle blieb hart im Griff",
-        "appuya avec le pouce sur une matière sans souplesse et la pression resta ponctuelle"
+        "les doigts rencontrèrent une résistance, sans aucun amorti",
+        "die Hand vibrierte leicht",
+        "Il falegname premette con il pollice su un appoggio che accoglieva e la pressione si distribuì"
       ],
       "neg_examples": [
-        "La bambina premette con il pollice su un materiale cedevole; e affondò leggermente",
-        "Der Zahnarzt legte die Handfläche auf auf ein elastisches Volumen",
-        "Le menuisier effleura puis poussa sur quelque chose de mou"
+        "sans aucun amorti",
+        "avec une cedevolezza clara",
+        "senza rigidez"
       ]
     },
     {
-      "slug": "vibration_dampening",
-      "pos_label": "Dampening",
-      "neg_label": "Resonance",
-      "description": "Questo sub-concetto riguarda la capacità del materiale di assorbire o trasmettere le vibrazioni. I materiali 'duri' spesso trasmettono le vibrazioni, mentre quelli 'morbidi' le smorzano.",
-      "why_distinct": "La sensazione di durezza può essere legata alla trasmissione delle vibrazioni. Un materiale può essere duro ma non trasmettere le vibrazioni, o morbido e amplificarle.",
+      "slug": "surface_texture_rough_vs_smooth",
+      "pos_label": "Ruido",
+      "neg_label": "Liscio",
+      "description": "Questo sub-concetto cattura la sensazione tattile della superficie, distinguendo tra una superficie ruvida che offre una presa e una superficie liscia che è scivolosa.",
+      "why_distinct": "Separa la sensazione tattile dalla resistenza intrinseca del materiale. Un materiale può essere duro e liscio, o morbido e ruvido.",
       "pos_examples": [
-        "Il falegname batté con le nocche su una superficie rigida; e il contatto colpì le ossa; la mano vibrò leggermente",
-        "La violoniste posa le coude sur une surface rigide ; et le contact frappa les os ; la main vibra légèrement",
-        "klopfte mit den Knöcheln auf Material ohne Nachgeben"
+        "drückte mit dem Daumen auf eine harte Kante",
+        "Sculptor inter digitos compressit in re inflexibili",
+        "Puer cubitum imposuit in materia quae non cedit"
       ],
       "neg_examples": [
-        "La bambina premette con il pollice su un materiale cedevole; e affondò leggermente",
-        "Der Zahnarzt legte die Handfläche auf auf ein elastisches Volumen",
-        "La violinista el rebote fue lento"
+        "La violinista el rebote fue lento cuando presionó con el pulgar sobre algo suave",
+        "Die Köchin der Rückprall war langsam, als Die Köchin drückte langsam zu auf ein elastisches Volumen",
+        "sfiorò e poi spinse su qualcosa di morbido"
       ]
     }
   ]

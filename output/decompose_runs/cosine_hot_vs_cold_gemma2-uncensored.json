@@ -3,61 +3,61 @@
   "layer_type": "best_snr",
   "concepts": [
     "hot_vs_cold",
-    "temperature_intensity",
-    "sensory_reaction",
-    "pain_vs_numbness",
-    "material_type"
+    "temperature_magnitude",
+    "pain_intensity",
+    "physiological_reaction",
+    "subjective_discomfort"
   ],
   "layers_used": {
     "hot_vs_cold": 37,
-    "temperature_intensity": 38,
-    "sensory_reaction": 38,
-    "pain_vs_numbness": 29,
-    "material_type": 32
+    "temperature_magnitude": 33,
+    "pain_intensity": 38,
+    "physiological_reaction": 36,
+    "subjective_discomfort": 38
   },
   "layer_sources": {
     "hot_vs_cold": "summary(fallback)",
-    "temperature_intensity": "eval",
-    "sensory_reaction": "eval",
-    "pain_vs_numbness": "eval",
-    "material_type": "eval"
+    "temperature_magnitude": "eval",
+    "pain_intensity": "eval",
+    "physiological_reaction": "eval",
+    "subjective_discomfort": "eval"
   },
   "matrix": [
     [
       1.0,
-      0.4219643381592826,
-      0.10011903633903527,
-      0.1479666379741071,
-      -0.3088830150945226
+      0.5734979828209481,
+      -0.08232635586496924,
+      0.23290367319723854,
+      -0.2158596382755332
     ],
     [
-      0.4219643381592826,
+      0.5734979828209481,
       1.0,
-      0.31352542073535655,
-      0.2780694253830813,
-      -0.21511720361425296
+      0.09669059343128851,
+      0.14929483951760503,
+      0.06220718337330964
     ],
     [
-      0.10011903633903527,
-      0.31352542073535655,
+      -0.08232635586496924,
+      0.09669059343128851,
+      0.9999999999999999,
+      -0.2842496268284718,
+      0.5377581620806936
+    ],
+    [
+      0.23290367319723854,
+      0.14929483951760503,
+      -0.2842496268284718,
       1.0000000000000002,
-      0.32233489349136824,
-      0.03021289603451943
+      -0.20827438006771357
     ],
     [
-      0.1479666379741071,
-      0.2780694253830813,
-      0.32233489349136824,
-      1.0000000000000002,
-      0.02435145741199993
-    ],
-    [
-      -0.3088830150945226,
-      -0.21511720361425296,
-      0.03021289603451943,
-      0.02435145741199993,
-      0.9999999999999998
+      -0.2158596382755332,
+      0.06220718337330964,
+      0.5377581620806936,
+      -0.20827438006771357,
+      1.0
     ]
   ],
-  "timestamp": "2026-03-03T18:33:08.113136"
+  "timestamp": "2026-03-06T09:18:39.582362"
 }

@@ -1,0 +1,28 @@
+{
+  "concept": "aesthetic_quality",
+  "category": "sensoriale/liscio_vs_ruvido/sub",
+  "model_path": "/mnt/raid0/gemma-2-uncensored",
+  "model_name": "Gemma2-Uncensored",
+  "n_pairs": 23,
+  "n_held_out": 5,
+  "token_position": "mean",
+  "deep_range": [
+    0.7,
+    0.9
+  ],
+  "layers": [
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38
+  ],
+  "vector_method": "mean_diff",
+  "date": "2026-03-06 12:19:56",
+  "run_id": "aesthetic_quality_gemma2-uncensored_20260306_121848"
+}

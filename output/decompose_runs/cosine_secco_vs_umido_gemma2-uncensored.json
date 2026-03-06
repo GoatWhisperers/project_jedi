@@ -1,0 +1,49 @@
+{
+  "model": "Gemma2-Uncensored",
+  "layer_type": "best_snr",
+  "concepts": [
+    "secco_vs_umido",
+    "surface_texture",
+    "moisture_presence",
+    "skin_elasticity"
+  ],
+  "layers_used": {
+    "secco_vs_umido": 38,
+    "surface_texture": 37,
+    "moisture_presence": 33,
+    "skin_elasticity": 38
+  },
+  "layer_sources": {
+    "secco_vs_umido": "summary(fallback)",
+    "surface_texture": "eval",
+    "moisture_presence": "eval",
+    "skin_elasticity": "eval"
+  },
+  "matrix": [
+    [
+      1.0,
+      0.35153606314588076,
+      0.5044013552673812,
+      0.2332433309945926
+    ],
+    [
+      0.35153606314588076,
+      0.9999999999999998,
+      0.30804428967186404,
+      0.04991448655597449
+    ],
+    [
+      0.5044013552673812,
+      0.30804428967186404,
+      1.0,
+      0.09568674271217245
+    ],
+    [
+      0.2332433309945926,
+      0.04991448655597449,
+      0.09568674271217245,
+      1.0000000000000002
+    ]
+  ],
+  "timestamp": "2026-03-06T13:19:24.754713"
+}

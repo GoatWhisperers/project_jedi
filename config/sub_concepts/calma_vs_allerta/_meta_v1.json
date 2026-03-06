@@ -2,76 +2,84 @@
   "concept": "calma_vs_allerta",
   "model": "Gemma2-Uncensored",
   "version": 1,
-  "timestamp": "2026-03-03T14:44:48.129128",
+  "timestamp": "2026-03-06T10:37:14.722200",
   "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260228_173558_calma_vs_allerta_Gemma2-Uncensored.jsonl",
-  "analysis": "Il vettore 'calma_vs_allerta' confonde diversi aspetti dell'esperienza umana, tra cui la regolazione fisiologica, la percezione del tempo, il focus mentale e la tensione muscolare.  Senza una decomposizione in questi sub-concetti, il vettore broad non riesce a catturare la complessità e le sfumature di questi stati emotivi e fisiologici.  Ad esempio, una persona potrebbe essere calma fisiologicamente ma ansiosa mentalmente, o viceversa.  La decomposizione permette di modellare queste distinzioni più finemente e di generare rappresentazioni semantiche più accurate e controllabili.",
+  "analysis": "Il vettore 'calma_vs_allerta' confonde diverse dimensioni semantiche correlate allo stato fisiologico e mentale.  La semplice opposizione tra calma e allerta non cattura la complessità delle esperienze umane. Ad esempio, una persona può avere una respirazione lenta (calma) ma essere comunque ansiosa (non calma). Decomporre questo spazio in sub-concetti come 'respiratory_rate', 'physiological_arousal', 'mental_focus' e 'temporal_perception' permette di rappresentare in modo più preciso e sfumato le diverse sfaccettature di questo concetto broad, migliorando la capacità del modello di comprendere e generare testo coerente e semanticamente accurato.",
   "sub_concepts": [
     {
-      "slug": "physiological_regulation",
-      "pos_label": "Physiological Stability",
-      "neg_label": "Physiological Arousal",
-      "description": "Riguarda la regolazione dei parametri fisiologici come battito cardiaco, respirazione e tensione muscolare.  Un polo positivo indica stabilità e controllo, mentre un polo negativo indica accelerazione e mancanza di controllo.",
-      "why_distinct": "Questo sub-concetto si concentra specificamente sulle risposte fisiologiche, distinguendosi da concetti più ampi come l'umore o la cognizione.",
+      "slug": "respiratory_rate",
+      "pos_label": "lento",
+      "neg_label": "rapido",
+      "description": "Questo sub-concetto cattura la velocità del respiro, che è un indicatore chiave di calma (respirazione lenta e profonda) o allerta (respirazione rapida e superficiale).",
+      "why_distinct": "Si concentra esclusivamente sulla velocità del respiro, escludendo altri aspetti come la profondità o la regolarità, che potrebbero essere influenzati da altri fattori.",
       "pos_examples": [
-        "Il paziente pre-operatorio la mandibola si allentò, lasciò che il respiro si allungasse; il polso era morbido e costante",
-        "The mother the neck stopped pulling, breathed slow and deep; the pulse was soft and regular",
-        "respirava lento e profondo; il cuore teneva un ritmo tranquillo"
+        "Le chien la mâchoire se desserra, inspira régulièrement puis expira plus longuement",
+        "kept a smooth, even breath",
+        "Der Hund atmete langsam und tief",
+        "respirait lentement et profondément"
       ],
       "neg_examples": [
-        "Il paziente pre-operatorio le spalle si irrigidirono; il cuore accelerò; il fiato si spezzava",
-        "das Herz beschleunigte; die Hände krampften; Luft fühlte sich knapp an",
-        "the heart jumped; the breath kept breaking"
+        "The freediver the hands curled; the beat hammered; the breath turned short",
+        "pulsus pectus feriebat; aer parum esse videbatur",
+        "sentit le pouls s’emballer ; l’air semblait manquer",
+        "The freediver even silence was monitored; the heart jumped; the breath kept breaking"
       ]
     },
     {
-      "slug": "temporal_perception",
-      "pos_label": "Time Dilation",
-      "neg_label": "Time Compression",
-      "description": "Descrive la percezione del tempo. Un polo positivo indica una sensazione di tempo dilatato, di calma e di possibilità, mentre un polo negativo indica una percezione accelerata e stressante del tempo.",
-      "why_distinct": "La percezione del tempo è un aspetto cruciale dell'esperienza di calma e allerta che spesso viene trascurata in analisi più superficiali.",
+      "slug": "physiological_arousal",
+      "pos_label": "basso",
+      "neg_label": "alto",
+      "description": "Questo sub-concetto si riferisce al livello generale di eccitazione fisiologica, come il battito cardiaco e la tensione muscolare. La calma implica una bassa eccitazione, mentre l'allerta implica un'alta eccitazione.",
+      "why_distinct": "Distinto dalla velocità respiratoria perché considera una gamma più ampia di indicatori fisiologici, non solo il respiro.",
       "pos_examples": [
-        "time seemed to stretch",
-        "Die Mutter eine innere Ruhe breitete sich aus; ließ die Ausatmung länger werden; die Zeit schien sich zu dehnen",
-        "ogni secondo pesava meno"
+        "sentit le cœur ralentir",
+        "the pulse was soft and regular",
+        "Der Herzschlag blieb niedrig und ruhig",
+        "cor lento ac constans pulsabat"
       ],
       "neg_examples": [
-        "könnte nicht aufhören zu kontrollieren",
-        "the breath turned short",
-        "Der Wachposten die Augen suchten ständig"
+        "The freediver the hands curled; the beat hammered",
+        "pulsus pectus feriebat",
+        "sentit le pouls s’emballer",
+        "le cœur bondit"
       ]
     },
     {
       "slug": "mental_focus",
-      "pos_label": "Focused Stillness",
-      "neg_label": "Scanning Anxiety",
-      "description": "Riguarda il focus mentale. Un polo positivo implica uno stato di calma interiore e attenzione focalizzata, mentre un polo negativo implica ansia e una scansione costante dell'ambiente.",
-      "why_distinct": "Questo sub-concetto cattura la differenza tra un'attenzione calma e concentrata e un'attenzione ansiosa e reattiva.",
+      "pos_label": "diffuso",
+      "neg_label": "concentrato",
+      "description": "Questo sub-concetto descrive lo stato mentale, in particolare il grado di attenzione e concentrazione. La calma è spesso associata a una mente diffusa e rilassata, mentre l'allerta implica una concentrazione intensa.",
+      "why_distinct": "Si concentra sullo stato mentale e sulla percezione, separandolo dalle risposte fisiologiche dirette.",
       "pos_examples": [
-        "The marksman the hands stayed loose, inhaled steadily and released a longer breath",
-        "L’apnéiste l’attention restait large et douce",
-        "the mind went still"
+        "thoughts thinned out",
+        "attentio lata et lenis manebat",
+        "Le méditant l’esprit devint silencieux",
+        "la mente quedó quieta"
       ],
       "neg_examples": [
-        "die Augen suchten ständig",
-        "The marksman even silence was monitored",
-        "könnte nicht still sitzen"
+        "The mother couldn't stop checking",
+        "Canis oculi huc illuc volitabant",
+        "The freediver even silence was monitored",
+        "la cerva le gambe erano pronte a scattare"
       ]
     },
     {
-      "slug": "muscle_tension",
-      "pos_label": "Muscle Relaxation",
-      "neg_label": "Muscle Contraction",
-      "description": "Si riferisce al livello di tensione muscolare. Un polo positivo indica rilassamento e flessibilità, mentre un polo negativo indica rigidità e contrazione.",
-      "why_distinct": "La tensione muscolare è un indicatore fisico chiave di calma o allerta, spesso presente anche in assenza di consapevolezza cosciente.",
+      "slug": "temporal_perception",
+      "pos_label": "dilatato",
+      "neg_label": "compresso",
+      "description": "Questo sub-concetto riguarda la percezione del tempo. In uno stato calmo, il tempo può sembrare dilatato, mentre in uno stato di allerta può sembrare accelerato.",
+      "why_distinct": "Si concentra su un'esperienza soggettiva specifica, la percezione del tempo, che può essere influenzata da vari fattori.",
       "pos_examples": [
-        "Il paziente pre-operatorio la mandibola si allentò",
-        "The mother the neck stopped pulling",
-        "The marksman the hands stayed loose"
+        "time seemed to stretch",
+        "minuta numerare desiit",
+        "le présent devint vaste",
+        "el ritmo interno se ralentizó"
       ],
       "neg_examples": [
-        "Il paziente pre-operatorio le spalle si irrigidirono",
-        "die Hände krampften",
-        "Der Kiefer presste sich zusammen"
+        "The freediver the hands curled; the beat hammered; the breath turned short",
+        "pulsus pectus feriebat",
+        "sentit le pouls s’emballer",
+        "sintió el pulso correr"
       ]
     }
   ]

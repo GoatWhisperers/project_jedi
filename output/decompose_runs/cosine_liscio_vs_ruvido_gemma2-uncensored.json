@@ -1,0 +1,63 @@
+{
+  "model": "Gemma2-Uncensored",
+  "layer_type": "best_snr",
+  "concepts": [
+    "liscio_vs_ruvido",
+    "surface_finish",
+    "tactile_feedback",
+    "sensory_disruption",
+    "aesthetic_quality"
+  ],
+  "layers_used": {
+    "liscio_vs_ruvido": 29,
+    "surface_finish": 38,
+    "tactile_feedback": 38,
+    "sensory_disruption": 29,
+    "aesthetic_quality": 35
+  },
+  "layer_sources": {
+    "liscio_vs_ruvido": "summary(fallback)",
+    "surface_finish": "eval",
+    "tactile_feedback": "eval",
+    "sensory_disruption": "eval",
+    "aesthetic_quality": "eval"
+  },
+  "matrix": [
+    [
+      1.0,
+      0.36196093481512215,
+      0.2890886974526961,
+      0.24494798145308144,
+      0.24378898894839104
+    ],
+    [
+      0.36196093481512215,
+      1.0,
+      0.519020954807038,
+      0.15881279288307074,
+      0.5112042693539921
+    ],
+    [
+      0.2890886974526961,
+      0.519020954807038,
+      1.0000000000000002,
+      0.17230905703809896,
+      0.45805422322420947
+    ],
+    [
+      0.24494798145308144,
+      0.15881279288307074,
+      0.17230905703809896,
+      0.9999999999999999,
+      0.30446126810574065
+    ],
+    [
+      0.24378898894839104,
+      0.5112042693539921,
+      0.45805422322420947,
+      0.30446126810574065,
+      1.0
+    ]
+  ],
+  "timestamp": "2026-03-06T12:20:19.315431"
+}

@@ -1,0 +1,63 @@
+{
+  "model": "Gemma2-Uncensored",
+  "layer_type": "best_snr",
+  "concepts": [
+    "rumore_vs_silenzio",
+    "intensity_vs_subtlety",
+    "rhythmic_vs_random",
+    "pleasant_vs_unpleasant_tone",
+    "distracting_vs_background"
+  ],
+  "layers_used": {
+    "rumore_vs_silenzio": 38,
+    "intensity_vs_subtlety": 29,
+    "rhythmic_vs_random": 30,
+    "pleasant_vs_unpleasant_tone": 34,
+    "distracting_vs_background": 38
+  },
+  "layer_sources": {
+    "rumore_vs_silenzio": "eval",
+    "intensity_vs_subtlety": "eval",
+    "rhythmic_vs_random": "eval",
+    "pleasant_vs_unpleasant_tone": "eval",
+    "distracting_vs_background": "eval"
+  },
+  "matrix": [
+    [
+      1.0,
+      0.4192521187312365,
+      0.18347697032994295,
+      -0.2575906774588901,
+      0.2809790236476913
+    ],
+    [
+      0.4192521187312365,
+      1.0000000000000002,
+      0.4748643894303369,
+      -0.12054510608945505,
+      0.2915437553786495
+    ],
+    [
+      0.18347697032994295,
+      0.4748643894303369,
+      1.0000000000000002,
+      0.21917408462240143,
+      -0.1137804829855471
+    ],
+    [
+      -0.2575906774588901,
+      -0.12054510608945505,
+      0.21917408462240143,
+      1.0,
+      -0.3110492395117477
+    ],
+    [
+      0.2809790236476913,
+      0.2915437553786495,
+      -0.1137804829855471,
+      -0.3110492395117477,
+      1.0
+    ]
+  ],
+  "timestamp": "2026-03-06T14:55:51.592181"
+}

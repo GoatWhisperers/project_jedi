@@ -2,76 +2,76 @@
   "concept": "liscio_vs_ruvido",
   "model": "Gemma2-Uncensored",
   "version": 2,
-  "timestamp": "2026-03-03T15:09:55.607740",
+  "timestamp": "2026-03-06T12:09:50.301039",
   "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260228_180010_liscio_vs_ruvido_Gemma2-Uncensored.jsonl",
-  "analysis": "Il vettore 'lisci_vs_ruvido' confonde diversi aspetti sensoriali legati alla superficie. Non si tratta solo di una sensazione tattile generale, ma di una combinazione di fattori come la finitura della superficie, il livello di attrito, la qualità del movimento e la distribuzione della pressione. Decomporre questo spazio in sub-concetti specifici permette di isolare e manipolare questi aspetti individualmente, migliorando la precisione e la controllabilità delle rappresentazioni semantiche nei transformer. La sovrapposizione tra questi aspetti rende difficile l'interpretazione e la generazione di output coerenti; ad esempio, una superficie può essere ruvida ma avere un attrito basso, creando una sensazione complessa che non può essere catturata da un singolo vettore.",
+  "analysis": "The broad concept 'liscio_vs_ruvido' (smooth vs. rough) conflates several distinct semantic dimensions. It primarily mixes the physical properties of surfaces (surface finish, tactile feedback), the dynamic interaction between the hand and the surface (sensory disruption), and a more subjective aesthetic judgment (aesthetic quality).  Decomposing this space allows for more nuanced control over generation, enabling targeted manipulation of specific aspects of the interaction, rather than a global shift between 'smooth' and 'rough'. For example, one might want a surface with a refined finish but a slightly 'grabby' tactile feel, or a surface that is technically rough but aesthetically pleasing. Without decomposition, the broad concept forces an all-or-nothing trade-off between these dimensions.",
   "sub_concepts": [
     {
       "slug": "surface_finish",
       "pos_label": "polished",
-      "neg_label": "unrefined",
-      "description": "Riguarda il grado di lavorazione della superficie, che determina la presenza o l'assenza di segni visibili o tattili. Una superficie 'liscia' implica una lavorazione accurata, mentre una 'ruvida' indica una mancanza di essa.",
-      "why_distinct": "Si concentra specificamente sulla qualità della superficie, distinguendosi da concetti più ampi come la sensazione di pressione o il movimento.",
+      "neg_label": "unpolished",
+      "description": "This sub-concept captures the degree of refinement of a surface. A positive example indicates a surface that has been worked to remove imperfections, while a negative example describes a surface with visible flaws and irregularities.",
+      "why_distinct": "While 'smoothness' is related, 'surface_finish' specifically addresses the *process* and *resulting state* of the surface, not just its tactile feel. A surface can be smooth but not have a refined finish (e.g., a smoothed clay surface).",
       "pos_examples": [
-        "La restauradora ningún borde raspaba: los dedos se deslizaron sobre cerámica esmaltada como sobre seda.",
-        "Il chirurgo le dita scivolarono sulla ceramica smaltata, senza alcuna presa.",
-        "The violinist the fingertip slid over a polished surface."
+        "El cirujano la palma resbaló sobre una superficie pulida",
+        "The massage therapist pressure spread evenly: the skin slid across perfectly clean glass",
+        "Die Geigerin die Haut glitt entlang geglätteten Metalls"
       ],
       "neg_examples": [
-        "cutis haerebat in ligno crudo; cum frictione arida; iuga cutem signabant et motus in iactus fractus est.",
-        "Il ceramista le dita inciampavano su metallo non rifinito, con resistenza irregolare.",
-        "The tailor the palm rasped on unglazed ceramic."
+        "Il falegname le dita inciampavano su metallo non rifinito",
+        "los dedos tropezaban sobre metal sin pulir",
+        "Die Handfläche rieb rau auf rohem Holz"
       ]
     },
     {
-      "slug": "friction_level",
-      "pos_label": "low_friction",
-      "neg_label": "high_friction",
-      "description": "Si riferisce alla quantità di attrito percepito durante il contatto. Una superficie 'liscia' produce attrito minimo, mentre una 'ruvida' genera attrito significativo.",
-      "why_distinct": "Separa la sensazione di attrito dalla qualità estetica della superficie. Una superficie può essere visivamente ruvida ma avere un basso attrito, o viceversa.",
+      "slug": "tactile_feedback",
+      "pos_label": "absence_of_friction",
+      "neg_label": "presence_of_friction",
+      "description": "This focuses on the sensation of contact – whether it's effortless and frictionless or characterized by resistance and texture.  A positive example implies a lack of perceptible friction, while a negative example describes a feeling of roughness or 'grab'.",
+      "why_distinct": "It differentiates from 'surface_finish' because a surface can be unpolished but still have low friction (e.g., a waxy surface). This focuses specifically on the *experience* of touch.",
       "pos_examples": [
-        "Puella digiti labi coeperunt super metallum levigatum; sine ulla prehensione.",
-        "la punta delle dita scorreva su legno carteggiato finissimo; come su seta.",
-        "The violinist the fingertip slid over a polished surface, with no noticeable friction."
+        "El cirujano la palma resbaló sobre una superficie pulida, sin agarre",
+        "The massage therapist pressure spread evenly: the skin slid across perfectly clean glass",
+        "manus leniter labebatur super metallum levigatum; sine offensione"
       ],
       "neg_examples": [
-        "cutis haerebat in metallo incomposito; cum frictione arida.",
-        "Le barman la paume grattait sur du papier abrasif, avec une résistance irrégulière.",
-        "Il ceramista le dita inciampavano su metallo non rifinito, con resistenza irregolare."
+        "Il falegname le dita inciampavano su metallo non rifinito",
+        "los dedos tropezaban sobre metal sin pulir",
+        "Die Handfläche rieb rau auf rohem Holz"
       ]
     },
     {
-      "slug": "movement_quality",
-      "pos_label": "fluid_motion",
-      "neg_label": "jerky_motion",
-      "description": "Descrive la qualità del movimento quando si interagisce con la superficie. Un movimento 'fluido' è continuo e senza interruzioni, mentre un movimento 'a scatti' è discontinuo e irregolare.",
-      "why_distinct": "Si concentra sull'effetto della superficie sul movimento, separandolo dalla sensazione tattile diretta.",
+      "slug": "sensory_disruption",
+      "pos_label": "continuity",
+      "neg_label": "interruption",
+      "description": "This sub-concept relates to the flow of movement and the sensory experience. A positive example describes a continuous, uninterrupted interaction, while a negative example describes a jerky, interrupted, or jarring experience.",
+      "why_distinct": "It goes beyond just the surface properties and considers the *dynamic* interaction between the hand and the surface.  A surface might be polished, but if the movement is jerky, the sensory experience is disrupted.",
       "pos_examples": [
-        "la yema se deslizó sobre vidrio perfectamente limpio; como sobre seda; no había asperezas y el movimiento quedó fluido.",
-        "Il chirurgo le dita scivolarono sulla ceramica smaltata, senza alcuna presa.",
-        "The violinist the fingertip slid over a polished surface."
+        "El cirujano la palma resbaló sobre una superficie pulida, sin agarre",
+        "Die Geigerin die Haut glitt entlang geglätteten Metalls, ohne ein Haken",
+        "manus leniter labebatur super metallum levigatum; sine offensione"
       ],
       "neg_examples": [
-        "les doigts butaient sur une céramique non émaillée ; avec des micro-chocs continus.",
-        "La sarta i polpastrelli si impuntarono su una superficie granulosa, a piccoli strappi.",
-        "Il ceramista le dita inciampavano su metallo non rifinito, con resistenza irregolare."
+        "Il ceramista le dita inciampavano su metallo non rifinito, con resistenza irregolare",
+        "The child ridges marked the skin: the fingers scraped on unglazed ceramic",
+        "Das Kind die Handfläche rieb rau auf rohem Holz"
       ]
     },
     {
-      "slug": "pressure_distribution",
-      "pos_label": "even_pressure",
-      "neg_label": "localized_pressure",
-      "description": "Si riferisce a come la pressione viene distribuita durante il contatto. Una superficie 'liscia' permette una distribuzione uniforme della pressione, mentre una 'ruvida' concentra la pressione in punti specifici.",
-      "why_distinct": "Separa la distribuzione della pressione dalla sensazione di attrito o dalla qualità del movimento.",
+      "slug": "aesthetic_quality",
+      "pos_label": "elegance",
+      "neg_label": "ugliness",
+      "description": "This captures the subjective perception of beauty and refinement. A positive example evokes a sense of grace and elegance, while a negative example suggests something unpleasant or jarring.",
+      "why_distinct": "It's a more abstract dimension, going beyond purely tactile or mechanical properties. It reflects a broader aesthetic judgment.",
       "pos_examples": [
-        "pressio aequaliter diffundebatur nec manus umquam offendit.",
-        "la punta delle dita scorreva su legno carteggiato finissimo; come su seta; la pressione si distribuiva.",
-        "The violinist the fingertip slid over a polished surface, with no noticeable friction; pressure spread evenly."
+        "El cirujano la palma resbaló sobre una superficie pulida",
+        "The massage therapist pressure spread evenly: the skin slid across perfectly clean glass",
+        "manus leniter labebatur super metallum levigatum; sine offensione"
       ],
       "neg_examples": [
-        "cutis haerebat in ligno crudo; cum frictione arida; iuga cutem signabant.",
-        "La sarta i polpastrelli si impuntarono su una superficie granulosa, a piccoli strappi.",
-        "Fabri lignarius manus scabre fricabatur in ligno crudo; cum resistentia inaequali."
+        "Il falegname le dita inciampavano su metallo non rifinito",
+        "los dedos tropezaban sobre metal sin pulir",
+        "Die Handfläche rieb rau auf rohem Holz"
       ]
     }
   ]

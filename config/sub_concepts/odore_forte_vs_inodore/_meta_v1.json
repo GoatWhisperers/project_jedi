@@ -2,76 +2,76 @@
   "concept": "odore_forte_vs_inodore",
   "model": "Gemma2-Uncensored",
   "version": 1,
-  "timestamp": "2026-03-03T16:29:25.357172",
+  "timestamp": "2026-03-06T16:40:45.053390",
   "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260301_094445_odore_forte_vs_inodore_Gemma2-Uncensored.jsonl",
-  "analysis": "Il vettore 'odore_forte_vs_inodore' confonde diverse dimensioni semantiche correlate all'olfatto.  Non cattura solo la forza dell'odore, ma anche la sua natura (chimica vs. organica), la sua capacità di causare irritazione, la sua persistenza e la sua familiarità. La decomposizione in questi sub-concetti permette di rappresentare in modo più preciso le sfumature della percezione olfattiva e di generare descrizioni più mirate e significative.",
+  "analysis": "Il vettore 'odore_forte_vs_inodore' confonde diversi aspetti della percezione olfattiva.  Principalmente, non distingue tra la *natura* dell'odore (chimico vs. altro), l'impatto fisico sulla respirazione, le reazioni fisiologiche immediate e il grado di controllo che si ha sulla percezione dell'intensità.  Decomporre questo spazio in sub-concetti specifici permette di catturare queste sfumature, migliorando la capacità del modello di comprendere e generare descrizioni olfattive più accurate e dettagliate.  L'analisi delle parole chiave rivela un forte legame con termini che descrivono reazioni fisiche e qualità chimiche, supportando la necessità di questa scomposizione.",
   "sub_concepts": [
     {
-      "slug": "irritation_vs_neutral",
-      "pos_label": "Irritante",
-      "neg_label": "Neutro",
-      "description": "Questo sub-concetto cattura la sensazione fisica di irritazione o disagio causata dall'odore, come bruciore, pizzicore o lacrimazione.  Gli odori neutri non provocano tali sensazioni.",
-      "why_distinct": "Separa gli odori che causano una risposta fisica negativa da quelli che non la provocano.  Non si sovrappone alla forza dell'odore, poiché un odore può essere forte ma non irritante (es. profumo intenso).",
+      "slug": "chemical_intensity",
+      "pos_label": "Chimicamente intenso",
+      "neg_label": "Chimicamente neutro",
+      "description": "Riflette la presenza di odori chimici specifici, spesso associati a solventi, prodotti chimici o processi industriali.  La percezione è di un odore pungente e identificabile come chimico.",
+      "why_distinct": "Distinto dalla semplice 'intensità' generale, poiché si concentra sulla *natura* dell'odore come chimico, non solo sulla sua forza.",
       "pos_examples": [
-        "The cook: sharp smoke, with a stinging point; rose into the eyes.",
-        "La studentessa inspirò una volta: fumo acre colpì come un colpo secco.",
-        "Le chimiste entra dans la pièce : de l’eau de Javel dans l’air remplit les narines aussitôt, avec une traîne persistante ; se pinça le nez avant même de parler."
+        "Der Chemiker klemmte die Nase zu; mit klaren chemischen Noten",
+        "Lösungsmittelgeruch, mit klaren chemischen Noten",
+        "Der Techniker: Lösungsmittelgeruch, mit klaren chemischen Noten"
       ],
       "neg_examples": [
-        "Le pompier ouvrit le récipient, et tout paraissait propre ; aucune odeur de fond.",
-        "El bombero: casi ausencia total, y no había rastro.",
-        "Avia: nullus odor fundi, et aer neuter mansit; sine memoria odoris."
+        "öffnete den Behälter: und keine Spur",
+        "El pescador: sin olor de fondo, y el aire quedó neutro",
+        "Il vigile del fuoco: assenza quasi totale, e il naso non agganciava"
       ]
     },
     {
-      "slug": "chemical_vs_organic",
-      "pos_label": "Chimico",
-      "neg_label": "Organico",
-      "description": "Questo sub-concetto distingue tra odori derivanti da composti chimici sintetici (es. solventi, candeggina) e odori provenienti da fonti organiche (es. pesce, rose).",
-      "why_distinct": "Gli odori chimici spesso hanno una qualità artificiale e pungente, mentre gli odori organici tendono ad essere più complessi e naturali. Questa distinzione è importante perché influenza la percezione della sicurezza e della familiarità.",
+      "slug": "breath_impact",
+      "pos_label": "Impatto respiratorio",
+      "neg_label": "Nessun impatto respiratorio",
+      "description": "Descrive la sensazione fisica dell'odore che influisce sulla respirazione, come il taglio del respiro o la necessità di tossire.  È un effetto fisiologico diretto.",
+      "why_distinct": "Separa l'effetto fisico dell'odore (difficoltà respiratorie) dalla sua qualità percepita.",
       "pos_examples": [
-        "La estudiante: olor a disolvente, con una estela que seguía.",
-        "Le chimiste entra dans la pièce : de l’eau de Javel dans l’air remplit les narines aussitôt.",
-        "La coiffeuse : une odeur de solvant, avec des notes chimiques nettes."
+        "schnitt den Atem ab",
+        "colpì come un colpo secco",
+        "Der Techniker: Lösungsmittelgeruch, mit klaren chemischen Noten; stieg bis in die Augen."
       ],
       "neg_examples": [
-        "Piscator: piscis recentissimus, cum tractu sequenti.",
-        "El químico: pescado muy fresco, con una punta punzante.",
-        "Die Köchin: keine erkennbare Note, und alles wirkte sauber."
+        "respirò senza sforzo",
+        "assenza quasi totale",
+        "El médico acercó la nariz, y no llegó nada"
       ]
     },
     {
-      "slug": "intensity_vs_persistence",
-      "pos_label": "Intenso",
-      "neg_label": "Transitorio",
-      "description": "Questo sub-concetto separa gli odori che colpiscono immediatamente con grande forza (intensità) da quelli che sono percepiti debolmente ma persistono nel tempo (persistenza).",
-      "why_distinct": "L'intensità è una sensazione immediata, mentre la persistenza riguarda la durata dell'odore. Un odore può essere debole ma persistente, o forte ma breve.",
+      "slug": "physiological_reaction",
+      "pos_label": "Reazione fisiologica",
+      "neg_label": "Nessuna reazione fisiologica",
+      "description": "Si riferisce alle reazioni fisiche immediate al contatto con l'odore, come stringere il naso, lacrimare o avere la gola irritata.  È una risposta corporea automatica.",
+      "why_distinct": "Distinto dall'impatto respiratorio, poiché si concentra sulle reazioni corporee più ampie, non solo sulla difficoltà a respirare.",
       "pos_examples": [
-        "The cook: sharp smoke, with a stinging point; rose into the eyes. impossible to ignore.",
-        "La studentessa inspirò una volta: fumo acre colpì come un colpo secco.",
-        "abrió el frasco — olor a disolvente: se quedó pegado."
+        "Der Chemiker klemmte die Nase zu",
+        "il chimico strinse il naso",
+        "The doctor eyes watered"
       ],
       "neg_examples": [
-        "Le pompier ouvrit le récipient, et tout paraissait propre ; aucune odeur de fond.",
-        "inspirò piano: e l’aria restava neutra.",
-        "El químico: solo aire normal, y la nariz no encontró nada."
+        "Der Arzt das Gesicht blieb gleich",
+        "Medicus sine labore spiravit",
+        "L’étudiante ouvrit le récipient, et aucune trace ; resta calma"
       ]
     },
     {
-      "slug": "familiar_vs_unfamiliar",
-      "pos_label": "Sconosciuto",
-      "neg_label": "Familiare",
-      "description": "Questo sub-concetto distingue tra odori che sono familiari e confortanti e quelli che sono nuovi, inaspettati o potenzialmente allarmanti.",
-      "why_distinct": "La familiarità influisce sulla reazione emotiva all'odore. Odori sconosciuti possono suscitare cautela o addirittura paura, mentre gli odori familiari possono essere associati a ricordi positivi.",
+      "slug": "intensity_modulation",
+      "pos_label": "Intensità non modulabile",
+      "neg_label": "Intensità modulabile",
+      "description": "Descrive se l'intensità dell'odore è percepita come immediata e ineluttabile, o se può essere attenuata o ignorata. Un'intensità non modulabile implica una forza immediata e difficile da evitare.",
+      "why_distinct": "Introduce una dimensione temporale e di controllo sulla percezione dell'odore, distinguendo tra odori che si impongono e quelli che possono essere ignorati.",
       "pos_examples": [
-        "La estudiante: olor a disolvente, con una estela que seguía.",
-        "Le chimiste entra dans la pièce : de l’eau de Javel dans l’air remplit les narines aussitôt.",
-        "El químico: pescado muy fresco, con una punta punzante."
+        "mit klaren chemischen Noten bis er rausging",
+        "mit intensità non modulabile prima ancora di parlare",
+        "colpì come un colpo secco"
       ],
       "neg_examples": [
-        "Le pompier ouvrit le récipient, et tout paraissait propre ; aucune odeur de fond.",
-        "El bombero: casi ausencia total, y no había rastro.",
-        "Avia: nullus odor fundi, et aer neuter mansit; sine memoria odoris."
+        "respirò senza sforzo",
+        "senza interferenze",
+        "rimase tranquillo come se fosse vuoto"
       ]
     }
   ]

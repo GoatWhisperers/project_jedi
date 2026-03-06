@@ -1,0 +1,49 @@
+{
+  "model": "Gemma2-Uncensored",
+  "layer_type": "best_snr",
+  "concepts": [
+    "calma_vs_allerta",
+    "respiratory_rate",
+    "mental_focus",
+    "temporal_perception"
+  ],
+  "layers_used": {
+    "calma_vs_allerta": 38,
+    "respiratory_rate": 35,
+    "mental_focus": 31,
+    "temporal_perception": 38
+  },
+  "layer_sources": {
+    "calma_vs_allerta": "summary(fallback)",
+    "respiratory_rate": "eval",
+    "mental_focus": "eval",
+    "temporal_perception": "eval"
+  },
+  "matrix": [
+    [
+      1.0,
+      0.5823788183975733,
+      0.251896973448885,
+      0.07655293681394008
+    ],
+    [
+      0.5823788183975733,
+      0.9999999999999999,
+      0.19432118959762965,
+      0.37349181801568665
+    ],
+    [
+      0.251896973448885,
+      0.19432118959762965,
+      0.9999999999999998,
+      -0.13088228690186246
+    ],
+    [
+      0.07655293681394008,
+      0.37349181801568665,
+      -0.13088228690186246,
+      1.0
+    ]
+  ],
+  "timestamp": "2026-03-06T10:45:38.035546"
+}

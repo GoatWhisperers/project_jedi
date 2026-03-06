@@ -1,0 +1,63 @@
+{
+  "model": "Gemma2-Uncensored",
+  "layer_type": "best_snr",
+  "concepts": [
+    "duro_vs_morbido",
+    "resistance_vs_compliance",
+    "point_pressure_vs_distributed_pressure",
+    "vibration_vs_damping",
+    "surface_texture_rough_vs_smooth"
+  ],
+  "layers_used": {
+    "duro_vs_morbido": 30,
+    "resistance_vs_compliance": 32,
+    "point_pressure_vs_distributed_pressure": 38,
+    "vibration_vs_damping": 38,
+    "surface_texture_rough_vs_smooth": 38
+  },
+  "layer_sources": {
+    "duro_vs_morbido": "eval",
+    "resistance_vs_compliance": "eval",
+    "point_pressure_vs_distributed_pressure": "eval",
+    "vibration_vs_damping": "eval",
+    "surface_texture_rough_vs_smooth": "eval"
+  },
+  "matrix": [
+    [
+      1.0,
+      0.5584620955484579,
+      0.3608564303038201,
+      0.2897612503193647,
+      0.2224366190763237
+    ],
+    [
+      0.5584620955484579,
+      1.0,
+      0.30295544298244553,
+      0.21381018215335915,
+      0.18920975690737732
+    ],
+    [
+      0.3608564303038201,
+      0.30295544298244553,
+      1.0,
+      0.5082561584714482,
+      0.46010386971438544
+    ],
+    [
+      0.2897612503193647,
+      0.21381018215335915,
+      0.5082561584714482,
+      1.0000000000000002,
+      0.4566723009512108
+    ],
+    [
+      0.2224366190763237,
+      0.18920975690737732,
+      0.46010386971438544,
+      0.4566723009512108,
+      1.0000000000000002
+    ]
+  ],
+  "timestamp": "2026-03-06T13:56:28.857268"
+}

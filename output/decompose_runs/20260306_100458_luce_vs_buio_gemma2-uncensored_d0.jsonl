@@ -1,0 +1,25 @@
+{"type": "run_start", "concept": "luce_vs_buio", "model": "Gemma2-Uncensored", "max_depth": 0, "max_iter": 2, "dry_run": false, "timestamp": "2026-03-06T10:04:58.248066"}
+{"type": "decompose_start", "concept": "luce_vs_buio", "depth": 0, "timestamp": "2026-03-06T10:04:58.356071"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v1)", "timestamp": "2026-03-06T10:04:58.356378"}
+{"type": "info", "msg": "  Proposti: ['pupillary_response', 'visual_clarity', 'emotional_comfort', 'environmental_context']", "timestamp": "2026-03-06T10:06:28.486622"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v1)", "timestamp": "2026-03-06T10:06:28.486752"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-06T10:09:46.392429"}
+{"type": "info", "msg": "  [gpu] Preparo GPU per probe diretto...", "timestamp": "2026-03-06T10:09:46.392544"}
+{"type": "info", "msg": "  [gpu] Modello attivo: Gemma2-Uncensored — VRAM: 17.6 GB", "timestamp": "2026-03-06T10:09:46.696993"}
+{"type": "info", "msg": "  [gpu] Attendo GPU idle...", "timestamp": "2026-03-06T10:09:46.697290"}
+{"type": "info", "msg": "  [gpu] Unload modello...", "timestamp": "2026-03-06T10:09:47.011219"}
+{"type": "info", "msg": "  [gpu] VRAM liberata — usata: 9.6 GB / 32.0 GB", "timestamp": "2026-03-06T10:09:47.888747"}
+{"type": "info", "msg": "  Probe: pupillary_response / Gemma2-Uncensored", "timestamp": "2026-03-06T10:09:47.889915"}
+{"type": "info", "msg": "  Probe OK: pupillary_response", "timestamp": "2026-03-06T10:11:24.213213"}
+{"type": "info", "msg": "  Probe: visual_clarity / Gemma2-Uncensored", "timestamp": "2026-03-06T10:11:24.214465"}
+{"type": "info", "msg": "  Probe OK: visual_clarity", "timestamp": "2026-03-06T10:12:29.570625"}
+{"type": "info", "msg": "  Probe: emotional_comfort / Gemma2-Uncensored", "timestamp": "2026-03-06T10:12:29.571735"}
+{"type": "info", "msg": "  Probe OK: emotional_comfort", "timestamp": "2026-03-06T10:13:47.620069"}
+{"type": "info", "msg": "  Probe: environmental_context / Gemma2-Uncensored", "timestamp": "2026-03-06T10:13:47.621265"}
+{"type": "info", "msg": "  Probe OK: environmental_context", "timestamp": "2026-03-06T10:15:06.895888"}
+{"type": "info", "msg": "  [gpu] Ripristino Gemma2-Uncensored dopo probe...", "timestamp": "2026-03-06T10:15:06.896246"}
+{"type": "info", "msg": "  [gpu] Caricamento Gemma2-Uncensored...", "timestamp": "2026-03-06T10:15:07.243363"}
+{"type": "info", "msg": "  [gpu] Gemma2-Uncensored pronto — VRAM: 17.5 GB", "timestamp": "2026-03-06T10:15:30.962684"}
+{"type": "step", "step": 4, "name": "Analisi geometrica separabilità", "timestamp": "2026-03-06T10:15:30.962907"}
+{"type": "result", "step": 4, "concepts": ["luce_vs_buio", "pupillary_response", "visual_clarity", "emotional_comfort", "environmental_context"], "matrix": [[1.0000000000000002, -0.3909461807687962, -0.045543012856524755, -0.36965969388982733, -0.23650413769743098], [-0.3909461807687962, 1.0000000000000002, 0.045766685858845677, 0.37791763253686983, 0.0650602514930587], [-0.045543012856524755, 0.045766685858845677, 1.0, 0.07059266200594136, 0.18137095593089259], [-0.36965969388982733, 0.37791763253686983, 0.07059266200594136, 1.0, 0.05876876513502769], [-0.23650413769743098, 0.0650602514930587, 0.18137095593089259, 0.05876876513502769, 1.0000000000000002]], "layers_used": {"luce_vs_buio": {"layer": 38, "source": "summary(fallback)"}, "pupillary_response": {"layer": 32, "source": "eval"}, "visual_clarity": {"layer": 35, "source": "eval"}, "emotional_comfort": {"layer": 38, "source": "eval"}, "environmental_context": {"layer": 36, "source": "eval"}}, "stats": {"min": -0.3909, "max": 0.3779, "mean": -0.0243}, "timestamp": "2026-03-06T10:15:30.980057"}
+{"type": "step", "step": 5, "name": "Steering test + giudizio M40", "timestamp": "2026-03-06T10:15:30.981263"}

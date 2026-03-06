@@ -1,0 +1,51 @@
+{"type": "run_start", "concept": "liscio_vs_ruvido", "model": "Gemma2-Uncensored", "max_depth": 0, "max_iter": 2, "dry_run": false, "timestamp": "2026-03-06T11:34:41.557210"}
+{"type": "decompose_start", "concept": "liscio_vs_ruvido", "depth": 0, "timestamp": "2026-03-06T11:34:41.641661"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v1)", "timestamp": "2026-03-06T11:34:41.641925"}
+{"type": "info", "msg": "  Proposti: ['friction_level', 'surface_uniformity', 'pressure_distribution', 'sensory_feedback']", "timestamp": "2026-03-06T11:36:18.941509"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v1)", "timestamp": "2026-03-06T11:36:18.941749"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-06T11:41:29.959269"}
+{"type": "info", "msg": "  [gpu] Preparo GPU per probe diretto...", "timestamp": "2026-03-06T11:41:29.959543"}
+{"type": "info", "msg": "  [gpu] Modello attivo: Gemma2-Uncensored — VRAM: 17.4 GB", "timestamp": "2026-03-06T11:41:30.163270"}
+{"type": "info", "msg": "  [gpu] Attendo GPU idle...", "timestamp": "2026-03-06T11:41:30.163534"}
+{"type": "info", "msg": "  [gpu] Unload modello...", "timestamp": "2026-03-06T11:41:30.357625"}
+{"type": "info", "msg": "  [gpu] VRAM liberata — usata: 12.5 GB / 32.0 GB", "timestamp": "2026-03-06T11:41:31.031961"}
+{"type": "info", "msg": "  Probe: friction_level / Gemma2-Uncensored", "timestamp": "2026-03-06T11:41:31.032847"}
+{"type": "info", "msg": "  Probe OK: friction_level", "timestamp": "2026-03-06T11:42:59.251013"}
+{"type": "info", "msg": "  Probe: surface_uniformity / Gemma2-Uncensored", "timestamp": "2026-03-06T11:42:59.252471"}
+{"type": "info", "msg": "  Probe OK: surface_uniformity", "timestamp": "2026-03-06T11:44:58.911200"}
+{"type": "info", "msg": "  Probe: pressure_distribution / Gemma2-Uncensored", "timestamp": "2026-03-06T11:44:58.913880"}
+{"type": "info", "msg": "  Probe OK: pressure_distribution", "timestamp": "2026-03-06T11:46:04.746839"}
+{"type": "info", "msg": "  SKIP probe sensory_feedback — JSON non trovato: /home/lele/codex-openai/project_jedi/config/sub_concepts/liscio_vs_ruvido/sensory_feedback.json", "timestamp": "2026-03-06T11:46:04.747226"}
+{"type": "info", "msg": "  [gpu] Ripristino Gemma2-Uncensored dopo probe...", "timestamp": "2026-03-06T11:46:04.747364"}
+{"type": "info", "msg": "  [gpu] Caricamento Gemma2-Uncensored...", "timestamp": "2026-03-06T11:46:04.920851"}
+{"type": "info", "msg": "  [gpu] Gemma2-Uncensored pronto — VRAM: 17.4 GB", "timestamp": "2026-03-06T11:46:25.731751"}
+{"type": "step", "step": 4, "name": "Analisi geometrica separabilità", "timestamp": "2026-03-06T11:46:25.732010"}
+{"type": "result", "step": 4, "concepts": ["liscio_vs_ruvido", "friction_level", "surface_uniformity", "pressure_distribution"], "matrix": [[1.0, 0.4204813819479837, 0.477462761510365, 0.08402799469698556], [0.4204813819479837, 1.0, 0.23795408653757033, 0.10276742562718669], [0.477462761510365, 0.23795408653757033, 1.0000000000000002, -0.14077415820004172], [0.08402799469698556, 0.10276742562718669, -0.14077415820004172, 1.0]], "layers_used": {"liscio_vs_ruvido": {"layer": 29, "source": "summary(fallback)"}, "friction_level": {"layer": 37, "source": "eval"}, "surface_uniformity": {"layer": 38, "source": "eval"}, "pressure_distribution": {"layer": 38, "source": "eval"}}, "stats": {"min": -0.1408, "max": 0.4775, "mean": 0.197}, "timestamp": "2026-03-06T11:46:25.748906"}
+{"type": "step", "step": 5, "name": "Steering test + giudizio M40", "timestamp": "2026-03-06T11:46:25.749857"}
+{"type": "result", "step": 5, "version": 1, "all_validated": false, "validated": [], "needs_refinement": ["friction_level", "surface_uniformity"], "timestamp": "2026-03-06T12:08:22.604559"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v2)", "timestamp": "2026-03-06T12:08:22.604861"}
+{"type": "info", "msg": "  Feedback v1: ['friction_level', 'surface_uniformity']", "timestamp": "2026-03-06T12:08:22.605896"}
+{"type": "info", "msg": "  Proposti: ['surface_finish', 'tactile_feedback', 'sensory_disruption', 'aesthetic_quality']", "timestamp": "2026-03-06T12:09:50.302007"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v2)", "timestamp": "2026-03-06T12:09:50.302257"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-06T12:14:50.940610"}
+{"type": "info", "msg": "  [gpu] Preparo GPU per probe diretto...", "timestamp": "2026-03-06T12:14:50.940717"}
+{"type": "info", "msg": "  [gpu] Modello attivo: Gemma2-Uncensored — VRAM: 17.6 GB", "timestamp": "2026-03-06T12:14:51.136140"}
+{"type": "info", "msg": "  [gpu] Attendo GPU idle...", "timestamp": "2026-03-06T12:14:51.136348"}
+{"type": "info", "msg": "  [gpu] Unload modello...", "timestamp": "2026-03-06T12:14:51.329770"}
+{"type": "info", "msg": "  [gpu] VRAM liberata — usata: 12.9 GB / 32.0 GB", "timestamp": "2026-03-06T12:14:51.959395"}
+{"type": "info", "msg": "  Probe: surface_finish / Gemma2-Uncensored", "timestamp": "2026-03-06T12:14:51.960847"}
+{"type": "info", "msg": "  Probe OK: surface_finish", "timestamp": "2026-03-06T12:16:35.195911"}
+{"type": "info", "msg": "  Probe: tactile_feedback / Gemma2-Uncensored", "timestamp": "2026-03-06T12:16:35.197044"}
+{"type": "info", "msg": "  Probe OK: tactile_feedback", "timestamp": "2026-03-06T12:17:38.623345"}
+{"type": "info", "msg": "  Probe: sensory_disruption / Gemma2-Uncensored", "timestamp": "2026-03-06T12:17:38.624610"}
+{"type": "info", "msg": "  Probe OK: sensory_disruption", "timestamp": "2026-03-06T12:18:40.975871"}
+{"type": "info", "msg": "  Probe: aesthetic_quality / Gemma2-Uncensored", "timestamp": "2026-03-06T12:18:40.977070"}
+{"type": "info", "msg": "  Probe OK: aesthetic_quality", "timestamp": "2026-03-06T12:19:58.151205"}
+{"type": "info", "msg": "  [gpu] Ripristino Gemma2-Uncensored dopo probe...", "timestamp": "2026-03-06T12:19:58.151587"}
+{"type": "info", "msg": "  [gpu] Caricamento Gemma2-Uncensored...", "timestamp": "2026-03-06T12:19:58.325675"}
+{"type": "info", "msg": "  [gpu] Gemma2-Uncensored pronto — VRAM: 17.6 GB", "timestamp": "2026-03-06T12:20:19.300200"}
+{"type": "step", "step": 4, "name": "Analisi geometrica separabilità", "timestamp": "2026-03-06T12:20:19.300524"}
+{"type": "result", "step": 4, "concepts": ["liscio_vs_ruvido", "surface_finish", "tactile_feedback", "sensory_disruption", "aesthetic_quality"], "matrix": [[1.0, 0.36196093481512215, 0.2890886974526961, 0.24494798145308144, 0.24378898894839104], [0.36196093481512215, 1.0, 0.519020954807038, 0.15881279288307074, 0.5112042693539921], [0.2890886974526961, 0.519020954807038, 1.0000000000000002, 0.17230905703809896, 0.45805422322420947], [0.24494798145308144, 0.15881279288307074, 0.17230905703809896, 0.9999999999999999, 0.30446126810574065], [0.24378898894839104, 0.5112042693539921, 0.45805422322420947, 0.30446126810574065, 1.0]], "layers_used": {"liscio_vs_ruvido": {"layer": 29, "source": "summary(fallback)"}, "surface_finish": {"layer": 38, "source": "eval"}, "tactile_feedback": {"layer": 38, "source": "eval"}, "sensory_disruption": {"layer": 29, "source": "eval"}, "aesthetic_quality": {"layer": 35, "source": "eval"}}, "stats": {"min": 0.1588, "max": 0.519, "mean": 0.3264}, "timestamp": "2026-03-06T12:20:19.315045"}
+{"type": "step", "step": 5, "name": "Steering test + giudizio M40", "timestamp": "2026-03-06T12:20:19.316311"}
+{"type": "result", "step": 5, "version": 2, "all_validated": true, "validated": ["surface_finish", "tactile_feedback", "sensory_disruption", "aesthetic_quality"], "needs_refinement": [], "timestamp": "2026-03-06T13:06:13.025690"}
+{"type": "decompose_end", "concept": "liscio_vs_ruvido", "depth": 0, "validated_subs": ["surface_finish", "tactile_feedback", "sensory_disruption", "aesthetic_quality"], "semantic_limit": false, "sub_results": {}, "timestamp": "2026-03-06T13:06:13.026114"}

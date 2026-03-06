@@ -1,0 +1,26 @@
+{"type": "run_start", "concept": "secco_vs_umido", "model": "Gemma2-Uncensored", "max_depth": 0, "max_iter": 2, "dry_run": false, "timestamp": "2026-03-06T13:06:13.447744"}
+{"type": "decompose_start", "concept": "secco_vs_umido", "depth": 0, "timestamp": "2026-03-06T13:06:13.520624"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v1)", "timestamp": "2026-03-06T13:06:13.520852"}
+{"type": "info", "msg": "  Proposti: ['surface_texture', 'moisture_presence', 'skin_elasticity', 'sensory_sharpness']", "timestamp": "2026-03-06T13:07:34.421679"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v1)", "timestamp": "2026-03-06T13:07:34.421888"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-03-06T13:13:38.436172"}
+{"type": "info", "msg": "  [gpu] Preparo GPU per probe diretto...", "timestamp": "2026-03-06T13:13:38.436417"}
+{"type": "info", "msg": "  [gpu] Modello attivo: Gemma2-Uncensored — VRAM: 17.6 GB", "timestamp": "2026-03-06T13:13:38.632759"}
+{"type": "info", "msg": "  [gpu] Attendo GPU idle...", "timestamp": "2026-03-06T13:13:38.632992"}
+{"type": "info", "msg": "  [gpu] Unload modello...", "timestamp": "2026-03-06T13:13:38.826951"}
+{"type": "info", "msg": "  [gpu] VRAM liberata — usata: 12.5 GB / 32.0 GB", "timestamp": "2026-03-06T13:13:39.498073"}
+{"type": "info", "msg": "  Probe: surface_texture / Gemma2-Uncensored", "timestamp": "2026-03-06T13:13:39.499477"}
+{"type": "info", "msg": "  Probe OK: surface_texture", "timestamp": "2026-03-06T13:15:26.232931"}
+{"type": "info", "msg": "  Probe: moisture_presence / Gemma2-Uncensored", "timestamp": "2026-03-06T13:15:26.234221"}
+{"type": "info", "msg": "  Probe OK: moisture_presence", "timestamp": "2026-03-06T13:17:31.315567"}
+{"type": "info", "msg": "  Probe: skin_elasticity / Gemma2-Uncensored", "timestamp": "2026-03-06T13:17:31.316871"}
+{"type": "info", "msg": "  Probe OK: skin_elasticity", "timestamp": "2026-03-06T13:19:03.978219"}
+{"type": "info", "msg": "  SKIP probe sensory_sharpness — JSON non trovato: /home/lele/codex-openai/project_jedi/config/sub_concepts/secco_vs_umido/sensory_sharpness.json", "timestamp": "2026-03-06T13:19:03.978831"}
+{"type": "info", "msg": "  [gpu] Ripristino Gemma2-Uncensored dopo probe...", "timestamp": "2026-03-06T13:19:03.978942"}
+{"type": "info", "msg": "  [gpu] Caricamento Gemma2-Uncensored...", "timestamp": "2026-03-06T13:19:04.140518"}
+{"type": "info", "msg": "  [gpu] Gemma2-Uncensored pronto — VRAM: 17.6 GB", "timestamp": "2026-03-06T13:19:24.736248"}
+{"type": "step", "step": 4, "name": "Analisi geometrica separabilità", "timestamp": "2026-03-06T13:19:24.736581"}
+{"type": "result", "step": 4, "concepts": ["secco_vs_umido", "surface_texture", "moisture_presence", "skin_elasticity"], "matrix": [[1.0, 0.35153606314588076, 0.5044013552673812, 0.2332433309945926], [0.35153606314588076, 0.9999999999999998, 0.30804428967186404, 0.04991448655597449], [0.5044013552673812, 0.30804428967186404, 1.0, 0.09568674271217245], [0.2332433309945926, 0.04991448655597449, 0.09568674271217245, 1.0000000000000002]], "layers_used": {"secco_vs_umido": {"layer": 38, "source": "summary(fallback)"}, "surface_texture": {"layer": 37, "source": "eval"}, "moisture_presence": {"layer": 33, "source": "eval"}, "skin_elasticity": {"layer": 38, "source": "eval"}}, "stats": {"min": 0.0499, "max": 0.5044, "mean": 0.2571}, "timestamp": "2026-03-06T13:19:24.754343"}
+{"type": "step", "step": 5, "name": "Steering test + giudizio M40", "timestamp": "2026-03-06T13:19:24.755380"}
+{"type": "result", "step": 5, "version": 1, "all_validated": true, "validated": ["surface_texture", "moisture_presence", "skin_elasticity"], "needs_refinement": [], "timestamp": "2026-03-06T13:42:43.627148"}
+{"type": "decompose_end", "concept": "secco_vs_umido", "depth": 0, "validated_subs": ["surface_texture", "moisture_presence", "skin_elasticity"], "semantic_limit": false, "sub_results": {}, "timestamp": "2026-03-06T13:42:43.627272"}
