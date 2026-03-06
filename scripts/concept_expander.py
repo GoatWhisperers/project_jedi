@@ -521,6 +521,14 @@ def _check_m40(m40_url: str) -> None:
         print(f"ERRORE: {e}")
         sys.exit(1)
 
+    # Verifica che M40 sia su GPU e con il modello giusto
+    from gpu_utils import check_m40_on_gpu
+    try:
+        check_m40_on_gpu(m40_url=m40_url, log=print)
+    except RuntimeError as e:
+        print(f"\nBLOCCATO: {e}")
+        sys.exit(1)
+
 
 # ── Entry point ────────────────────────────────────────────────────────────────
 

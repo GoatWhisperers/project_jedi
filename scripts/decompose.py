@@ -55,7 +55,7 @@ sys.path.insert(0, str(SCRIPTS_DIR))
 
 from concept_expander import step1_analyze, step2_generate, _load_meta
 from sub_concept_eval  import run_eval as run_separation_eval
-from gpu_utils import gpu_prepare_for_probe, gpu_restore_after_probe
+from gpu_utils import gpu_prepare_for_probe, gpu_restore_after_probe, check_m40_on_gpu
 from cosine_matrix     import (
     scan_concepts, get_best_layer, load_vector,
     build_matrix, print_matrix_table,
@@ -478,6 +478,16 @@ def main():
     print(f"  Dry run  : {args.dry_run}")
     print(f"  Log      : {logger.path.name}")
     print(f"{'='*60}")
+
+    # Verifica GPU M40 prima di partire (blocca se su CPU)
+    if not args.dry_run:
+        print("\n[pre-flight] Verifica M40 GPU...")
+        try:
+            check_m40_on_gpu(m40_url=args.m40_url, log=print)
+        except RuntimeError as e:
+            print(f"\nBLOCCATO: {e}")
+            sys.exit(1)
+        print()
 
     t0 = time.time()
     result = decompose_concept(

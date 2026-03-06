@@ -20,6 +20,7 @@ Uso:
 """
 
 import json
+import subprocess
 import time
 import urllib.error
 import urllib.request
@@ -187,3 +188,72 @@ def gpu_restore_after_probe(steering_url: str, model_name: str, log=print) -> bo
     """
     log(f"  [gpu] Ripristino {model_name} dopo probe...")
     return gpu_load(steering_url, model_name, log=log)
+
+
+# ── Verifica M40 su GPU (CUDA) ─────────────────────────────────────────────────
+
+M40_VRAM_MIN_MB       = 1000   # soglia: meno di 1 GB → sicuramente su CPU
+M40_EXPECTED_MODEL    = "gemma-3-12b"   # sottostringa attesa nel nome modello
+M40_CORRECT_BINARY    = "build_cuda"    # deve essere nel path del processo
+
+def check_m40_on_gpu(m40_url: str = "http://localhost:11435", log=print) -> bool:
+    """
+    Verifica che llama-server M40 stia girando sulla GPU CUDA con il modello corretto.
+
+    Controlli:
+      1. nvidia-smi: VRAM usata sul M40 > soglia (altrimenti CPU)
+      2. /v1/models: modello caricato contiene '12b' nel nome
+      3. ps aux: il processo usa il binario build_cuda (non build/)
+
+    Ritorna True se tutto OK, False e logga l'errore altrimenti.
+    Solleva RuntimeError se trova CPU invece di GPU (blocca il pipeline).
+    """
+    ok = True
+
+    # 1. VRAM check via nvidia-smi
+    try:
+        out = subprocess.check_output(
+            ["nvidia-smi", "--query-gpu=memory.used", "--format=csv,noheader,nounits"],
+            stderr=subprocess.DEVNULL, text=True
+        ).strip()
+        vram_mb = int(out.split("\n")[0])
+        if vram_mb < M40_VRAM_MIN_MB:
+            log(f"  [m40] ERRORE: VRAM M40 usata solo {vram_mb} MB — llama-server è su CPU!")
+            raise RuntimeError(
+                f"M40 llama-server sta girando su CPU (VRAM={vram_mb} MB < {M40_VRAM_MIN_MB} MB).\n"
+                f"Riavviare con: /mnt/raid0/llama-cpp-m40/start_cuda.sh"
+            )
+        log(f"  [m40] VRAM M40: {vram_mb} MB ✓")
+    except FileNotFoundError:
+        log("  [m40] WARN: nvidia-smi non trovato, salto verifica VRAM")
+
+    # 2. Modello giusto
+    info = _get(f"{m40_url}/v1/models")
+    if info:
+        models = info.get("data") or info.get("models", [])
+        names = [m.get("id", "") or m.get("name", "") for m in models]
+        if not any(M40_EXPECTED_MODEL in n.lower() for n in names):
+            log(f"  [m40] WARN: modello caricato non è 12B — trovato: {names}")
+            log(f"        Riavviare con: /mnt/raid0/llama-cpp-m40/start_cuda.sh")
+            ok = False
+        else:
+            log(f"  [m40] Modello: {names[0]} ✓")
+
+    # 3. Binario corretto
+    try:
+        ps = subprocess.check_output(
+            ["ps", "aux"], stderr=subprocess.DEVNULL, text=True
+        )
+        llama_lines = [l for l in ps.splitlines() if "llama-server" in l and "grep" not in l]
+        for line in llama_lines:
+            if M40_CORRECT_BINARY not in line:
+                log(f"  [m40] WARN: llama-server usa binario SBAGLIATO (manca '{M40_CORRECT_BINARY}'):")
+                log(f"        {line.split()[10] if len(line.split()) > 10 else line[:120]}")
+                log(f"        Riavviare con: /mnt/raid0/llama-cpp-m40/start_cuda.sh")
+                ok = False
+            else:
+                log(f"  [m40] Binario: {M40_CORRECT_BINARY} ✓")
+    except Exception as e:
+        log(f"  [m40] WARN: impossibile verificare binario: {e}")
+
+    return ok
