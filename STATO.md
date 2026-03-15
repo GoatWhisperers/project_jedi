@@ -2,7 +2,7 @@
 
 > Questo file va letto SUBITO all'inizio di ogni sessione Claude.
 > Viene aggiornato automaticamente da cantagallo e dai batch script.
-> Ultima modifica: 2026-03-06 18:09 — fine sessione
+> Ultima modifica: 2026-03-15 — sessione riservata + flag --output-root
 
 ---
 
@@ -10,7 +10,7 @@
 
 | Servizio | Porta | Stato |
 |----------|-------|-------|
-| Steering server MI50 | 8010 | active: Gemma2-Uncensored |
+| Steering server MI50 | 8010 | active: Gemma3-1B-IT |
 | M40 llama-server CUDA | 11435 | ✅ |
 
 ```bash
@@ -20,33 +20,37 @@ curl -s http://localhost:11435/health
 
 ---
 
-## Libreria Vettori
+## Libreria Vettori (pubblica)
 
 | Livello | Gemma3-1B-IT | Gemma2-Uncensored |
 |---------|-------------|------------------|
-| Gd0 (broad) | 120 layer files | 180 layer files |
-| Gd1 (sub) | 600 layer files | 800 layer files |
+| Gd0 (broad) | 9/9 ✅ | 9/9 ✅ |
+| Gd1 (sub) | 9/9 ✅ ~600 file | 9/9 ✅ ~800 file |
 
-Gd0: 9/9 concept × 6 layer × 2 modelli = attesi 108 file per modello
-Gd1: variabile (dipende dai sub-concept estratti)
+Analisi geometria Gd1: `experiments/07_gemma2_decompose_gd1.md`
 
 ---
 
 ## Batch
 
-COMPLETATO (✓0 ✗0) — gemma2_ripresa5.log
+Nessun batch pubblico in corso.
+
+Esiste una sessione di estrazione riservata separata — vedi
+`/home/lele/ricerche_riservate/` (fuori repo).
 
 ```bash
-# Log batch più recente:
-tail -f /tmp/gemma2_ripresa5.log
+# Log estrazione riservata (se in corso):
+tail -f /tmp/riservati_extraction.log
 ```
 
 ---
 
-## Libreria completata — 2026-03-06
+## Modifiche sessione 2026-03-15
 
-Gd0 + Gd1 completi per entrambi i modelli. 800 file Gd1 Gemma2.
-Analisi geometria interna: `experiments/07_gemma2_decompose_gd1.md`
+- `scripts/probe_concept.py` — aggiunto flag `--output-root` per reindirizzare
+  l'output fuori dalla vector_library pubblica
+
+---
 
 ## Prossima sessione — checklist
 
@@ -54,8 +58,8 @@ Analisi geometria interna: `experiments/07_gemma2_decompose_gd1.md`
 1. Leggi questo file (STATO.md)
 2. cat /tmp/cantagallo_pending.txt
 3. Verifica server (vedi sopra)
-4. Leggi RIPRESA_20260307.md
-5. Prossimi esperimenti: steering Gd1 + confronto Gemma3 vs Gemma2 + ricerche riservate
+4. Leggi RIPRESA_20260315.md
+5. Prossimi esperimenti: steering Gd1 + confronto Gemma3 vs Gemma2
 ```
 
 ---

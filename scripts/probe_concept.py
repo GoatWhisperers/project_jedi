@@ -153,6 +153,8 @@ def main():
                         help="Model name from settings.json models list (e.g. 'Gemma3-1B-IT')")
     parser.add_argument("--eval", action="store_true",
                         help="Evaluate on held-out sentences and save eval.json")
+    parser.add_argument("--output-root", default=None,
+                        help="Override output root directory (default: output/vector_library)")
     args = parser.parse_args()
 
     # --- Load concept ---
@@ -198,7 +200,8 @@ def main():
     # --- Output dir ---
     concept_key  = normalize_name_for_path(concept_name)
     model_key    = normalize_name_for_path(model_name)
-    out_dir = os.path.join(VECTOR_LIB_ROOT, category, concept_key, model_key)
+    lib_root = args.output_root if args.output_root else VECTOR_LIB_ROOT
+    out_dir = os.path.join(lib_root, category, concept_key, model_key)
     os.makedirs(out_dir, exist_ok=True)
     run_id = f"{concept_key}_{model_key}_{time.strftime('%Y%m%d_%H%M%S')}"
     print(f"Output    : {out_dir}")
