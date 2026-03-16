@@ -41,7 +41,7 @@ DECOMPOSE_LOG    = ROOT / "output" / "decompose_runs"
 
 # ── Defaults ───────────────────────────────────────────────────────────────────
 DEFAULT_MODEL        = "Gemma2-Uncensored"
-DEFAULT_STEERING_URL = "http://localhost:8010"
+DEFAULT_STEERING_URL = "http://localhost:8020"   # mi50_manager (aggiornato da 8010)
 DEFAULT_M40_URL      = "http://localhost:11435"
 DEFAULT_MAX_ITER     = 3       # max iterazioni per livello prima di dichiarare "limite semantico"
 DEFAULT_MAX_DEPTH    = 2       # profondità massima ricorsione (0=broad, 1=sub, 2=sub-sub)

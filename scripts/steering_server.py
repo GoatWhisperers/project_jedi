@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
-import gc
+"""
+steering_server.py — Presentation/routing layer (porta 8010).
+
+Espone la stessa interfaccia HTTP agli utenti e alla UI, ma delega tutte
+le operazioni GPU a mi50_manager (porta 8020).
+
+Non gestisce più modelli HuggingFace direttamente.
+"""
 import glob
 import json
 import os
@@ -7,13 +14,12 @@ import re
 import threading
 import subprocess
 import time
-from http.server import BaseHTTPRequestHandler, HTTPServer, ThreadingHTTPServer
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlparse, parse_qs
-from transformers import TextIteratorStreamer, StoppingCriteria, StoppingCriteriaList
+from urllib.request import urlopen, Request
+from urllib.error import URLError
 
 import numpy as np
-import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CONFIG_PATH = os.path.join(ROOT, "config", "settings.json")
@@ -23,47 +29,56 @@ VECTOR_LIB_ROOT = os.path.join(OUTPUT_ROOT, "vector_library")
 UI_PATH = os.path.join(ROOT, "ui", "steering.html")
 LOG_PATH = os.path.join(OUTPUT_ROOT, "steering_log.jsonl")
 
+# mi50_manager URL — unico owner GPU MI50
+MI50_URL = os.environ.get("MI50_URL", "http://localhost:8020")
 
-class AbortFlag(StoppingCriteria):
-    """StoppingCriteria that checks State.abort_flag to interrupt generation."""
-    def __call__(self, input_ids, scores, **kwargs):
-        return State.abort_flag
 
+# ── mi50_manager HTTP helpers ──────────────────────────────────────────────────
+
+def mi50_post(path: str, payload: dict, timeout: int = 300) -> dict:
+    """POST a mi50_manager. Ritorna dict JSON o {"error": ...} in caso di fallimento."""
+    url = f"{MI50_URL}{path}"
+    data = json.dumps(payload).encode("utf-8")
+    req = Request(url, data=data, headers={"Content-Type": "application/json"}, method="POST")
+    try:
+        with urlopen(req, timeout=timeout) as r:
+            return json.loads(r.read())
+    except Exception as e:
+        return {"error": str(e)}
+
+
+def mi50_get(path: str, timeout: int = 30) -> dict:
+    """GET a mi50_manager. Ritorna dict JSON o {} in caso di fallimento."""
+    url = f"{MI50_URL}{path}"
+    try:
+        with urlopen(url, timeout=timeout) as r:
+            return json.loads(r.read())
+    except Exception:
+        return {}
+
+
+def mi50_stream_post(path: str, payload: dict, timeout: int = 300):
+    """
+    POST a mi50_manager e ritorna il file-like object SSE aperto.
+    Il chiamante è responsabile di chiuderlo.
+    """
+    url = f"{MI50_URL}{path}"
+    data = json.dumps(payload).encode("utf-8")
+    req = Request(url, data=data, headers={"Content-Type": "application/json"}, method="POST")
+    return urlopen(req, timeout=timeout)
+
+
+# ── State (solo catalog e modelli disponibili, niente GPU) ────────────────────
 
 class State:
-    model = None
-    tokenizer = None
-    layers = None
-    device = None
-    catalog = []
-    num_layers = 0
-    lock = threading.Lock()
-    active_model_name = ""
-    available_models = []  # list of {"name": ..., "path": ...}
-    abort_flag = False
+    catalog          = []
+    available_models = []   # list of {"name": ..., "path": ...}
+    lock             = threading.Lock()
 
 
 def load_settings():
     with open(CONFIG_PATH, "r") as f:
         return json.load(f)
-
-
-def get_transformer_layers(model):
-    for attr_path in [
-        "model.layers",
-        "model.model.layers",
-        "transformer.h",
-        "gpt_neox.layers",
-        "transformer.blocks",
-    ]:
-        obj = model
-        try:
-            for attr in attr_path.split("."):
-                obj = getattr(obj, attr)
-            return list(obj)
-        except AttributeError:
-            continue
-    raise ValueError(f"Cannot find transformer layers for {type(model).__name__}")
 
 
 def load_catalog():
@@ -72,6 +87,14 @@ def load_catalog():
             return json.load(f)
     return []
 
+
+def _get_active_model_name() -> str:
+    """Chiede a mi50_manager qual è il modello attivo."""
+    st = mi50_get("/api/status")
+    return st.get("model", "") or ""
+
+
+# ── Vector library lookup (rimane qui per catalog/routing) ────────────────────
 
 def _resolve_lib_dir(concept_name: str, model_slug: str):
     """
@@ -82,14 +105,12 @@ def _resolve_lib_dir(concept_name: str, model_slug: str):
     if not os.path.isdir(VECTOR_LIB_ROOT):
         return None
     if "/" in concept_name:
-        # Sub-concept: "parent/slug" → {cat}/{parent}/sub/{slug}/{model_slug}/
         parent, slug = concept_name.split("/", 1)
         for cat in os.listdir(VECTOR_LIB_ROOT):
             lib_dir = os.path.join(VECTOR_LIB_ROOT, cat, parent, "sub", slug, model_slug)
             if os.path.isdir(lib_dir):
                 return lib_dir
     else:
-        # Gd0: {cat}/{concept}/{model_slug}/
         for cat in os.listdir(VECTOR_LIB_ROOT):
             lib_dir = os.path.join(VECTOR_LIB_ROOT, cat, concept_name, model_slug)
             if os.path.isdir(lib_dir):
@@ -98,9 +119,7 @@ def _resolve_lib_dir(concept_name: str, model_slug: str):
 
 
 def get_available_layers(concept_name: str, model_name: str):
-    """Scan vector_library and return (sorted layers list, best_layer) for concept+model.
-    This is the ground truth — independent of the catalog.
-    Supports both Gd0 ('hot_vs_cold') and Gd1 ('hot_vs_cold/thermal_intensity')."""
+    """Scan vector_library e ritorna (sorted layers list, best_layer) per concept+model."""
     if not model_name:
         return [], None
     slug = model_name.lower().replace(" ", "-").replace("_", "-")
@@ -130,9 +149,8 @@ def get_available_layers(concept_name: str, model_name: str):
     return layers, best_layer
 
 
-def _load_vec_for_layer(concept_name: str, model_name: str, layer_idx: int):
-    """Load concept vector .npy from vector_library for a specific layer.
-    Supports Gd0 and Gd1 ('parent/slug'). Returns numpy array or None."""
+def _find_vector_path(concept_name: str, model_name: str, layer_idx: int) -> str | None:
+    """Ritorna il path .npy del vettore concept per un layer specifico, o None."""
     if not model_name or not os.path.isdir(VECTOR_LIB_ROOT):
         return None
     slug = model_name.lower().replace(" ", "-").replace("_", "-")
@@ -140,400 +158,32 @@ def _load_vec_for_layer(concept_name: str, model_name: str, layer_idx: int):
     if lib_dir is None:
         return None
     vec_path = os.path.join(lib_dir, f"layer_{layer_idx}.npy")
-    if os.path.exists(vec_path):
-        return np.load(vec_path)
-    return None
+    return vec_path if os.path.exists(vec_path) else None
 
 
-def pick_latest_concept_entry(concept_name: str):
+def pick_latest_concept_entry(concept_name: str, active_model: str):
     matches = [e for e in State.catalog if e.get("concept") == concept_name]
     if not matches:
         return None
     matches.sort(key=lambda x: x.get("timestamp", ""))
-    # Prefer entries matching the currently loaded model
-    active = State.active_model_name
-    if active:
-        model_matches = [e for e in matches if e.get("model_name", "") == active]
+    if active_model:
+        model_matches = [e for e in matches if e.get("model_name", "") == active_model]
         if model_matches:
             return model_matches[-1]
     return matches[-1]
 
 
-def load_vector(path: str):
-    v = np.load(path)
-    return v
-
-
-def make_steering_hook(steer_tensor, apply_to="all", prompt_len=None):
-    def hook_fn(module, input, output):
-        if isinstance(output, tuple):
-            hidden = output[0]
-        else:
-            hidden = output
-        modified = hidden.clone()
-        if apply_to == "all":
-            modified += steer_tensor
-        elif apply_to == "last":
-            modified[:, -1, :] += steer_tensor
-        elif apply_to == "new":
-            # Only generated tokens beyond the original prompt
-            if hidden.shape[1] == 1:
-                modified[:, -1, :] += steer_tensor
-            elif prompt_len is not None and hidden.shape[1] > prompt_len:
-                modified[:, prompt_len:, :] += steer_tensor
-        if isinstance(output, tuple):
-            return (modified,) + output[1:]
-        return modified
-    return hook_fn
-
-
-def build_chat_prompt(messages):
-    # Prefer tokenizer chat template if present
-    tok = State.tokenizer
-    if hasattr(tok, "apply_chat_template"):
-        try:
-            return tok.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
-        except Exception:
-            pass
-
-    # Fallback
-    parts = []
-    for m in messages:
-        role = m.get("role", "user")
-        content = m.get("content", "")
-        parts.append(f"{role.upper()}: {content}")
-    parts.append("ASSISTANT:")
-    return "\n".join(parts)
-
-
-def generate_text(prompt, max_new_tokens=128):
-    inputs = State.tokenizer(prompt, return_tensors="pt").to(State.device)
-    with torch.no_grad():
-        out = State.model.generate(
-            **inputs,
-            max_new_tokens=max_new_tokens,
-            temperature=0.7,
-            do_sample=True,
-        )
-    return State.tokenizer.decode(out[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True)
-
-
-def stream_generate(prompt, max_new_tokens=128, hooks_fn=None):
-    """Generator that yields text tokens one by one via TextIteratorStreamer.
-    hooks_fn: callable(streamer) that registers forward hooks before generation
-              and returns a list of hooks to remove when done.
-    """
-    streamer = TextIteratorStreamer(
-        State.tokenizer, skip_prompt=True, skip_special_tokens=True, timeout=60.0
-    )
-    inputs = State.tokenizer(prompt, return_tensors="pt").to(State.device)
-
-    hooks = hooks_fn(streamer) if hooks_fn else []
-
-    State.abort_flag = False
-    gen_kwargs = dict(
-        **inputs,
-        streamer=streamer,
-        max_new_tokens=max_new_tokens,
-        temperature=0.7,
-        do_sample=True,
-        stopping_criteria=StoppingCriteriaList([AbortFlag()]),
-    )
-
-    def _run():
-        try:
-            with torch.no_grad():
-                State.model.generate(**gen_kwargs)
-        except Exception as e:
-            streamer.text_queue.put(f"\n[ERROR: {e}]")
-        finally:
-            for h in hooks:
-                h.remove()
-
-    t = threading.Thread(target=_run, daemon=True)
-    t.start()
-
-    for token in streamer:
-        yield token
-
-
-def stream_with_injection(prompt, concept, vector_layer_idx, inject_layer_idx, alpha,
-                          gain=1.0, max_new_tokens=128, apply_to="new",
-                          multi_layers=None, layer_configs=None):
-    """Streaming version of generate_with_injection."""
-    available_layers, _ = get_available_layers(concept, State.active_model_name)
-    if not available_layers:
-        yield f"[ERROR: No vectors for '{concept}' / '{State.active_model_name}']"
-        return
-
-    prompt_len = len(State.tokenizer.encode(prompt))
-    dtype = next(State.model.parameters()).dtype
-
-    def hooks_fn(streamer):
-        hooks = []
-        def _make_hook(layer_idx, layer_gain):
-            vec = _load_vec_for_layer(concept, State.active_model_name, layer_idx)
-            if vec is None:
-                return None
-            steer = torch.tensor(vec, dtype=dtype, device=State.device) * float(alpha) * float(layer_gain)
-            return State.layers[layer_idx].register_forward_hook(
-                make_steering_hook(steer, apply_to=apply_to, prompt_len=prompt_len)
-            )
-
-        if layer_configs:
-            for cfg in layer_configs:
-                h = _make_hook(int(cfg["layer"]), float(cfg["gain"]))
-                if h: hooks.append(h)
-        elif multi_layers:
-            for li in multi_layers:
-                h = _make_hook(li, gain)
-                if h: hooks.append(h)
-        else:
-            if vector_layer_idx not in available_layers:
-                return []
-            h = _make_hook(vector_layer_idx, gain)
-            if h: hooks.append(h)
-        return hooks
-
-    yield from stream_generate(prompt, max_new_tokens=max_new_tokens, hooks_fn=hooks_fn)
-
-
-def generate_with_injection(prompt, concept, vector_layer_idx, inject_layer_idx, alpha, gain=1.0, max_new_tokens=128, apply_to="new", multi_layers=None, layer_configs=None, preloaded_vec=None):
-    """
-    layer_configs:   list of {"layer": int, "gain": float} — per-layer control.
-                     When provided, overrides multi_layers and vector/inject_layer_idx.
-    multi_layers:    list of layer indices — legacy multi-layer mode (same gain for all).
-    preloaded_vec:   numpy array — bypass vector_library lookup (for sub-concept vectors).
-    Default:         single layer, vector_layer_idx → inject_layer_idx.
-    Vectors are loaded directly from vector_library (ground truth, not catalog).
-    """
-    if preloaded_vec is None:
-        available_layers, _ = get_available_layers(concept, State.active_model_name)
-        if not available_layers:
-            raise RuntimeError(
-                f"No vectors found for concept '{concept}' / model '{State.active_model_name}'. "
-                f"Run probe first."
-            )
-    else:
-        available_layers = [vector_layer_idx]  # not used for lookup when preloaded
-
-    hooks = []
-    prompt_len = len(State.tokenizer.encode(prompt))
-    dtype = next(State.model.parameters()).dtype
-
-    def _make_hook_for_layer(layer_idx, layer_gain, custom_vec=None):
-        vec = custom_vec if custom_vec is not None else _load_vec_for_layer(concept, State.active_model_name, layer_idx)
-        if vec is None:
-            return None
-        steer = torch.tensor(vec, dtype=dtype, device=State.device) * float(alpha) * float(layer_gain)
-        return State.layers[layer_idx].register_forward_hook(
-            make_steering_hook(steer, apply_to=apply_to, prompt_len=prompt_len)
-        )
-
-    if layer_configs:
-        for cfg in layer_configs:
-            hook = _make_hook_for_layer(int(cfg["layer"]), float(cfg["gain"]))
-            if hook is not None:
-                hooks.append(hook)
-    elif multi_layers:
-        for layer_idx in multi_layers:
-            hook = _make_hook_for_layer(layer_idx, gain)
-            if hook is not None:
-                hooks.append(hook)
-    else:
-        if preloaded_vec is None and vector_layer_idx not in available_layers:
-            raise RuntimeError(
-                f"Layer {vector_layer_idx} not available for '{concept}' / '{State.active_model_name}'. "
-                f"Available: {available_layers}"
-            )
-        vec = preloaded_vec if preloaded_vec is not None else _load_vec_for_layer(concept, State.active_model_name, vector_layer_idx)
-        if vec is None:
-            raise RuntimeError(f"Vector file missing for layer {vector_layer_idx}")
-        steer = torch.tensor(vec, dtype=dtype, device=State.device) * float(alpha) * float(gain)
-        hooks.append(State.layers[inject_layer_idx].register_forward_hook(
-            make_steering_hook(steer, apply_to=apply_to, prompt_len=prompt_len)
-        ))
-
-    try:
-        return generate_text(prompt, max_new_tokens=max_new_tokens)
-    finally:
-        for h in hooks:
-            h.remove()
-
-
-def load_model(model_path=None, model_name=None):
-    settings = load_settings()
-    State.available_models = settings.get("models", [])
-
-    if model_path is None:
-        model_path = settings.get("model_path", "")
-    if not model_path:
-        raise SystemExit("model_path vuoto in config/settings.json")
-
-    if model_name is None:
-        # Derive name from available_models list
-        for m in State.available_models:
-            if m.get("path") == model_path:
-                model_name = m.get("name", "")
-                break
-        else:
-            model_name = os.path.basename(model_path)
-
-    # Free previous model before loading new one.
-    # IMPORTANTE: non nullare State.model prima di questa funzione —
-    # la GC+synchronize vengono chiamate solo se State.model is not None.
-    if State.model is not None:
-        prev = State.model
-        State.model = None
-        State.tokenizer = None
-        State.layers = []
-        del prev
-        if torch.cuda.is_available():
-            gc.collect()
-            torch.cuda.empty_cache()
-            torch.cuda.synchronize()
-            time.sleep(2)  # lascia al driver il tempo di liberare la VRAM
-
-    dtype_str = settings.get("dtype", "bfloat16")
-    dtype_map = {"bfloat16": torch.bfloat16, "float16": torch.float16, "float32": torch.float32}
-    torch_dtype = dtype_map.get(dtype_str, torch.bfloat16)
-
-    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=bool(settings.get("trust_remote_code", False)), use_fast=True)
-    model = AutoModelForCausalLM.from_pretrained(
-        model_path,
-        trust_remote_code=bool(settings.get("trust_remote_code", False)),
-        torch_dtype=torch_dtype,   # fix: era "dtype", kwarg corretto è "torch_dtype"
-        low_cpu_mem_usage=True,
-    )
-    model.eval()
-    pref = settings.get("device", "cuda")
-    if pref == "cpu":
-        device = torch.device("cpu")
-    else:
-        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model.to(device)
-
-    State.model = model
-    State.tokenizer = tokenizer
-    State.layers = get_transformer_layers(model)
-    State.device = device
-    State.catalog = load_catalog()
-    State.num_layers = model.config.num_hidden_layers
-    State.active_model_name = model_name
-
-
-def json_response(handler, code, payload):
-    data = json.dumps(payload).encode("utf-8")
-    handler.send_response(code)
-    handler.send_header("Content-Type", "application/json")
-    handler.send_header("Content-Length", str(len(data)))
-    handler.end_headers()
-    handler.wfile.write(data)
-
-
-def text_response(handler, code, content, content_type="text/html"):
-    data = content.encode("utf-8")
-    handler.send_response(code)
-    handler.send_header("Content-Type", content_type)
-    handler.send_header("Content-Length", str(len(data)))
-    handler.end_headers()
-    handler.wfile.write(data)
-
-
-def read_body(handler):
-    length = int(handler.headers.get("Content-Length", "0"))
-    if length == 0:
-        return b""
-    return handler.rfile.read(length)
-
-
-_prev_cpu = None
-
-def _read_cpu_pct():
-    """Read CPU usage % from /proc/stat (delta between two calls)."""
-    global _prev_cpu
-    try:
-        with open("/proc/stat") as f:
-            line = f.readline()
-        vals = list(map(int, line.split()[1:]))
-        idle = vals[3] + (vals[4] if len(vals) > 4 else 0)
-        total = sum(vals)
-        if _prev_cpu is None:
-            _prev_cpu = (total, idle)
-            return 0.0
-        d_total = total - _prev_cpu[0]
-        d_idle  = idle  - _prev_cpu[1]
-        _prev_cpu = (total, idle)
-        return round((d_total - d_idle) / d_total * 100, 1) if d_total > 0 else 0.0
-    except Exception:
-        return 0.0
-
-
-def _read_ram():
-    """Read RAM usage from /proc/meminfo."""
-    try:
-        info = {}
-        with open("/proc/meminfo") as f:
-            for line in f:
-                k, v = line.split(":")
-                info[k.strip()] = int(v.split()[0])
-        total_mb = info["MemTotal"] / 1024
-        avail_mb = info["MemAvailable"] / 1024
-        used_mb  = total_mb - avail_mb
-        return {"used_mb": round(used_mb), "total_mb": round(total_mb),
-                "pct": round(used_mb / total_mb * 100, 1)}
-    except Exception:
-        return {}
-
-
-def get_gpu_stats():
-    result = {"ok": False}
-    try:
-        res = subprocess.run([
-            "rocm-smi", "--showtemp", "--showuse", "--showmeminfo", "vram", "--json"
-        ], capture_output=True, text=True, check=True)
-        data = json.loads(res.stdout)
-        card = data.get("card0", {})
-        edge     = float(card.get("Temperature (Sensor edge) (C)", "0") or 0)
-        junction = float(card.get("Temperature (Sensor junction) (C)", "0") or 0)
-        gpu_use  = float(card.get("GPU use (%)", "0") or 0)
-        vram_used  = float(card.get("VRAM Total Used Memory (B)", "0") or 0) / 1024**3
-        vram_total = float(card.get("VRAM Total Memory (B)", "0") or 0) / 1024**3
-        vram_pct   = round(vram_used / vram_total * 100, 1) if vram_total > 0 else 0
-        result = {
-            "ok": True,
-            "edge_c": edge,
-            "junction_c": junction,
-            "gpu_use_pct": gpu_use,
-            "vram_used_gb": round(vram_used, 1),
-            "vram_total_gb": round(vram_total, 1),
-            "vram_pct": vram_pct,
-        }
-    except Exception as e:
-        result = {"ok": False, "error": str(e)}
-
-    if torch.cuda.is_available() and State.model is not None:
-        try:
-            allocated_mb = torch.cuda.memory_allocated() / 1024**2
-            total_mb     = torch.cuda.get_device_properties(0).total_memory / 1024**2
-            result["vram_allocated_mb"] = round(allocated_mb, 1)
-            result["vram_total_mb"]     = round(total_mb, 1)
-            result["vram_used_pct"]     = round(allocated_mb / total_mb * 100, 1)
-        except Exception:
-            pass
-
-    result["cpu_pct"] = _read_cpu_pct()
-    result["ram"] = _read_ram()
-    return result
-
+# ── Logging ───────────────────────────────────────────────────────────────────
 
 def append_log(entry):
     with open(LOG_PATH, "a") as f:
         f.write(json.dumps(entry) + "\n")
 
 
+# ── Library overview ──────────────────────────────────────────────────────────
+
 def get_library_overview():
-    """Scan vector_library/*/*/meta.json and return summary for each concept."""
+    """Scan vector_library/*/*/meta.json e ritorna sommario per ogni concept."""
     entries = []
     for meta_path in sorted(glob.glob(os.path.join(VECTOR_LIB_ROOT, "*/*/*/meta.json"))):
         try:
@@ -561,16 +211,139 @@ def get_library_overview():
     return entries
 
 
+# ── GPU stats (rocm-smi, augmenta lo status di mi50_manager) ─────────────────
+
+_prev_cpu = None
+
+def _read_cpu_pct():
+    global _prev_cpu
+    try:
+        with open("/proc/stat") as f:
+            line = f.readline()
+        vals = list(map(int, line.split()[1:]))
+        idle = vals[3] + (vals[4] if len(vals) > 4 else 0)
+        total = sum(vals)
+        if _prev_cpu is None:
+            _prev_cpu = (total, idle)
+            return 0.0
+        d_total = total - _prev_cpu[0]
+        d_idle  = idle  - _prev_cpu[1]
+        _prev_cpu = (total, idle)
+        return round((d_total - d_idle) / d_total * 100, 1) if d_total > 0 else 0.0
+    except Exception:
+        return 0.0
+
+
+def _read_ram():
+    try:
+        info = {}
+        with open("/proc/meminfo") as f:
+            for line in f:
+                k, v = line.split(":")
+                info[k.strip()] = int(v.split()[0])
+        total_mb = info["MemTotal"] / 1024
+        avail_mb = info["MemAvailable"] / 1024
+        used_mb  = total_mb - avail_mb
+        return {"used_mb": round(used_mb), "total_mb": round(total_mb),
+                "pct": round(used_mb / total_mb * 100, 1)}
+    except Exception:
+        return {}
+
+
+def get_gpu_stats():
+    """Combina rocm-smi + mi50_manager /api/status per il dashboard."""
+    result = {"ok": False}
+    try:
+        res = subprocess.run([
+            "rocm-smi", "--showtemp", "--showuse", "--showmeminfo", "vram", "--json"
+        ], capture_output=True, text=True, check=True)
+        data = json.loads(res.stdout)
+        card = data.get("card0", {})
+        edge     = float(card.get("Temperature (Sensor edge) (C)", "0") or 0)
+        junction = float(card.get("Temperature (Sensor junction) (C)", "0") or 0)
+        gpu_use  = float(card.get("GPU use (%)", "0") or 0)
+        vram_used  = float(card.get("VRAM Total Used Memory (B)", "0") or 0) / 1024**3
+        vram_total = float(card.get("VRAM Total Memory (B)", "0") or 0) / 1024**3
+        vram_pct   = round(vram_used / vram_total * 100, 1) if vram_total > 0 else 0
+        result = {
+            "ok": True,
+            "edge_c": edge,
+            "junction_c": junction,
+            "gpu_use_pct": gpu_use,
+            "vram_used_gb": round(vram_used, 1),
+            "vram_total_gb": round(vram_total, 1),
+            "vram_pct": vram_pct,
+        }
+    except Exception as e:
+        result = {"ok": False, "error": str(e)}
+
+    # Arricchisce con stato mi50_manager
+    mi50_st = mi50_get("/api/status")
+    if mi50_st:
+        result["mi50_busy"]       = mi50_st.get("busy", False)
+        result["mi50_busy_owner"] = mi50_st.get("busy_owner")
+        result["mi50_model"]      = mi50_st.get("model")
+
+    result["cpu_pct"] = _read_cpu_pct()
+    result["ram"] = _read_ram()
+    return result
+
+
+# ── HTTP response helpers ─────────────────────────────────────────────────────
+
+def json_response(handler, code, payload):
+    data = json.dumps(payload).encode("utf-8")
+    handler.send_response(code)
+    handler.send_header("Content-Type", "application/json")
+    handler.send_header("Content-Length", str(len(data)))
+    handler.end_headers()
+    handler.wfile.write(data)
+
+
+def text_response(handler, code, content, content_type="text/html"):
+    data = content.encode("utf-8")
+    handler.send_response(code)
+    handler.send_header("Content-Type", content_type)
+    handler.send_header("Content-Length", str(len(data)))
+    handler.end_headers()
+    handler.wfile.write(data)
+
+
+def read_body(handler):
+    length = int(handler.headers.get("Content-Length", "0"))
+    if length == 0:
+        return b""
+    return handler.rfile.read(length)
+
+
+def _build_chat_prompt_local(messages: list, active_model: str) -> str:
+    """
+    Costruisce un prompt testuale da messages senza tokenizer locale.
+    Usato solo come fallback; steering_server ora passa i messaggi raw a mi50_manager.
+    """
+    parts = []
+    for m in messages:
+        role    = m.get("role", "user")
+        content = m.get("content", "")
+        parts.append(f"{role.upper()}: {content}")
+    parts.append("ASSISTANT:")
+    return "\n".join(parts)
+
+
+# ── Handler HTTP ──────────────────────────────────────────────────────────────
+
 class Handler(BaseHTTPRequestHandler):
+
     def do_GET(self):
         parsed = urlparse(self.path)
+
         if parsed.path == "/":
             with open(UI_PATH, "r") as f:
                 html = f.read()
             return text_response(self, 200, html)
+
         if parsed.path == "/api/concepts":
-            active = State.active_model_name
-            # Source of truth: vector_library on disk
+            active = _get_active_model_name()
             concepts = set()
             sub_concepts = set()
             if active and os.path.isdir(VECTOR_LIB_ROOT):
@@ -580,11 +353,9 @@ class Handler(BaseHTTPRequestHandler):
                     if not os.path.isdir(cat_path):
                         continue
                     for concept in os.listdir(cat_path):
-                        # Gd0
                         model_dir = os.path.join(cat_path, concept, slug)
                         if os.path.isdir(model_dir) and glob.glob(os.path.join(model_dir, "layer_*.npy")):
                             concepts.add(concept)
-                        # Gd1: {cat}/{concept}/sub/{slug}/{model}/
                         sub_root = os.path.join(cat_path, concept, "sub")
                         if os.path.isdir(sub_root):
                             for sub_slug in os.listdir(sub_root):
@@ -592,67 +363,96 @@ class Handler(BaseHTTPRequestHandler):
                                 if os.path.isdir(sub_model_dir) and glob.glob(os.path.join(sub_model_dir, "layer_*.npy")):
                                     sub_concepts.add(f"{concept}/{sub_slug}")
             if not concepts and not sub_concepts:
-                # Fallback to catalog
                 eligible = [e for e in State.catalog if e.get("model_name") == active] if active else State.catalog
                 for e in eligible:
                     if e.get("concept"):
                         (sub_concepts if e.get("is_sub_concept") else concepts).add(e["concept"])
+
+            mi50_st = mi50_get("/api/status")
             return json_response(self, 200, {
                 "concepts":     sorted(concepts),
                 "sub_concepts": sorted(sub_concepts),
-                "device": str(State.device),
+                "device": mi50_st.get("device", ""),
                 "model": active,
             })
+
         if parsed.path == "/api/concept_layers":
-            qs = parse_qs(parsed.query)
+            qs = parse_qs(urlparse(self.path).query)
             concept = (qs.get("concept") or [None])[0]
-            model = (qs.get("model") or [State.active_model_name])[0] or State.active_model_name
+            active  = _get_active_model_name()
+            model   = (qs.get("model") or [active])[0] or active
             if not concept:
                 return json_response(self, 200, {"layers": [], "best_layer": None, "model": model})
             layers, best_layer = get_available_layers(concept, model)
             return json_response(self, 200, {"layers": layers, "best_layer": best_layer, "model": model})
+
         if parsed.path == "/api/model_info":
-            return json_response(self, 200, {"num_layers": State.num_layers, "device": str(State.device)})
+            st = mi50_get("/api/status")
+            return json_response(self, 200, {
+                "num_layers": st.get("num_layers"),
+                "device":     st.get("device", ""),
+                "model":      st.get("model"),
+            })
+
         if parsed.path == "/api/gpu":
             return json_response(self, 200, get_gpu_stats())
+
         if parsed.path == "/api/models":
+            settings = load_settings()
+            available = settings.get("models", [])
+            active = _get_active_model_name()
             return json_response(self, 200, {
-                "models": State.available_models,
-                "active": State.active_model_name,
+                "models": available,
+                "active": active,
             })
+
         if parsed.path == "/api/library":
             return json_response(self, 200, {"library": get_library_overview()})
+
         if parsed.path == "/api/reload_catalog":
             State.catalog = load_catalog()
             return json_response(self, 200, {"ok": True, "entries": len(State.catalog)})
+
         if parsed.path == "/api/stop":
-            State.abort_flag = True
-            return json_response(self, 200, {"ok": True, "aborted": True})
+            result = mi50_post("/api/stop", {})
+            return json_response(self, 200, result)
+
         if parsed.path == "/api/unload_model":
-            # Aspetta al massimo 120s che il lock sia libero (evita blocco su load_model in corso)
-            acquired = State.lock.acquire(timeout=120)
-            if acquired:
-                try:
-                    if State.model is not None:
-                        del State.model
-                        State.model = None
-                        State.tokenizer = None
-                        State.layers = []
-                        if torch.cuda.is_available():
-                            gc.collect()
-                            torch.cuda.empty_cache()
-                            torch.cuda.synchronize()
-                        State.num_layers = 0
-                        State.active_model_name = ""
-                finally:
-                    State.lock.release()
-                return json_response(self, 200, {"ok": True, "unloaded": True})
-            else:
-                return json_response(self, 503, {"ok": False, "error": "lock_timeout"})
+            result = mi50_post("/api/unload_model", {})
+            code = 200 if result.get("ok") else 503
+            return json_response(self, code, result)
+
         return self.send_error(404)
 
     def do_POST(self):
         parsed = urlparse(self.path)
+
+        # ── /api/load_model → proxy a mi50_manager ─────────────────────────
+        if parsed.path == "/api/load_model":
+            body = read_body(self)
+            try:
+                payload = json.loads(body.decode("utf-8"))
+            except Exception:
+                return json_response(self, 400, {"error": "invalid_json"})
+
+            result = mi50_post("/api/load_model", payload)
+            code = 200 if result.get("ok") or result.get("noop") else (
+                404 if "not found" in result.get("error", "").lower() else 500
+            )
+            return json_response(self, code, result)
+
+        # ── /api/unload_model → proxy a mi50_manager ───────────────────────
+        if parsed.path == "/api/unload_model":
+            result = mi50_post("/api/unload_model", {})
+            code = 200 if result.get("ok") else 503
+            return json_response(self, code, result)
+
+        # ── /api/stop → proxy a mi50_manager ───────────────────────────────
+        if parsed.path == "/api/stop":
+            result = mi50_post("/api/stop", {})
+            return json_response(self, 200, result)
+
+        # ── /api/generate → risolve vettore localmente, poi proxy ──────────
         if parsed.path == "/api/generate":
             body = read_body(self)
             try:
@@ -660,157 +460,163 @@ class Handler(BaseHTTPRequestHandler):
             except Exception:
                 return json_response(self, 400, {"error": "invalid_json"})
 
-            messages = payload.get("messages", [])
-            prompt = payload.get("prompt", "")
-            concept = payload.get("concept", "hot_vs_cold")
-            vector_layer = int(payload.get("vector_layer", 0))
-            inject_layer = int(payload.get("inject_layer", 0))
-            alpha = float(payload.get("alpha", 0.0))
-            gain = float(payload.get("gain", 1.0))
+            messages       = payload.get("messages", [])
+            prompt         = payload.get("prompt", "")
+            concept        = payload.get("concept", "hot_vs_cold")
+            vector_layer   = int(payload.get("vector_layer", 0))
+            inject_layer   = int(payload.get("inject_layer", 0))
+            alpha          = float(payload.get("alpha", 0.0))
+            gain           = float(payload.get("gain", 1.0))
             max_new_tokens = int(payload.get("max_new_tokens", 128))
-            mode = payload.get("mode", "inject")
-            multi = bool(payload.get("multi", False))
-            layer_configs = payload.get("layer_configs", None)  # [{layer, gain}, ...]
-            vector_path = payload.get("vector_path", None)      # direct .npy path (sub-concepts)
+            mode           = payload.get("mode", "inject")
+            multi          = bool(payload.get("multi", False))
+            layer_configs  = payload.get("layer_configs", None)
+            vector_path    = payload.get("vector_path", None)
 
-            # Load preloaded_vec if vector_path provided (bypasses catalog lookup)
-            preloaded_vec = None
-            if vector_path:
-                try:
-                    preloaded_vec = np.load(vector_path)
-                except Exception as e:
-                    return json_response(self, 400, {"error": f"Cannot load vector_path '{vector_path}': {e}"})
+            # Costruisce prompt da messages se necessario
+            if messages and not prompt:
+                prompt = _build_chat_prompt_local(messages, _get_active_model_name())
 
-            if messages:
-                formatted_prompt = build_chat_prompt(messages)
-            else:
-                formatted_prompt = prompt
-
-            if not formatted_prompt:
+            if not prompt:
                 return json_response(self, 400, {"error": "empty_prompt"})
 
-            # Resolve multi_layers from vector_library before acquiring lock
-            if preloaded_vec is None:
-                avail_layers, best_layer = get_available_layers(concept, State.active_model_name)
-            else:
-                avail_layers = [vector_layer]  # not used for lookup when preloaded
-            if multi and not layer_configs:
-                multi_layers_resolved = avail_layers
-            else:
-                multi_layers_resolved = None
+            # Risolve vector_path dal vector_library se non passato direttamente
+            if not vector_path and mode != "baseline" and alpha != 0.0:
+                active = _get_active_model_name()
+                vp = _find_vector_path(concept, active, vector_layer)
+                if vp:
+                    vector_path = vp
 
-            # T5: Validate requested layers against available (skip if preloaded)
-            if preloaded_vec is None and mode != "baseline" and alpha != 0.0 and not layer_configs and not multi:
-                if avail_layers and vector_layer not in avail_layers:
+            # Valida layer disponibile (solo single-layer senza layer_configs)
+            if mode != "baseline" and alpha != 0.0 and not layer_configs and not multi:
+                active = _get_active_model_name()
+                avail_layers, _ = get_available_layers(concept, active)
+                if avail_layers and vector_layer not in avail_layers and not vector_path:
                     return json_response(self, 400, {
-                        "error": f"Layer {vector_layer} not available for '{concept}' / '{State.active_model_name}'. "
+                        "error": f"Layer {vector_layer} not available for '{concept}' / '{active}'. "
                                  f"Available: {avail_layers}"
                     })
 
-            with State.lock:
-                try:
-                    if mode == "baseline" or alpha == 0.0:
-                        text = generate_text(formatted_prompt, max_new_tokens=max_new_tokens)
-                    else:
-                        text = generate_with_injection(
-                            formatted_prompt,
-                            concept,
-                            vector_layer,
-                            inject_layer,
-                            alpha,
-                            gain=gain,
-                            max_new_tokens=max_new_tokens,
-                            apply_to="new",
-                            multi_layers=multi_layers_resolved,
-                            layer_configs=layer_configs,
-                            preloaded_vec=preloaded_vec,
-                        )
-                except Exception as e:
-                    return json_response(self, 500, {"error": str(e)})
+            mi50_payload = {
+                "prompt":        prompt,
+                "concept":       concept,
+                "vector_layer":  vector_layer,
+                "inject_layer":  inject_layer,
+                "alpha":         alpha,
+                "gain":          gain,
+                "max_new_tokens": max_new_tokens,
+                "mode":          mode,
+                "multi":         multi,
+                "layer_configs": layer_configs,
+                "vector_path":   vector_path,
+            }
 
+            result = mi50_post("/api/generate", mi50_payload, timeout=300)
+            if "error" in result and "text" not in result:
+                return json_response(self, 500, result)
+
+            text = result.get("text", "")
+            # Logging
             used_layers = layer_configs if layer_configs else (
-                [{"layer": l, "gain": gain} for l in (multi_layers_resolved or [])] if multi
+                [] if mode == "baseline" or alpha == 0.0
                 else [{"layer": inject_layer, "gain": gain}]
             )
-            log_entry = {
-                "prompt": formatted_prompt,
-                "concept": concept,
-                "alpha": alpha,
-                "mode": mode,
-                "output": text,
+            append_log({
+                "prompt":        prompt,
+                "concept":       concept,
+                "alpha":         alpha,
+                "mode":          mode,
+                "output":        text,
                 "layer_configs": used_layers,
-            }
-            append_log(log_entry)
+            })
+            return json_response(self, 200, {"text": text, "formatted_prompt": prompt})
 
-            return json_response(self, 200, {"text": text, "formatted_prompt": formatted_prompt})
-
+        # ── /api/generate_stream → proxy SSE a mi50_manager ────────────────
         if parsed.path == "/api/generate_stream":
-            if State.model is None:
-                return json_response(self, 503, {"error": "Model not loaded — click Load first."})
             body = read_body(self)
             try:
                 payload = json.loads(body.decode("utf-8"))
             except Exception:
                 return json_response(self, 400, {"error": "invalid_json"})
 
-            messages = payload.get("messages", [])
-            prompt   = payload.get("prompt", "")
-            concept  = payload.get("concept", "hot_vs_cold")
-            vector_layer  = int(payload.get("vector_layer", 0))
-            inject_layer  = int(payload.get("inject_layer", 0))
-            alpha         = float(payload.get("alpha", 0.0))
-            gain          = float(payload.get("gain", 1.0))
+            messages       = payload.get("messages", [])
+            prompt         = payload.get("prompt", "")
+            concept        = payload.get("concept", "hot_vs_cold")
+            vector_layer   = int(payload.get("vector_layer", 0))
+            inject_layer   = int(payload.get("inject_layer", 0))
+            alpha          = float(payload.get("alpha", 0.0))
+            gain           = float(payload.get("gain", 1.0))
             max_new_tokens = int(payload.get("max_new_tokens", 128))
-            mode          = payload.get("mode", "inject")
-            multi         = bool(payload.get("multi", False))
-            layer_configs = payload.get("layer_configs", None)
+            mode           = payload.get("mode", "inject")
+            multi          = bool(payload.get("multi", False))
+            layer_configs  = payload.get("layer_configs", None)
+            vector_path    = payload.get("vector_path", None)
 
-            if messages:
-                formatted_prompt = build_chat_prompt(messages)
-            else:
-                formatted_prompt = prompt
-            if not formatted_prompt:
+            if messages and not prompt:
+                prompt = _build_chat_prompt_local(messages, _get_active_model_name())
+            if not prompt:
                 return json_response(self, 400, {"error": "empty_prompt"})
 
-            avail_layers, _ = get_available_layers(concept, State.active_model_name)
-            if multi and not layer_configs:
-                multi_layers_resolved = avail_layers
-            else:
-                multi_layers_resolved = None
+            # Risolve vector_path
+            if not vector_path and mode != "baseline" and alpha != 0.0:
+                active = _get_active_model_name()
+                vp = _find_vector_path(concept, active, vector_layer)
+                if vp:
+                    vector_path = vp
 
-            # SSE headers
+            mi50_payload = {
+                "prompt":        prompt,
+                "concept":       concept,
+                "vector_layer":  vector_layer,
+                "inject_layer":  inject_layer,
+                "alpha":         alpha,
+                "gain":          gain,
+                "max_new_tokens": max_new_tokens,
+                "mode":          mode,
+                "multi":         multi,
+                "layer_configs": layer_configs,
+                "vector_path":   vector_path,
+            }
+
+            # SSE headers verso il client
             self.send_response(200)
             self.send_header("Content-Type", "text/event-stream")
             self.send_header("Cache-Control", "no-cache")
             self.send_header("X-Accel-Buffering", "no")
             self.end_headers()
 
-            # Send formatted prompt as first SSE event
-            fp_data = json.dumps({"type": "prompt", "text": formatted_prompt})
+            # Invia il formatted_prompt come primo evento (compatibilità UI)
+            fp_data = json.dumps({"type": "prompt", "text": prompt})
             self.wfile.write(f"data: {fp_data}\n\n".encode("utf-8"))
             self.wfile.flush()
 
             full_text = []
             try:
-                with State.lock:
-                    if mode == "baseline" or alpha == 0.0:
-                        token_gen = stream_generate(formatted_prompt, max_new_tokens=max_new_tokens)
-                    else:
-                        token_gen = stream_with_injection(
-                            formatted_prompt, concept,
-                            vector_layer, inject_layer, alpha,
-                            gain=gain, max_new_tokens=max_new_tokens,
-                            apply_to="new",
-                            multi_layers=multi_layers_resolved,
-                            layer_configs=layer_configs,
-                        )
-                    for token in token_gen:
-                        if State.abort_flag:
-                            break
-                        full_text.append(token)
-                        data = json.dumps({"type": "token", "text": token})
-                        self.wfile.write(f"data: {data}\n\n".encode("utf-8"))
+                r = mi50_stream_post("/api/generate_stream", mi50_payload, timeout=300)
+                for raw_line in r:
+                    line = raw_line.decode("utf-8").strip()
+                    if not line.startswith("data:"):
+                        continue
+                    data_str = line[5:].strip()
+                    try:
+                        ev = json.loads(data_str)
+                    except Exception:
+                        continue
+
+                    if ev.get("done"):
+                        break
+                    if "error" in ev:
+                        err_data = json.dumps({"type": "error", "text": ev["error"]})
+                        self.wfile.write(f"data: {err_data}\n\n".encode("utf-8"))
                         self.wfile.flush()
+                        break
+                    if "token" in ev:
+                        token = ev["token"]
+                        full_text.append(token)
+                        out_data = json.dumps({"type": "token", "text": token})
+                        self.wfile.write(f"data: {out_data}\n\n".encode("utf-8"))
+                        self.wfile.flush()
+                r.close()
             except Exception as e:
                 err_data = json.dumps({"type": "error", "text": str(e)})
                 self.wfile.write(f"data: {err_data}\n\n".encode("utf-8"))
@@ -820,53 +626,26 @@ class Handler(BaseHTTPRequestHandler):
                 self.wfile.write(f"data: {done_data}\n\n".encode("utf-8"))
                 self.wfile.flush()
                 append_log({
-                    "prompt": formatted_prompt, "concept": concept,
+                    "prompt": prompt, "concept": concept,
                     "alpha": alpha, "mode": mode,
                     "output": "".join(full_text),
                     "layer_configs": layer_configs or [],
                 })
             return
 
-        if parsed.path == "/api/load_model":
-            body = read_body(self)
-            try:
-                payload = json.loads(body.decode("utf-8"))
-            except Exception:
-                return json_response(self, 400, {"error": "invalid_json"})
-
-            requested_name = payload.get("name", "")
-            target = None
-            for m in State.available_models:
-                if m.get("name") == requested_name:
-                    target = m
-                    break
-            if target is None:
-                return json_response(self, 404, {"error": f"Model not found: {requested_name}"})
-
-            with State.lock:
-                try:
-                    # Non nullare State.model qui: load_model() gestisce
-                    # gc.collect() + synchronize() correttamente solo se
-                    # trova State.model non-None. Pre-nullarlo bypassa la GC.
-                    load_model(model_path=target["path"], model_name=target["name"])
-                except Exception as e:
-                    return json_response(self, 500, {"error": str(e)})
-
-            return json_response(self, 200, {
-                "ok": True,
-                "name": State.active_model_name,
-                "num_layers": State.num_layers,
-                "device": str(State.device),
-            })
-
         return self.send_error(404)
 
 
 def main():
-    load_model()
+    # Carica catalog e lista modelli da settings
+    State.catalog = load_catalog()
+    settings = load_settings()
+    State.available_models = settings.get("models", [])
+
     port = int(os.environ.get("JEDI_PORT", "8010"))
     server = ThreadingHTTPServer(("0.0.0.0", port), Handler)
-    print(f"Jedi steering server listening on http://0.0.0.0:{port}")
+    print(f"Jedi steering server (proxy) listening on http://0.0.0.0:{port}")
+    print(f"  → delegating GPU ops to mi50_manager at {MI50_URL}")
     server.serve_forever()
 
 

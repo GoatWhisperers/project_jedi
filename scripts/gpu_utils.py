@@ -3,8 +3,8 @@ gpu_utils.py — Gestione sicura della GPU per Project Jedi.
 
 Sequenza corretta per caricare un modello sulla GPU:
   1. Controlla cosa c'è sulla GPU e se sta ancora lavorando
-  2. Aspetta che finisca (se gpu_use_pct > soglia)
-  3. Unload pulito via steering server
+  2. Aspetta che finisca (se busy=True)
+  3. Unload pulito via mi50_manager (porta 8020)
   4. Verifica che la VRAM si sia svuotata
   5. Carica il nuovo modello
   6. Verifica che sia pronto
@@ -13,10 +13,14 @@ Uso:
     from gpu_utils import gpu_prepare, gpu_reload
 
     # Prima del probe (libera VRAM):
-    gpu_prepare(steering_url="http://localhost:8010")
+    gpu_prepare(steering_url="http://localhost:8020")
 
     # Dopo il probe (ricarica modello):
-    gpu_reload(steering_url="http://localhost:8010", model_name="Gemma2-Uncensored")
+    gpu_reload(steering_url="http://localhost:8020", model_name="Gemma2-Uncensored")
+
+NOTA: steering_url ora punta a mi50_manager (8020), non a steering_server (8010).
+      decompose.py usa ancora --steering-url per compatibilità; il valore default
+      è stato aggiornato in decompose.py. gpu_utils accetta qualsiasi URL.
 """
 
 import json
@@ -61,29 +65,31 @@ def _post(url: str, body: dict, timeout: int = 30) -> Optional[dict]:
 # ── Funzioni pubbliche ─────────────────────────────────────────────────────────
 
 def get_gpu_status(steering_url: str) -> dict:
-    """Ritorna lo stato attuale della GPU: vram, gpu_use, modello attivo."""
-    gpu  = _get(f"{steering_url}/api/gpu")   or {}
-    mods = _get(f"{steering_url}/api/models") or {}
+    """
+    Ritorna lo stato attuale della GPU leggendo da mi50_manager /api/status.
+    Campi: active_model, busy, vram_used_gb, vram_total_gb.
+    steering_url deve puntare a mi50_manager (default: http://localhost:8020).
+    """
+    st = _get(f"{steering_url}/api/status") or {}
     return {
-        "active_model":  mods.get("active", ""),
-        "gpu_use_pct":   gpu.get("gpu_use_pct", 0),
-        "vram_used_gb":  gpu.get("vram_used_gb", 0),
-        "vram_total_gb": gpu.get("vram_total_gb", 0),
+        "active_model":  st.get("model", ""),
+        "busy":          st.get("busy", False),
+        "vram_used_gb":  st.get("vram_used_gb", 0),
+        "vram_total_gb": st.get("vram_total_gb", 0),
     }
 
 
 def wait_gpu_idle(steering_url: str, log=print) -> bool:
     """
-    Aspetta che la GPU non stia più elaborando (gpu_use_pct < soglia).
+    Aspetta che mi50_manager non stia elaborando (busy=False).
     Ritorna True se idle entro il timeout, False altrimenti.
     """
     deadline = time.time() + WAIT_BUSY_TIMEOUT_S
     while time.time() < deadline:
         st = get_gpu_status(steering_url)
-        use = st.get("gpu_use_pct", 0)
-        if use < GPU_BUSY_THRESHOLD_PCT:
+        if not st.get("busy", False):
             return True
-        log(f"  [gpu] GPU occupata al {use:.0f}% — attendo...")
+        log(f"  [gpu] GPU occupata (busy=True) — attendo...")
         time.sleep(5)
     log(f"  [gpu] TIMEOUT attesa GPU idle dopo {WAIT_BUSY_TIMEOUT_S}s")
     return False
@@ -91,10 +97,10 @@ def wait_gpu_idle(steering_url: str, log=print) -> bool:
 
 def gpu_unload(steering_url: str, log=print) -> bool:
     """
-    Sequenza completa di unload:
+    Sequenza completa di unload via mi50_manager:
       1. Legge stato attuale
       2. Aspetta che la GPU sia idle
-      3. Chiama /api/unload_model
+      3. POST /api/unload_model
       4. Verifica che la VRAM si sia liberata
     Ritorna True se OK.
     """
@@ -112,9 +118,9 @@ def gpu_unload(steering_url: str, log=print) -> bool:
     log("  [gpu] Attendo GPU idle...")
     wait_gpu_idle(steering_url, log=log)
 
-    # 2. Unload (endpoint GET nel steering server)
+    # 2. Unload via POST a mi50_manager
     log("  [gpu] Unload modello...")
-    result = _get(f"{steering_url}/api/unload_model")
+    result = _post(f"{steering_url}/api/unload_model", {})
     if not result or not result.get("ok"):
         log("  [gpu] WARN: unload_model non ha risposto OK")
 
@@ -137,7 +143,7 @@ def gpu_unload(steering_url: str, log=print) -> bool:
 
 def gpu_load(steering_url: str, model_name: str, log=print) -> bool:
     """
-    Carica un modello sulla GPU via steering server.
+    Carica un modello sulla GPU via mi50_manager.
     Prima controlla e svuota la GPU, poi carica e verifica.
     Ritorna True se il modello è pronto.
     """

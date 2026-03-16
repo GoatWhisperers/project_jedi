@@ -15,7 +15,7 @@ Quando Lele dice che per oggi si finisce, Claude DEVE (senza aspettare istruzion
 All'inizio di ogni sessione Claude DEVE:
 1. Leggere `/home/lele/codex-openai/project_jedi/STATO.md`
 2. Leggere `/tmp/cantagallo_pending.txt` (messaggi pendenti)
-3. Verificare server: `curl -s http://localhost:8010/api/models` + `curl -s http://localhost:11435/health`
+3. Verificare server: `curl -s http://localhost:8020/api/status` + `curl -s http://localhost:8010/api/models` + `curl -s http://localhost:11435/health`
 
 Fatto questo, riassumere lo stato a Lele e proporre cosa fare.
 
@@ -64,7 +64,7 @@ Claude può eseguire senza chiedere conferma:
 
 - Eliminare file o directory
 - Modificare `config/settings.json` (cambia il modello di default)
-- Riavviare i server (`steering_server.py`, `llama-server`)
+- Riavviare i server (`mi50_manager.py`, `steering_server.py`, `llama-server`)
 - Qualsiasi operazione fuori da `project_jedi/`
 
 ---
@@ -83,10 +83,18 @@ Quando si lancia `run_decompose_gd1_all.sh` (o simili), Claude deve:
 
 ## Stack hardware (non modificare senza chiedere)
 
-- **MI50** (ROCm): steering server porta 8010, Gemma3-1B-IT o Gemma2-Uncensored
+- **MI50** (ROCm): un solo modello alla volta in VRAM — gestito esclusivamente da `mi50_manager.py`
+  - `mi50_manager`  porta 8020 — unico owner GPU MI50, carica/scarica modelli
+  - `steering_server` porta 8010 — UI/routing, delega GPU al manager
+  - Cambio modello: `POST http://localhost:8020/api/load_model {"name": "..."}` + 60s wait
+  - Stato GPU: `GET http://localhost:8020/api/status`
+
 - **M40** (CUDA): llama-server porta 11435, Gemma3-12B Q4_K_M
-- Cambio modello MI50: `POST http://localhost:8010/api/load_model {"name": "..."}` + 60s wait
-- Riavvio M40: `/mnt/raid0/llama-cpp-m40/start_cuda.sh`
+  - Riavvio M40: `/mnt/raid0/llama-cpp-m40/start_cuda.sh`
+
+**REGOLA ASSOLUTA GPU**: nessuno script carica modelli direttamente — sempre via manager HTTP.
+- MI50 → `POST http://localhost:8020/api/load_model`
+- M40  → llama-server già gestisce, nessun caricamento diretto consentito
 
 ---
 

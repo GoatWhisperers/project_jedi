@@ -15,7 +15,7 @@ echo "=== Project Jedi — Setup systemd services ==="
 echo ""
 
 # ── 1. llama-server-m40 ────────────────────────────────────────────────────────
-echo "[1/3] Aggiornamento llama-server-m40.service..."
+echo "[1/4] Aggiornamento llama-server-m40.service..."
 cat > /etc/systemd/system/llama-server-m40.service << 'SVCEOF'
 [Unit]
 Description=llama-server Gemma3-12B Q4_K_M - Project Jedi M40 GPU (CUDA)
@@ -47,8 +47,34 @@ WantedBy=multi-user.target
 SVCEOF
 echo "  ✓ llama-server-m40.service aggiornato"
 
-# ── 2. steering-server ─────────────────────────────────────────────────────────
-echo "[2/3] Creazione steering-server.service..."
+# ── 2. mi50-manager ────────────────────────────────────────────────────────────
+echo "[2/4] Creazione mi50-manager.service..."
+cat > /etc/systemd/system/mi50-manager.service << 'SVCEOF'
+[Unit]
+Description=Project Jedi MI50 Manager — unico owner GPU MI50 (ROCm, porta 8020)
+After=network.target
+
+[Service]
+Type=simple
+User=lele
+Group=lele
+WorkingDirectory=/home/lele/codex-openai
+ExecStart=/home/lele/codex-openai/project_jedi/.venv/bin/python \
+    /home/lele/codex-openai/project_jedi/scripts/mi50_manager.py
+Restart=on-failure
+RestartSec=10
+TimeoutStopSec=30
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=mi50-manager
+
+[Install]
+WantedBy=multi-user.target
+SVCEOF
+echo "  ✓ mi50-manager.service creato"
+
+# ── 3. steering-server ─────────────────────────────────────────────────────────
+echo "[3/4] Aggiornamento steering-server.service..."
 cat > /etc/systemd/system/steering-server.service << 'SVCEOF'
 [Unit]
 Description=Project Jedi Steering Server (MI50 ROCm, porta 8010)
@@ -73,29 +99,35 @@ WantedBy=multi-user.target
 SVCEOF
 echo "  ✓ steering-server.service creato"
 
-# ── 3. Reload e riavvio ────────────────────────────────────────────────────────
-echo "[3/3] Reload systemd + riavvio servizi..."
+# ── 4. Reload e riavvio ────────────────────────────────────────────────────────
+echo "[4/4] Reload systemd + riavvio servizi..."
 systemctl daemon-reload
 
+systemctl enable mi50-manager.service
+echo "  ✓ mi50-manager abilitato"
 systemctl enable steering-server.service
 echo "  ✓ steering-server abilitato"
 
-# Riavvia M40 (ferma quello sbagliato e parte il nuovo)
+# Riavvia M40
 systemctl restart llama-server-m40.service
 echo "  ✓ llama-server-m40 riavviato"
 
-# Avvia steering (se non già attivo)
+# mi50-manager prima (carica il modello), poi steering-server
+systemctl restart mi50-manager.service
+echo "  ✓ mi50-manager avviato"
+sleep 5
 systemctl restart steering-server.service
 echo "  ✓ steering-server avviato"
 
 echo ""
 echo "=== Verifica stato ==="
-sleep 5
+sleep 10
 systemctl is-active llama-server-m40.service && echo "  llama-server-m40: ACTIVE" || echo "  llama-server-m40: FAILED"
+systemctl is-active mi50-manager.service      && echo "  mi50-manager:     ACTIVE" || echo "  mi50-manager:     FAILED"
 systemctl is-active steering-server.service   && echo "  steering-server:  ACTIVE" || echo "  steering-server:  FAILED"
 
 echo ""
-echo "Attendi ~30s poi verifica:"
+echo "Attendi ~90s per caricamento modello poi verifica:"
 echo "  curl http://localhost:11435/health"
+echo "  curl http://localhost:8020/api/status"
 echo "  curl http://localhost:8010/api/models"
-echo "  nvidia-smi  (verifica VRAM M40 > 6 GB)"

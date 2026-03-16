@@ -10,7 +10,7 @@ Usage:
     python scripts/probe_concept.py --concept config/concepts/luce_vs_buio.json --eval
     python scripts/probe_concept.py --concept config/concepts/luce_vs_buio.json --model "Gemma2-Uncensored"
 
-Reuses core extraction functions from probe_hot_cold.py.
+Model loading is delegated to mi50_manager (porta 8020).
 """
 import argparse
 import json
@@ -19,15 +19,13 @@ import re
 import sys
 import time
 from typing import Dict, List, Optional, Tuple
+from urllib.request import urlopen, Request
 
 import numpy as np
-import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer
 
 # Reuse functions from probe_hot_cold in the same directory
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from probe_hot_cold import (
-    _pool,
     compute_mean_diff,
     compute_pca_diff,
     convergence_report,
@@ -40,6 +38,8 @@ CONFIG_PATH = os.path.join(ROOT, "config", "settings.json")
 OUTPUT_ROOT = os.path.join(ROOT, "output")
 STATUS_PATH = os.path.join(OUTPUT_ROOT, "status.json")
 VECTOR_LIB_ROOT = os.path.join(OUTPUT_ROOT, "vector_library")
+
+MI50_URL = os.environ.get("MI50_URL", "http://localhost:8020")
 
 # Number of sentences from each side held out for evaluation
 EVAL_HOLDOUT = 5
@@ -79,9 +79,7 @@ def resolve_model(settings: dict, model_name_override: Optional[str]) -> Tuple[s
         for m in models_list:
             if m.get("name") == model_name_override:
                 return m["path"], m["name"]
-        # Treat override as a direct path if not found in list
         return model_name_override, os.path.basename(model_name_override)
-    # Default: use model_path from settings
     model_path = settings.get("model_path", "")
     for m in models_list:
         if m.get("path") == model_path:
@@ -90,55 +88,62 @@ def resolve_model(settings: dict, model_name_override: Optional[str]) -> Tuple[s
 
 
 # ---------------------------------------------------------------------------
-# Extraction with per-batch status callback
+# mi50_manager HTTP helpers
 # ---------------------------------------------------------------------------
 
-def extract_deep_layers_with_status(
-    model,
-    tokenizer,
-    texts: List[str],
-    deep_layers: List[int],
-    token_position: str,
-    batch_size: int,
-    max_length: int,
-    status_cb=None,
-) -> Dict[int, np.ndarray]:
+def _mi50_post(path: str, payload: dict, timeout: int = 1800) -> dict:
+    """POST a mi50_manager. Ritorna dict JSON o {"error": ...}."""
+    url = f"{MI50_URL}{path}"
+    data = json.dumps(payload).encode("utf-8")
+    req = Request(url, data=data, headers={"Content-Type": "application/json"}, method="POST")
+    try:
+        with urlopen(req, timeout=timeout) as r:
+            return json.loads(r.read())
+    except Exception as e:
+        return {"error": str(e)}
+
+
+def mi50_load_model(model_name: str) -> bool:
     """
-    Identical to probe_hot_cold.extract_deep_layers but calls status_cb(batches_done, batches_total)
-    after each batch so the caller can update status.json.
-    Returns {layer_idx: float32 array[n_texts, hidden_dim]}.
+    Chiede a mi50_manager di caricare il modello.
+    Noop se già caricato. Ritorna True se ok.
     """
-    device = next(model.parameters()).device
-    layer_accum: Dict[int, list] = {l: [] for l in deep_layers}
+    print(f"  [mi50] Richiedo caricamento modello: {model_name}")
+    result = _mi50_post("/api/load_model", {"name": model_name})
+    if result.get("ok") or result.get("noop"):
+        noop = result.get("noop", False)
+        print(f"  [mi50] Modello pronto: {result.get('name', model_name)}"
+              f"  layers={result.get('num_layers', '?')}"
+              f"  {'(già caricato)' if noop else ''}")
+        return True
+    else:
+        print(f"  [mi50] ERRORE load_model: {result.get('error', 'unknown')}")
+        return False
 
-    n_batches = (len(texts) + batch_size - 1) // batch_size
-    for batch_idx, i in enumerate(range(0, len(texts), batch_size)):
-        batch = texts[i: i + batch_size]
-        inputs = tokenizer(
-            batch,
-            return_tensors="pt",
-            padding=True,
-            truncation=True,
-            max_length=max_length,
-        )
-        inputs = {k: v.to(device) for k, v in inputs.items()}
-        attention_mask = inputs["attention_mask"]
 
-        with torch.no_grad():
-            outputs = model(**inputs, output_hidden_states=True)
+def mi50_extract_activations(
+    sentences_pos: List[str],
+    sentences_neg: List[str],
+    layers: List[int],
+    token_position: str = "mean",
+) -> Tuple[Dict[int, np.ndarray], Dict[int, np.ndarray]]:
+    """
+    Chiede a mi50_manager di estrarre gli hidden states.
+    Ritorna (pos_reps, neg_reps): dict {layer_idx: float32 array[n_texts, hidden_dim]}.
+    """
+    payload = {
+        "sentences_pos":  sentences_pos,
+        "sentences_neg":  sentences_neg,
+        "layers":         layers,
+        "token_position": token_position,
+    }
+    result = _mi50_post("/api/extract_activations", payload, timeout=1800)
+    if "error" in result and "pos" not in result:
+        raise RuntimeError(f"mi50_manager extract_activations error: {result['error']}")
 
-        for layer_idx in deep_layers:
-            hidden = outputs.hidden_states[layer_idx + 1]  # 0 = embedding
-            vecs = _pool(hidden, attention_mask, token_position)
-            layer_accum[layer_idx].append(vecs.cpu().float().numpy())
-
-        del outputs
-        torch.cuda.empty_cache()
-
-        if status_cb is not None:
-            status_cb(batch_idx + 1, n_batches)
-
-    return {l: np.vstack(layer_accum[l]) for l in deep_layers}
+    pos_reps = {int(k): np.array(v, dtype=np.float32) for k, v in result["pos"].items()}
+    neg_reps = {int(k): np.array(v, dtype=np.float32) for k, v in result["neg"].items()}
+    return pos_reps, neg_reps
 
 
 # ---------------------------------------------------------------------------
@@ -158,11 +163,9 @@ def main():
     args = parser.parse_args()
 
     # --- Load concept ---
-    # Resolve relative paths against cwd (where the user invoked the script),
-    # then fall back to ROOT if the cwd-relative path doesn't exist.
     concept_path = args.concept
     if not os.path.isabs(concept_path):
-        cwd_path = os.path.join(os.getcwd(), concept_path)
+        cwd_path  = os.path.join(os.getcwd(), concept_path)
         root_path = os.path.join(ROOT, concept_path)
         concept_path = cwd_path if os.path.exists(cwd_path) else root_path
     with open(concept_path, "r") as f:
@@ -179,7 +182,7 @@ def main():
 
     # Split train / held-out
     n_holdout = EVAL_HOLDOUT if args.eval and n_total > EVAL_HOLDOUT * 2 else 0
-    n_train = n_total - n_holdout
+    n_train   = n_total - n_holdout
     pos_train, neg_train = pos_sents[:n_train], neg_sents[:n_train]
     pos_eval,  neg_eval  = pos_sents[n_train:], neg_sents[n_train:]
 
@@ -194,107 +197,87 @@ def main():
 
     token_position = str(settings.get("token_position", "mean"))
     deep_range     = tuple(settings.get("deep_range", [0.70, 0.90]))
-    batch_size     = int(settings.get("batch_size", 1))
-    max_length     = int(settings.get("max_length", 128))
 
     # --- Output dir ---
-    concept_key  = normalize_name_for_path(concept_name)
-    model_key    = normalize_name_for_path(model_name)
-    lib_root = args.output_root if args.output_root else VECTOR_LIB_ROOT
-    out_dir = os.path.join(lib_root, category, concept_key, model_key)
+    concept_key = normalize_name_for_path(concept_name)
+    model_key   = normalize_name_for_path(model_name)
+    lib_root    = args.output_root if args.output_root else VECTOR_LIB_ROOT
+    out_dir     = os.path.join(lib_root, category, concept_key, model_key)
     os.makedirs(out_dir, exist_ok=True)
     run_id = f"{concept_key}_{model_key}_{time.strftime('%Y%m%d_%H%M%S')}"
     print(f"Output    : {out_dir}")
 
-    # --- Load model ---
-    dtype_map = {"float16": torch.float16, "bfloat16": torch.bfloat16,
-                 "float32": torch.float32, "auto": None}
-    torch_dtype = dtype_map.get(str(settings.get("dtype", "auto")), None)
-    model_kwargs = {
-        "trust_remote_code": bool(settings.get("trust_remote_code", False)),
-        "low_cpu_mem_usage": True,
-    }
-    if torch_dtype is not None:
-        model_kwargs["torch_dtype"] = torch_dtype  # fix: era "dtype", kwarg corretto è "torch_dtype"
-
-    # --- Verifica VRAM disponibile prima di caricare ---
-    if torch.cuda.is_available():
-        free_vram_gb = (
-            torch.cuda.get_device_properties(0).total_memory
-            - torch.cuda.memory_allocated(0)
-        ) / 1024**3
-        # Gemma2-Uncensored ~20GB, Gemma3-1B ~2.5GB — soglia conservativa 5GB
-        if free_vram_gb < 5.0:
-            print(f"\n[ERRORE] VRAM insufficiente: {free_vram_gb:.1f} GB liberi.")
-            print("  Lo steering server non ha fatto l'unload del modello.")
-            print("  Soluzione: chiamare gpu_prepare_for_probe() prima di probe_concept.py")
-            sys.exit(2)
-        print(f"  VRAM disponibile: {free_vram_gb:.1f} GB ✓")
-
+    # --- Carica modello su mi50_manager ---
     write_status_extended({
         "run_id": run_id, "phase": "load_model",
         "concept": concept_name, "category": category, "model": model_name,
         "query_current": 0, "query_total": n_train, "query_pct": 0.0,
         "layer_current": 0, "layer_total": 0,
         "elapsed_s": 0.0, "eta_s": None, "throughput_q_per_s": 0.0,
-        "model_path": model_path, "device": "pending", "progress_percent": 5,
-        "notes": f"Loading model {model_name}…",
+        "model_path": model_path, "device": "mi50_manager", "progress_percent": 5,
+        "notes": f"Loading model {model_name} via mi50_manager…",
     })
 
-    tokenizer = AutoTokenizer.from_pretrained(
-        model_path,
-        trust_remote_code=bool(settings.get("trust_remote_code", False)),
-        use_fast=True,
-    )
-    model = AutoModelForCausalLM.from_pretrained(model_path, **model_kwargs)
-    model.eval()
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model.to(device)
+    ok = mi50_load_model(model_name)
+    if not ok:
+        print(f"\n[ERRORE] Impossibile caricare {model_name} su mi50_manager ({MI50_URL})")
+        print("  Verificare che mi50_manager sia in esecuzione.")
+        sys.exit(2)
 
-    num_layers  = model.config.num_hidden_layers
-    deep_layers = get_deep_layers(num_layers, deep_range)
-    n_layers    = len(deep_layers)
+    # Legge num_layers dal manager
+    try:
+        with urlopen(f"{MI50_URL}/api/status", timeout=10) as r:
+            st = json.loads(r.read())
+        num_layers = st.get("num_layers") or 0
+    except Exception:
+        num_layers = 0
+
+    deep_layers = get_deep_layers(num_layers, deep_range) if num_layers else []
+    if not deep_layers:
+        # Fallback: stima dai settings
+        for m in settings.get("models", []):
+            if m.get("name") == model_name:
+                nl = m.get("num_layers", 0)
+                dr = m.get("deep_range", list(deep_range))
+                deep_layers = get_deep_layers(nl, tuple(dr))
+                num_layers  = nl
+                break
+
+    n_layers = len(deep_layers)
     print(f"Model     : {num_layers} layers total  |  deep layers: {deep_layers}")
     print(f"Pooling   : {token_position}")
 
-    # ---- Extract POS representations ----
+    # ---- Extract POS + NEG representations ----
     t_start = time.time()
 
-    def make_status_cb(phase_label, q_offset, q_total_all):
-        """Returns a callback that updates status.json after each batch."""
-        def cb(batches_done, batches_total):
-            elapsed = time.time() - t_start
-            q_done = min(q_offset + batches_done * batch_size, q_offset + n_train)
-            q_pct = q_done / q_total_all * 100 if q_total_all > 0 else 0
-            thr = q_done / elapsed if elapsed > 0 else 0
-            eta = (q_total_all - q_done) / thr if thr > 0 else None
-            write_status_extended({
-                "run_id": run_id, "phase": phase_label,
-                "concept": concept_name, "category": category, "model": model_name,
-                "query_current": q_done, "query_total": q_total_all, "query_pct": round(q_pct, 1),
-                "layer_current": 0, "layer_total": n_layers,
-                "elapsed_s": round(elapsed, 1),
-                "eta_s": round(eta, 1) if eta is not None else None,
-                "throughput_q_per_s": round(thr, 3),
-                "vram_mb": round(torch.cuda.memory_allocated() / 1024**2, 1) if torch.cuda.is_available() else 0,
-                "model_path": model_path, "device": str(device),
-                "progress_percent": max(10, min(90, int(q_pct * 0.7))),
-                "notes": f"{phase_label}: batch {batches_done}/{batches_total}",
-            })
-        return cb
+    def _update_status(phase_label, q_done, q_total):
+        elapsed = time.time() - t_start
+        q_pct = q_done / q_total * 100 if q_total > 0 else 0
+        thr = q_done / elapsed if elapsed > 0 else 0
+        eta = (q_total - q_done) / thr if thr > 0 else None
+        write_status_extended({
+            "run_id": run_id, "phase": phase_label,
+            "concept": concept_name, "category": category, "model": model_name,
+            "query_current": q_done, "query_total": q_total, "query_pct": round(q_pct, 1),
+            "layer_current": 0, "layer_total": n_layers,
+            "elapsed_s": round(elapsed, 1),
+            "eta_s": round(eta, 1) if eta is not None else None,
+            "throughput_q_per_s": round(thr, 3),
+            "model_path": model_path, "device": "mi50_manager",
+            "progress_percent": max(10, min(90, int(q_pct * 0.7))),
+            "notes": f"{phase_label}…",
+        })
 
     print(f"\n[1/4] Extracting POS reps ({n_train} sentences)…")
-    pos_reps = extract_deep_layers_with_status(
-        model, tokenizer, pos_train, deep_layers, token_position, batch_size, max_length,
-        status_cb=make_status_cb("extract_pos", 0, n_train * 2),
-    )
-    print(f"      shape: {next(iter(pos_reps.values())).shape}")
+    _update_status("extract_pos", 0, n_train * 2)
 
-    print(f"[2/4] Extracting NEG reps ({n_train} sentences)…")
-    neg_reps = extract_deep_layers_with_status(
-        model, tokenizer, neg_train, deep_layers, token_position, batch_size, max_length,
-        status_cb=make_status_cb("extract_neg", n_train, n_train * 2),
+    pos_reps, neg_reps = mi50_extract_activations(
+        pos_train, neg_train, deep_layers, token_position
     )
+
+    print(f"      pos shape: {next(iter(pos_reps.values())).shape}")
+    print(f"[2/4] NEG already extracted (batched with POS).")
+    _update_status("extract_neg", n_train * 2, n_train * 2)
 
     write_status_extended({
         "run_id": run_id, "phase": "compute_vectors",
@@ -303,7 +286,7 @@ def main():
         "layer_current": 0, "layer_total": n_layers,
         "elapsed_s": round(time.time() - t_start, 1), "eta_s": None,
         "throughput_q_per_s": round(n_train * 2 / max(time.time() - t_start, 1e-3), 3),
-        "model_path": model_path, "device": str(device), "progress_percent": 70,
+        "model_path": model_path, "device": "mi50_manager", "progress_percent": 70,
         "notes": "Computing concept vectors…",
     })
 
@@ -334,23 +317,23 @@ def main():
             (np.linalg.norm(h.mean(0)) * np.linalg.norm(c.mean(0)) + 1e-8)
         )
         coherence = diff_coherence(h, c)
-        conv = convergence_report(h, c, method="pca")
+        conv      = convergence_report(h, c, method="pca")
 
         print(f"{layer_idx:>5}  {coherence:>9.5f}  {cos_means:>10.5f}  "
               f"{conv['bootstrap_cos_mean']:>10.5f}  {conv['bootstrap_cos_min']:>9.5f}  "
               f"{cos_pca_vs_mean:>8.5f}  {'YES' if conv['converged'] else 'NO':>9}")
 
         results[str(layer_idx)] = {
-            "layer_idx": layer_idx,
-            "coherence": round(coherence, 5),
-            "cos_means": round(cos_means, 5),
-            "sep_snr": round(snr, 4),
-            "cos_pca_vs_mean": round(cos_pca_vs_mean, 5),
-            "convergence_pca": conv,
+            "layer_idx":        layer_idx,
+            "coherence":        round(coherence, 5),
+            "cos_means":        round(cos_means, 5),
+            "sep_snr":          round(snr, 4),
+            "cos_pca_vs_mean":  round(cos_pca_vs_mean, 5),
+            "convergence_pca":  conv,
             "convergence_mean": convergence_report(h, c, method="mean"),
         }
 
-        # Save vectors: meandiff = primary (layer_N.npy), PCA = backup (layer_N_pca.npy)
+        # Save vectors
         np.save(os.path.join(out_dir, f"layer_{layer_idx}.npy"), unit_mean)
         np.save(os.path.join(out_dir, f"layer_{layer_idx}_pca.npy"), unit_pca)
 
@@ -361,7 +344,7 @@ def main():
             "layer_current": li + 1, "layer_total": n_layers,
             "elapsed_s": round(time.time() - t_start, 1), "eta_s": None,
             "throughput_q_per_s": 0.0,
-            "model_path": model_path, "device": str(device),
+            "model_path": model_path, "device": "mi50_manager",
             "progress_percent": 70 + int((li + 1) / n_layers * 20),
             "notes": f"Layer {layer_idx} done (snr={snr:.3f})",
         })
@@ -373,31 +356,28 @@ def main():
     print(f"\nBest layer by stability: {best_layer}  "
           f"(boot_min={best['convergence_pca']['bootstrap_cos_min']:.5f})")
 
-    # ---- Eval on held-out (if requested and we have held-out data) ----
+    # ---- Eval on held-out (if requested) ----
     eval_data = None
     if args.eval and pos_eval:
         print(f"\n[3b] Evaluating on {len(pos_eval)} held-out pairs…")
-        pos_eval_reps = extract_deep_layers_with_status(
-            model, tokenizer, pos_eval, deep_layers, token_position, batch_size, max_length,
-        )
-        neg_eval_reps = extract_deep_layers_with_status(
-            model, tokenizer, neg_eval, deep_layers, token_position, batch_size, max_length,
+        pos_eval_reps, neg_eval_reps = mi50_extract_activations(
+            pos_eval, neg_eval, deep_layers, token_position
         )
 
         eval_layers = {}
         for layer_idx in deep_layers:
             he = pos_eval_reps[layer_idx]
             ce = neg_eval_reps[layer_idx]
-            vec = np.load(os.path.join(out_dir, f"layer_{layer_idx}.npy"))
+            vec     = np.load(os.path.join(out_dir, f"layer_{layer_idx}.npy"))
             proj_pos = he @ vec
             proj_neg = ce @ vec
             sep   = float(proj_pos.mean() - proj_neg.mean())
             noise = float((proj_pos.std() + proj_neg.std()) / 2 + 1e-8)
             snr   = sep / noise
             eval_layers[str(layer_idx)] = {
-                "snr": round(snr, 4),
-                "sep": round(sep, 5),
-                "noise": round(noise, 5),
+                "snr":      round(snr, 4),
+                "sep":      round(sep, 5),
+                "noise":    round(noise, 5),
                 "pos_mean": round(float(proj_pos.mean()), 5),
                 "neg_mean": round(float(proj_neg.mean()), 5),
             }
@@ -406,9 +386,9 @@ def main():
         best_eval_layer = max(eval_layers, key=lambda l: eval_layers[l]["snr"])
         eval_data = {
             "n_held_out": len(pos_eval),
-            "layers": eval_layers,
+            "layers":     eval_layers,
             "best_layer": int(best_eval_layer),
-            "best_snr": eval_layers[best_eval_layer]["snr"],
+            "best_snr":   eval_layers[best_eval_layer]["snr"],
         }
         with open(os.path.join(out_dir, "eval.json"), "w") as f:
             json.dump(eval_data, f, indent=2)
@@ -417,34 +397,34 @@ def main():
 
     # ---- Save meta.json ----
     meta = {
-        "concept": concept_name,
-        "category": category,
-        "model_path": model_path,
-        "model_name": model_name,
-        "n_pairs": n_train,
-        "n_held_out": len(pos_eval) if pos_eval else 0,
+        "concept":        concept_name,
+        "category":       category,
+        "model_path":     model_path,
+        "model_name":     model_name,
+        "n_pairs":        n_train,
+        "n_held_out":     len(pos_eval) if pos_eval else 0,
         "token_position": token_position,
-        "deep_range": list(deep_range),
-        "layers": deep_layers,
-        "vector_method": "mean_diff",
-        "date": time.strftime("%Y-%m-%d %H:%M:%S"),
-        "run_id": run_id,
+        "deep_range":     list(deep_range),
+        "layers":         deep_layers,
+        "vector_method":  "mean_diff",
+        "date":           time.strftime("%Y-%m-%d %H:%M:%S"),
+        "run_id":         run_id,
     }
     with open(os.path.join(out_dir, "meta.json"), "w") as f:
         json.dump(meta, f, indent=2)
 
     # ---- Save full results summary ----
     summary = {
-        "concept": concept_name,
-        "category": category,
-        "model_path": model_path,
-        "model_name": model_name,
-        "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
-        "num_layers": num_layers,
-        "deep_layers": deep_layers,
-        "n_pairs_train": n_train,
+        "concept":        concept_name,
+        "category":       category,
+        "model_path":     model_path,
+        "model_name":     model_name,
+        "timestamp":      time.strftime("%Y-%m-%d %H:%M:%S"),
+        "num_layers":     num_layers,
+        "deep_layers":    deep_layers,
+        "n_pairs_train":  n_train,
         "token_position": token_position,
-        "vector_method": "mean_diff",
+        "vector_method":  "mean_diff",
     }
     with open(os.path.join(out_dir, "summary.json"), "w") as f:
         json.dump({"summary": summary, "results": results}, f, indent=2)
@@ -456,7 +436,7 @@ def main():
         "layer_current": n_layers, "layer_total": n_layers,
         "elapsed_s": round(time.time() - t_start, 1), "eta_s": 0.0,
         "throughput_q_per_s": round(n_train * 2 / max(time.time() - t_start, 1e-3), 3),
-        "model_path": model_path, "device": str(device), "progress_percent": 100,
+        "model_path": model_path, "device": "mi50_manager", "progress_percent": 100,
         "notes": f"Done: {out_dir}",
     })
 
