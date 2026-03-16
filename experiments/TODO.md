@@ -1,40 +1,28 @@
 # Project Jedi — TODO & Roadmap
 
-**Ultimo aggiornamento**: 2026-03-02
+**Ultimo aggiornamento**: 2026-03-16
 
 ---
 
-## IN CORSO ORA
+## PROSSIMA SESSIONE — priorità
 
-### Batch decompose Gd1 — automatico
-```bash
-bash scripts/monitor_decompose.sh
-tail -f /tmp/decompose_gd1_*/batch_main.log
-```
+### A. Steering sonnolenza_vs_veglia (riservato)
+- [ ] Test steering con system prompt sensoriale, Gemma2-Uncensored, L19 (Gemma3) o L38 (Gemma2)
+- [ ] SNR +6.56 — il vettore più forte della libreria affettiva, mai testato in UI
 
-| Concept | Modello | Stato |
-|---------|---------|-------|
-| hot_vs_cold | Gemma3-1B-IT | ✅ VALIDATI |
-| luce_vs_buio | Gemma3-1B-IT | 🔄 step 5 |
-| calma_vs_allerta … (7 altri) | Gemma3-1B-IT | ⏳ |
-| tutti e 9 | Gemma2-Uncensored | ⏳ |
+### B. Gd1 in steering — test chirurgicità
+- [ ] `hot_vs_cold/thermal_intensity` vs broad — stesso prompt, stesso gain, confronto output
+- [ ] `hot_vs_cold/pain_intensity` (anticorrelato col broad) — cosa produce?
+- [ ] `calma_vs_allerta/respiratory_rate` — cor 0.582 col broad
+- [ ] Domanda: i Gd1 sono più chirurgici dei Gd0 in steering?
 
-Il batch: `run_decompose_gd1_all.sh` → 18 run (9 concept × 2 modelli)
-Cantagallo in background: `tmux display-message` + `/tmp/cantagallo_pending.txt`
+### C. Libreria riservata — da rivedere
+- [ ] sicurezza_vs_minaccia — SNR debole, riformulare?
+- [ ] calore_sensuale — solo Gemma2, testare in steering
+- [ ] Composizione multi-vettore affettiva (urgenza + calma simultanei)
 
----
-
-## IMMEDIATO (dopo il batch)
-
-### A. Analisi risultati Gd1
-- [ ] Leggere tutti i report decompose (18 run)
-- [ ] Aggiornare `experiments/07_pipeline_gd0_gd1.md` con risultati completi
-- [ ] Tabella cosine matrix per ogni concept (mean off-diagonal = separabilità)
-- [ ] Confronto Gemma3 vs Gemma2: stessi sub-concepts? stesse direzioni?
-
-### B. Catalog e steering
-- [ ] Verificare catalog dopo batch: `python scripts/build_catalog_multi.py`
-- [ ] Test steering UI con sub-concepts Gd1 (dropdown `Gd1 — parent › slug`)
+### D. luce_vs_buio inversione
+- [ ] Il broad Gd0 punta verso "buio" — testare vettore ×-1 in steering
 
 ### C. Commit finale batch
 Il batch fa il commit automatico, verificare con `git log --oneline -3`.

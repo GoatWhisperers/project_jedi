@@ -2,7 +2,7 @@
 
 > Questo file va letto SUBITO all'inizio di ogni sessione Claude.
 > Viene aggiornato automaticamente da cantagallo e dai batch script.
-> Ultima modifica: 2026-03-16 12:25 — vettori affettivi v2 estratti e validati in steering
+> Ultima modifica: 2026-03-16 — fine sessione
 
 ---
 
