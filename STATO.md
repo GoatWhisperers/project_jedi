@@ -2,7 +2,7 @@
 
 > Questo file va letto SUBITO all'inizio di ogni sessione Claude.
 > Viene aggiornato automaticamente da cantagallo e dai batch script.
-> Ultima modifica: 2026-03-16 — fine sessione
+> Ultima modifica: 2026-03-16 17:01 — fine sessione
 
 ---
 
@@ -50,20 +50,32 @@ tail -f
 ```
 1. Leggi STATO.md + cantagallo_pending.txt
 2. Verifica server: 8020 + 8010 + 11435
-3. Libreria riservata — stato al 2026-03-16:
-   - frigidita_vs_torrida       ✅ L38, g400-800, operativo
+3. Libreria pubblica: COMPLETA — nessuna azione urgente
+4. Libreria riservata — stato al 2026-03-16:
+   - frigidita_vs_torrida         ✅ L38, g400-800, operativo
    - urgenza_affettiva_vs_assenza ✅ L38, g200-800, operativo
    - calma_affettiva_vs_passione  ✅ L38, g400-800, operativo
    - tenerezza_vs_desiderio_v3   ✅ L29, g400-600, alpha_flip=True, operativo
-   - sonnolenza_vs_veglia        ✅ già estratto sessioni precedenti
-   - sicurezza_vs_minaccia       🟡 debole (da rivedere)
-   - calore_sensuale             🟡 solo Gemma2 (da rivedere)
-4. Prossimi step riservati:
-   - Steering sonnolenza_vs_veglia (già validato, mai testato in UI)
-   - Revisione sicurezza_vs_minaccia e calore_sensuale
-   - Composizione multi-vettore affettiva
-5. Libreria pubblica: completa, nessuna azione urgente
+   - sonnolenza_vs_veglia         ✅ L38, g400, operativo (testato 16/03)
+   - sicurezza_vs_minaccia        🟡 dataset pronto, vettore NON estratto
+   - calore_sensuale              🟡 dataset pronto, vettore NON estratto
+   - indifferenza_vs_interesse    🟡 dataset pronto, vettore NON estratto
+   - urgenza_vs_inerzia           🟡 dataset pronto, vettore NON estratto
+   - desiderio_vs_urgenza         🟡 dataset pronto, vettore NON estratto
+5. Prossimi step prioritari:
+   → Estrarre vettori concept riservati mancanti (5 concept)
+   → Testare composizione multi-vettore affettiva
+   → Test Gd1 in steering (sub-vettori chirurgici mai testati)
 ```
+
+## Finding chiave sessione 2026-03-16
+
+**L38 = layer affettivo di Gemma2-Uncensored** (90% del modello)
+- 4/5 concept affettivi convergono su L38 come best injection point
+- Eccezione: tenerezza_vs_desiderio_v3 → L29 (69%)
+- Collassi a g600: emergono parole reali in lingue europee (lähe, keinerlei)
+  → le rappresentazioni affettive nel training sono multilingue e sovrapposte
+- Sweet spot universale: **g400, alpha ±1.0, system prompt sensoriale obbligatorio**
 
 ---
 
