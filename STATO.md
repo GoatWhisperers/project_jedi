@@ -1,18 +1,17 @@
 # STATO — Project Jedi
 
 > Questo file va letto SUBITO all'inizio di ogni sessione Claude.
-> Viene aggiornato automaticamente da cantagallo e dai batch script.
-> Ultima modifica: 2026-03-16 17:01 — fine sessione
+> Ultima modifica: 2026-05-07 — inizio integrazione Gemma4
 
 ---
 
-## Server (nuova architettura 2026-03-16)
+## Server (architettura 2026-03-16, aggiornato 2026-05-07)
 
 | Servizio | Porta | Stato |
 |----------|-------|-------|
-| MI50 manager | 8020 | systemd — unico owner GPU MI50 |
-| Steering server | 8010 | systemd — client del manager |
-| M40 llama-server | 11435 | systemd ✅ |
+| MI50 manager | 8020 | systemd ✅ |
+| Steering server | 8010 | systemd |
+| M40 llama-server | 11435 | systemd (Gemma3-12B GGUF) |
 
 ```bash
 curl -s http://localhost:8020/api/status   # modello attivo + VRAM
@@ -22,15 +21,28 @@ curl -s http://localhost:11435/health
 
 ---
 
+## Modelli disponibili
+
+| Nome | Path | Layer | Hidden | Stato |
+|------|------|-------|--------|-------|
+| Gemma2-Uncensored | /mnt/raid0/gemma-2-uncensored | 42 | 3584 | ✅ vettori completi |
+| Gemma3-4B-IT | /mnt/raid0/gemma-3-4b-it | 34 | 2560 | 🟡 nessuna estrazione |
+| Gemma4-E4B-IT | /mnt/raid0/gemma-4-E4B-it | 42 | 2560 | 🟡 nessuna estrazione |
+| ~~Gemma3-1B-IT~~ | ~~rimosso dal disco~~ | 26 | 1152 | 📦 vettori conservati |
+
+**NOTA**: Gemma3/4 usano architettura multimodale (Gemma3/4ForConditionalGeneration).
+mi50_manager aggiornato per gestirle. transformers aggiornato a 5.5.0.
+
+---
+
 ## Libreria Vettori
 
-| Livello | Gemma3-1B-IT | Gemma2-Uncensored |
-|---------|-------------|------------------|
-| Gd0 (broad) | 120 layer files | 180 layer files |
-| Gd1 (sub) | 600 layer files | 800 layer files |
+| Livello | Gemma3-1B-IT | Gemma2-Uncensored | Gemma3-4B-IT | Gemma4-E4B-IT |
+|---------|-------------|------------------|-------------|---------------|
+| Gd0 (broad) | 📦 120 file (modello rimosso) | ✅ 180 file | 🔴 nessuno | 🔴 nessuno |
+| Gd1 (sub) | 📦 ~600 file (modello rimosso) | ✅ ~800 file | 🔴 nessuno | 🔴 nessuno |
 
-Gd0: 9/9 concept × 6 layer × 2 modelli = attesi 108 file per modello
-Gd1: variabile (dipende dai sub-concept estratti)
+Archivio ricerche precedenti: `experiments/09_archivio_ricerche_precedenti.md`
 
 ---
 
@@ -50,31 +62,17 @@ tail -f
 ```
 1. Leggi STATO.md + cantagallo_pending.txt
 2. Verifica server: 8020 + 8010 + 11435
-3. Libreria pubblica: COMPLETA — nessuna azione urgente
-4. Libreria riservata — stato al 2026-03-16:
-   - frigidita_vs_torrida         ✅ L38, g400-800, operativo
-   - urgenza_affettiva_vs_assenza ✅ L38, g200-800, operativo
-   - calma_affettiva_vs_passione  ✅ L38, g400-800, operativo
-   - tenerezza_vs_desiderio_v3   ✅ L29, g400-600, alpha_flip=True, operativo
-   - sonnolenza_vs_veglia         ✅ L38, g400, operativo (testato 16/03)
-   - sicurezza_vs_minaccia        🟡 dataset pronto, vettore NON estratto
-   - calore_sensuale              🟡 dataset pronto, vettore NON estratto
-   - indifferenza_vs_interesse    🟡 dataset pronto, vettore NON estratto
-   - urgenza_vs_inerzia           🟡 dataset pronto, vettore NON estratto
-   - desiderio_vs_urgenza         🟡 dataset pronto, vettore NON estratto
-5. Prossimi step prioritari:
-   → Estrarre vettori concept riservati mancanti (5 concept)
-   → Testare composizione multi-vettore affettiva
-   → Test Gd1 in steering (sub-vettori chirurgici mai testati)
+3. AZIONE URGENTE: estrarre Gd0 per tutti i 9 concept su Gemma4-E4B-IT
+4. Poi: estrarre Gd0 su Gemma3-4B-IT
+5. Poi: concept affettivi riservati mancanti su Gemma2-Uncensored
+   - sicurezza_vs_minaccia, calore_sensuale, indifferenza_vs_interesse
+   - urgenza_vs_inerzia, desiderio_vs_urgenza
 ```
 
 ## Finding chiave sessione 2026-03-16
 
 **L38 = layer affettivo di Gemma2-Uncensored** (90% del modello)
 - 4/5 concept affettivi convergono su L38 come best injection point
-- Eccezione: tenerezza_vs_desiderio_v3 → L29 (69%)
-- Collassi a g600: emergono parole reali in lingue europee (lähe, keinerlei)
-  → le rappresentazioni affettive nel training sono multilingue e sovrapposte
 - Sweet spot universale: **g400, alpha ±1.0, system prompt sensoriale obbligatorio**
 
 ---
@@ -88,3 +86,4 @@ sleep 70
 echo 'pippopippo33$$' | sudo -S systemctl restart steering-server
 ```
 Vedi `GPU_GUIDE.md` per dettagli completi.
+- usa la memoria condivisa in /mnt/raid0/memoria_ai

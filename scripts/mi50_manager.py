@@ -82,6 +82,7 @@ def load_settings() -> dict:
 def get_transformer_layers(model):
     """Trova la lista dei layer transformer del modello."""
     for attr_path in [
+        "language_model.model.layers",  # Gemma3ForConditionalGeneration, Gemma4ForConditionalGeneration
         "model.layers",
         "model.model.layers",
         "transformer.h",
@@ -156,7 +157,13 @@ def _do_load_model(model_path: str, model_name: str, settings: dict):
             torch.cuda.synchronize()
             time.sleep(2)
 
-    dtype_str = settings.get("dtype", "bfloat16")
+    # Dtype: usa override per-modello se presente in settings["models"], altrimenti globale
+    model_dtype_override = None
+    for m in settings.get("models", []):
+        if m.get("path") == model_path or m.get("name") == model_name:
+            model_dtype_override = m.get("dtype")
+            break
+    dtype_str = model_dtype_override or settings.get("dtype", "bfloat16")
     dtype_map = {
         "bfloat16": torch.bfloat16,
         "float16":  torch.float16,
@@ -184,11 +191,19 @@ def _do_load_model(model_path: str, model_name: str, settings: dict):
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model.to(device)
 
+    # num_hidden_layers è al top-level per Gemma2/CausalLM,
+    # annidato in text_config per i modelli multimodali (Gemma3, Gemma4)
+    nl = getattr(model.config, "num_hidden_layers", None)
+    if nl is None:
+        tc = getattr(model.config, "text_config", None)
+        if tc is not None:
+            nl = getattr(tc, "num_hidden_layers", None)
+
     State.model      = model
     State.tokenizer  = tokenizer
     State.model_name = model_name
     State.model_path = model_path
-    State.num_layers = model.config.num_hidden_layers
+    State.num_layers = nl
     State.layers     = get_transformer_layers(model)
     State.device     = device
 
@@ -462,15 +477,31 @@ def extract_activations(
             inputs = {k: v.to(State.device) for k, v in inputs.items()}
             attention_mask = inputs["attention_mask"]
 
-            with torch.no_grad():
-                outputs = State.model(**inputs, output_hidden_states=True)
+            # Usa forward hooks su State.layers — funziona per qualsiasi architettura
+            # (CausalLM standard e multimodali Gemma3/Gemma4) senza dipendere da
+            # output_hidden_states che può avere strutture diverse nei modelli vision-language.
+            captured = {}
+
+            def _make_capture(idx):
+                def hook_fn(module, inp, out):
+                    captured[idx] = (out[0] if isinstance(out, tuple) else out).detach()
+                return hook_fn
+
+            hooks = [
+                State.layers[li].register_forward_hook(_make_capture(li))
+                for li in layers
+            ]
+            try:
+                with torch.no_grad():
+                    State.model(**inputs)
+            finally:
+                for h in hooks:
+                    h.remove()
 
             for layer_idx in layers:
-                hidden = outputs.hidden_states[layer_idx + 1]  # 0 = embedding
-                vecs = _pool_hidden(hidden, attention_mask, token_position)
+                vecs = _pool_hidden(captured[layer_idx], attention_mask, token_position)
                 accum[layer_idx].append(vecs.cpu().float().numpy())
 
-            del outputs
             if torch.cuda.is_available():
                 torch.cuda.empty_cache()
 
