@@ -82,7 +82,10 @@ def load_settings() -> dict:
 def get_transformer_layers(model):
     """Trova la lista dei layer transformer del modello."""
     for attr_path in [
-        "language_model.model.layers",  # Gemma3ForConditionalGeneration, Gemma4ForConditionalGeneration
+        # Gemma3ForConditionalGeneration / Gemma4ForConditionalGeneration:
+        # outer.model (Gemma3/4Model) → .language_model (AutoModel → Gemma3/4TextModel) → .layers
+        "model.language_model.layers",
+        # Standard CausalLM (Gemma2, LLaMA, ecc.): model.model.layers o model.layers
         "model.layers",
         "model.model.layers",
         "transformer.h",
@@ -93,7 +96,8 @@ def get_transformer_layers(model):
         try:
             for attr in attr_path.split("."):
                 obj = getattr(obj, attr)
-            return list(obj)
+            if obj is not None and hasattr(obj, "__len__") and len(obj) > 0:
+                return list(obj)
         except AttributeError:
             continue
     raise ValueError(f"Cannot find transformer layers for {type(model).__name__}")
@@ -191,20 +195,23 @@ def _do_load_model(model_path: str, model_name: str, settings: dict):
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model.to(device)
 
-    # num_hidden_layers è al top-level per Gemma2/CausalLM,
-    # annidato in text_config per i modelli multimodali (Gemma3, Gemma4)
+    # num_hidden_layers: al top-level per Gemma2/CausalLM,
+    # annidato in text_config per modelli multimodali (Gemma3, Gemma4)
     nl = getattr(model.config, "num_hidden_layers", None)
     if nl is None:
         tc = getattr(model.config, "text_config", None)
         if tc is not None:
             nl = getattr(tc, "num_hidden_layers", None)
 
+    # Risolvi layers PRIMA di aggiornare State — se fallisce, State resta coerente
+    layers_list = get_transformer_layers(model)
+
     State.model      = model
     State.tokenizer  = tokenizer
     State.model_name = model_name
     State.model_path = model_path
     State.num_layers = nl
-    State.layers     = get_transformer_layers(model)
+    State.layers     = layers_list
     State.device     = device
 
 
