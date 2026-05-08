@@ -64,15 +64,13 @@ Per riavviare M40: `bash /mnt/raid0/llama-cpp-m40/start_cuda.sh`
 ```
 1. Leggi STATO.md + cantagallo_pending.txt
 2. Verifica server: 8020 + 8010 + 11435
-3. AZIONE IMMEDIATA: verificare se build llama.cpp è completo
-   → ls -lh /mnt/raid0/llama-cpp-m40/build_cuda/bin/llama-server (data odierna?)
-   → ldd ... | grep nccl  (non deve esserci)
-   → Se OK: bash /mnt/raid0/llama-cpp-m40/start_cuda.sh
-   → Se non OK: rilanciare build Docker (vedi sopra)
-4. Dopo M40 up: avviare Gd0 su Gemma3-4B-IT
-   → bash scripts/run_probe_gemma3.sh  (da creare)
-5. Analisi SNR Gemma4: verificare se full_attention (L29,L35,L41) > sliding
-6. Poi: Gd1 su Gemma4 (richiede M40 funzionante)
+   → MI50: curl -s http://localhost:8020/api/status (deve essere Gemma4-E4B-IT)
+   → M40:  curl -s http://localhost:11435/health
+   → Se M40 down: bash /mnt/raid0/llama-cpp-m40/start_cuda.sh
+3. AZIONE IMMEDIATA: avviare Gd1 su Gemma4-E4B-IT
+   → decompose.py usa MI50 (vettori) + M40 (concept expansion)
+   → Gemma3-4B-IT SKIPPATO — non prioritario
+4. Analisi SNR Gemma4 Gd0: full_attention (L29,L35,L41) vs sliding?
 ```
 
 ---
