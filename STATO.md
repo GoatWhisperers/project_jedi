@@ -11,7 +11,7 @@
 |----------|-------|-------|
 | MI50 manager | 8020 | systemd — Gemma4-E4B-IT caricato (15 GB) |
 | Steering server | 8010 | systemd |
-| M40 llama-server | 11435 | ❌ DOWN — ricompilazione llama.cpp in corso |
+| M40 llama-server | 11435 | ✅ UP — Gemma4-E4B-IT Q4_K_M (nuovo binario compilato oggi) |
 
 ```bash
 curl -s http://localhost:8020/api/status
@@ -49,23 +49,13 @@ Ultimo batch completato oggi: `run_probe_gemma4.sh` — 9/9 OK, pushato su GitHu
 
 ---
 
-## M40 — Ricompilazione llama.cpp (IN CORSO al momento dello spegnimento)
+## M40 — llama.cpp ricompilato per Gemma4 ✅
 
-Il binario originale (Feb 2026) non supporta Gemma4. Build in corso con Docker:
+Binario ricompilato il 2026-05-08 con Docker nvidia/cuda:11.8.0-devel-ubuntu22.04.
+Flag: `-DGGML_CUDA=ON -DCMAKE_CUDA_ARCHITECTURES=52 -DGGML_CUDA_NO_VMM=ON -DGGML_CUDA_GRAPHS=OFF -DGGML_CUDA_NCCL=OFF`
+Modello: `/mnt/raid0/models-gguf/gemma-4-e4b-it-Q4_K_M.gguf` (5 GB)
 
-```bash
-# Se build ancora in corso al riavvio, verificare:
-docker ps | grep llama
-# Se completato, avviare:
-bash /mnt/raid0/llama-cpp-m40/start_cuda.sh
-
-# Flag usati per il build:
-# -DGGML_CUDA=ON -DCMAKE_CUDA_ARCHITECTURES=52
-# -DGGML_CUDA_NO_VMM=ON -DGGML_CUDA_GRAPHS=OFF -DGGML_CUDA_NCCL=OFF
-# Modello M40: /mnt/raid0/models-gguf/gemma-4-e4b-it-Q4_K_M.gguf (5 GB)
-```
-
-Se il build Docker non c'è più: rilancia con il comando nel file `scripts/build_llama_m40.sh` (da creare se non esiste).
+Per riavviare M40: `bash /mnt/raid0/llama-cpp-m40/start_cuda.sh`
 
 ---
 
