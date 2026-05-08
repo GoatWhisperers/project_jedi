@@ -1,0 +1,28 @@
+{
+  "concept": "calma_vs_allerta",
+  "category": "sensoriale",
+  "model_path": "/mnt/raid0/gemma-4-E4B-it",
+  "model_name": "Gemma4-E4B-IT",
+  "n_pairs": 495,
+  "n_held_out": 5,
+  "token_position": "mean",
+  "deep_range": [
+    0.7,
+    0.9
+  ],
+  "layers": [
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38
+  ],
+  "vector_method": "mean_diff",
+  "date": "2026-05-08 10:49:03",
+  "run_id": "calma_vs_allerta_gemma4-e4b-it_20260508_103505"
+}
