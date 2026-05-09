@@ -1,86 +1,9 @@
 {
   "concept": "calma_vs_allerta",
-  "model": "Gemma2-Uncensored",
+  "model": "Gemma4-E4B-IT",
   "version": 1,
-  "timestamp": "2026-03-06T10:37:14.722200",
-  "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260228_173558_calma_vs_allerta_Gemma2-Uncensored.jsonl",
-  "analysis": "Il vettore 'calma_vs_allerta' confonde diverse dimensioni semantiche correlate allo stato fisiologico e mentale.  La semplice opposizione tra calma e allerta non cattura la complessità delle esperienze umane. Ad esempio, una persona può avere una respirazione lenta (calma) ma essere comunque ansiosa (non calma). Decomporre questo spazio in sub-concetti come 'respiratory_rate', 'physiological_arousal', 'mental_focus' e 'temporal_perception' permette di rappresentare in modo più preciso e sfumato le diverse sfaccettature di questo concetto broad, migliorando la capacità del modello di comprendere e generare testo coerente e semanticamente accurato.",
-  "sub_concepts": [
-    {
-      "slug": "respiratory_rate",
-      "pos_label": "lento",
-      "neg_label": "rapido",
-      "description": "Questo sub-concetto cattura la velocità del respiro, che è un indicatore chiave di calma (respirazione lenta e profonda) o allerta (respirazione rapida e superficiale).",
-      "why_distinct": "Si concentra esclusivamente sulla velocità del respiro, escludendo altri aspetti come la profondità o la regolarità, che potrebbero essere influenzati da altri fattori.",
-      "pos_examples": [
-        "Le chien la mâchoire se desserra, inspira régulièrement puis expira plus longuement",
-        "kept a smooth, even breath",
-        "Der Hund atmete langsam und tief",
-        "respirait lentement et profondément"
-      ],
-      "neg_examples": [
-        "The freediver the hands curled; the beat hammered; the breath turned short",
-        "pulsus pectus feriebat; aer parum esse videbatur",
-        "sentit le pouls s’emballer ; l’air semblait manquer",
-        "The freediver even silence was monitored; the heart jumped; the breath kept breaking"
-      ]
-    },
-    {
-      "slug": "physiological_arousal",
-      "pos_label": "basso",
-      "neg_label": "alto",
-      "description": "Questo sub-concetto si riferisce al livello generale di eccitazione fisiologica, come il battito cardiaco e la tensione muscolare. La calma implica una bassa eccitazione, mentre l'allerta implica un'alta eccitazione.",
-      "why_distinct": "Distinto dalla velocità respiratoria perché considera una gamma più ampia di indicatori fisiologici, non solo il respiro.",
-      "pos_examples": [
-        "sentit le cœur ralentir",
-        "the pulse was soft and regular",
-        "Der Herzschlag blieb niedrig und ruhig",
-        "cor lento ac constans pulsabat"
-      ],
-      "neg_examples": [
-        "The freediver the hands curled; the beat hammered",
-        "pulsus pectus feriebat",
-        "sentit le pouls s’emballer",
-        "le cœur bondit"
-      ]
-    },
-    {
-      "slug": "mental_focus",
-      "pos_label": "diffuso",
-      "neg_label": "concentrato",
-      "description": "Questo sub-concetto descrive lo stato mentale, in particolare il grado di attenzione e concentrazione. La calma è spesso associata a una mente diffusa e rilassata, mentre l'allerta implica una concentrazione intensa.",
-      "why_distinct": "Si concentra sullo stato mentale e sulla percezione, separandolo dalle risposte fisiologiche dirette.",
-      "pos_examples": [
-        "thoughts thinned out",
-        "attentio lata et lenis manebat",
-        "Le méditant l’esprit devint silencieux",
-        "la mente quedó quieta"
-      ],
-      "neg_examples": [
-        "The mother couldn't stop checking",
-        "Canis oculi huc illuc volitabant",
-        "The freediver even silence was monitored",
-        "la cerva le gambe erano pronte a scattare"
-      ]
-    },
-    {
-      "slug": "temporal_perception",
-      "pos_label": "dilatato",
-      "neg_label": "compresso",
-      "description": "Questo sub-concetto riguarda la percezione del tempo. In uno stato calmo, il tempo può sembrare dilatato, mentre in uno stato di allerta può sembrare accelerato.",
-      "why_distinct": "Si concentra su un'esperienza soggettiva specifica, la percezione del tempo, che può essere influenzata da vari fattori.",
-      "pos_examples": [
-        "time seemed to stretch",
-        "minuta numerare desiit",
-        "le présent devint vaste",
-        "el ritmo interno se ralentizó"
-      ],
-      "neg_examples": [
-        "The freediver the hands curled; the beat hammered; the breath turned short",
-        "pulsus pectus feriebat",
-        "sentit le pouls s’emballer",
-        "sintió el pulso correr"
-      ]
-    }
-  ]
+  "timestamp": "2026-05-09T13:11:30.131106",
+  "eval_session": "",
+  "analysis": "```json\n{\n  \"sub_concepts\": [\n    {\n      \"slug\": \"respiratory_rhythm\",\n      \"pos_label\": \"Respiro lento e controllato\",\n      \"neg_label\": \"Respiro rapido e superficiale\",\n      \"description\": \"Riguarda la qualità e il ritmo del respiro: espirazioni lunghe e profonde (calma) contro respiro corto, ",
+  "sub_concepts": []
 }

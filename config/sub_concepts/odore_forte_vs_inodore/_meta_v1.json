@@ -1,78 +1,9 @@
 {
   "concept": "odore_forte_vs_inodore",
-  "model": "Gemma2-Uncensored",
+  "model": "Gemma4-E4B-IT",
   "version": 1,
-  "timestamp": "2026-03-06T16:40:45.053390",
-  "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260301_094445_odore_forte_vs_inodore_Gemma2-Uncensored.jsonl",
-  "analysis": "Il vettore 'odore_forte_vs_inodore' confonde diversi aspetti della percezione olfattiva.  Principalmente, non distingue tra la *natura* dell'odore (chimico vs. altro), l'impatto fisico sulla respirazione, le reazioni fisiologiche immediate e il grado di controllo che si ha sulla percezione dell'intensità.  Decomporre questo spazio in sub-concetti specifici permette di catturare queste sfumature, migliorando la capacità del modello di comprendere e generare descrizioni olfattive più accurate e dettagliate.  L'analisi delle parole chiave rivela un forte legame con termini che descrivono reazioni fisiche e qualità chimiche, supportando la necessità di questa scomposizione.",
-  "sub_concepts": [
-    {
-      "slug": "chemical_intensity",
-      "pos_label": "Chimicamente intenso",
-      "neg_label": "Chimicamente neutro",
-      "description": "Riflette la presenza di odori chimici specifici, spesso associati a solventi, prodotti chimici o processi industriali.  La percezione è di un odore pungente e identificabile come chimico.",
-      "why_distinct": "Distinto dalla semplice 'intensità' generale, poiché si concentra sulla *natura* dell'odore come chimico, non solo sulla sua forza.",
-      "pos_examples": [
-        "Der Chemiker klemmte die Nase zu; mit klaren chemischen Noten",
-        "Lösungsmittelgeruch, mit klaren chemischen Noten",
-        "Der Techniker: Lösungsmittelgeruch, mit klaren chemischen Noten"
-      ],
-      "neg_examples": [
-        "öffnete den Behälter: und keine Spur",
-        "El pescador: sin olor de fondo, y el aire quedó neutro",
-        "Il vigile del fuoco: assenza quasi totale, e il naso non agganciava"
-      ]
-    },
-    {
-      "slug": "breath_impact",
-      "pos_label": "Impatto respiratorio",
-      "neg_label": "Nessun impatto respiratorio",
-      "description": "Descrive la sensazione fisica dell'odore che influisce sulla respirazione, come il taglio del respiro o la necessità di tossire.  È un effetto fisiologico diretto.",
-      "why_distinct": "Separa l'effetto fisico dell'odore (difficoltà respiratorie) dalla sua qualità percepita.",
-      "pos_examples": [
-        "schnitt den Atem ab",
-        "colpì come un colpo secco",
-        "Der Techniker: Lösungsmittelgeruch, mit klaren chemischen Noten; stieg bis in die Augen."
-      ],
-      "neg_examples": [
-        "respirò senza sforzo",
-        "assenza quasi totale",
-        "El médico acercó la nariz, y no llegó nada"
-      ]
-    },
-    {
-      "slug": "physiological_reaction",
-      "pos_label": "Reazione fisiologica",
-      "neg_label": "Nessuna reazione fisiologica",
-      "description": "Si riferisce alle reazioni fisiche immediate al contatto con l'odore, come stringere il naso, lacrimare o avere la gola irritata.  È una risposta corporea automatica.",
-      "why_distinct": "Distinto dall'impatto respiratorio, poiché si concentra sulle reazioni corporee più ampie, non solo sulla difficoltà a respirare.",
-      "pos_examples": [
-        "Der Chemiker klemmte die Nase zu",
-        "il chimico strinse il naso",
-        "The doctor eyes watered"
-      ],
-      "neg_examples": [
-        "Der Arzt das Gesicht blieb gleich",
-        "Medicus sine labore spiravit",
-        "L’étudiante ouvrit le récipient, et aucune trace ; resta calma"
-      ]
-    },
-    {
-      "slug": "intensity_modulation",
-      "pos_label": "Intensità non modulabile",
-      "neg_label": "Intensità modulabile",
-      "description": "Descrive se l'intensità dell'odore è percepita come immediata e ineluttabile, o se può essere attenuata o ignorata. Un'intensità non modulabile implica una forza immediata e difficile da evitare.",
-      "why_distinct": "Introduce una dimensione temporale e di controllo sulla percezione dell'odore, distinguendo tra odori che si impongono e quelli che possono essere ignorati.",
-      "pos_examples": [
-        "mit klaren chemischen Noten bis er rausging",
-        "mit intensità non modulabile prima ancora di parlare",
-        "colpì come un colpo secco"
-      ],
-      "neg_examples": [
-        "respirò senza sforzo",
-        "senza interferenze",
-        "rimase tranquillo come se fosse vuoto"
-      ]
-    }
-  ]
+  "timestamp": "2026-05-09T13:30:01.137636",
+  "eval_session": "",
+  "analysis": "```json\n{\n  \"sub_concepts\": [\n    {\n      \"slug\": \"olfactory_intensity_impact\",\n      \"pos_label\": \"Impatto olfattivo improvviso e forte\",\n      \"neg_label\": \"Assenza di impatto o percezione di forza\",\n      \"description\": \"Riguarda la forza con cui l'odore colpisce il naso, descrivendo un impatto i",
+  "sub_concepts": []
 }

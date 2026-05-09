@@ -1,78 +1,9 @@
 {
   "concept": "hot_vs_cold",
-  "model": "Gemma2-Uncensored",
+  "model": "Gemma4-E4B-IT",
   "version": 1,
-  "timestamp": "2026-03-06T09:05:11.245682",
-  "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260228_164743_hot_vs_cold_Gemma2-Uncensored.jsonl",
-  "analysis": "Il concetto broad 'hot_vs_cold' cattura una gamma molto ampia di esperienze sensoriali, che vanno dalla semplice temperatura percepita al dolore fisico, alla reazione fisiologica e persino alla sensazione psicologica associata. Un vettore che rappresenta questo concetto broad confonde la distinzione tra temperatura, dolore, reazione fisiologica (arrossamento, sudorazione, contrazione), e la percezione soggettiva di disagio. La decomposizione in sub-concetti specifici permette di isolare e rappresentare meglio queste sfumature, migliorando la precisione delle rappresentazioni semantiche.",
-  "sub_concepts": [
-    {
-      "slug": "temperature_magnitude",
-      "pos_label": "Elevata Temperatura",
-      "neg_label": "Bassa Temperatura",
-      "description": "Questo sub-concetto si concentra esclusivamente sulla percezione della temperatura, indipendentemente da qualsiasi altro effetto.  Si riferisce alla sensazione di calore o freddo percepita sulla pelle.",
-      "why_distinct": "Separa la temperatura pura da altri effetti come il dolore o la reazione fisiologica, che possono essere innescati anche da temperature moderate.",
-      "pos_examples": [
-        "The blacksmith pressed the forearm on overheated ceramic",
-        "La donna anziana poggiò la pelle su una maniglia calda",
-        "The child laid the palm on a searing surface"
-      ],
-      "neg_examples": [
-        "La nageuse pressa la paume sur une céramique froide",
-        "antebrachium leviter attigit in fictili frigido",
-        "The mason pressed the palm on a frozen handle"
-      ]
-    },
-    {
-      "slug": "pain_intensity",
-      "pos_label": "Dolore Intenso",
-      "neg_label": "Assenza di Dolore",
-      "description": "Questo sub-concetto si concentra sulla componente dolorosa dell'esperienza, indipendentemente dalla temperatura specifica.  Si riferisce alla sensazione di dolore, bruciore o fastidio.",
-      "why_distinct": "Permette di distinguere situazioni in cui la temperatura è alta ma il dolore è lieve, o viceversa, dove la temperatura è moderata ma il dolore è intenso.",
-      "pos_examples": [
-        "L’enfant posa la paume sur une surface brûlante et une douleur vive jaillit",
-        "Il cuoco premette l’avambraccio su una superficie bollente; e il contatto pizzicò",
-        "The elderly woman pressed the forearm on scorching metal"
-      ],
-      "neg_examples": [
-        "La subacquea poggiò il polso su un tubo freddissimo e il contatto punse",
-        "Structor cutis dura facta est dum labris tetigit in metallo gelido",
-        "brushed the forearm on a cold surface and a dry bite hit"
-      ]
-    },
-    {
-      "slug": "physiological_reaction",
-      "pos_label": "Reazione Fisiologica (arrossamento, sudorazione)",
-      "neg_label": "Assenza di Reazione Fisiologica",
-      "description": "Questo sub-concetto si riferisce alle reazioni fisiche del corpo alla temperatura, come arrossamento della pelle, sudorazione, o contrazione muscolare.  Non si concentra sulla temperatura o sul dolore in sé.",
-      "why_distinct": "Permette di distinguere situazioni in cui la temperatura è moderata ma il corpo reagisce in modo significativo, o viceversa, dove la temperatura è alta ma il corpo non mostra segni di reazione.",
-      "pos_examples": [
-        "la sueur perla, laissant une trace brûlante la main encore ouverte",
-        "la pelle arrossì",
-        "sweat beaded"
-      ],
-      "neg_examples": [
-        "les doigts s’engourdirent, avec picotements et raideur",
-        "la sangue pareció retirarse",
-        "apparecieron escalofríos finos"
-      ]
-    },
-    {
-      "slug": "subjective_discomfort",
-      "pos_label": "Disagio Soggettivo",
-      "neg_label": "Assenza di Disagio Soggettivo",
-      "description": "Questo sub-concetto cattura la sensazione di disagio o fastidio associata all'esperienza, che può essere influenzata da fattori psicologici e culturali oltre che dalla temperatura o dal dolore.",
-      "why_distinct": "Permette di distinguere situazioni in cui la temperatura è moderata ma la persona percepisce un forte disagio, o viceversa, dove la temperatura è alta ma la persona è relativamente indifferente.",
-      "pos_examples": [
-        "impossible de ignorar con la mano aún abierta",
-        "il contatto punse",
-        "retiró la mano por dolor"
-      ],
-      "neg_examples": [
-        "la sensibilità calò",
-        "il corpo sursauta",
-        "blood seemed to pull back"
-      ]
-    }
-  ]
+  "timestamp": "2026-05-09T12:56:13.795568",
+  "eval_session": "",
+  "analysis": "```json\n{\n  \"sub_concepts\": [\n    {\n      \"slug\": \"acute_thermal_pain\",\n      \"pos_label\": \"Bruciore/Dolore acuto\",\n      \"neg_label\": \"Assenza di dolore/Intorpidimento\",\n      \"description\": \"Cattura la sensazione acuta e dolorosa associata al calore eccessivo (bruciore, pizzicore) o la mancanza di",
+  "sub_concepts": []
 }

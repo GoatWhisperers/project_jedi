@@ -1,78 +1,9 @@
 {
   "concept": "liscio_vs_ruvido",
-  "model": "Gemma2-Uncensored",
+  "model": "Gemma4-E4B-IT",
   "version": 2,
-  "timestamp": "2026-03-06T12:09:50.301039",
-  "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260228_180010_liscio_vs_ruvido_Gemma2-Uncensored.jsonl",
-  "analysis": "The broad concept 'liscio_vs_ruvido' (smooth vs. rough) conflates several distinct semantic dimensions. It primarily mixes the physical properties of surfaces (surface finish, tactile feedback), the dynamic interaction between the hand and the surface (sensory disruption), and a more subjective aesthetic judgment (aesthetic quality).  Decomposing this space allows for more nuanced control over generation, enabling targeted manipulation of specific aspects of the interaction, rather than a global shift between 'smooth' and 'rough'. For example, one might want a surface with a refined finish but a slightly 'grabby' tactile feel, or a surface that is technically rough but aesthetically pleasing. Without decomposition, the broad concept forces an all-or-nothing trade-off between these dimensions.",
-  "sub_concepts": [
-    {
-      "slug": "surface_finish",
-      "pos_label": "polished",
-      "neg_label": "unpolished",
-      "description": "This sub-concept captures the degree of refinement of a surface. A positive example indicates a surface that has been worked to remove imperfections, while a negative example describes a surface with visible flaws and irregularities.",
-      "why_distinct": "While 'smoothness' is related, 'surface_finish' specifically addresses the *process* and *resulting state* of the surface, not just its tactile feel. A surface can be smooth but not have a refined finish (e.g., a smoothed clay surface).",
-      "pos_examples": [
-        "El cirujano la palma resbaló sobre una superficie pulida",
-        "The massage therapist pressure spread evenly: the skin slid across perfectly clean glass",
-        "Die Geigerin die Haut glitt entlang geglätteten Metalls"
-      ],
-      "neg_examples": [
-        "Il falegname le dita inciampavano su metallo non rifinito",
-        "los dedos tropezaban sobre metal sin pulir",
-        "Die Handfläche rieb rau auf rohem Holz"
-      ]
-    },
-    {
-      "slug": "tactile_feedback",
-      "pos_label": "absence_of_friction",
-      "neg_label": "presence_of_friction",
-      "description": "This focuses on the sensation of contact – whether it's effortless and frictionless or characterized by resistance and texture.  A positive example implies a lack of perceptible friction, while a negative example describes a feeling of roughness or 'grab'.",
-      "why_distinct": "It differentiates from 'surface_finish' because a surface can be unpolished but still have low friction (e.g., a waxy surface). This focuses specifically on the *experience* of touch.",
-      "pos_examples": [
-        "El cirujano la palma resbaló sobre una superficie pulida, sin agarre",
-        "The massage therapist pressure spread evenly: the skin slid across perfectly clean glass",
-        "manus leniter labebatur super metallum levigatum; sine offensione"
-      ],
-      "neg_examples": [
-        "Il falegname le dita inciampavano su metallo non rifinito",
-        "los dedos tropezaban sobre metal sin pulir",
-        "Die Handfläche rieb rau auf rohem Holz"
-      ]
-    },
-    {
-      "slug": "sensory_disruption",
-      "pos_label": "continuity",
-      "neg_label": "interruption",
-      "description": "This sub-concept relates to the flow of movement and the sensory experience. A positive example describes a continuous, uninterrupted interaction, while a negative example describes a jerky, interrupted, or jarring experience.",
-      "why_distinct": "It goes beyond just the surface properties and considers the *dynamic* interaction between the hand and the surface.  A surface might be polished, but if the movement is jerky, the sensory experience is disrupted.",
-      "pos_examples": [
-        "El cirujano la palma resbaló sobre una superficie pulida, sin agarre",
-        "Die Geigerin die Haut glitt entlang geglätteten Metalls, ohne ein Haken",
-        "manus leniter labebatur super metallum levigatum; sine offensione"
-      ],
-      "neg_examples": [
-        "Il ceramista le dita inciampavano su metallo non rifinito, con resistenza irregolare",
-        "The child ridges marked the skin: the fingers scraped on unglazed ceramic",
-        "Das Kind die Handfläche rieb rau auf rohem Holz"
-      ]
-    },
-    {
-      "slug": "aesthetic_quality",
-      "pos_label": "elegance",
-      "neg_label": "ugliness",
-      "description": "This captures the subjective perception of beauty and refinement. A positive example evokes a sense of grace and elegance, while a negative example suggests something unpleasant or jarring.",
-      "why_distinct": "It's a more abstract dimension, going beyond purely tactile or mechanical properties. It reflects a broader aesthetic judgment.",
-      "pos_examples": [
-        "El cirujano la palma resbaló sobre una superficie pulida",
-        "The massage therapist pressure spread evenly: the skin slid across perfectly clean glass",
-        "manus leniter labebatur super metallum levigatum; sine offensione"
-      ],
-      "neg_examples": [
-        "Il falegname le dita inciampavano su metallo non rifinito",
-        "los dedos tropezaban sobre metal sin pulir",
-        "Die Handfläche rieb rau auf rohem Holz"
-      ]
-    }
-  ]
+  "timestamp": "2026-05-09T13:16:06.085097",
+  "eval_session": "",
+  "analysis": "```json\n{\n  \"sub_concepts\": [\n    {\n      \"slug\": \"continuity_of_motion\",\n      \"pos_label\": \"Movimento fluido e ininterrotto\",\n      \"neg_label\": \"Movimento interrotto o a scatti\",\n      \"description\": \"Cattura la fluidità del movimento della mano o delle dita. Il polo positivo implica uno scorrime",
+  "sub_concepts": []
 }

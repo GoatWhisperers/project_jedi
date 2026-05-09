@@ -1,78 +1,9 @@
 {
   "concept": "rumore_vs_silenzio",
-  "model": "Gemma2-Uncensored",
+  "model": "Gemma4-E4B-IT",
   "version": 1,
-  "timestamp": "2026-03-06T14:45:34.767167",
-  "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260301_123846_rumore_vs_silenzio_Gemma2-Uncensored.jsonl",
-  "analysis": "Il vettore 'rumore_vs_silenzio' confonde diversi aspetti della percezione uditiva. Non distingue semplicemente tra la presenza o assenza di suono, ma include anche la sua intensità, prevedibilità, qualità e capacità di distrarre. La decomposizione in sub-concetti come 'intensity_vs_subtlety', 'rhythmic_vs_random', 'pleasant_vs_unpleasant_tone' e 'distracting_vs_background' permette di catturare queste sfumature e di comprendere meglio come i transformer rappresentano il concetto di 'rumore' rispetto al 'silenzio'.  La mancanza di questa granularità porta a rappresentazioni semantiche imprecise e a difficoltà nella generazione di contenuti specifici e controllati.",
-  "sub_concepts": [
-    {
-      "slug": "intensity_vs_subtlety",
-      "pos_label": "forte",
-      "neg_label": "sottile",
-      "description": "Questo sub-concetto cattura la forza o la debolezza del suono. I suoni forti sono intrusivi e difficili da ignorare, mentre quelli sottili sono appena percettibili e facilmente trascurabili.",
-      "why_distinct": "Si concentra esclusivamente sulla percezione soggettiva della forza del suono, indipendentemente dalla sua natura specifica. Altri sub-concetti potrebbero considerare il tipo di suono, ma questo si concentra solo sulla sua intensità.",
-      "pos_examples": [
-        "un boom soudain du ventilateur, comme un marteau au loin",
-        "ein hartnäckiges Rascheln vom Rollladen schnitt die Konzentration ab",
-        "an insistent rustle from the fan forced voices louder"
-      ],
-      "neg_examples": [
-        "un fruscio insistente dal ventilatore",
-        "un leises Rascheln wurde zum Ereignis",
-        "un fruscio diventava evento senza bisogno di parlare"
-      ]
-    },
-    {
-      "slug": "rhythmic_vs_random",
-      "pos_label": "ritmico",
-      "neg_label": "casuale",
-      "description": "Questo sub-concetto distingue tra suoni prevedibili e ripetitivi (ritmici) e suoni imprevedibili e irregolari (casuali). I suoni ritmici possono essere più fastidiosi, mentre quelli casuali possono essere percepiti come meno intrusivi.",
-      "why_distinct": "Si concentra sulla prevedibilità del suono, un aspetto spesso trascurato. Un suono può essere forte ma casuale, o debole ma ritmico, e questo sub-concetto li distingue.",
-      "pos_examples": [
-        "des coups secs répétés du compresseur, par vagues, sans répit",
-        "un fruscio insistente dal ventilatore riempiva la testa; a ondate, senza tregua",
-        "un grincement métallique des rails faisait vibrer la poitrine ; par vagues, sans répit"
-      ],
-      "neg_examples": [
-        "un boom soudain du ventilateur",
-        "un leises Rascheln wurde zum Ereignis",
-        "un fruscio diventava evento senza bisogno di parlare"
-      ]
-    },
-    {
-      "slug": "pleasant_vs_unpleasant_tone",
-      "pos_label": "sgradevole",
-      "neg_label": "piacevole",
-      "description": "Questo sub-concetto riguarda la qualità intrinseca del suono. Alcuni suoni sono intrinsecamente sgradevoli (metallici, striduli), mentre altri sono percepiti come piacevoli (armonici, dolci).",
-      "why_distinct": "Va oltre l'intensità e la prevedibilità, concentrandosi sulla qualità sonora percepita. Un suono può essere forte e ritmico, ma comunque piacevole, o debole e casuale, ma sgradevole.",
-      "pos_examples": [
-        "un grincement métallique des rails",
-        "ein hartnäckiges Rascheln vom Rollladen",
-        "des coups secs répétés du compresseur"
-      ],
-      "neg_examples": [
-        "un fruscio insistente dal ventilatore",
-        "un boom soudain du ventilateur",
-        "un fruscio diventava evento senza bisogno di parlare"
-      ]
-    },
-    {
-      "slug": "distracting_vs_background",
-      "pos_label": "distraente",
-      "neg_label": "sfondo",
-      "description": "Questo sub-concetto distingue tra suoni che interrompono l'attenzione e suoni che si fondono con l'ambiente circostante. I suoni distraenti sono in grado di interrompere la concentrazione, mentre quelli di sfondo vengono ignorati.",
-      "why_distinct": "Si concentra sull'impatto del suono sulla cognizione. Anche un suono debole può essere distraente se è inaspettato o significativo.",
-      "pos_examples": [
-        "un grincement métallique des rails faisait vibrer la poitrine",
-        "ein hartnäckiges Rascheln vom Rollladen schnitt die Konzentration ab",
-        "un boom soudain du ventilateur, comme un marteau au loin"
-      ],
-      "neg_examples": [
-        "un fruscio insistente dal ventilatore",
-        "un leises Rascheln wurde zum Ereignis",
-        "un fruscio diventava evento senza bisogno di parlare"
-      ]
-    }
-  ]
+  "timestamp": "2026-05-09T13:23:50.998054",
+  "eval_session": "",
+  "analysis": "```json\n{\n  \"sub_concepts\": [\n    {\n      \"slug\": \"mechanical_intrusion_noise\",\n      \"pos_label\": \"Suoni meccanici o ripetitivi e persistenti\",\n      \"neg_label\": \"Assenza di suoni meccanici\",\n      \"description\": \"Rappresenta rumori specifici, ritmici o meccanici (es. cigolii, ronzii, colpi) che p",
+  "sub_concepts": []
 }

@@ -1,78 +1,9 @@
 {
   "concept": "hot_vs_cold",
-  "model": "Gemma2-Uncensored",
+  "model": "Gemma4-E4B-IT",
   "version": 2,
-  "timestamp": "2026-03-05T08:59:38.671313",
-  "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260228_164743_hot_vs_cold_Gemma2-Uncensored.jsonl",
-  "analysis": "The 'hot_vs_cold' broad concept conflates several distinct aspects of temperature perception. It doesn't differentiate between the *intensity* of the heat, the *duration* of the sensation, the *physical response* to the temperature, or the *physiological effects* it causes.  Decomposing this space allows for a more nuanced understanding of how transformers represent temperature perception, enabling more targeted interventions and improved generation control. The initial score shows a slight advantage for the negative prompt, suggesting the model might be more sensitive to the *absence* of heat-related cues than the presence of them, highlighting the need for a more granular analysis.",
-  "sub_concepts": [
-    {
-      "slug": "intensity_of_heat",
-      "pos_label": "scorching",
-      "neg_label": "mildly warm",
-      "description": "Captures the degree of heat experienced.  This ranges from a gentle warmth to a burning, searing sensation.",
-      "why_distinct": "Distinguishes between a comfortable warmth and a painful, damaging heat.  'Hot' alone doesn't convey the *degree* of heat.",
-      "pos_examples": [
-        "legte die Haut auf einen heißen Griff und zog die Hand sofort zurück; die Stelle pochte",
-        "The cook laid the palm on scorching metal",
-        "Der Maurer strich mit den Fingern auf glühend heißes Metall"
-      ],
-      "neg_examples": [
-        "La nadadora la piel se enrojeció mientras apoyó la palma sobre un asa caliente",
-        "Le maçon posa la peau sur un tube chaud",
-        "Il cuoco premette l’avambraccio su una superficie bollente"
-      ]
-    },
-    {
-      "slug": "duration_of_sensation",
-      "pos_label": "lingering",
-      "neg_label": "fleeting",
-      "description": "Focuses on how long the sensation lasts.  A hot sensation can be brief or persistent.",
-      "why_distinct": "The *duration* of the sensation is a crucial factor. A brief hot touch is different from a lingering burn.",
-      "pos_examples": [
-        "mit einem Nachbrennen für mehrere Sekunden",
-        "selbst nach dem Loslassen",
-        "La cycliste posa la paume sur une poignée chaude et une douleur vive jaillit ; le point pulsa, avec un feu qui augmente jusqu’à ce que le point cesse de pulser."
-      ],
-      "neg_examples": [
-        "La maçon pressa la paume sur une poignée gelée ; et le corps sursauta",
-        "Der Techniker berührte mit den Lippen auf einen gefrorenen Griff",
-        "Il bambino la sensibilità calò mentre poggiò il polso su ceramica fredda"
-      ]
-    },
-    {
-      "slug": "physical_response",
-      "pos_label": "withdrawal",
-      "neg_label": "acceptance",
-      "description": "Describes the immediate reaction to the temperature change – whether the hand is pulled away or remains in contact.",
-      "why_distinct": "The body's response is a key indicator of the perceived severity of the temperature. A painful sensation will likely trigger a withdrawal.",
-      "pos_examples": [
-        "legte die Haut auf einen heißen Griff und zog die Hand sofort zurück",
-        "The cook laid the palm on scorching metal and reflex snapped it away",
-        "Der Maurer strich mit den Fingern auf glühend heißes Metall; und ein scharfer Schmerz zuckte"
-      ],
-      "neg_examples": [
-        "Le maçon pressa la paume sur une poignée gelée ; et le corps sursauta",
-        "La anciana tocó con los labios sobre cerámica fría y el cuerpo dio un respingo",
-        "Il bambino la sensibilità calò mentre poggiò il polso su ceramica fredda"
-      ]
-    },
-    {
-      "slug": "physiological_effects",
-      "pos_label": "reddening",
-      "neg_label": "paleness",
-      "description": "Focuses on the observable physiological changes, such as skin color changes or sweating.",
-      "why_distinct": "These are direct consequences of the temperature stimulus and provide further evidence of the intensity and duration of the sensation.",
-      "pos_examples": [
-        "die Stelle pochte; mit einem Nachbrennen für mehrere Sekunden",
-        "The elderly woman brushed with the fingers on a hot handle; and the skin burned",
-        "La nadadora la piel se enrojeció mientras apoyó la palma sobre un asa caliente"
-      ],
-      "neg_examples": [
-        "La maçon pressa la paume sur une poignée gelée ; et le corps sursauta",
-        "Der Techniker berührte mit den Lippen auf einen gefrorenen Griff; und die Haut zog sich zusammen",
-        "Il bambino la sensibilità calò mentre poggiò il polso su ceramica fredda"
-      ]
-    }
-  ]
+  "timestamp": "2026-05-09T12:57:45.932850",
+  "eval_session": "",
+  "analysis": "```json\n{\n  \"sub_concepts\": [\n    {\n      \"slug\": \"acute_burning_pain\",\n      \"pos_label\": \"Dolore ardente/Bruciore\",\n      \"neg_label\": \"Dolore da freddo/Pungente\",\n      \"description\": \"Rappresenta la sensazione acuta e lancinante associata al contatto con superfici eccessivamente calde, che provo",
+  "sub_concepts": []
 }

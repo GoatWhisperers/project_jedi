@@ -1,78 +1,9 @@
 {
   "concept": "duro_vs_morbido",
-  "model": "Gemma2-Uncensored",
+  "model": "Gemma4-E4B-IT",
   "version": 2,
-  "timestamp": "2026-03-03T15:45:01.641776",
-  "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260301_120403_duro_vs_morbido_Gemma2-Uncensored.jsonl",
-  "analysis": "Il vettore 'duro_vs_morbido' confonde diversi aspetti sensoriali legati alla percezione del tatto.  Non si tratta solo di rigidità, ma anche di come una superficie risponde alla pressione, come distribuisce la forza e come il corpo percepisce il contatto. Decomporre questo spazio in sub-concetti come 'resistenza_vs_give', 'rebound_vs_damping', 'point_contact_vs_area_contact' e 'feedback_sharpness' permette di catturare queste sfumature e di generare rappresentazioni semantiche più precise e controllabili.  Ignorare questi sub-concetti porterebbe a rappresentazioni che confondono la rigidità con la capacità di rimbalzo o la distribuzione della pressione con la sensazione di comfort.",
-  "sub_concepts": [
-    {
-      "slug": "resistance_vs_give",
-      "pos_label": "Resistenza",
-      "neg_label": "Cedevolezza",
-      "description": "Questo sub-concetto cattura la sensazione di opposizione fisica quando si applica una pressione. Si focalizza sulla forza necessaria per deformare o spostare la superficie.",
-      "why_distinct": "Distingue tra superfici che offrono una chiara opposizione (resistenza) e quelle che si adattano facilmente (cedevolezza).  È un aspetto fondamentale della percezione di 'duro' vs 'morbido' che va oltre la semplice rigidità.",
-      "pos_examples": [
-        "Il violinista sentì resistenza quando spinse il palmo...",
-        "Il punto rimase duro sotto la presa...",
-        "Die Bildhauerin schob die Handfläche auf einen kompakten Block"
-      ],
-      "neg_examples": [
-        "Fabri lignarius palmam imposuit in re tenera et paulum descendit...",
-        "La kinésithérapeute appuya avec le pouce sur un appui qui accueillait...",
-        "rozó y luego empujó sobre un volumen elástico"
-      ]
-    },
-    {
-      "slug": "rebound_vs_damping",
-      "pos_label": "Rimbalzo",
-      "neg_label": "Smorzamento",
-      "description": "Questo sub-concetto si concentra sulla risposta dinamica di una superficie dopo un impatto. Una superficie 'dura' tende a rimbalzare, mentre una 'morbida' assorbe l'energia.",
-      "why_distinct": "Separa la sensazione statica di resistenza da quella dinamica del rimbalzo.  Due superfici possono offrire resistenza, ma una può rimbalzare mentre l'altra smorza l'impatto.",
-      "pos_examples": [
-        "il choc revint ; la douleur était nette",
-        "schob die Handfläche auf etwas Unnachgiebiges und es gab keinen Millimeter nach",
-        "The dentist the skin wouldn't sink when it rapped with the knuckles"
-      ],
-      "neg_examples": [
-        "recursus tardus fuit, sine rigiditate",
-        "la superficie suivit la main",
-        "Il contatto si smorzò"
-      ]
-    },
-    {
-      "slug": "point_contact_vs_area_contact",
-      "pos_label": "Contatto Puntuale",
-      "neg_label": "Contatto Superficiale",
-      "description": "Questo sub-concetto distingue tra una pressione concentrata in un punto preciso e una distribuzione uniforme su un'area più ampia.  Le superfici dure tendono a creare contatto puntuale.",
-      "why_distinct": "La distribuzione della pressione influisce sulla percezione del comfort e della sensazione di 'duro' vs 'morbido'.  Un contatto puntuale può essere percepito come più intenso e 'duro'.",
-      "pos_examples": [
-        "pressione rimase puntuale",
-        "die Haut sank nicht ein",
-        "The physiotherapist pinched between fingers"
-      ],
-      "neg_examples": [
-        "prehensio lenis mansit",
-        "la surface suivit la main",
-        "La fisioterapista presionó con el pulgar sobre un material que cede"
-      ]
-    },
-    {
-      "slug": "feedback_sharpness",
-      "pos_label": "Feedback Nitido",
-      "neg_label": "Feedback Smorzato",
-      "description": "Questo sub-concetto riguarda la chiarezza e l'intensità della sensazione percepita durante il contatto. Superfici dure tendono a fornire un feedback più acuto e immediato.",
-      "why_distinct": "La nitidezza del feedback è un elemento chiave nella distinzione tra superfici 'dure' e 'morbide', e si sovrappone a resistenza e rimbalzo ma non è equivalente.",
-      "pos_examples": [
-        "pain was clean",
-        "la douleur était nette",
-        "der Schmerz war klar"
-      ],
-      "neg_examples": [
-        "recursus tardus fuit",
-        "les doigts se sentirent protégés",
-        "la pelle trovò un cuscino"
-      ]
-    }
-  ]
+  "timestamp": "2026-05-09T13:22:14.508537",
+  "eval_session": "",
+  "analysis": "```json\n{\n  \"sub_concepts\": [\n    {\n      \"slug\": \"material_rigidity\",\n      \"pos_label\": \"Resistenza strutturale assoluta\",\n      \"neg_label\": \"Cedevolezza/Assorbimento di forza\",\n      \"description\": \"Misura la capacità del materiale di mantenere la forma sotto pressione. Il polo positivo implica ",
+  "sub_concepts": []
 }

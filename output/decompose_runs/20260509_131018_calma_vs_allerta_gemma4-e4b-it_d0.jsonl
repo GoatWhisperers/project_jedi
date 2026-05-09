@@ -1,0 +1,29 @@
+{"type": "run_start", "concept": "calma_vs_allerta", "model": "Gemma4-E4B-IT", "max_depth": 0, "max_iter": 2, "dry_run": false, "timestamp": "2026-05-09T13:10:18.199122"}
+{"type": "decompose_start", "concept": "calma_vs_allerta", "depth": 0, "timestamp": "2026-05-09T13:10:18.262876"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v1)", "timestamp": "2026-05-09T13:10:18.263175"}
+{"type": "info", "msg": "  Proposti: []", "timestamp": "2026-05-09T13:11:30.131746"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v1)", "timestamp": "2026-05-09T13:11:30.131935"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-05-09T13:11:30.132153"}
+{"type": "info", "msg": "  [gpu] Preparo GPU per probe diretto...", "timestamp": "2026-05-09T13:11:30.132309"}
+{"type": "info", "msg": "  [gpu] Modello attivo: Gemma4-E4B-IT — VRAM: 15.3 GB", "timestamp": "2026-05-09T13:11:30.301825"}
+{"type": "info", "msg": "  [gpu] Attendo GPU idle...", "timestamp": "2026-05-09T13:11:30.302132"}
+{"type": "info", "msg": "  [gpu] Unload modello...", "timestamp": "2026-05-09T13:11:30.459219"}
+{"type": "info", "msg": "  [gpu] VRAM liberata — usata: 9.9 GB / 32.0 GB", "timestamp": "2026-05-09T13:11:31.239287"}
+{"type": "info", "msg": "  [gpu] Ripristino Gemma4-E4B-IT dopo probe...", "timestamp": "2026-05-09T13:11:31.239568"}
+{"type": "info", "msg": "  [gpu] Caricamento Gemma4-E4B-IT...", "timestamp": "2026-05-09T13:11:31.433931"}
+{"type": "info", "msg": "  [gpu] Gemma4-E4B-IT pronto — VRAM: 15.3 GB", "timestamp": "2026-05-09T13:11:50.954111"}
+{"type": "info", "msg": "  Nessun vettore estratto. Salto i prossimi step.", "timestamp": "2026-05-09T13:11:50.954440"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v2)", "timestamp": "2026-05-09T13:11:50.954631"}
+{"type": "info", "msg": "  Proposti: []", "timestamp": "2026-05-09T13:13:02.513716"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v2)", "timestamp": "2026-05-09T13:13:02.513873"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-05-09T13:13:02.514054"}
+{"type": "info", "msg": "  [gpu] Preparo GPU per probe diretto...", "timestamp": "2026-05-09T13:13:02.514181"}
+{"type": "info", "msg": "  [gpu] Modello attivo: Gemma4-E4B-IT — VRAM: 15.3 GB", "timestamp": "2026-05-09T13:13:02.677811"}
+{"type": "info", "msg": "  [gpu] Attendo GPU idle...", "timestamp": "2026-05-09T13:13:02.677995"}
+{"type": "info", "msg": "  [gpu] Unload modello...", "timestamp": "2026-05-09T13:13:02.839694"}
+{"type": "info", "msg": "  [gpu] VRAM liberata — usata: 10.1 GB / 32.0 GB", "timestamp": "2026-05-09T13:13:03.669919"}
+{"type": "info", "msg": "  [gpu] Ripristino Gemma4-E4B-IT dopo probe...", "timestamp": "2026-05-09T13:13:03.670165"}
+{"type": "info", "msg": "  [gpu] Caricamento Gemma4-E4B-IT...", "timestamp": "2026-05-09T13:13:03.852900"}
+{"type": "info", "msg": "  [gpu] Gemma4-E4B-IT pronto — VRAM: 15.3 GB", "timestamp": "2026-05-09T13:13:22.370417"}
+{"type": "info", "msg": "  Nessun vettore estratto. Salto i prossimi step.", "timestamp": "2026-05-09T13:13:22.370708"}
+{"type": "decompose_end", "concept": "calma_vs_allerta", "depth": 0, "validated_subs": [], "semantic_limit": false, "sub_results": {}, "timestamp": "2026-05-09T13:13:22.370850"}

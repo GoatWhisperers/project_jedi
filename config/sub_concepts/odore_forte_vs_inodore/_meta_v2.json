@@ -1,78 +1,9 @@
 {
   "concept": "odore_forte_vs_inodore",
-  "model": "Gemma2-Uncensored",
+  "model": "Gemma4-E4B-IT",
   "version": 2,
-  "timestamp": "2026-03-03T16:38:42.523370",
-  "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260301_094445_odore_forte_vs_inodore_Gemma2-Uncensored.jsonl",
-  "analysis": "Il vettore 'odore_forte_vs_inodore' confonde diverse dimensioni semantiche, tra cui l'intensità dell'odore, la sua natura chimica (e quindi la sua capacità di irritare), la persistenza dell'odore (e la creazione di un 'ricordo' olfattivo) e la percezione generale della qualità dell'aria.  La decomposizione in questi sub-concetti permette di catturare queste sfumature in modo più preciso, migliorando la capacità del modello di generare rappresentazioni semantiche più accurate e di rispondere a comandi steerable più specifici.  Senza questa decomposizione, il modello potrebbe confondere un odore forte ma gradevole con un odore irritante, o non riuscire a distinguere tra un odore che svanisce rapidamente e uno che lascia una traccia duratura.",
-  "sub_concepts": [
-    {
-      "slug": "chemical_irritation",
-      "pos_label": "Irritante Chimico",
-      "neg_label": "Neutro/Pulito",
-      "description": "Questo sub-concetto cattura la presenza di sostanze chimiche che causano irritazione, bruciore o difficoltà respiratorie.  È spesso associato a un odore pungente e sgradevole.",
-      "why_distinct": "Si distingue dalla semplice 'intensità' dell'odore perché si concentra sulla *qualità* irritante, non solo sulla forza.  Un profumo forte ma gradevole non rientra in questa categoria.",
-      "pos_examples": [
-        "Il pescatore: candeggina nell’aria, con una punta pungente; tagliò il respiro.",
-        "Il vigile del fuoco entrò nella stanza: candeggina nell’aria tagliò il respiro, con una scia che seguiva.",
-        "Il medico: candeggina nell’aria, con note chimiche nette; riempì subito le narici."
-      ],
-      "neg_examples": [
-        "approcha le nez : et rien n’arriva. Le pêcheur n’eut aucune réaction ; aucune odeur de fond même après deux inspirations.",
-        "La restauradora levantó la tela, y el aire quedó neutro; casi ausencia total.",
-        "The technician stepped into the room, and everything felt clean; almost complete absence."
-      ]
-    },
-    {
-      "slug": "pungency_intensity",
-      "pos_label": "Pungente",
-      "neg_label": "Delicato",
-      "description": "Questo sub-concetto si riferisce alla forza e all'impatto immediato dell'odore, indipendentemente dalla sua natura specifica.  Un odore pungente è percepito come forte e invadente.",
-      "why_distinct": "Si differenzia da 'chemical_irritation' perché un odore pungente può essere forte ma non necessariamente irritante (es. un profumo molto intenso).",
-      "pos_examples": [
-        "El pescador acercó la nariz: un perfume demasiado fuerte subió hasta los ojos, con intensidad imposible de bajar.",
-        "La cuisinière : un parfum trop fort, avec des notes chimiques nettes ; monta jusqu’aux yeux.",
-        "opened the jar — a solvent smell: rose into the eyes."
-      ],
-      "neg_examples": [
-        "approcha le nez : et rien n’arriva. Le pêcheur n’eut aucune réaction ; aucune odeur de fond même après deux inspirations.",
-        "Piscator leniter inspiravit, et nihil venit; absentia paene tota.",
-        "La restauradora levantó la tela, y el aire quedó neutro; casi ausencia total."
-      ]
-    },
-    {
-      "slug": "olfactory_memory",
-      "pos_label": "Ricordo Olfattivo",
-      "neg_label": "Assenza di Ricordo",
-      "description": "Questo sub-concetto riguarda la persistenza dell'odore e la sua capacità di lasciare un'impressione duratura, creando un 'ricordo' olfattivo.  Un odore che svanisce rapidamente non rientra in questa categoria.",
-      "why_distinct": "Distinto da 'pungency_intensity' perché un odore può essere forte ma svanire rapidamente, mentre questo sub-concetto riguarda la sua permanenza.",
-      "pos_examples": [
-        "Il pescatore cercò aria pulita; con note chimiche nette anche a distanza.",
-        "leniter inspiravit: et nulla vestigia. Restauratrix nihil passus est; nullus odor fundi sine memoria odoris.",
-        "The cook: almost complete absence, and the nose found no hook; with no olfactory memory."
-      ],
-      "neg_examples": [
-        "approcha le nez : et rien n’arriva. La cuisinière respira sans effort ; aucun résidu dans l’air sans ouvrir les fenêtres.",
-        "leniter inspiravit: et aer neuter mansit. Piscator tranquillus mansit; nullus odor fundi sine memoria odoris.",
-        "There was any"
-      ]
-    },
-    {
-      "slug": "air_quality_perception",
-      "pos_label": "Aria Pesante/Contaminata",
-      "neg_label": "Aria Pulita/Fresco",
-      "description": "Questo sub-concetto si concentra sulla percezione generale della qualità dell'aria, che può essere influenzata dall'odore.  L'aria 'pesante' è associata a un odore forte e sgradevole, mentre l'aria 'fresca' è associata a un'assenza di odori.",
-      "why_distinct": "Si differenzia da 'chemical_irritation' perché l'aria pesante può essere dovuta a fattori diversi dalla sola irritazione chimica (es. umidità, mancanza di ventilazione).",
-      "pos_examples": [
-        "Il pescatore cercò aria pulita; con note chimiche nette anche a distanza.",
-        "Vigil ignis tectum levavit: odor unguenti nimis fortis adhaesit, cum notis chymicis manifestis; aerem purum quaesivit etiam procul.",
-        "opened the jar — a solvent smell: rose into the eyes. The fisher looked for clean air; with heavy air even from a distance."
-      ],
-      "neg_examples": [
-        "La cuisinière entra dans la pièce, et rien n’arriva ; juste de l’air normal. continua à travailler sans ouvrir les fenêtres.",
-        "The technician stepped into the room, and everything felt clean; almost complete absence.",
-        "leniter inspiravit: et aer neuter mansit. Piscator tranquillus mansit; nullus odor fundi sine memoria odoris."
-      ]
-    }
-  ]
+  "timestamp": "2026-05-09T13:31:33.691905",
+  "eval_session": "",
+  "analysis": "```json\n{\n  \"sub_concepts\": [\n    {\n      \"slug\": \"chemical_pungency\",\n      \"pos_label\": \"odore_chimico_acuto\",\n      \"neg_label\": \"assenza_di_residui_chimici\",\n      \"description\": \"Cattura odori specifici, forti e artificiali, come solventi, fumi o note chimiche nette. Non si limita alla forza, m",
+  "sub_concepts": []
 }

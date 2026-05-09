@@ -1,78 +1,9 @@
 {
   "concept": "luce_vs_buio",
-  "model": "Gemma2-Uncensored",
+  "model": "Gemma4-E4B-IT",
   "version": 1,
-  "timestamp": "2026-03-06T10:06:28.486041",
-  "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260228_171148_luce_vs_buio_Gemma2-Uncensored.jsonl",
-  "analysis": "Il concetto broad 'luce_vs_buio' confonde diversi aspetti sensoriali e cognitivi legati alla percezione visiva. Non si tratta semplicemente di distinguere la presenza o assenza di luce, ma di come la luce influisce sulla fisiologia (pupille), sulla percezione emotiva (conforto, paura), e sulla capacità di interpretare l'ambiente. La decomposizione in sub-concetti specifici è necessaria per permettere al modello di rappresentare in modo più preciso e flessibile le sfumature di significato legate alla luce e all'oscurità.",
-  "sub_concepts": [
-    {
-      "slug": "pupillary_response",
-      "pos_label": "pupilla dilatata",
-      "neg_label": "pupilla contratta",
-      "description": "Questo sub-concetto cattura la risposta fisiologica delle pupille alla luce. La dilatazione indica adattamento all'oscurità, mentre la contrazione indica esposizione alla luce intensa.",
-      "why_distinct": "Si focalizza esclusivamente sulla risposta fisiologica, indipendente dalle emozioni o dalla percezione dell'ambiente. È un indicatore biologico diretto dell'intensità luminosa.",
-      "pos_examples": [
-        "la spéléologue constata que les pupilles s’ouvrirent au maximum même en attendant",
-        "das Kind starrte unfokussiert in absolute Schwärze: die Pupillen öffneten sich maximal",
-        "astronauta animadvertit pupillae ad maximum patefactae sunt etiam post exspectationem"
-      ],
-      "neg_examples": [
-        "the swimmer squinted hard: white light flooded, and the pupils clenched down",
-        "il chirurgo distolse lo sguardo: la flash violento investì e le pupille si contrassero",
-        "le peintre sentit que les pupilles devinrent des points quand un faisceau trop vif aveugla"
-      ]
-    },
-    {
-      "slug": "visual_clarity",
-      "pos_label": "assenza di dettagli",
-      "neg_label": "nitidezza, dettaglio",
-      "description": "Questo sub-concetto si riferisce alla capacità di distinguere dettagli visivi. L'oscurità spesso porta alla perdita di chiarezza e dettaglio, mentre la luce ne permette la percezione.",
-      "why_distinct": "Separa la risposta fisiologica (pupille) dalla capacità di interpretare ciò che si vede. Si concentra sulla qualità dell'immagine visiva.",
-      "pos_examples": [
-        "il bambino fissò il caligine senza contorni",
-        "das Kind starrte unfokussiert in absolute Schwärze",
-        "Dans un vide uniforme, le garde gardait les yeux grands ouverts et la main disparaissait même en attendant"
-      ],
-      "neg_examples": [
-        "the swimmer squinted hard: white light flooded",
-        "il chirurgo vide che la fronte pulsava dietro gli occhi nel campo visivo",
-        "die Schwimmerin merkte: die Schärfe tat weh selbst mit geschlossenen Augen nach grelles Licht"
-      ]
-    },
-    {
-      "slug": "emotional_comfort",
-      "pos_label": "disagio, paura",
-      "neg_label": "sicurezza, calma",
-      "description": "Questo sub-concetto cattura l'impatto emotivo della luce e dell'oscurità. La luce intensa può essere percepita come invasiva o scomoda, mentre l'oscurità può evocare paura o incertezza.",
-      "why_distinct": "Si concentra sull'esperienza soggettiva e emotiva, separandola dalle risposte fisiologiche e dalla chiarezza visiva.",
-      "pos_examples": [
-        "il chirurgo distolse lo sguardo: la flash violento investì",
-        "le peintre sentit que les pupilles devinrent des points quand un faisceau trop vif aveugla",
-        "die Schwimmerin merkte: die Schärfe tat weh selbst mit geschlossenen Augen nach grelles Licht"
-      ],
-      "neg_examples": [
-        "the swimmer squinted hard: white light flooded",
-        "la espeleóloga apartó la mirada, y apareció una trama roja tras los párpados en el campo visual",
-        "il chirurgo vide che la fronte pulsava dietro gli occhi nel campo visivo"
-      ]
-    },
-    {
-      "slug": "environmental_context",
-      "pos_label": "assenza di riferimento",
-      "neg_label": "orientamento, riferimento",
-      "description": "Questo sub-concetto riguarda la capacità di orientarsi e comprendere l'ambiente circostante in base alla luce. L'oscurità può disorientare, mentre la luce fornisce punti di riferimento.",
-      "why_distinct": "Si concentra sull'impatto della luce e dell'oscurità sulla percezione spaziale e sulla comprensione del contesto.",
-      "pos_examples": [
-        "il pilota passò una mano davanti al viso: nel nero assoluto la profondità sparì",
-        "il bambino fissò il caligine senza contorni: non distingueva nulla",
-        "astronauta animadvertit pupillae ad maximum patefactae sunt etiam post exspectationem"
-      ],
-      "neg_examples": [
-        "the swimmer squinted hard: white light flooded",
-        "il chirurgo vide che la fronte pulsava dietro gli occhi nel campo visivo",
-        "la espeleóloga apartó la mirada, y apareció una trama roja tras los párpados en el campo visual"
-      ]
-    }
-  ]
+  "timestamp": "2026-05-09T13:00:24.692391",
+  "eval_session": "",
+  "analysis": "```json\n{\n  \"sub_concepts\": [\n    {\n      \"slug\": \"pupil_constriction_dilation\",\n      \"pos_label\": \"Costrizione pupillare (Reazione a luce intensa)\",\n      \"neg_label\": \"Dilatazione pupillare (Reazione al buio)\",\n      \"description\": \"Rappresenta la risposta fisiologica delle pupille alla variazion",
+  "sub_concepts": []
 }

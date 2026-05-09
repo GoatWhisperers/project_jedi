@@ -1,78 +1,9 @@
 {
   "concept": "rumore_vs_silenzio",
-  "model": "Gemma2-Uncensored",
+  "model": "Gemma4-E4B-IT",
   "version": 2,
-  "timestamp": "2026-03-03T16:03:26.579210",
-  "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260301_123846_rumore_vs_silenzio_Gemma2-Uncensored.jsonl",
-  "analysis": "The broad concept 'rumor_vs_silence' conflates several distinct semantic dimensions. It lumps together loudness, type of noise, rhythmic patterns, and perceived source location.  A single vector representing 'rumor' is therefore inaccurate because it doesn't differentiate between, for example, a loud, erratic, close-range noise versus a quiet, steady, distant one. Decomposing the space into these sub-concepts allows for a more nuanced understanding of what constitutes 'rumor' versus 'silence', enabling more precise semantic representation and generation.",
-  "sub_concepts": [
-    {
-      "slug": "intensity_level",
-      "pos_label": "loud",
-      "neg_label": "quiet",
-      "description": "Captures the perceived volume or amplitude of the sound. A loud sound is easily noticeable and potentially disruptive, while a quiet sound is subtle and easily missed.",
-      "why_distinct": "Distinguishes between sounds that are inherently loud versus those that are quiet, independent of their nature (e.g., a loud whisper vs. a quiet explosion).",
-      "pos_examples": [
-        "Der Bühnentechniker: ein ständiges Brummen vom Kompressor, in Wellen, ohne Pause",
-        "La estudiante percibió un estruendo repentino de la multitud",
-        "Die Mutter nahm wiederholte harte Schläge von den Schienen wahr"
-      ],
-      "neg_examples": [
-        "Bibliothecaria: omne strepitum minimum erat quia spelunca omne echo absorbebat",
-        "Il cacciatore notò che la stanza restava ferma",
-        "La espeleóloga notó que el pasillo parecía vacío"
-      ]
-    },
-    {
-      "slug": "sound_type",
-      "pos_label": "disruptive_noise",
-      "neg_label": "ambient_sound",
-      "description": "Focuses on the *kind* of sound. Disruptive noises are those that interfere with focus or communication, while ambient sounds are background noises that don't necessarily cause disturbance.",
-      "why_distinct": "Separates sounds based on their effect, not just their volume. A quiet, constant hum can be disruptive, while a loud but brief sound might be less so.",
-      "pos_examples": [
-        "es überdeckte die Worte",
-        "it cut through focus",
-        "pectus vibrare faciebat, quasi malleus procul"
-      ],
-      "neg_examples": [
-        "solo se oía la respiración",
-        "un leises Rascheln wurde zum Ereignis",
-        "pulsus procul distinguebatur"
-      ]
-    },
-    {
-      "slug": "rhythm_pattern",
-      "pos_label": "erratic",
-      "neg_label": "steady",
-      "description": "Describes the temporal structure of the sound. Erratic sounds have unpredictable or irregular patterns, while steady sounds are consistent and predictable.",
-      "why_distinct": "Accounts for the impact of unpredictable sounds, which can be more jarring than constant ones, even if the latter are louder.",
-      "pos_examples": [
-        "in Wellen, ohne Pause",
-        "with agudos que pinchaban",
-        "wie ein Hammer in der Ferne"
-      ],
-      "neg_examples": [
-        "ohne echte Unterbrechung",
-        "se distinguía un latido lejano",
-        "die Welt wirkte weit weg"
-      ]
-    },
-    {
-      "slug": "source_location",
-      "pos_label": "distant",
-      "neg_label": "proximal",
-      "description": "Indicates the perceived distance of the sound source. Distant sounds often feel less immediate and can be perceived as less threatening, while proximal sounds are closer and potentially more alarming.",
-      "why_distinct": "Acknowledges that the perceived impact of a sound is affected by its apparent location. A distant loud noise might be less concerning than a nearby quiet one.",
-      "pos_examples": [
-        "like a distant hammer",
-        "pulsus procul distinguebatur",
-        "wie ein Hammer in der Ferne"
-      ],
-      "neg_examples": [
-        "Der Bühnentechniker: ein ständiges Brummen vom Kompressor",
-        "La estudiante percibió un estruendo repentino de la multitud",
-        "Die Mutter nahm wiederholte harte Schläge von den Schienen wahr"
-      ]
-    }
-  ]
+  "timestamp": "2026-05-09T13:25:23.527596",
+  "eval_session": "",
+  "analysis": "```json\n{\n  \"sub_concepts\": [\n    {\n      \"slug\": \"mechanical_harshness\",\n      \"pos_label\": \"Suoni metallici e abrasivi\",\n      \"neg_label\": \"Assenza di suoni artificiali\",\n      \"description\": \"Questo sub-concetto cattura la presenza di rumori specifici, come screchi, ronzii costanti o colpi metal",
+  "sub_concepts": []
 }

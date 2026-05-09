@@ -1,86 +1,9 @@
 {
   "concept": "secco_vs_umido",
-  "model": "Gemma2-Uncensored",
+  "model": "Gemma4-E4B-IT",
   "version": 1,
-  "timestamp": "2026-03-06T13:07:34.420770",
-  "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260301_091044_secco_vs_umido_Gemma2-Uncensored.jsonl",
-  "analysis": "Il vettore 'secco_vs_umido' confonde diverse dimensioni semantiche correlate alla sensazione tattile.  La semplice distinzione tra secco e umido non è sufficiente a catturare la complessità della percezione sensoriale.  Ad esempio, una superficie può essere secca ma morbida, o umida ma ruvida.  Decomporre questo spazio in sub-concetti come 'surface_texture', 'moisture_presence', 'skin_elasticity' e 'sensory_sharpness' permette di rappresentare in modo più accurato le diverse sfumature della sensazione tattile e di evitare generalizzazioni errate.  La sovrapposizione tra questi attributi rende necessario un modello più granulare per una comprensione precisa.",
-  "sub_concepts": [
-    {
-      "slug": "surface_texture",
-      "pos_label": "cartacea",
-      "neg_label": "viscosa",
-      "description": "Questo sub-concetto cattura la sensazione tattile immediata della superficie, descrivendo se è ruvida come carta o liscia e appiccicosa.",
-      "why_distinct": "Si concentra sulla sensazione tattile primaria, separandosi da concetti come la presenza o assenza di umidità percepita come 'morbidezza'.",
-      "pos_examples": [
-        "cutis quasi chartacea",
-        "pelle sembrò cartacea",
-        "la peau semblait cartonnée",
-        "die Haut wirkte papierartig"
-      ],
-      "neg_examples": [
-        "contatto fue pegajoso",
-        "sensazione era visqueux",
-        "la superficie era mouillée",
-        "der Kontakt wurde klebrig"
-      ]
-    },
-    {
-      "slug": "moisture_presence",
-      "pos_label": "assenza di umidità",
-      "neg_label": "presenza di umidità",
-      "description": "Questo sub-concetto si concentra sulla quantità di umidità percepita sulla superficie.  Si tratta di distinguere tra una superficie completamente asciutta e una che presenta umidità, anche minima.",
-      "why_distinct": "È fondamentale per distinguere tra una sensazione di secchezza e una sensazione di bagnato, anche se la texture potrebbe essere simile.",
-      "pos_examples": [
-        "sine ulla mollitie",
-        "no moisture",
-        "tenue punctum mansit",
-        "sensus acer erat velut film protectorius deesset"
-      ],
-      "neg_examples": [
-        "moisture clung to it",
-        "la mano dejó una marca",
-        "feine Tropfen bildeten sich",
-        "e l’umidità rimase addosso"
-      ]
-    },
-    {
-      "slug": "skin_elasticity",
-      "pos_label": "tensione",
-      "neg_label": "morbidezza",
-      "description": "Questo sub-concetto riguarda la percezione dell'elasticità della pelle. Una pelle secca tende ad essere tesa e a formare pieghe, mentre una pelle umida può apparire più morbida e cedevole.",
-      "why_distinct": "La tensione e la morbidezza sono caratteristiche distinte che contribuiscono alla sensazione complessiva di secco o umido, separate dalla semplice presenza di umidità.",
-      "pos_examples": [
-        "cutem tendi sensit",
-        "the skin pull tight",
-        "de minuscules gerçures apparurent",
-        "die Haut bildete trockene kleine Falten"
-      ],
-      "neg_examples": [
-        "manus vestigium reliquit",
-        "les doigts voulaient s’essuyer",
-        "la mano notò una capa",
-        "die Fingerspitze rutschte"
-      ]
-    },
-    {
-      "slug": "sensory_sharpness",
-      "pos_label": "acuta",
-      "neg_label": "smussata",
-      "description": "Questo sub-concetto cattura la qualità della sensazione tattile. Una superficie secca può provocare una sensazione più acuta o pungente, mentre una superficie umida può attenuare questa sensazione.",
-      "why_distinct": "La sensazione di 'acuità' è un elemento soggettivo che può essere presente anche in assenza di dolore o disagio, e che si distingue dalla semplice percezione di umidità o texture.",
-      "pos_examples": [
-        "sensus acer erat",
-        "sensation was sharp",
-        "sensus acer erat velut film protectorius deesset",
-        "die Wahrnehmung war scharf"
-      ],
-      "neg_examples": [
-        "tactus quasi nitidus factus est",
-        "la sensation sembla visqueux",
-        "die Haut fühlte sich nachgiebiger an",
-        "il contatto sembrò viscoso"
-      ]
-    }
-  ]
+  "timestamp": "2026-05-09T13:17:38.022325",
+  "eval_session": "",
+  "analysis": "```json\n{\n  \"sub_concepts\": [\n    {\n      \"slug\": \"tactile_friction_resistance\",\n      \"pos_label\": \"resistenza_all'attrito\",\n      \"neg_label\": \"scivolosita_liquida\",\n      \"description\": \"Riguarda la capacità della superficie di mantenere una presa o, al contrario, di scivolare facilmente a causa ",
+  "sub_concepts": []
 }

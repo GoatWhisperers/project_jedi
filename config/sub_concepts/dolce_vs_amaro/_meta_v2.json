@@ -1,78 +1,9 @@
 {
   "concept": "dolce_vs_amaro",
-  "model": "Gemma2-Uncensored",
+  "model": "Gemma4-E4B-IT",
   "version": 2,
-  "timestamp": "2026-03-03T16:20:34.247168",
-  "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260301_131402_dolce_vs_amaro_Gemma2-Uncensored.jsonl",
-  "analysis": "Il vettore 'dolce_vs_amaro' confonde diverse dimensioni semantiche distinte legate alla percezione gustativa.  Non si tratta solo della presenza o assenza di dolcezza, ma anche della consistenza, della temperatura percepita, dell'effetto emotivo e della sensazione fisica che il sapore provoca. La decomposizione in sub-concetti come 'creaminess_vs_astringency', 'warmth_vs_coolness', 'comfort_vs_irritation' e 'smoothness_vs_roughness' permette di rappresentare in modo più accurato e sfumato la complessità dell'esperienza gustativa, evitando generalizzazioni e catturando le sottili differenze che caratterizzano i diversi sapori.",
-  "sub_concepts": [
-    {
-      "slug": "creaminess_vs_astringency",
-      "pos_label": "Creamy",
-      "neg_label": "Astringent",
-      "description": "Questo sub-concetto cattura la sensazione di una consistenza liscia, ricca e avvolgente (creamy) contrapposta a una sensazione di secchezza, tiraggio e contrazione in bocca (astringent).",
-      "why_distinct": "La creamy texture è intrinsecamente legata alla dolcezza percepita, mentre l'astringency è spesso associata a sapori amari o acidi che riducono la salivazione.",
-      "pos_examples": [
-        "La violinista: crema alla vaniglia",
-        "Le médecin posa une goutte sur la langue une crème vanillée",
-        "took a sip vanilla custard"
-      ],
-      "neg_examples": [
-        "La violinista: café sobreextraído",
-        "The child chewed for a second raw radicchio",
-        "Il sommelier: radicchio crudo"
-      ]
-    },
-    {
-      "slug": "warmth_vs_coolness",
-      "pos_label": "Warm",
-      "neg_label": "Cool",
-      "description": "Questo sub-concetto si riferisce alla sensazione di calore e comfort che alcuni sapori evocano (warm) rispetto a una sensazione di freschezza o freddezza (cool).",
-      "why_distinct": "Il calore è spesso associato a sapori dolci e confortanti, mentre il freddo può suggerire sapori più acidi o amari.",
-      "pos_examples": [
-        "une rondeur arriva tout de suite, avec une finale douce",
-        "leaving a warm trail",
-        "The violinist put a drop on the tongue milk chocolate"
-      ],
-      "neg_examples": [
-        "avec une estela secante",
-        "con una scia asciutta",
-        "con una coda che non mollava"
-      ]
-    },
-    {
-      "slug": "comfort_vs_irritation",
-      "pos_label": "Comforting",
-      "neg_label": "Irritating",
-      "description": "Questo sub-concetto distingue tra sapori che portano conforto e relax (comforting) e quelli che causano irritazione o disagio (irritating).",
-      "why_distinct": "Il comfort è legato a sensazioni piacevoli e rilassanti, mentre l'irritazione suggerisce un'esperienza gustativa spiacevole e potenzialmente sgradevole.",
-      "pos_examples": [
-        "et la lingua trovò conforto",
-        "frons relaxata est donec lente evanuit",
-        "The violinista: crema alla vaniglia — con un equilibrio pieno"
-      ],
-      "neg_examples": [
-        "y la boca se cerró",
-        "con la lingua tensa",
-        "e la punta della lingua si strinse"
-      ]
-    },
-    {
-      "slug": "smoothness_vs_roughness",
-      "pos_label": "Smooth",
-      "neg_label": "Rough",
-      "description": "Questo sub-concetto distingue tra sapori che si presentano come lisci e uniformi (smooth) e quelli che hanno una texture più ruvida o irregolare (rough).",
-      "why_distinct": "La smoothness è spesso associata a sapori dolci e delicati, mentre la roughness può indicare sapori più complessi o intensi, a volte anche amari.",
-      "pos_examples": [
-        "sans angles",
-        "con un equilibrio pieno",
-        "The melting"
-      ],
-      "neg_examples": [
-        "con una estela secante",
-        "cum angulis manifestis",
-        "intensive dunkle Schokolade"
-      ]
-    }
-  ]
+  "timestamp": "2026-05-09T13:28:28.730699",
+  "eval_session": "",
+  "analysis": "```json\n{\n  \"sub_concepts\": [\n    {\n      \"slug\": \"inherent_sweetness_pleasure\",\n      \"pos_label\": \"Dolcezza intrinseca e piacere\",\n      \"neg_label\": \"Assenza di dolcezza o amarezza pura\",\n      \"description\": \"Cattura la presenza di sapori dolci, ricchi e confortanti (es. cioccolato, miele, vanig",
+  "sub_concepts": []
 }

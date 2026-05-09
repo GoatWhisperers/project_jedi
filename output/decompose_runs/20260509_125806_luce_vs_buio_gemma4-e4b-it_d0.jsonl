@@ -1,0 +1,35 @@
+{"type": "run_start", "concept": "luce_vs_buio", "model": "Gemma4-E4B-IT", "max_depth": 0, "max_iter": 2, "dry_run": false, "timestamp": "2026-05-09T12:58:06.450115"}
+{"type": "decompose_start", "concept": "luce_vs_buio", "depth": 0, "timestamp": "2026-05-09T12:58:06.521535"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v1)", "timestamp": "2026-05-09T12:58:06.521719"}
+{"type": "info", "msg": "  Proposti: []", "timestamp": "2026-05-09T13:00:24.693008"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v1)", "timestamp": "2026-05-09T13:00:24.693196"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-05-09T13:00:24.693424"}
+{"type": "info", "msg": "  [gpu] Preparo GPU per probe diretto...", "timestamp": "2026-05-09T13:00:24.693615"}
+{"type": "info", "msg": "  [gpu] Modello attivo: Gemma4-E4B-IT — VRAM: 15.1 GB", "timestamp": "2026-05-09T13:00:24.862065"}
+{"type": "info", "msg": "  [gpu] Attendo GPU idle...", "timestamp": "2026-05-09T13:00:24.862367"}
+{"type": "info", "msg": "  [gpu] Unload modello...", "timestamp": "2026-05-09T13:00:25.031796"}
+{"type": "info", "msg": "  [gpu] VRAM liberata — usata: 9.0 GB / 32.0 GB", "timestamp": "2026-05-09T13:00:25.809649"}
+{"type": "info", "msg": "  [gpu] Ripristino Gemma4-E4B-IT dopo probe...", "timestamp": "2026-05-09T13:00:25.809926"}
+{"type": "info", "msg": "  [gpu] Caricamento Gemma4-E4B-IT...", "timestamp": "2026-05-09T13:00:25.971162"}
+{"type": "info", "msg": "  [gpu] Gemma4-E4B-IT pronto — VRAM: 15.1 GB", "timestamp": "2026-05-09T13:00:44.669267"}
+{"type": "info", "msg": "  Nessun vettore estratto. Salto i prossimi step.", "timestamp": "2026-05-09T13:00:44.669626"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v2)", "timestamp": "2026-05-09T13:00:44.669758"}
+{"type": "info", "msg": "  Proposti: ['pupilla_constrizione_dilatazione', 'intensita_e_abbagliamento', 'afterimage_residuo', 'percezione_spaziale_dettaglio']", "timestamp": "2026-05-09T13:01:55.656215"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v2)", "timestamp": "2026-05-09T13:01:55.656345"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-05-09T13:09:26.165281"}
+{"type": "info", "msg": "  [gpu] Preparo GPU per probe diretto...", "timestamp": "2026-05-09T13:09:26.165412"}
+{"type": "info", "msg": "  [gpu] Modello attivo: Gemma4-E4B-IT — VRAM: 15.1 GB", "timestamp": "2026-05-09T13:09:26.327371"}
+{"type": "info", "msg": "  [gpu] Attendo GPU idle...", "timestamp": "2026-05-09T13:09:26.327630"}
+{"type": "info", "msg": "  [gpu] Unload modello...", "timestamp": "2026-05-09T13:09:26.494130"}
+{"type": "info", "msg": "  [gpu] VRAM liberata — usata: 9.6 GB / 32.0 GB", "timestamp": "2026-05-09T13:09:27.250471"}
+{"type": "info", "msg": "  SKIP probe pupilla_constrizione_dilatazione — JSON non trovato: /home/lele/codex-openai/project_jedi/config/sub_concepts/luce_vs_buio/pupilla_constrizione_dilatazione.json", "timestamp": "2026-05-09T13:09:27.250836"}
+{"type": "info", "msg": "  Probe: intensita_e_abbagliamento / Gemma4-E4B-IT", "timestamp": "2026-05-09T13:09:27.251627"}
+{"type": "info", "msg": "  Probe OK: intensita_e_abbagliamento", "timestamp": "2026-05-09T13:10:00.462665"}
+{"type": "info", "msg": "  SKIP probe afterimage_residuo — JSON non trovato: /home/lele/codex-openai/project_jedi/config/sub_concepts/luce_vs_buio/afterimage_residuo.json", "timestamp": "2026-05-09T13:10:00.463228"}
+{"type": "info", "msg": "  Probe: percezione_spaziale_dettaglio / Gemma4-E4B-IT", "timestamp": "2026-05-09T13:10:00.464401"}
+{"type": "info", "msg": "  Probe OK: percezione_spaziale_dettaglio", "timestamp": "2026-05-09T13:10:17.585992"}
+{"type": "info", "msg": "  [gpu] Ripristino Gemma4-E4B-IT dopo probe...", "timestamp": "2026-05-09T13:10:17.586377"}
+{"type": "info", "msg": "  [gpu] Gemma4-E4B-IT già attivo — niente da fare", "timestamp": "2026-05-09T13:10:17.754336"}
+{"type": "step", "step": 4, "name": "Analisi geometrica separabilità", "timestamp": "2026-05-09T13:10:17.754674"}
+{"type": "result", "step": 4, "concepts": ["luce_vs_buio", "intensita_e_abbagliamento", "percezione_spaziale_dettaglio"], "matrix": [[1.0, 0.23949451269950903, 0.14645036164578312], [0.23949451269950903, 1.0, 0.07062757609184454], [0.14645036164578312, 0.07062757609184454, 1.0]], "layers_used": {"luce_vs_buio": {"layer": 33, "source": "eval"}, "intensita_e_abbagliamento": {"layer": 35, "source": "eval"}, "percezione_spaziale_dettaglio": {"layer": 30, "source": "eval"}}, "stats": {"min": 0.0706, "max": 0.2395, "mean": 0.1522}, "timestamp": "2026-05-09T13:10:17.762141"}
+{"type": "step", "step": 5, "name": "Steering test + giudizio M40", "timestamp": "2026-05-09T13:10:17.763079"}

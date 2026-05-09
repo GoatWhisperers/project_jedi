@@ -1,0 +1,97 @@
+{"type": "run_start", "concept": "hot_vs_cold", "model": "Gemma4-E4B-IT", "max_depth": 0, "max_iter": 2, "dry_run": false, "timestamp": "2026-05-09T12:45:24.157330"}
+{"type": "decompose_start", "concept": "hot_vs_cold", "depth": 0, "timestamp": "2026-05-09T12:45:24.232575"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v1)", "timestamp": "2026-05-09T12:45:24.232809"}
+{"type": "info", "msg": "  Proposti: []", "timestamp": "2026-05-09T12:46:36.428557"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v1)", "timestamp": "2026-05-09T12:46:36.428795"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-05-09T12:46:36.429083"}
+{"type": "info", "msg": "  [gpu] Preparo GPU per probe diretto...", "timestamp": "2026-05-09T12:46:36.429290"}
+{"type": "info", "msg": "  [gpu] Nessun modello caricato — VRAM usata: 0.0 GB", "timestamp": "2026-05-09T12:46:36.433076"}
+{"type": "info", "msg": "  [gpu] Ripristino Gemma4-E4B-IT dopo probe...", "timestamp": "2026-05-09T12:46:36.433349"}
+{"type": "info", "msg": "  [gpu] Caricamento Gemma4-E4B-IT...", "timestamp": "2026-05-09T12:46:36.436560"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:46:41.447093"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:46:46.451372"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:46:51.455763"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:46:56.459280"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:47:01.462720"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:47:06.466806"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:47:11.470185"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:47:16.475319"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:47:21.480370"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:47:26.485081"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:47:31.489159"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:47:36.495146"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:47:41.499053"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:47:46.502894"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:47:51.507187"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:47:56.512694"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:48:01.517862"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:48:06.522406"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:48:11.528063"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:48:16.533324"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:48:21.538886"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:48:26.543886"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:48:31.549487"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:48:36.555003"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:48:41.558424"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:48:46.562590"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:48:51.566609"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:48:56.570757"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:49:01.573661"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:49:06.579063"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:49:11.584695"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:49:16.589615"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:49:21.595087"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:49:26.601766"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:49:31.609222"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:49:36.614238"}
+{"type": "info", "msg": "  [gpu] TIMEOUT caricamento Gemma4-E4B-IT dopo 180s", "timestamp": "2026-05-09T12:49:36.614455"}
+{"type": "info", "msg": "  [warn] Reload Gemma4-E4B-IT non confermato — continuo comunque", "timestamp": "2026-05-09T12:49:36.614588"}
+{"type": "info", "msg": "  Nessun vettore estratto. Salto i prossimi step.", "timestamp": "2026-05-09T12:49:36.614692"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v2)", "timestamp": "2026-05-09T12:49:36.614802"}
+{"type": "info", "msg": "  Proposti: []", "timestamp": "2026-05-09T12:50:49.082872"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v2)", "timestamp": "2026-05-09T12:50:49.083045"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-05-09T12:50:49.083245"}
+{"type": "info", "msg": "  [gpu] Preparo GPU per probe diretto...", "timestamp": "2026-05-09T12:50:49.083387"}
+{"type": "info", "msg": "  [gpu] Nessun modello caricato — VRAM usata: 0.0 GB", "timestamp": "2026-05-09T12:50:49.086178"}
+{"type": "info", "msg": "  [gpu] Ripristino Gemma4-E4B-IT dopo probe...", "timestamp": "2026-05-09T12:50:49.086364"}
+{"type": "info", "msg": "  [gpu] Caricamento Gemma4-E4B-IT...", "timestamp": "2026-05-09T12:50:49.088049"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:50:54.095920"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:50:59.099016"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:51:04.103889"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:51:09.108388"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:51:14.113267"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:51:19.118166"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:51:24.123534"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:51:29.128391"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:51:34.133969"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:51:39.137667"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:51:44.141353"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:51:49.144601"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:51:54.150147"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:51:59.154848"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:52:04.160579"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:52:09.165362"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:52:14.170268"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:52:19.175836"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:52:24.181012"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:52:29.186865"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:52:34.192004"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:52:39.195724"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:52:44.199432"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:52:49.202790"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:52:54.206771"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:52:59.210274"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:53:04.214007"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:53:09.218167"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:53:14.222838"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:53:19.226579"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:53:24.230564"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:53:29.236051"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:53:34.241339"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:53:39.245483"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:53:44.249253"}
+{"type": "info", "msg": "  [gpu] Attendo caricamento... (attivo: '')", "timestamp": "2026-05-09T12:53:49.254896"}
+{"type": "info", "msg": "  [gpu] TIMEOUT caricamento Gemma4-E4B-IT dopo 180s", "timestamp": "2026-05-09T12:53:49.256634"}
+{"type": "info", "msg": "  [warn] Reload Gemma4-E4B-IT non confermato — continuo comunque", "timestamp": "2026-05-09T12:53:49.256790"}
+{"type": "info", "msg": "  Nessun vettore estratto. Salto i prossimi step.", "timestamp": "2026-05-09T12:53:49.256978"}
+{"type": "decompose_end", "concept": "hot_vs_cold", "depth": 0, "validated_subs": [], "semantic_limit": false, "sub_results": {}, "timestamp": "2026-05-09T12:53:49.257150"}

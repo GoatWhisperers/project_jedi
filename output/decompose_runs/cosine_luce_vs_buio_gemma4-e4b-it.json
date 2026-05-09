@@ -1,0 +1,37 @@
+{
+  "model": "Gemma4-E4B-IT",
+  "layer_type": "best_snr",
+  "concepts": [
+    "luce_vs_buio",
+    "intensita_e_abbagliamento",
+    "percezione_spaziale_dettaglio"
+  ],
+  "layers_used": {
+    "luce_vs_buio": 33,
+    "intensita_e_abbagliamento": 35,
+    "percezione_spaziale_dettaglio": 30
+  },
+  "layer_sources": {
+    "luce_vs_buio": "eval",
+    "intensita_e_abbagliamento": "eval",
+    "percezione_spaziale_dettaglio": "eval"
+  },
+  "matrix": [
+    [
+      1.0,
+      0.23949451269950903,
+      0.14645036164578312
+    ],
+    [
+      0.23949451269950903,
+      1.0,
+      0.07062757609184454
+    ],
+    [
+      0.14645036164578312,
+      0.07062757609184454,
+      1.0
+    ]
+  ],
+  "timestamp": "2026-05-09T13:10:17.762489"
+}

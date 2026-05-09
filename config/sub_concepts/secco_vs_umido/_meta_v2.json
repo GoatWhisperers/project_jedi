@@ -1,78 +1,9 @@
 {
   "concept": "secco_vs_umido",
-  "model": "Gemma2-Uncensored",
+  "model": "Gemma4-E4B-IT",
   "version": 2,
-  "timestamp": "2026-03-03T15:28:33.624502",
-  "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260301_091044_secco_vs_umido_Gemma2-Uncensored.jsonl",
-  "analysis": "Il vettore 'secco_vs_umido' confonde diverse dimensioni semantiche legate all'esperienza tattile. Non si tratta semplicemente di una distinzione binaria tra 'secco' e 'umido', ma di una serie di proprietà sensoriali che possono variare indipendentemente l'una dall'altra. Ad esempio, una superficie può essere secca ma liscia, o umida ma ruvida. La decomposizione in sub-concetti come 'surface_texture', 'lubricity', 'hydration_level' e 'sensory_afterfeel' permette di catturare queste sfumature e di comprendere meglio come il cervello elabora le informazioni tattili.  La sovrapposizione tra le esperienze sensoriali rende difficile l'interpretazione del vettore broad, e la sua scomposizione fornisce una rappresentazione più accurata e interpretabile dello spazio semantico.",
-  "sub_concepts": [
-    {
-      "slug": "surface_texture",
-      "pos_label": "rough",
-      "neg_label": "smooth",
-      "description": "Questo sub-concetto cattura la sensazione tattile della superficie, che può essere ruvida, screpolata o granulosa (secco) o liscia e uniforme (umido).",
-      "why_distinct": "Si concentra esclusivamente sulle proprietà fisiche della superficie, indipendentemente dalla presenza di umidità intrinseca.  Altre dimensioni possono includere la percezione di 'secchezza' come mancanza di lubrificazione.",
-      "pos_examples": [
-        "winzige Risse zeigten sich",
-        "die Haut bildete trockene kleine Falten",
-        "die Haut wirkte papierartig"
-      ],
-      "neg_examples": [
-        "die Hand hinterließ eine Spur",
-        "la mano dejó una marca",
-        "la pulpe glissa"
-      ]
-    },
-    {
-      "slug": "lubricity",
-      "pos_label": "low_friction",
-      "neg_label": "high_friction",
-      "description": "Questo sub-concetto si riferisce alla facilità o difficoltà con cui la mano scivola sulla superficie. Una superficie secca tende ad avere un basso coefficiente di attrito, mentre una superficie umida può essere più scivolosa.",
-      "why_distinct": "Separa la sensazione di 'secchezza' dalla mera ruvidezza. Una superficie può essere ruvida ma asciutta, o liscia ma umida. Questo cattura la sensazione di 'aderenza' o 'scivolamento'.",
-      "pos_examples": [
-        "die Fingerspitze glitt nicht gut",
-        "los dedos pedían alivio hasta que cedió",
-        "die Handfläche glitt"
-      ],
-      "neg_examples": [
-        "il contatto sembrò viscoso",
-        "il polpastrello scivolò",
-        "der Griff änderte sich sofort"
-      ]
-    },
-    {
-      "slug": "hydration_level",
-      "pos_label": "dehydrated",
-      "neg_label": "hydrated",
-      "description": "Questo sub-concetto si concentra direttamente sul livello di idratazione della pelle. Una pelle secca è priva di umidità, mentre una pelle umida è idratata.",
-      "why_distinct": "È il concetto più diretto legato alla polarità secco/umido. Gli altri sub-concetti descrivono conseguenze o manifestazioni di questo livello di idratazione.",
-      "pos_examples": [
-        "es fehlte jede Feuchtigkeit",
-        "die Haut wirkte papierartig",
-        "et omnis umor deerat"
-      ],
-      "neg_examples": [
-        "sentì un velo di bagnato",
-        "la mano notò una capa",
-        "l’umidità rimase addosso"
-      ]
-    },
-    {
-      "slug": "sensory_afterfeel",
-      "pos_label": "tingling",
-      "neg_label": "soothing",
-      "description": "Questo sub-concetto riguarda la sensazione residua dopo il contatto. Una superficie secca può provocare formicolio, bruciore o tensione, mentre una superficie umida può dare una sensazione di sollievo o morbidezza.",
-      "why_distinct": "Si concentra sull'esperienza sensoriale *post* contatto, che può essere distintiva anche se la sensazione iniziale è simile.  Non riguarda la sensazione immediata, ma la persistenza.",
-      "pos_examples": [
-        "ein leichtes Brennen blieb",
-        "sensus opacus erat",
-        "un picotement léger resta"
-      ],
-      "neg_examples": [
-        "la sensazione avvolse il palmo",
-        "la peau paraissait plus souple",
-        "il contatto sembrò viscoso"
-      ]
-    }
-  ]
+  "timestamp": "2026-05-09T13:19:09.907233",
+  "eval_session": "",
+  "analysis": "```json\n{\n  \"sub_concepts\": [\n    {\n      \"slug\": \"adhesion_vs_release\",\n      \"pos_label\": \"Resistenza/Trazione (Tirare)\",\n      \"neg_label\": \"Adesione/Viscosità (Appiccicoso)\",\n      \"description\": \"Questo sub-concetto cattura la forza con cui la superficie interagisce con il contatto. Lo stato se",
+  "sub_concepts": []
 }

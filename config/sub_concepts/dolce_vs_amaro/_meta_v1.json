@@ -1,78 +1,9 @@
 {
   "concept": "dolce_vs_amaro",
-  "model": "Gemma2-Uncensored",
+  "model": "Gemma4-E4B-IT",
   "version": 1,
-  "timestamp": "2026-03-06T15:42:47.017877",
-  "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260301_131402_dolce_vs_amaro_Gemma2-Uncensored.jsonl",
-  "analysis": "The broad concept 'sweet_vs_bitter' conflates several distinct semantic dimensions. It doesn't account for the *intensity* of sweetness, the *texture* experienced in the mouth, the *complexity* of the flavor profile, or the *duration* of the aftertaste.  The transformer is likely learning to associate certain words with 'sweet' or 'bitter' without understanding the underlying nuances of these sensory experiences. Decomposing this space into the sub-concepts above allows for a more granular and accurate representation of the taste perception, enabling more precise steered generation and improved understanding of the underlying semantics.",
-  "sub_concepts": [
-    {
-      "slug": "sweetness_intensity",
-      "pos_label": "High Sweetness",
-      "neg_label": "Low Sweetness/Bitterness",
-      "description": "This sub-concept captures the degree of sweetness. High sweetness implies a prominent sugary flavor, while low sweetness or bitterness indicates a lack of sweetness or a presence of bitter notes.",
-      "why_distinct": "Distinguishes between subtle sweetness and a strong, overt sugary taste.  It's not simply about 'sweet' vs. 'not sweet', but the *level* of sweetness.",
-      "pos_examples": [
-        "Das Kind: Vanillecreme — mit einer warmen Spur;",
-        "L’étudiante : du miel — avec des notes de caramel ;",
-        "La barista : du miel — avec une finale douce ;"
-      ],
-      "neg_examples": [
-        "kaute kurz einen starken Aufguss:",
-        "La barista: radicchio crudo — con un finale lungo e austero;",
-        "The violinist held it in the mouth over-extracted coffee,"
-      ]
-    },
-    {
-      "slug": "mouthfeel_texture",
-      "pos_label": "Creamy/Smooth",
-      "neg_label": "Dry/Astringent",
-      "description": "This sub-concept focuses on the tactile sensation in the mouth. Creamy/smooth refers to a rich, coating texture, while dry/astringent describes a sensation of puckering or roughness.",
-      "why_distinct": "Separates the gustatory experience from the physical feeling.  A sweet taste can be creamy, but it can also be dry or astringent.",
-      "pos_examples": [
-        "nahm einen Schluck Vanillecreme: und die Wangen entspannten, mit weichem Abgang;",
-        "La cuoca mise una goccia sulla lingua frutta matura,",
-        "El pastelero: fruta madura — con notas de caramelo;"
-      ],
-      "neg_examples": [
-        "masticò un attimo un infuso forte: e arrivò un morso netto,",
-        "La barista: radicchio crudo — con un finale lungo e austero;",
-        "The sommelier swallowed slowly a strong infusion, and the flavor stayed dry;"
-      ]
-    },
-    {
-      "slug": "flavor_complexity",
-      "pos_label": "Nuanced/Layered",
-      "neg_label": "Simple/Direct",
-      "description": "This sub-concept distinguishes between flavors with multiple, evolving notes (nuanced/layered) and those that are straightforward and uncomplicated (simple/direct).",
-      "why_distinct": "Accounts for the richness and depth of the flavor profile. Some sweet flavors are simple, while others have multiple components.",
-      "pos_examples": [
-        "L’étudiante : du miel — avec des notes de caramel ;",
-        "La cuoca mise una goccia sulla lingua frutta matura,",
-        "El pastelero: fruta madura — con notas de caramelo;"
-      ],
-      "neg_examples": [
-        "kaute kurz einen starken Aufguss:",
-        "The child: a strong infusion — with a medicinal note;",
-        "La barista tragó despacio chocolate negro intenso,"
-      ]
-    },
-    {
-      "slug": "aftertaste_persistence",
-      "pos_label": "Lingering/Persistent",
-      "neg_label": "Fleeting/Transient",
-      "description": "This sub-concept refers to how long the flavor remains in the mouth after swallowing. A lingering/persistent aftertaste lasts for a noticeable time, while a fleeting/transient one disappears quickly.",
-      "why_distinct": "Addresses the temporal aspect of the taste experience.  A sweet flavor can have a long or short aftertaste.",
-      "pos_examples": [
-        "La barista : du miel — avec une finale douce ;",
-        "lente manducavit chocolatum lacteum:",
-        "Die Studentin: Honig — mit einer warmen Spur;"
-      ],
-      "neg_examples": [
-        "The violinist held it in the mouth over-extracted coffee,",
-        "La cuoca: caffè troppo estratto — con una nota medicinale;",
-        "The barista tragó despacio chocolate negro intenso,"
-      ]
-    }
-  ]
+  "timestamp": "2026-05-09T13:26:56.943391",
+  "eval_session": "",
+  "analysis": "```json\n{\n  \"sub_concepts\": [\n    {\n      \"slug\": \"mouthfeel_roundness_vs_angularity\",\n      \"pos_label\": \"Sensazione vellutata e arrotondata\",\n      \"neg_label\": \"Sensazione tagliente o angolare\",\n      \"description\": \"Descrive la consistenza percepita in bocca: se il gusto è avvolgente e morbido (",
+  "sub_concepts": []
 }

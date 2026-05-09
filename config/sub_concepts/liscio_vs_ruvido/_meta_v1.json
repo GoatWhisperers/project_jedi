@@ -1,78 +1,9 @@
 {
   "concept": "liscio_vs_ruvido",
-  "model": "Gemma2-Uncensored",
+  "model": "Gemma4-E4B-IT",
   "version": 1,
-  "timestamp": "2026-03-06T11:36:18.940305",
-  "eval_session": "/home/lele/codex-openai/project_jedi/output/eval_sessions/session_20260228_180010_liscio_vs_ruvido_Gemma2-Uncensored.jsonl",
-  "analysis": "Il vettore 'liscio_vs_ruvido' confonde diverse dimensioni sensoriali, tra cui l'attrito, l'uniformità della superficie, la distribuzione della pressione e la risposta sensoriale.  Decomporre questo spazio in sub-concetti specifici permette di catturare queste sfumature individualmente, consentendo un controllo più preciso della generazione di testo e una migliore comprensione delle rappresentazioni semantiche nei transformer.  Senza questa decomposizione, il modello potrebbe generare descrizioni imprecise o irrilevanti, confondendo ad esempio l'attrito con la pressione o la sensazione di ruvidità con la presenza di dolore.",
-  "sub_concepts": [
-    {
-      "slug": "friction_level",
-      "pos_label": "liscio",
-      "neg_label": "ruvido",
-      "description": "Questo sub-concetto cattura la quantità di attrito percepito. Un polo positivo indica una mancanza di attrito, mentre un polo negativo implica una resistenza tangibile.",
-      "why_distinct": "È il nucleo della distinzione 'liscio vs. ruvido', ma si concentra specificamente sulla sensazione fisica dell'attrito, separandosi da altri aspetti come l'aspetto o la pressione.",
-      "pos_examples": [
-        "la pelle scivolava su metallo levigato; con resistenza quasi nulla",
-        "die Finger glitten über perfekt sauberes Glas; ohne Halt",
-        "The barista the palm drifted on finely sanded wood, like on silk; there was no grain"
-      ],
-      "neg_examples": [
-        "The violinist rough spots pulled: the fingers scraped on a gritty surface with uneven resistance",
-        "Die Restauratorin jedes Korn war spürbar: die Handfläche rieb rau auf unglasierter Keramik",
-        "La costurera los dedos raspaban sobre cerámica sin esmaltar, con fricción seca"
-      ]
-    },
-    {
-      "slug": "surface_uniformity",
-      "pos_label": "uniforme",
-      "neg_label": "disomogeneo",
-      "description": "Riguarda la regolarità della superficie. Un polo positivo implica una superficie continua e senza interruzioni, mentre un polo negativo suggerisce irregolarità e variazioni.",
-      "why_distinct": "Distinto da 'friction_level' perché una superficie può essere ruvida ma uniforme (es. carta vetrata fine), o liscia ma disomogenea (es. vetro incrinato).",
-      "pos_examples": [
-        "la paume dériva sur un verre parfaitement propre comme sur de la soie",
-        "The barista the palm drifted on finely sanded wood, like on silk; there was no grain",
-        "La violoniste le bout du doigt glissa le long d’un métal lissé ; sans aucune prise"
-      ],
-      "neg_examples": [
-        "The violinist rough spots pulled: the fingers scraped on a gritty surface with uneven resistance",
-        "Die Restauratorin jedes Korn war spürbar: die Handfläche rieb rau auf unglasierter Keramik",
-        "La costurera los dedos raspaban sobre cerámica sin esmaltar, con fricción seca"
-      ]
-    },
-    {
-      "slug": "pressure_distribution",
-      "pos_label": "distribuita",
-      "neg_label": "concentrata",
-      "description": "Si riferisce a come la pressione viene applicata sulla superficie. Un polo positivo implica una distribuzione uniforme della pressione, mentre un polo negativo indica punti di pressione concentrati.",
-      "why_distinct": "Anche una superficie ruvida può avere una pressione concentrata, ma la sensazione complessiva è diversa da una superficie liscia con pressione distribuita.",
-      "pos_examples": [
-        "la pression se répartissait : la paume dériva sur un verre parfaitement propre comme sur de la soie",
-        "The barista the palm drifted on finely sanded wood, like on silk; there was no grain",
-        "La petite fille la peau glissait sur une surface polie, sans aucune prise ; la pression se répartissait"
-      ],
-      "neg_examples": [
-        "The violinist rough spots pulled: the fingers scraped on a gritty surface with uneven resistance",
-        "Die Restauratorin jedes Korn war spürbar: die Handfläche rieb rau auf unglasierter Keramik",
-        "Il barista le creste segnavano la pelle: le dita strusciarono su una superficie granulosa con micro-urti continui"
-      ]
-    },
-    {
-      "slug": "sensory_feedback",
-      "pos_label": "assenza di feedback",
-      "neg_label": "feedback sensoriale",
-      "description": "Descrive la quantità di feedback sensoriale ricevuto. Un polo positivo indica una mancanza di sensazioni (es. freddo, dolore), mentre un polo negativo implica una forte risposta sensoriale.",
-      "why_distinct": "Separa la sensazione fisica (friction_level) dalla risposta del corpo ad essa (dolore, irritazione).",
-      "pos_examples": [
-        "la pelle non si irritò",
-        "der Kontakt war gleichmäßig und die Hand stolperte nie",
-        "la main ne buta pas"
-      ],
-      "neg_examples": [
-        "The violinist rough spots pulled: the fingers scraped on a gritty surface with uneven resistance, and the skin reddened",
-        "Die Restauratorin jedes Korn war spürbar: die Handfläche rieb rau auf unglasierter Keramik mit ständigen Mikro-Stößen, und die Hand zog reflexartig zurück",
-        "La costurera los dedos raspaban sobre cerámica sin esmaltar, con fricción seca; los relieves marcaban la piel y la piel se enrojeció"
-      ]
-    }
-  ]
+  "timestamp": "2026-05-09T13:14:34.799265",
+  "eval_session": "",
+  "analysis": "```json\n{\n  \"sub_concepts\": [\n    {\n      \"slug\": \"surface_uniformity\",\n      \"pos_label\": \"Superficie omogenea/lucida\",\n      \"neg_label\": \"Superficie granulosa/ruvida\",\n      \"description\": \"Cattura la natura fisica del materiale: se è levigato, smaltato o finemente lavorato, o se è grezzo, poroso",
+  "sub_concepts": []
 }
