@@ -160,6 +160,15 @@ def main():
                         help="Evaluate on held-out sentences and save eval.json")
     parser.add_argument("--output-root", default=None,
                         help="Override output root directory (default: output/vector_library)")
+    parser.add_argument("--deep-range", default=None, nargs=2, type=float,
+                        metavar=("START", "END"),
+                        help="Override deep_range (es. 0.834 0.978 → L35-L41)")
+    parser.add_argument("--token-position", default=None,
+                        choices=["mean", "last", "first"],
+                        help="Override token pooling position")
+    parser.add_argument("--vector-method", default="mean_diff",
+                        choices=["mean_diff", "pca"],
+                        help="Vettore principale salvato come layer_N.npy (default: mean_diff)")
     args = parser.parse_args()
 
     # --- Load concept ---
@@ -197,6 +206,11 @@ def main():
 
     token_position = str(settings.get("token_position", "mean"))
     deep_range     = tuple(settings.get("deep_range", [0.70, 0.90]))
+    # CLI overrides
+    if args.token_position:
+        token_position = args.token_position
+    if args.deep_range:
+        deep_range = tuple(args.deep_range)
 
     # --- Output dir ---
     concept_key = normalize_name_for_path(concept_name)
@@ -333,8 +347,9 @@ def main():
             "convergence_mean": convergence_report(h, c, method="mean"),
         }
 
-        # Save vectors
-        np.save(os.path.join(out_dir, f"layer_{layer_idx}.npy"), unit_mean)
+        # Save vectors — main vector depends on --vector-method
+        unit_main = unit_pca if args.vector_method == "pca" else unit_mean
+        np.save(os.path.join(out_dir, f"layer_{layer_idx}.npy"), unit_main)
         np.save(os.path.join(out_dir, f"layer_{layer_idx}_pca.npy"), unit_pca)
 
         write_status_extended({
@@ -406,7 +421,7 @@ def main():
         "token_position": token_position,
         "deep_range":     list(deep_range),
         "layers":         deep_layers,
-        "vector_method":  "mean_diff",
+        "vector_method":  args.vector_method,
         "date":           time.strftime("%Y-%m-%d %H:%M:%S"),
         "run_id":         run_id,
     }
@@ -424,7 +439,7 @@ def main():
         "deep_layers":    deep_layers,
         "n_pairs_train":  n_train,
         "token_position": token_position,
-        "vector_method":  "mean_diff",
+        "vector_method":  args.vector_method,
     }
     with open(os.path.join(out_dir, "summary.json"), "w") as f:
         json.dump({"summary": summary, "results": results}, f, indent=2)

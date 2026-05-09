@@ -318,16 +318,38 @@ def read_body(handler):
 
 def _build_chat_prompt_local(messages: list, active_model: str) -> str:
     """
-    Costruisce un prompt testuale da messages senza tokenizer locale.
-    Usato solo come fallback; steering_server ora passa i messaggi raw a mi50_manager.
+    Costruisce un prompt testuale da messages adattando il template al modello.
+    Gemma3/Gemma4: <start_of_turn>role\ncontent<end_of_turn>
+    Gemma2 e altri: ROLE: content
     """
-    parts = []
-    for m in messages:
-        role    = m.get("role", "user")
-        content = m.get("content", "")
-        parts.append(f"{role.upper()}: {content}")
-    parts.append("ASSISTANT:")
-    return "\n".join(parts)
+    model_lower = active_model.lower()
+    use_gemma_template = "gemma3" in model_lower or "gemma4" in model_lower
+
+    if use_gemma_template:
+        parts = []
+        for m in messages:
+            role    = m.get("role", "user")
+            content = m.get("content", "")
+            if role == "system":
+                # Gemma4 non ha ruolo system nativo — prepend al primo user
+                parts.append(f"<start_of_turn>user\n{content}")
+            else:
+                if parts and parts[-1].startswith("<start_of_turn>user") and role == "user":
+                    # Appende al turn user già aperto (dopo system)
+                    parts[-1] += f"\n{content}<end_of_turn>"
+                else:
+                    parts.append(f"<start_of_turn>{role}\n{content}<end_of_turn>")
+        parts.append("<start_of_turn>model\n")
+        return "\n".join(parts)
+    else:
+        parts = []
+        for m in messages:
+            role    = m.get("role", "user")
+            content = m.get("content", "")
+            if role != "system":
+                parts.append(f"{role.upper()}: {content}")
+        parts.append("ASSISTANT:")
+        return "\n".join(parts)
 
 
 # ── Handler HTTP ──────────────────────────────────────────────────────────────
