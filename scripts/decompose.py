@@ -41,7 +41,8 @@ DECOMPOSE_LOG    = ROOT / "output" / "decompose_runs"
 
 # ── Defaults ───────────────────────────────────────────────────────────────────
 DEFAULT_MODEL        = "Gemma2-Uncensored"
-DEFAULT_STEERING_URL = "http://localhost:8020"   # mi50_manager (aggiornato da 8010)
+DEFAULT_STEERING_URL = "http://localhost:8010"   # steering_server (UI/eval/generate)
+DEFAULT_MANAGER_URL  = "http://localhost:8020"   # mi50_manager (GPU load/unload/status)
 DEFAULT_M40_URL      = "http://localhost:11435"
 DEFAULT_MAX_ITER     = 3       # max iterazioni per livello prima di dichiarare "limite semantico"
 DEFAULT_MAX_DEPTH    = 2       # profondità massima ricorsione (0=broad, 1=sub, 2=sub-sub)
@@ -257,6 +258,7 @@ def decompose_concept(
     model: str,
     category: str,
     steering_url: str,
+    manager_url: str,
     m40_url: str,
     depth: int,
     max_depth: int,
@@ -334,7 +336,7 @@ def decompose_concept(
         probe_ok = []
         if not dry_run:
             # Controlla GPU, aspetta idle, scarica modello, verifica VRAM libera
-            gpu_prepare_for_probe(steering_url, log=logger.info)
+            gpu_prepare_for_probe(manager_url, log=logger.info)
 
         for slug in sub_slugs:
             ok = run_probe_for_sub(slug, concept, category, model, logger, dry_run)
@@ -343,7 +345,7 @@ def decompose_concept(
 
         if not dry_run:
             # Ricarica il modello (con verifica stato GPU prima del load)
-            loaded = gpu_restore_after_probe(steering_url, model, log=logger.info)
+            loaded = gpu_restore_after_probe(manager_url, model, log=logger.info)
             if not loaded:
                 logger.info(f"  [warn] Reload {model} non confermato — continuo comunque")
 
@@ -455,6 +457,7 @@ def main():
     parser.add_argument("--alpha",       type=float, default=DEFAULT_ALPHA)
     parser.add_argument("--n-prompts",   type=int, default=DEFAULT_N_PROMPTS)
     parser.add_argument("--steering-url", default=DEFAULT_STEERING_URL)
+    parser.add_argument("--manager-url",  default=DEFAULT_MANAGER_URL)
     parser.add_argument("--m40-url",     default=DEFAULT_M40_URL)
     parser.add_argument("--dry-run",     action="store_true",
                         help="Mostra prompt e struttura senza chiamare M40 né fare probe")
@@ -495,6 +498,7 @@ def main():
         model        = args.model,
         category     = args.category,
         steering_url = args.steering_url,
+        manager_url  = args.manager_url,
         m40_url      = args.m40_url,
         depth        = args.depth,
         max_depth    = args.max_depth,

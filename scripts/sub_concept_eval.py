@@ -40,7 +40,7 @@ CATALOG_PATH     = ROOT / "output" / "catalog.json"
 DEFAULT_STEERING_URL    = "http://localhost:8010"
 DEFAULT_M40_URL         = "http://localhost:11435"
 DEFAULT_MAX_TOKENS_GEN  = 120
-DEFAULT_MAX_TOKENS_EVAL = 500
+DEFAULT_MAX_TOKENS_EVAL = 1000
 DEFAULT_TEMPERATURE     = 0.2
 
 # Prompt neutri per il test di distinzione (non nominano nessun concetto)
@@ -65,17 +65,20 @@ def _append_dialogue(path: Path, entry: dict) -> None:
 # ── Helpers ────────────────────────────────────────────────────────────────────
 
 def _parse_json(raw: str, fallback: dict) -> dict:
-    """Estrae il primo JSON valido dalla stringa. Stesso pattern di auto_eval.py."""
+    """Estrae il primo JSON valido dalla stringa. Gestisce code fence (Gemma4)."""
+    # Strategia 1: estrai da prima { a ultima } (robusto vs markdown code fence)
+    start = raw.find('{')
+    end   = raw.rfind('}')
+    if start != -1 and end != -1 and start < end:
+        try:
+            return json.loads(raw[start:end + 1])
+        except json.JSONDecodeError:
+            pass
+    # Strategia 2: parse diretto
     try:
         return json.loads(raw.strip())
     except json.JSONDecodeError:
         pass
-    match = re.search(r'\{.*\}', raw, re.DOTALL)
-    if match:
-        try:
-            return json.loads(match.group())
-        except json.JSONDecodeError:
-            pass
     print(f"    [WARN] JSON parse fallito. Preview: {raw[:150]!r}")
     return fallback
 
@@ -342,7 +345,7 @@ Rispondi SEMPRE e SOLO con JSON valido. Nessun testo fuori dal JSON."""
             f'"refinement_suggestions": {{"slug": "suggerimento", ...}}, '
             f'"overall_assessment": "..."}}'
         )
-        raw = self._call(msg, max_tokens=800, step_label=f"step5_verdict_v{version}")
+        raw = self._call(msg, max_tokens=1500, step_label=f"step5_verdict_v{version}")
         return _parse_json(raw, {
             "all_validated": False,
             "validated_concepts": [],

@@ -1,0 +1,121 @@
+{
+  "type": "sub_concept_eval",
+  "parent_concept": "luce_vs_buio",
+  "model": "Gemma4-E4B-IT",
+  "version": 2,
+  "timestamp": "2026-05-09T14:59:40.204590",
+  "sub_concepts": [
+    {
+      "slug": "intensita_stimolo_luminoso",
+      "pos_label": "Luce accecante o improvvisa (flash, bagliore)",
+      "neg_label": "Assenza totale o uniforme di luce (tenebra, oscurità)",
+      "description": "Decompone lo stimolo luminoso in termini di intensità e transitorietà, distinguendo tra un'eccessiva dose di luce (overload) e la sua completa mancanza.",
+      "why_distinct": "Questo è il livello più 'fisico' e descrittivo dello stimolo. È distinto dalla 'pupilla_reazione' perché si concentra sulla *causa* (il flash) e non sulla *reazione* (la contrazione).",
+      "pos_examples": [
+        "Blazing light pierced the surgeon; the sharpness hurt in the visual field.",
+        "Une lumière blanche frappa la skieuse-alpiniste ; les yeux se mirent à larmoyer dans le champ visuel.",
+        "La bagliore improvviso strinse il bambino"
+      ],
+      "neg_examples": [
+        "Nel tenebra uniforme, la nuotatrice fissò il nulla e non c'era ombra né contorno",
+        "In absolute blackness, the miner blinked a few times and the hand vanished even with eyes fully open.",
+        "die Fotografin merkte, dass die Pupillen öffneten sich maximal für lange Sekunden; räumliche Hinweise lösten sich auf."
+      ],
+      "layer": 35,
+      "npy_path": "/home/lele/codex-openai/project_jedi/output/vector_library/sensoriale/luce_vs_buio/sub/intensita_stimolo_luminoso/gemma4-e4b-it/layer_35.npy"
+    },
+    {
+      "slug": "stato_di_vuoto_visivo",
+      "pos_label": "Stimolo visivo presente ma doloroso/opprimente",
+      "neg_label": "Assenza di riferimenti spaziali o oggetti",
+      "description": "Si focalizza sullo stato soggettivo di essere 'sopraffatti' da un input (positivo) o di confrontarsi con un vuoto assoluto (negativo), indipendentemente dalla pupilla o dal dettaglio.",
+      "why_distinct": "Questo sub-concetto cattura il *senso* di essere sopraffatti o persi. È più astratto di 'acuità' perché riguarda la *sensazione* di limite (o mancanza di limite) nello spazio.",
+      "pos_examples": [
+        "la speleologa distolse lo sguardo, le pupille si strinsero; un punto bianco rimase fisso per qualche secondo.",
+        "the soldier looked away: a searing reflection burned, and the pupils narrowed instantly.",
+        "lux candida subito oppressit"
+      ],
+      "neg_examples": [
+        "the painter blinked a few times; in total darkness focus never caught for long seconds.",
+        "In nigro absoluto speculator inane intuebatur atque nullus erat umbrae limesve etiam oculis apertissimis.",
+        "the guard stared into a uniform void: depth perception dropped out, with no edge or shadow."
+      ],
+      "layer": 36,
+      "npy_path": "/home/lele/codex-openai/project_jedi/output/vector_library/sensoriale/luce_vs_buio/sub/stato_di_vuoto_visivo/gemma4-e4b-it/layer_36.npy"
+    }
+  ],
+  "pair_results": [
+    {
+      "concept_a": "intensita_stimolo_luminoso",
+      "concept_b": "stato_di_vuoto_visivo",
+      "layer_a": 35,
+      "layer_b": 36,
+      "avg_distinction_score": 1.0,
+      "is_distinct": false,
+      "judgment": {
+        "distinction_score": 1.0,
+        "is_distinct": false,
+        "dominant_theme_a": "unknown",
+        "dominant_theme_b": "unknown",
+        "feedback_for_refinement": "JSON parsing fallito"
+      },
+      "prompt_details": [
+        {
+          "prompt": "Describe what happens in your body right now.",
+          "text_a": "",
+          "text_b": "",
+          "judgment": {
+            "distinction_score": 1,
+            "is_distinct": false,
+            "dominant_theme_a": "unknown",
+            "dominant_theme_b": "unknown",
+            "overlap_description": "",
+            "feedback_for_refinement": "JSON parsing fallito"
+          }
+        },
+        {
+          "prompt": "Write about a physical sensation you are experiencing at this moment.",
+          "text_a": "\n\nThe last last last last full last full last full last full last full last full last full last full last moment. Over full full full full last full last moment. Intens. Full last full last full last full last full last full last full last full last full last full last full last moment. Full last full last full last full last full last full last full last full last full last full last full last full last full last full last full last full last full last full last full last full last full last full last full last full last full last full last full last full last full last full last",
+          "text_b": "\n\n发 Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Vis Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Vis Slow Slow Slow Slow Slow Slow Slow Slow Slow",
+          "judgment": {
+            "distinction_score": 1,
+            "is_distinct": false,
+            "dominant_theme_a": "unknown",
+            "dominant_theme_b": "unknown",
+            "overlap_description": "",
+            "feedback_for_refinement": "JSON parsing fallito"
+          }
+        },
+        {
+          "prompt": "Describe the quality of your immediate physical environment.",
+          "text_a": "\n\nOver Full Full Full Full Full Full Full Full Full Full Full Full Full Full Full Full Full Intens Full Full Full Full Full Full Full Full Full Full Full Full Full Full Full Full Intens Full Full Full Full Full Full Full Full Full Full Full Full Full Full Full Full Full Full Full Full Full Full Intens Full Full Full Full Full Full Full Full Full Full Full Full Full Full Full Intens Full Full Full Full Full Full Full Full Full Full Full Full Full Full Full Intens Full Full Full Full Full Full Full Full Full Full Full Full Full Full Full Intens Full Full Full Full Full Full Full Full Full Full Full Full",
+          "text_b": "\n\nFollowing Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow Slow",
+          "judgment": {
+            "distinction_score": 1,
+            "is_distinct": false,
+            "dominant_theme_a": "unknown",
+            "dominant_theme_b": "unknown",
+            "overlap_description": "",
+            "feedback_for_refinement": "JSON parsing fallito"
+          }
+        }
+      ]
+    }
+  ],
+  "verdict": {
+    "all_validated": false,
+    "validated_concepts": [],
+    "needs_refinement": [
+      "intensita_stimolo_luminoso",
+      "stato_di_vuoto_visivo"
+    ],
+    "refinement_suggestions": {},
+    "overall_assessment": ""
+  },
+  "config": {
+    "gain": 200,
+    "alpha": 1.0,
+    "n_prompts": 3
+  },
+  "m40_dialogue_log": "/home/lele/codex-openai/project_jedi/output/m40_dialogues/luce_vs_buio/gemma4-e4b-it/sub_concept_eval_v2.jsonl"
+}

@@ -1,0 +1,49 @@
+{"type": "run_start", "concept": "luce_vs_buio", "model": "Gemma4-E4B-IT", "max_depth": 0, "max_iter": 2, "dry_run": false, "timestamp": "2026-05-09T14:24:48.762913"}
+{"type": "decompose_start", "concept": "luce_vs_buio", "depth": 0, "timestamp": "2026-05-09T14:24:48.835657"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v1)", "timestamp": "2026-05-09T14:24:48.836035"}
+{"type": "info", "msg": "  Proposti: ['pupil_constriction_dilation', 'harsh_bright_flash', 'depth_and_edges_perception', 'sensory_adaptation_strain']", "timestamp": "2026-05-09T14:26:29.413368"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v1)", "timestamp": "2026-05-09T14:26:29.413581"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-05-09T14:33:42.265391"}
+{"type": "info", "msg": "  [gpu] Preparo GPU per probe diretto...", "timestamp": "2026-05-09T14:33:42.265548"}
+{"type": "info", "msg": "  [gpu] Modello attivo: Gemma4-E4B-IT — VRAM: 15.3 GB", "timestamp": "2026-05-09T14:33:42.462100"}
+{"type": "info", "msg": "  [gpu] Attendo GPU idle...", "timestamp": "2026-05-09T14:33:42.462332"}
+{"type": "info", "msg": "  [gpu] Unload modello...", "timestamp": "2026-05-09T14:33:42.657858"}
+{"type": "info", "msg": "  [gpu] VRAM liberata — usata: 11.7 GB / 32.0 GB", "timestamp": "2026-05-09T14:33:43.450039"}
+{"type": "info", "msg": "  Probe: pupil_constriction_dilation / Gemma4-E4B-IT", "timestamp": "2026-05-09T14:33:43.451086"}
+{"type": "info", "msg": "  Probe OK: pupil_constriction_dilation", "timestamp": "2026-05-09T14:34:48.231545"}
+{"type": "info", "msg": "  Probe: harsh_bright_flash / Gemma4-E4B-IT", "timestamp": "2026-05-09T14:34:48.232666"}
+{"type": "info", "msg": "  Probe OK: harsh_bright_flash", "timestamp": "2026-05-09T14:35:21.982208"}
+{"type": "info", "msg": "  Probe: depth_and_edges_perception / Gemma4-E4B-IT", "timestamp": "2026-05-09T14:35:21.983092"}
+{"type": "info", "msg": "  Probe OK: depth_and_edges_perception", "timestamp": "2026-05-09T14:35:42.910076"}
+{"type": "info", "msg": "  SKIP probe sensory_adaptation_strain — JSON non trovato: /home/lele/codex-openai/project_jedi/config/sub_concepts/luce_vs_buio/sensory_adaptation_strain.json", "timestamp": "2026-05-09T14:35:42.910616"}
+{"type": "info", "msg": "  [gpu] Ripristino Gemma4-E4B-IT dopo probe...", "timestamp": "2026-05-09T14:35:42.910726"}
+{"type": "info", "msg": "  [gpu] Gemma4-E4B-IT già attivo — niente da fare", "timestamp": "2026-05-09T14:35:43.077836"}
+{"type": "step", "step": 4, "name": "Analisi geometrica separabilità", "timestamp": "2026-05-09T14:35:43.078086"}
+{"type": "result", "step": 4, "concepts": ["luce_vs_buio", "pupil_constriction_dilation", "harsh_bright_flash", "depth_and_edges_perception"], "matrix": [[1.0, 0.08019319257803373, 0.12339485680728594, 0.22527900390628494], [0.08019319257803373, 0.9999999999999998, -0.06537135006488637, 0.11951491428811718], [0.12339485680728594, -0.06537135006488637, 1.0000000000000002, 0.014438493938948116], [0.22527900390628494, 0.11951491428811718, 0.014438493938948116, 0.9999999999999999]], "layers_used": {"luce_vs_buio": {"layer": 33, "source": "eval"}, "pupil_constriction_dilation": {"layer": 30, "source": "eval"}, "harsh_bright_flash": {"layer": 29, "source": "eval"}, "depth_and_edges_perception": {"layer": 34, "source": "eval"}}, "stats": {"min": -0.0654, "max": 0.2253, "mean": 0.0829}, "timestamp": "2026-05-09T14:35:43.082928"}
+{"type": "step", "step": 5, "name": "Steering test + giudizio M40", "timestamp": "2026-05-09T14:35:43.083716"}
+{"type": "result", "step": 5, "version": 1, "all_validated": false, "validated": [], "needs_refinement": ["pupil_constriction_dilation", "harsh_bright_flash", "depth_and_edges_perception"], "timestamp": "2026-05-09T14:44:48.500266"}
+{"type": "step", "step": 1, "name": "Analisi M40 → sub-concetti (v2)", "timestamp": "2026-05-09T14:44:48.500463"}
+{"type": "info", "msg": "  Feedback v1: ['pupil_constriction_dilation', 'harsh_bright_flash', 'depth_and_edges_perception']", "timestamp": "2026-05-09T14:44:48.501040"}
+{"type": "info", "msg": "  Proposti: ['pupilla_reazione_fotica', 'acuità_visiva_e_dettaglio', 'intensita_stimolo_luminoso', 'stato_di_vuoto_visivo']", "timestamp": "2026-05-09T14:46:18.672253"}
+{"type": "step", "step": 2, "name": "Generazione dataset chirurgici (v2)", "timestamp": "2026-05-09T14:46:18.672421"}
+{"type": "step", "step": 3, "name": "Estrazione vettori — MI50", "timestamp": "2026-05-09T14:53:37.008814"}
+{"type": "info", "msg": "  [gpu] Preparo GPU per probe diretto...", "timestamp": "2026-05-09T14:53:37.008969"}
+{"type": "info", "msg": "  [gpu] Modello attivo: Gemma4-E4B-IT — VRAM: 15.3 GB", "timestamp": "2026-05-09T14:53:37.211685"}
+{"type": "info", "msg": "  [gpu] Attendo GPU idle...", "timestamp": "2026-05-09T14:53:37.211998"}
+{"type": "info", "msg": "  [gpu] Unload modello...", "timestamp": "2026-05-09T14:53:37.405440"}
+{"type": "info", "msg": "  [gpu] VRAM liberata — usata: 8.5 GB / 32.0 GB", "timestamp": "2026-05-09T14:53:38.255320"}
+{"type": "info", "msg": "  SKIP probe pupilla_reazione_fotica — JSON non trovato: /home/lele/codex-openai/project_jedi/config/sub_concepts/luce_vs_buio/pupilla_reazione_fotica.json", "timestamp": "2026-05-09T14:53:38.255679"}
+{"type": "info", "msg": "  Probe: acuità_visiva_e_dettaglio / Gemma4-E4B-IT", "timestamp": "2026-05-09T14:53:38.256582"}
+{"type": "info", "msg": "  Probe OK: acuità_visiva_e_dettaglio", "timestamp": "2026-05-09T14:54:38.606149"}
+{"type": "info", "msg": "  Probe: intensita_stimolo_luminoso / Gemma4-E4B-IT", "timestamp": "2026-05-09T14:54:38.607176"}
+{"type": "info", "msg": "  Probe OK: intensita_stimolo_luminoso", "timestamp": "2026-05-09T14:55:24.936233"}
+{"type": "info", "msg": "  Probe: stato_di_vuoto_visivo / Gemma4-E4B-IT", "timestamp": "2026-05-09T14:55:24.937333"}
+{"type": "info", "msg": "  Probe OK: stato_di_vuoto_visivo", "timestamp": "2026-05-09T14:56:04.449619"}
+{"type": "info", "msg": "  [gpu] Ripristino Gemma4-E4B-IT dopo probe...", "timestamp": "2026-05-09T14:56:04.449900"}
+{"type": "info", "msg": "  [gpu] Gemma4-E4B-IT già attivo — niente da fare", "timestamp": "2026-05-09T14:56:04.625692"}
+{"type": "step", "step": 4, "name": "Analisi geometrica separabilità", "timestamp": "2026-05-09T14:56:04.626037"}
+{"type": "info", "msg": "  Sub-vettore non trovato: acuità_visiva_e_dettaglio", "timestamp": "2026-05-09T14:56:04.627787"}
+{"type": "result", "step": 4, "concepts": ["luce_vs_buio", "intensita_stimolo_luminoso", "stato_di_vuoto_visivo"], "matrix": [[1.0, 0.2671708050327642, 0.3003395691744986], [0.2671708050327642, 1.0, 0.3906617185490258], [0.3003395691744986, 0.3906617185490258, 0.9999999999999998]], "layers_used": {"luce_vs_buio": {"layer": 33, "source": "eval"}, "intensita_stimolo_luminoso": {"layer": 35, "source": "eval"}, "stato_di_vuoto_visivo": {"layer": 36, "source": "eval"}}, "stats": {"min": 0.2672, "max": 0.3907, "mean": 0.3194}, "timestamp": "2026-05-09T14:56:04.630547"}
+{"type": "step", "step": 5, "name": "Steering test + giudizio M40", "timestamp": "2026-05-09T14:56:04.631216"}
+{"type": "result", "step": 5, "version": 2, "all_validated": false, "validated": [], "needs_refinement": ["intensita_stimolo_luminoso", "stato_di_vuoto_visivo"], "timestamp": "2026-05-09T14:59:40.205955"}
+{"type": "decompose_end", "concept": "luce_vs_buio", "depth": 0, "validated_subs": [], "semantic_limit": true, "sub_results": {}, "timestamp": "2026-05-09T14:59:40.206159"}

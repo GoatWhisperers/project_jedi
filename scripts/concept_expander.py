@@ -90,17 +90,23 @@ def _parse_json(raw: str, fallback: dict) -> dict:
     Se il JSON è annidato (es. M40 wrappa sub_concepts in un dict esterno),
     cerca ricorsivamente la chiave sub_concepts."""
     parsed = None
-    try:
-        parsed = json.loads(raw.strip())
-    except json.JSONDecodeError:
-        pass
+
+    # Strategia 1: estrai da prima { a ultima } (robusto vs code fence)
+    start = raw.find('{')
+    end   = raw.rfind('}')
+    if start != -1 and end != -1 and start < end:
+        try:
+            parsed = json.loads(raw[start:end + 1])
+        except json.JSONDecodeError:
+            pass
+
+    # Strategia 2: parse diretto
     if parsed is None:
-        match = re.search(r'\{.*\}', raw, re.DOTALL)
-        if match:
-            try:
-                parsed = json.loads(match.group())
-            except json.JSONDecodeError:
-                pass
+        try:
+            parsed = json.loads(raw.strip())
+        except json.JSONDecodeError:
+            pass
+
     if parsed is None:
         print(f"    [WARN] JSON parse fallito. Raw preview: {raw[:150]!r}")
         return fallback
@@ -326,7 +332,7 @@ Identifica 4-6 sub-concetti specifici. Per ognuno:
         return {}
 
     print("  Chiamata M40 (analisi)...", end=" ", flush=True)
-    raw = m40._call(SYSTEM_ANALYSIS, user_prompt, max_tokens=2000, temperature=0.4,
+    raw = m40._call(SYSTEM_ANALYSIS, user_prompt, max_tokens=4000, temperature=0.4,
                     step_label=f"step1_analysis_v{version}")
     print("OK")
 

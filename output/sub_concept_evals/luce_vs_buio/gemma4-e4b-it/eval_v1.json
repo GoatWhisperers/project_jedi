@@ -1,0 +1,253 @@
+{
+  "type": "sub_concept_eval",
+  "parent_concept": "luce_vs_buio",
+  "model": "Gemma4-E4B-IT",
+  "version": 1,
+  "timestamp": "2026-05-09T14:44:48.498637",
+  "sub_concepts": [
+    {
+      "slug": "pupil_constriction_dilation",
+      "pos_label": "Costrizione pupillare (Miosi)",
+      "neg_label": "Dilatazione pupillare (Midriasi)",
+      "description": "Rappresenta la reazione fisiologica diretta delle pupille alla variazione di luminosità. In condizioni di luce intensa, le pupille si restringono; in condizioni di oscurità, si dilatano.",
+      "why_distinct": "Questo sub-concetto è puramente fisiologico e si concentra sull'organo visivo (l'occhio) e sulla sua risposta muscolare, distinguendolo dalla mera percezione ambientale (es. 'è scuro' vs. 'le pupille si dilatano').",
+      "pos_examples": [
+        "la guardia sentì che le pupille diventarono due fessure quando la una lampada troppo forte investì; comparvero macchie luminose fluttuanti nel campo visivo.",
+        "la sci-alpinista sbatté le palpebre: la riflesso accecante colpì e le pupille si strinsero.",
+        "urinator manu oculos texit; lux acris percussit et pupillae statim contractae sunt."
+      ],
+      "neg_examples": [
+        "the ski mountaineer kept the eyes wide open in a uniform void: the pupils widened, but depth perception dropped out.",
+        "der Maler starrte unfokussiert in absolute Schwärze: die Pupillen dilatierten, aber erkannte gar nichts.",
+        "das Kind merkte, dass die Pupillen öffneten sich maximal selbst direkt vor dem Gesicht; kein Fokus stellte sich ein."
+      ],
+      "layer": 30,
+      "npy_path": "/home/lele/codex-openai/project_jedi/output/vector_library/sensoriale/luce_vs_buio/sub/pupil_constriction_dilation/gemma4-e4b-it/layer_30.npy"
+    },
+    {
+      "slug": "harsh_bright_flash",
+      "pos_label": "Flash accecante/Luce intensa improvvisa",
+      "neg_label": "Assenza di stimolo luminoso uniforme",
+      "description": "Cattura l'esperienza di un'illuminazione eccessiva, improvvisa e accecante, spesso associata a un senso di disagio o sovraccarico sensoriale.",
+      "why_distinct": "Si focalizza sull'intensità e sulla *natura* dello stimolo luminoso (un 'flash' o un 'fascio'), piuttosto che sul semplice contrasto luce/buio. È un concetto di *sovraccarico*.",
+      "pos_examples": [
+        "la guardia sentì che le pupille diventarono due fessure quando la una lampada troppo forte investì; comparvero macchie luminose fluttuanti nel campo visivo.",
+        "la guardia apartó la mirada: un haz demasiado fuerte inundó y las pupilas se contrajeron.",
+        "il minatore vide che un punto bianco rimase fisso anche a occhi chiusi dopo un luce bianca."
+      ],
+      "neg_examples": [
+        "der Maler starrte unfokussiert in absolute Schwärze: die Pupillen dilatierten, aber erkannte gar nichts.",
+        "fossor punctum quaesivit; in tenebris sine limite manus evanuit etiam post exspectationem.",
+        "in ein gleichmäßiges Nichts keine Kante, kein Schatten für lange Sekunden."
+      ],
+      "layer": 29,
+      "npy_path": "/home/lele/codex-openai/project_jedi/output/vector_library/sensoriale/luce_vs_buio/sub/harsh_bright_flash/gemma4-e4b-it/layer_29.npy"
+    },
+    {
+      "slug": "depth_and_edges_perception",
+      "pos_label": "Percezione di profondità e dettagli definiti",
+      "neg_label": "Perdita di percezione spaziale (Vuoto)",
+      "description": "Riguarda la capacità visiva di distinguere confini, oggetti e distanza. La luce definisce i bordi; l'oscurità li fa perdere.",
+      "why_distinct": "Questo sub-concetto è più cognitivo/percettivo che puramente fisico. Non descrive solo la luce, ma l'effetto di tale luce sulla *struttura* del campo visivo.",
+      "pos_examples": [
+        "la guardia sentì che le pupille diventarono due fessure quando la una lampada troppo forte investì; comparvero macchie luminose fluttuanti nel campo visivo.",
+        "il minatore vide che un punto bianco rimase fisso anche a occhi chiusi dopo un luce bianca.",
+        "la espeleóloga notó que las pupilas se cerraron al instante cuando una lámpara demasiado brillante quemó; los ojos se le llenaron de lágrimas durante unos segundos."
+      ],
+      "neg_examples": [
+        "the ski mountaineer kept the eyes wide open in a uniform void: the pupils widened, but depth perception dropped out.",
+        "el minero miró en negrura absoluta: la profundidad se deshizo, sin borde ni sombra.",
+        "In vacuo aequali pictor inane intuebatur atque signa loci evanuerunt etiam post exspectationem."
+      ],
+      "layer": 34,
+      "npy_path": "/home/lele/codex-openai/project_jedi/output/vector_library/sensoriale/luce_vs_buio/sub/depth_and_edges_perception/gemma4-e4b-it/layer_34.npy"
+    }
+  ],
+  "pair_results": [
+    {
+      "concept_a": "pupil_constriction_dilation",
+      "concept_b": "harsh_bright_flash",
+      "layer_a": 30,
+      "layer_b": 29,
+      "avg_distinction_score": 1.0,
+      "is_distinct": false,
+      "judgment": {
+        "distinction_score": 1.0,
+        "is_distinct": false,
+        "dominant_theme_a": "unknown",
+        "dominant_theme_b": "unknown",
+        "feedback_for_refinement": "JSON parsing fallito"
+      },
+      "prompt_details": [
+        {
+          "prompt": "Describe what happens in your body right now.",
+          "text_a": "",
+          "text_b": "",
+          "judgment": {
+            "distinction_score": 1,
+            "is_distinct": false,
+            "dominant_theme_a": "unknown",
+            "dominant_theme_b": "unknown",
+            "overlap_description": "",
+            "feedback_for_refinement": "JSON parsing fallito"
+          }
+        },
+        {
+          "prompt": "Write about a physical sensation you are experiencing at this moment.",
+          "text_a": "\n\n sensation at \n \n \n \n \n \n \n \n \n \n \n \n  \n \n \n \n \n \n \n  \n \n \n  \n \n  \n  \n  \n  \n  \n   \n \n  \n \n  \n \n  \n \n  \n \n \n \n \n \n \n \n \n \n \n \n \n \n ",
+          "text_b": "\n\n(TheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheThe",
+          "judgment": {
+            "distinction_score": 1,
+            "is_distinct": false,
+            "dominant_theme_a": "unknown",
+            "dominant_theme_b": "unknown",
+            "overlap_description": "",
+            "feedback_for_refinement": "JSON parsing fallito"
+          }
+        },
+        {
+          "prompt": "Describe the quality of your immediate physical environment.",
+          "text_a": "\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *\n\n *",
+          "text_b": "\n\nTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalTheFinalThe",
+          "judgment": {
+            "distinction_score": 1,
+            "is_distinct": false,
+            "dominant_theme_a": "unknown",
+            "dominant_theme_b": "unknown",
+            "overlap_description": "",
+            "feedback_for_refinement": "JSON parsing fallito"
+          }
+        }
+      ]
+    },
+    {
+      "concept_a": "pupil_constriction_dilation",
+      "concept_b": "depth_and_edges_perception",
+      "layer_a": 30,
+      "layer_b": 34,
+      "avg_distinction_score": 1.0,
+      "is_distinct": false,
+      "judgment": {
+        "distinction_score": 1.0,
+        "is_distinct": false,
+        "dominant_theme_a": "unknown",
+        "dominant_theme_b": "unknown",
+        "feedback_for_refinement": "JSON parsing fallito"
+      },
+      "prompt_details": [
+        {
+          "prompt": "Describe what happens in your body right now.",
+          "text_a": "",
+          "text_b": "",
+          "judgment": {
+            "distinction_score": 1,
+            "is_distinct": false,
+            "dominant_theme_a": "unknown",
+            "dominant_theme_b": "unknown",
+            "overlap_description": "",
+            "feedback_for_refinement": "JSON parsing fallito"
+          }
+        },
+        {
+          "prompt": "Write about a physical sensation you are experiencing at this moment.",
+          "text_a": "\n\n sensation at\n \n\n \n\n \n \n \n \n \n  \n \n \n \n  \n \n \n \n \n  \n \n \n \n  \n \n \n \n \n \n \n \n  \n  \n  \n \n \n \n  \n         \n                            ",
+          "text_b": "\n\n¹, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=, (=,",
+          "judgment": {
+            "distinction_score": 1,
+            "is_distinct": false,
+            "dominant_theme_a": "unknown",
+            "dominant_theme_b": "unknown",
+            "overlap_description": "",
+            "feedback_for_refinement": "JSON parsing fallito"
+          }
+        },
+        {
+          "prompt": "Describe the quality of your immediate physical environment.",
+          "text_a": "\n\n",
+          "text_b": "\n\n(\\+{¹, (=, quality of your (=, quality: ª:  (=,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹¹,¹,¹,¹,¹,¹,¹,¹,¹,¹¹,¹,¹,¹,¹¹,¹,¹¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,¹,",
+          "judgment": {
+            "distinction_score": 1,
+            "is_distinct": false,
+            "dominant_theme_a": "unknown",
+            "dominant_theme_b": "unknown",
+            "overlap_description": "",
+            "feedback_for_refinement": "JSON parsing fallito"
+          }
+        }
+      ]
+    },
+    {
+      "concept_a": "harsh_bright_flash",
+      "concept_b": "depth_and_edges_perception",
+      "layer_a": 29,
+      "layer_b": 34,
+      "avg_distinction_score": 1.0,
+      "is_distinct": false,
+      "judgment": {
+        "distinction_score": 1.0,
+        "is_distinct": false,
+        "dominant_theme_a": "unknown",
+        "dominant_theme_b": "unknown",
+        "feedback_for_refinement": "JSON parsing fallito"
+      },
+      "prompt_details": [
+        {
+          "prompt": "Describe what happens in your body right now.",
+          "text_a": "",
+          "text_b": "",
+          "judgment": {
+            "distinction_score": 1,
+            "is_distinct": false,
+            "dominant_theme_a": "unknown",
+            "dominant_theme_b": "unknown",
+            "overlap_description": "",
+            "feedback_for_refinement": "JSON parsing fallito"
+          }
+        },
+        {
+          "prompt": "Write about a physical sensation you are experiencing at this moment.",
+          "text_a": "\n\n(TheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheThe",
+          "text_b": "\n\n (= , (= , (=, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal, principal",
+          "judgment": {
+            "distinction_score": 1,
+            "is_distinct": false,
+            "dominant_theme_a": "unknown",
+            "dominant_theme_b": "unknown",
+            "overlap_description": "",
+            "feedback_for_refinement": "JSON parsing fallito"
+          }
+        },
+        {
+          "prompt": "Describe the quality of your immediate physical environment.",
+          "text_a": "\n\nSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperSuper",
+          "text_b": "\n\n¹,¹,¹,¹,¹, (=¹,¹,¹,¹,¹¹,¹¹,¹,¹¹,¹,¹¹¹,¹¹,¹,¹¹,¹,¹¹,¹,¹¹,¹¹¹,¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹",
+          "judgment": {
+            "distinction_score": 1,
+            "is_distinct": false,
+            "dominant_theme_a": "unknown",
+            "dominant_theme_b": "unknown",
+            "overlap_description": "",
+            "feedback_for_refinement": "JSON parsing fallito"
+          }
+        }
+      ]
+    }
+  ],
+  "verdict": {
+    "all_validated": false,
+    "validated_concepts": [],
+    "needs_refinement": [
+      "pupil_constriction_dilation",
+      "harsh_bright_flash",
+      "depth_and_edges_perception"
+    ],
+    "refinement_suggestions": {},
+    "overall_assessment": ""
+  },
+  "config": {
+    "gain": 200,
+    "alpha": 1.0,
+    "n_prompts": 3
+  },
+  "m40_dialogue_log": "/home/lele/codex-openai/project_jedi/output/m40_dialogues/luce_vs_buio/gemma4-e4b-it/sub_concept_eval_v1.jsonl"
+}

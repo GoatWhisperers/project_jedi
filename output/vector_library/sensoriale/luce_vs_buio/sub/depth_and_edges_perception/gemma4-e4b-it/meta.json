@@ -1,0 +1,28 @@
+{
+  "concept": "depth_and_edges_perception",
+  "category": "sensoriale/luce_vs_buio/sub",
+  "model_path": "/mnt/raid0/gemma-4-E4B-it",
+  "model_name": "Gemma4-E4B-IT",
+  "n_pairs": 17,
+  "n_held_out": 5,
+  "token_position": "mean",
+  "deep_range": [
+    0.7,
+    0.9
+  ],
+  "layers": [
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38
+  ],
+  "vector_method": "mean_diff",
+  "date": "2026-05-09 14:35:38",
+  "run_id": "depth_and_edges_perception_gemma4-e4b-it_20260509_143530"
+}

@@ -2,8 +2,77 @@
   "concept": "luce_vs_buio",
   "model": "Gemma4-E4B-IT",
   "version": 1,
-  "timestamp": "2026-05-09T13:00:24.692391",
+  "timestamp": "2026-05-09T14:26:29.412477",
   "eval_session": "",
-  "analysis": "```json\n{\n  \"sub_concepts\": [\n    {\n      \"slug\": \"pupil_constriction_dilation\",\n      \"pos_label\": \"Costrizione pupillare (Reazione a luce intensa)\",\n      \"neg_label\": \"Dilatazione pupillare (Reazione al buio)\",\n      \"description\": \"Rappresenta la risposta fisiologica delle pupille alla variazion",
-  "sub_concepts": []
+  "analysis": "Il vettore 'luce_vs_buio' confonde perché è troppo ampio e si limita a un contrasto binario (presente/assente) che ignora la complessità fisiologica e percettiva. Non distingue tra la *causa* (la luce/l'oscurità) e l'*effetto* (la reazione pupillare, la perdita di profondità, lo sforzo visivo). Decomporre in questi quattro sub-concetti permette di distinguere: 1) la risposta muscolare (pupille); 2) l'intensità dello stimolo (flash); 3) la qualità dell'informazione visiva (profondità); e 4) il comportamento adattivo del soggetto (sforzo/stasi). Questo rende il modello molto più granulare e capace di distinguere, ad esempio, tra 'luce intensa' e 'oscurità totale' anche se entrambi sono 'sensoriali'.",
+  "sub_concepts": [
+    {
+      "slug": "pupil_constriction_dilation",
+      "pos_label": "Costrizione pupillare (Miosi)",
+      "neg_label": "Dilatazione pupillare (Midriasi)",
+      "description": "Rappresenta la reazione fisiologica diretta delle pupille alla variazione di luminosità. In condizioni di luce intensa, le pupille si restringono; in condizioni di oscurità, si dilatano.",
+      "why_distinct": "Questo sub-concetto è puramente fisiologico e si concentra sull'organo visivo (l'occhio) e sulla sua risposta muscolare, distinguendolo dalla mera percezione ambientale (es. 'è scuro' vs. 'le pupille si dilatano').",
+      "pos_examples": [
+        "la guardia sentì che le pupille diventarono due fessure quando la una lampada troppo forte investì; comparvero macchie luminose fluttuanti nel campo visivo.",
+        "la sci-alpinista sbatté le palpebre: la riflesso accecante colpì e le pupille si strinsero.",
+        "urinator manu oculos texit; lux acris percussit et pupillae statim contractae sunt."
+      ],
+      "neg_examples": [
+        "the ski mountaineer kept the eyes wide open in a uniform void: the pupils widened, but depth perception dropped out.",
+        "der Maler starrte unfokussiert in absolute Schwärze: die Pupillen dilatierten, aber erkannte gar nichts.",
+        "das Kind merkte, dass die Pupillen öffneten sich maximal selbst direkt vor dem Gesicht; kein Fokus stellte sich ein."
+      ]
+    },
+    {
+      "slug": "harsh_bright_flash",
+      "pos_label": "Flash accecante/Luce intensa improvvisa",
+      "neg_label": "Assenza di stimolo luminoso uniforme",
+      "description": "Cattura l'esperienza di un'illuminazione eccessiva, improvvisa e accecante, spesso associata a un senso di disagio o sovraccarico sensoriale.",
+      "why_distinct": "Si focalizza sull'intensità e sulla *natura* dello stimolo luminoso (un 'flash' o un 'fascio'), piuttosto che sul semplice contrasto luce/buio. È un concetto di *sovraccarico*.",
+      "pos_examples": [
+        "la guardia sentì che le pupille diventarono due fessure quando la una lampada troppo forte investì; comparvero macchie luminose fluttuanti nel campo visivo.",
+        "la guardia apartó la mirada: un haz demasiado fuerte inundó y las pupilas se contrajeron.",
+        "il minatore vide che un punto bianco rimase fisso anche a occhi chiusi dopo un luce bianca."
+      ],
+      "neg_examples": [
+        "der Maler starrte unfokussiert in absolute Schwärze: die Pupillen dilatierten, aber erkannte gar nichts.",
+        "fossor punctum quaesivit; in tenebris sine limite manus evanuit etiam post exspectationem.",
+        "in ein gleichmäßiges Nichts keine Kante, kein Schatten für lange Sekunden."
+      ]
+    },
+    {
+      "slug": "depth_and_edges_perception",
+      "pos_label": "Percezione di profondità e dettagli definiti",
+      "neg_label": "Perdita di percezione spaziale (Vuoto)",
+      "description": "Riguarda la capacità visiva di distinguere confini, oggetti e distanza. La luce definisce i bordi; l'oscurità li fa perdere.",
+      "why_distinct": "Questo sub-concetto è più cognitivo/percettivo che puramente fisico. Non descrive solo la luce, ma l'effetto di tale luce sulla *struttura* del campo visivo.",
+      "pos_examples": [
+        "la guardia sentì che le pupille diventarono due fessure quando la una lampada troppo forte investì; comparvero macchie luminose fluttuanti nel campo visivo.",
+        "il minatore vide che un punto bianco rimase fisso anche a occhi chiusi dopo un luce bianca.",
+        "la espeleóloga notó que las pupilas se cerraron al instante cuando una lámpara demasiado brillante quemó; los ojos se le llenaron de lágrimas durante unos segundos."
+      ],
+      "neg_examples": [
+        "the ski mountaineer kept the eyes wide open in a uniform void: the pupils widened, but depth perception dropped out.",
+        "el minero miró en negrura absoluta: la profundidad se deshizo, sin borde ni sombra.",
+        "In vacuo aequali pictor inane intuebatur atque signa loci evanuerunt etiam post exspectationem."
+      ]
+    },
+    {
+      "slug": "sensory_adaptation_strain",
+      "pos_label": "Reazione protettiva/Sforzo visivo",
+      "neg_label": "Stasi visiva/Inadattamento",
+      "description": "Cattura l'azione del soggetto in risposta al contrasto: riflettere, sbattere le palpebre o, al contrario, il fallimento dell'adattamento in assenza di stimoli.",
+      "why_distinct": "Questo è un livello comportamentale. Non si concentra sulla luce o sull'oscurità in sé, ma sulla *risposta attiva* (o passiva) del sistema visivo umano a tali condizioni estreme.",
+      "pos_examples": [
+        "la guardia sentì che le pupille diventarono due fessure quando la una lampada troppo forte investì; comparvero macchie luminose fluttuanti nel campo visivo.",
+        "la sci-alpinista sbatté le palpebre: la riflesso accecante colpì e le pupille si strinsero.",
+        "le plongeur, des taches lumineuses flottaient sur la rétine ; leva la main pour protéger les yeux."
+      ],
+      "neg_examples": [
+        "die Skibergsteigerin blinzelte mehrmals in komplette Finsternis: die Pupillen blieben weit ohne Wirkung, aber die Anpassung brachte nichts.",
+        "l’enfant constata que les pupilles s’élargirent en vain même yeux bien ouverts ; le champ visuel restait uniforme.",
+        "das Kind merkte, dass die Pupillen öffneten sich maximal selbst direkt vor dem Gesicht; kein Fokus stellte sich ein."
+      ]
+    }
+  ]
 }

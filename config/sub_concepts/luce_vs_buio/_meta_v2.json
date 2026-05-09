@@ -2,76 +2,76 @@
   "concept": "luce_vs_buio",
   "model": "Gemma4-E4B-IT",
   "version": 2,
-  "timestamp": "2026-05-09T13:01:55.655540",
+  "timestamp": "2026-05-09T14:46:18.671414",
   "eval_session": "",
-  "analysis": "Il vettore 'luce_vs_buio' confonde la *causa* (la presenza/assenza di luce) con la *risposta fisiologica* (pupilla) e il *risultato percepito* (afterimage). Questo è un errore di dimensionalità. Decomporre in sub-concetti come 'Pupilla' (risposta meccanica), 'Intensità' (qualità dello stimolo) e 'Afterimage' (effetto temporale) permette di distinguere se il testo parla del *cosa* (luce/buio), del *come* (quanto è forte) o del *cosa succede dopo* (residuo visivo). Senza questa decomposizione, un testo che descrive una pupilla dilatata (risposta) potrebbe essere erroneamente classificato solo come 'scuro' (stimolo), ignorando la dinamica fisiologica.",
+  "analysis": "Il vettore 'luce_vs_buio' confonde tre dimensioni semanticamente distinte: 1) La *condizione fisica* dello stimolo (intensità/assenza di luce); 2) La *reazione biologica* dell'organo ricevente (pupilla); e 3) L'*effetto percettivo* sulla capacità di elaborare l'informazione (dettaglio/vuoto). Il problema è che i modelli tendono a correlare la causa (luce) con la conseguenza (pupilla che si restringe), perdendo la capacità di distinguere tra una descrizione puramente fisiologica (es. 'pupilla si restringe') e una descrizione di stato ambientale (es. 'flash accecante'). Decomporre in queste quattro dimensioni permette di addestrare il modello a riconoscere se la frase sta parlando del *meccanismo*, della *fonte*, o dell'*esperienza*.",
   "sub_concepts": [
     {
-      "slug": "pupilla_constrizione_dilatazione",
-      "pos_label": "Pupilla che si restringe (Miosi)",
-      "neg_label": "Pupilla che si dilata al massimo (Mydriasi)",
-      "description": "Rappresenta la risposta fisiologica diretta dell'occhio alla variazione di illuminazione, misurata dalla dimensione della pupilla.",
-      "why_distinct": "È un meccanismo biologico specifico e misurabile, distinto dalla semplice descrizione di 'luminoso' o 'scuro'. Cattura l'azione fisica.",
+      "slug": "pupilla_reazione_fotica",
+      "pos_label": "Costrizione pupillare (risposta a luce intensa)",
+      "neg_label": "Dilatazione pupillare (risposta all'oscurità)",
+      "description": "Si concentra sulla risposta fisiologica diretta dell'occhio, ovvero la variazione di diametro della pupilla in funzione della luminosità ambientale.",
+      "why_distinct": "Questo sub-concetto è puramente meccanico/fisiologico, focalizzandosi sul *come* reagisce l'occhio (pupilla) e non sul *cosa* si vede o sul *livello* di luce.",
       "pos_examples": [
-        "pupille verengten sich",
-        "pupilles se cerraron al instante",
-        "pupille si contrassero quando la luce bianca colpì"
+        "l’astronaute sentit que les pupilles se rétrécirent quand un flash brutal assaillit",
+        "the soldier felt the pupils clenched down when a searing reflection blinded",
+        "fossor aspectum avertit; lux candida subito oppressit et pupillae statim contractae sunt."
       ],
       "neg_examples": [
-        "pupilles dilatatae sunt",
-        "pupilles se abrieron al máximo",
-        "pupilles si dilatarono per lunghi secondi"
+        "le soldat passa la main devant son visage dans des ténèbres sans contour : les pupilles se dilatèrent",
+        "das Kind merkte, dass die Pupillen blieben weit ohne Wirkung selbst mit weit offenen Augen",
+        "photographus punctum quaesivit in caligine sine limine; pupillae dilatatae sunt"
       ]
     },
     {
-      "slug": "intensita_e_abbagliamento",
-      "pos_label": "Luce intensa, flash, bagliore (Glare)",
-      "neg_label": "Oscurità assoluta, vuoto visivo",
-      "description": "Si concentra sulla qualità e sull'intensità dello stimolo luminoso stesso, distinguendo tra un'illuminazione forte e accecante versus l'assenza totale di luce.",
-      "why_distinct": "Si focalizza sulla *causa* (lo stimolo) piuttosto che sulla *risposta* (la pupilla) o sul *risultato* (l'afterimage).",
+      "slug": "acuità_visiva_e_dettaglio",
+      "pos_label": "Alta nitidezza e dettaglio visibile",
+      "neg_label": "Perdita di percezione spaziale o dettaglio",
+      "description": "Riguarda la qualità dell'informazione visiva ricevuta: la capacità di distinguere contorni, oggetti o profondità.",
+      "why_distinct": "Mentre la luce e l'oscurità sono condizioni ambientali, questo sub-concetto cattura l'effetto *perceptuale* di tali condizioni sulla risoluzione e sulla percezione della realtà.",
       "pos_examples": [
-        "luminosità crudele trafisse",
-        "luz intensa atravesó",
-        "halo d’éblouissement cerna tout"
+        "the sharpness hurt in the visual field.",
+        "un punto bianco rimase fisso per qualche secondo.",
+        "la nitidezza faceva male anche a occhi chiusi."
       ],
       "neg_examples": [
-        "nigro absoluto inane intuebatur",
-        "uniform void the hand vanished",
-        "vuoto visivo: ogni riferimento spaziale svanì"
+        "Nel tenebra uniforme, la nuotatrice fissò il nulla e non c'era ombra né contorno",
+        "the guard stared into a uniform void: depth perception dropped out, with no edge or shadow.",
+        "l'astronauta distolse lo sguardo: la luce intensa bruciò e le pupille si ridussero a punti."
       ]
     },
     {
-      "slug": "afterimage_residuo",
-      "pos_label": "Immagini residue o posimmagini",
-      "neg_label": "Assenza di tracce visive o adattamento nullo",
-      "description": "Rileva i fenomeni visivi che persistono dopo che lo stimolo luminoso è cessato, come le posimmagini o la sensazione di residuo luminoso.",
-      "why_distinct": "È un concetto temporale che riguarda la *memoria visiva* dell'occhio, non solo lo stato attuale di luce o buio.",
+      "slug": "intensita_stimolo_luminoso",
+      "pos_label": "Luce accecante o improvvisa (flash, bagliore)",
+      "neg_label": "Assenza totale o uniforme di luce (tenebra, oscurità)",
+      "description": "Decompone lo stimolo luminoso in termini di intensità e transitorietà, distinguendo tra un'eccessiva dose di luce (overload) e la sua completa mancanza.",
+      "why_distinct": "Questo è il livello più 'fisico' e descrittivo dello stimolo. È distinto dalla 'pupilla_reazione' perché si concentra sulla *causa* (il flash) e non sulla *reazione* (la contrazione).",
       "pos_examples": [
-        "restò un'immagine residua brillante sulla retina",
-        "posimagen violeta durante unos segundos",
-        "vestigium luminis haesit etiam clausis oculis"
+        "Blazing light pierced the surgeon; the sharpness hurt in the visual field.",
+        "Une lumière blanche frappa la skieuse-alpiniste ; les yeux se mirent à larmoyer dans le champ visuel.",
+        "La bagliore improvviso strinse il bambino"
       ],
       "neg_examples": [
-        "senza ombra né contorno",
-        "l'adattamento non cambiava niente anche muovendosi",
-        "nullo umbrae limite"
+        "Nel tenebra uniforme, la nuotatrice fissò il nulla e non c'era ombra né contorno",
+        "In absolute blackness, the miner blinked a few times and the hand vanished even with eyes fully open.",
+        "die Fotografin merkte, dass die Pupillen öffneten sich maximal für lange Sekunden; räumliche Hinweise lösten sich auf."
       ]
     },
     {
-      "slug": "percezione_spaziale_dettaglio",
-      "pos_label": "Nitidezza visiva e dettaglio acuto",
-      "neg_label": "Perdita di riferimenti spaziali o contorni",
-      "description": "Si concentra sulla capacità cognitiva di percepire la profondità, i bordi e i dettagli ambientali, influenzata dallo stato luminoso.",
-      "why_distinct": "È un livello più alto di analisi, che collega la fisica della luce alla percezione cognitiva, distinguendolo dalla semplice misurazione della pupilla.",
+      "slug": "stato_di_vuoto_visivo",
+      "pos_label": "Stimolo visivo presente ma doloroso/opprimente",
+      "neg_label": "Assenza di riferimenti spaziali o oggetti",
+      "description": "Si focalizza sullo stato soggettivo di essere 'sopraffatti' da un input (positivo) o di confrontarsi con un vuoto assoluto (negativo), indipendentemente dalla pupilla o dal dettaglio.",
+      "why_distinct": "Questo sub-concetto cattura il *senso* di essere sopraffatti o persi. È più astratto di 'acuità' perché riguarda la *sensazione* di limite (o mancanza di limite) nello spazio.",
       "pos_examples": [
-        "la netteté faisait mal dans le champ visuel",
-        "pupillae in angustum coiere cum lux acris oculos invasit",
-        "restò un'immagine residua brillante sulla retina"
+        "la speleologa distolse lo sguardo, le pupille si strinsero; un punto bianco rimase fisso per qualche secondo.",
+        "the soldier looked away: a searing reflection burned, and the pupils narrowed instantly.",
+        "lux candida subito oppressit"
       ],
       "neg_examples": [
-        "manus evanuit, nullo umbrae limite",
-        "se perdían las referencias espaciales",
-        "non distingueva nulla"
+        "the painter blinked a few times; in total darkness focus never caught for long seconds.",
+        "In nigro absoluto speculator inane intuebatur atque nullus erat umbrae limesve etiam oculis apertissimis.",
+        "the guard stared into a uniform void: depth perception dropped out, with no edge or shadow."
       ]
     }
   ]

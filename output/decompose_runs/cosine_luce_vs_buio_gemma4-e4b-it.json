@@ -3,35 +3,35 @@
   "layer_type": "best_snr",
   "concepts": [
     "luce_vs_buio",
-    "intensita_e_abbagliamento",
-    "percezione_spaziale_dettaglio"
+    "intensita_stimolo_luminoso",
+    "stato_di_vuoto_visivo"
   ],
   "layers_used": {
     "luce_vs_buio": 33,
-    "intensita_e_abbagliamento": 35,
-    "percezione_spaziale_dettaglio": 30
+    "intensita_stimolo_luminoso": 35,
+    "stato_di_vuoto_visivo": 36
   },
   "layer_sources": {
     "luce_vs_buio": "eval",
-    "intensita_e_abbagliamento": "eval",
-    "percezione_spaziale_dettaglio": "eval"
+    "intensita_stimolo_luminoso": "eval",
+    "stato_di_vuoto_visivo": "eval"
   },
   "matrix": [
     [
       1.0,
-      0.23949451269950903,
-      0.14645036164578312
+      0.2671708050327642,
+      0.3003395691744986
     ],
     [
-      0.23949451269950903,
+      0.2671708050327642,
       1.0,
-      0.07062757609184454
+      0.3906617185490258
     ],
     [
-      0.14645036164578312,
-      0.07062757609184454,
-      1.0
+      0.3003395691744986,
+      0.3906617185490258,
+      0.9999999999999998
     ]
   ],
-  "timestamp": "2026-05-09T13:10:17.762489"
+  "timestamp": "2026-05-09T14:56:04.630732"
 }
